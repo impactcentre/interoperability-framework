@@ -1,1 +1,21 @@
-The IMPACT Interoperability Framework specifies the interoperability layer of software components and content developed in the IMPACT project.
+IMPACT Interoperability Framework
+=================================
+
+The IMPACT Interoperability Framework (IIF) specifies the interoperability 
+layer of software components and content developed in the IMPACT project.
+
+It consists of the following modules: 
+
+- toolwrapper
+- interfaces
+    - taverna
+	- t2-client
+	- t2-repository
+	- t2-plugin
+    - web
+        - wsdl-client
+- services
+    - ocr-recognition
+    - ocr-transformation
+    - ocr-evaluation
+- examples
