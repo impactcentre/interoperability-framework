@@ -1,0 +1,6 @@
+<project name="metrics-toolkit">
+	<body>
+		<menu ref="parent"/>
+		<menu ref="reports"/>
+	</body>
+</project> 

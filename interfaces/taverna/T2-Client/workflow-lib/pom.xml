@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eu.impact_project.iif.t2</groupId>
+	<artifactId>workflow-lib</artifactId>
+	<packaging>jar</packaging>
+	<name>workflow-lib</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>Servlets and other Java classes that are used by the other modules.</description>
+	<scm>
+		<url>https://develop.sub.uni-goettingen.de/repos/impact/bird/T2-Client/trunk/workflow-lib</url>
+	</scm>
+
+	<parent>
+		<groupId>eu.impact_project.iif</groupId>
+		<artifactId>T2-Client</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.4</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jxr-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+			</plugin>
+			<!--
+				<plugin> <groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-clover2-plugin</artifactId> </plugin>
+			-->
+		</plugins>
+	</reporting>
+
+
+</project>
