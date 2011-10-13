@@ -40,6 +40,11 @@
         long timeMillis = System.currentTimeMillis() - startMillis;
         processing_time = (int)timeMillis;
 
+        if (this.processing_returncode != 0) {
+            processing_message = "An error occurred while executing the command line application";
+            return getErrorResponse#OPID#(Response#OPID#, response#OPID#Obj);
+        }
+
         //<!-- output_code -->//
 
         Response#OPID#.setResponse#OPID#(response#OPID#Obj);

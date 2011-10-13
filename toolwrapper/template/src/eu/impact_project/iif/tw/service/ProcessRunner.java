@@ -82,6 +82,8 @@ public class ProcessRunner implements Runnable {
     private InputStream standardInputStream = null;
     /** Error stream of the process */
     private InputStream errorInputStream = null;
+
+    private String message = "";
     /** Return code of the process */
     private int code; // -1 means "undefined", 0 success, >0 error
 
@@ -151,21 +153,20 @@ public class ProcessRunner implements Runnable {
     public void run() {
         try {
             Process p = pb.start();
-            ByteArrayOutputStream stdOut =
-                    catchProcessOutput(p.getInputStream());
-            ByteArrayOutputStream errOut =
-                    catchProcessOutput(p.getErrorStream());
+
 
             try {
                 code = execute(p);
             } catch (InterruptedException e) {
                 logger.error("An interrupted exception occurred.", e);
+                code = 1;
+                message = e.getMessage()+"\n";
             }
             waitFor();
-            standardInputStream = new ByteArrayInputStream(stdOut.toByteArray());
-            errorInputStream = new ByteArrayInputStream(errOut.toByteArray());
         } catch (IOException e) {
             logger.error("An I/O error occurred while running the process.", e);
+            code = 1;
+            message = e.getMessage()+"\n";
         }
     }
    /**
@@ -183,8 +184,7 @@ public class ProcessRunner implements Runnable {
      * @throws java.lang.InterruptedException
      */
     private synchronized int execute(Process p) throws InterruptedException {
-        submitProcessInput(p, processInputStream);
-        int exitValue;
+        int exitValue = -1;
         // endless loop
         while (true) {
             try {
@@ -193,6 +193,9 @@ public class ProcessRunner implements Runnable {
                 this.code = exitValue;
                 break;
             } catch (IllegalThreadStateException ex) {
+                logger.error("An IllegalThreadStateException exception occurred.", ex);
+                code = 1;
+                message = ex.getMessage()+"\n";
             }
         }
         return exitValue;
@@ -207,92 +210,20 @@ public class ProcessRunner implements Runnable {
             try {
                 wait(WAIT);
             } catch (InterruptedException e) {
+                logger.error("An InterruptedException exception occurred.", e);
+                code = 1;
+                message = e.getMessage()+"\n";
             }
         }
     }
 
     /**
-     * Collecting the process output.
-     * @param is Input stream
-     * @return Byte array output stream
+     * @return the message
      */
-    private ByteArrayOutputStream catchProcessOutput(
-            final InputStream is) {
-        final ByteArrayOutputStream byteArrayInputOutputStream;
-        byteArrayInputOutputStream = new ByteArrayOutputStream();
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    InputStream inpStream = null;
-                    OutputStream outpStream = null;
-                    try {
-                        inpStream = new BufferedInputStream(is);
-                        outpStream =
-                                new BufferedOutputStream(byteArrayInputOutputStream);
-                        int inputStreamChar;
-                        int counter = 0;
-                        while ((inputStreamChar = inpStream.read()) != -1) {
-                            counter++;
-                            if (counter < MAX_BYTES_OUT) {
-                                outpStream.write(inputStreamChar);
-                            }
-                        }
-                    } finally {
-                        if (inpStream != null) {
-                            inpStream.close();
-                        }
-                        if (outpStream != null) {
-                            outpStream.close();
-                        }
-                    }
-                } catch (IOException e) {
-                    logger.error("An I/O error occurred while running the process.", e);
-                }
-                threads.remove(this);
-            }
-        };
-        threads.add(t);
-        t.start();
-        return byteArrayInputOutputStream;
+    public String getMessage() {
+        if(message == null)
+            message = "";
+        return message;
     }
 
-    /**
-     * Submit input data to the process after it has been started.
-     * @param process Process to input data
-     * @param processInput Input stream
-     */
-    private void submitProcessInput(final Process process,
-            InputStream processInput) {
-        if (processInput == null) {
-            return;
-        }
-        final OutputStream processOutputStream = process.getOutputStream();
-        final InputStream given = processInput;
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    OutputStream outputStream = null;
-                    try {
-                        outputStream = new BufferedOutputStream(processOutputStream);
-                        int inputStreamChar;
-                        while ((inputStreamChar = given.read()) != -1) {
-                            if(outputStream != null)
-                            outputStream.write(inputStreamChar);
-                        }
-                    } finally {
-                        if (outputStream != null) {
-                            outputStream.close();
-                        }
-                        processOutputStream.close();
-                    }
-                } catch (IOException ex) {
-                    //logger.error("An I/O error occurred while running the process.", ex);
-                    // TODO: Throws exception, analyse why.
-                }
-            }
-        };
-        thread.start();
-    }
 }

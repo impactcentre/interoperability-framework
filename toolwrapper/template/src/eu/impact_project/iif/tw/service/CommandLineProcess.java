@@ -76,13 +76,9 @@ public class CommandLineProcess {
     /** Command list that can be passed to the process builder */
     private HashMap<String, String> paramValuePairs;
     private List<String> command;
-    String[] tokenArr;
-    boolean[] isQueryTokenArr;
-    private ArrayList<String> outputList;
     private ProcessRunner pr = null;
     /** Return code of the process */
     private int code; // -1 means "undefined", 0 success, >0 error
-    String[][] queryResult = null;
 
     private String processingLog = "";
     public String getProcessingLog() {
@@ -92,7 +88,6 @@ public class CommandLineProcess {
 
     {
         command = new ArrayList<String>();
-        outputList = new ArrayList<String>();
         paramValuePairs = null;
         pr = new ProcessRunner();
         code = -1; // -1 means "undefined", 0 success, >0 error
@@ -162,80 +157,10 @@ public class CommandLineProcess {
         // assign return code from process controller
         code = pr.getCode();
         infolog("Assigned exit code: " + code + "");
+        processingLog += pr.getMessage();
     }
 
-    public void submitQueries(final String[] cmdArr) throws IOException, InterruptedException {
-        if (pr == null) {
-            errorlog("There is no active command line process");
-        } else {
-
-            this.tokenArr = cmdArr;
-            this.isQueryTokenArr = new boolean[cmdArr.length];
-
-            //errorCatcher = new StreamCatcher(p.getErrorStream())
-
-            StringBuffer sb = new StringBuffer();
-            // Submit query for tokens that exceed the minimum length, the other
-            // tokens are marked as false in the boolean isQueryTokenArr array.
-            int k = 0;
-            int m = 0;
-            for (int i = 0; i < cmdArr.length; i++) {
-                if (tokenArr[i].length() > MIN_QUERYTOKEN_LENGTH) {
-                    sb.append(tokenArr[i] + "\n");
-                    this.isQueryTokenArr[i] = true;
-                    k++;
-                } else {
-                    this.isQueryTokenArr[i] = false;
-                    m++;
-                }
-            }
-            infolog("List of " + k + " query tokens with more than " + MIN_QUERYTOKEN_LENGTH + " characters (" + m + " items skipped, " + (k + m) + " total):\n" + sb.toString());
-            File f = FileUtils.writeStringToFile(sb.toString(), FileUtils.getTmpFile("commands", "tmp"));
-            InputStream is = FileUtils.getInputStreamFromFile(f);
-
-            pr.setProcessInputStream(is);
-            pr.run();
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(pr.getStdInputStream()));
-            String currentLine = null;
-            int l = 0;
-            while ((currentLine = br.readLine()) != null) {
-                outputList.add(currentLine);
-                infolog("Output " + l + ": " + currentLine);
-                l++;
-            }
-            // assign return code from process controller
-            code = pr.getCode();
-            infolog("Assigned exit code: " + code + "");
-
-            infolog("Output list has " + outputList.size() + " items");
-        }
-    }
-
-    public String[][] getResultOutput() throws InterruptedException {
-
-        queryResult = new String[tokenArr.length][];
-        infolog("Result array for " + tokenArr.length + " tokens created.");
-
-        // TODO create output array
-        for (int i = 0, j = 0; i < tokenArr.length; i++) {
-            String[] queryResultPair = new String[2];
-            queryResultPair[0] = tokenArr[i];
-            if (isQueryTokenArr[i]) {
-                try {
-                    queryResultPair[1] = outputList.get(j);
-                } catch (IndexOutOfBoundsException ex) {
-                    errorlog("Error accessing element at " + j);
-                    System.exit(0);
-                }
-                j++;
-            } else {
-                queryResultPair[1] = "--NONE--";
-            }
-            queryResult[i] = queryResultPair;
-        }
-        return queryResult;
-    }
+   
 
     public int getCode() {
         return code;
