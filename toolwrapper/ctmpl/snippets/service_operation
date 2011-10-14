@@ -49,6 +49,9 @@
 
         Response#OPID#.setResponse#OPID#(response#OPID#Obj);
 
+        infolog("Process finished successfully after "
+                   + timeMillis + " milliseconds.");
+
         return Response#OPID#;
     }
 
