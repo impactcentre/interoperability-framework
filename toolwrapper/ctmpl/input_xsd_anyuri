@@ -12,9 +12,9 @@
             return getErrorResponse#OPID#(Response#OPID#, response#OPID#Obj);
         }
         infolog("Input URL: " + #INPUT_VARIABLE#Url.toString());
-        String inputExt = StringUtils.getFileExtension(#INPUT_VARIABLE#Url.toString());
-        if(inputExt == null) inputExt = "tmp";
-        File #INPUT_VARIABLE# = FileUtils.urlToFile(#INPUT_VARIABLE#Url, inputExt);
+        String inputExt#INPUT_VARIABLE# = StringUtils.getFileExtension(#INPUT_VARIABLE#Url.toString());
+        if(inputExt#INPUT_VARIABLE# == null) inputExt#INPUT_VARIABLE# = "tmp";
+        File #INPUT_VARIABLE# = FileUtils.urlToFile(#INPUT_VARIABLE#Url, inputExt#INPUT_VARIABLE#);
         if (!#INPUT_VARIABLE#.exists()) {
             processing_message = "Invalid input file.";
             return getErrorResponse#OPID#(Response#OPID#, response#OPID#Obj);
