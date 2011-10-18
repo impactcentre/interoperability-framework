@@ -1,0 +1,19 @@
+========= PROCESSING REQUEST (by URL) =========.
+Using service: IMPACTTesseractV3Service.
+Parameter processingUnit from services.xml: http://localhost/impact/bl-w/tomcat1/.
+URL of input image: http://localhost/impact/testdata/BNFAltoTest/00411185.tif.
+Wrote file C:\Apache\Tomcat\temp\impact-tmp-store\tmpfilefromurl3202368292933717162.tmp.tif of size 2217274.
+Parameter CLICommand from services.xml: D:/impact/tesseract-v3/tesseract.exe #INFILE# #OUTFILE# -l #LANG#.
+Pattern (before substitution): D:/impact/tesseract-v3/tesseract.exe #INFILE# #OUTFILE# -l #LANG#.
+OUTFILE substitution variable value: C:\Apache\Tomcat\temp\impact-tmp-store\tmpfilefromurl3202368292933717162.tmp.tif.out.
+INFILE substitution variable value: C:\Apache\Tomcat\temp\impact-tmp-store\tmpfilefromurl3202368292933717162.tmp.tif.
+LANG substitution variable value: fra.
+Command (after substitution): D:/impact/tesseract-v3/tesseract.exe C:\Apache\Tomcat\temp\impact-tmp-store\tmpfilefromurl3202368292933717162.tmp.tif C:\Apache\Tomcat\temp\impact-tmp-store\tmpfilefromurl3202368292933717162.tmp.tif.out -l fra.
+Assigned exit code: 0.
+Process finished successfully with code 0.
+Output file of size 1557 has been created successfully..
+Parameter publicHttpAccessDir from services.xml: D:/impact/tmp/.
+Parameter publicHttpAccessUrl from services.xml: http://localhost/impact/tmp/.
+Copying temporary output file: C:\Apache\Tomcat\temp\impact-tmp-store\tmpfilefromurl3202368292933717162.tmp.tif.out.txt to public output file D:\impact\tmp\IMPACTTesseractV3Service_outputUrl_tmpfilefromurl3202368292933717162.tmp.tif.out.txt.
+Output URL: http://localhost/impact/tmp/IMPACTTesseractV3Service_outputUrl_tmpfilefromurl3202368292933717162.tmp.tif.out.txt.
+Process finished successfully after 16156 milliseconds..

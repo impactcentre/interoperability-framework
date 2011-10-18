@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Evaluation>
+		<Character_Evaluation>
+			<Characters>13</Characters>
+			<Errors>1431</Errors>
+			<Accuracy>-10907.69</Accuracy>
+			<RejectCharacters>0</RejectCharacters>
+			<SuspectMarkers>0</SuspectMarkers>
+			<FalseMarks>0</FalseMarks>
+			<CharactersMarked>0.00</CharactersMarked>
+			<AccuracyAfterCorrection>-10907.69</AccuracyAfterCorrection>
+			<FigureOfMerit>0.00</FigureOfMerit>
+			<TypesOfErrors>
+				<Marked>
+					<Ins>0</Ins>
+					<Subst>0</Subst>
+					<Del>0</Del>
+					<SumOfErrors>0</SumOfErrors>
+				</Marked>
+				<UnMarked>
+					<Ins>0</Ins>
+					<Subst>0</Subst>
+					<Del>1431</Del>
+					<SumOfErrors>1431</SumOfErrors>
+				</UnMarked>
+				<Total>
+					<Ins>0</Ins>
+					<Subst>0</Subst>
+					<Del>1431</Del>
+					<SumOfErrors>1431</SumOfErrors>
+				</Total>
+			</TypesOfErrors>
+			<CharacterSets>
+				<CharacterSet Name="ASCII Spacing Characters" Count="2" Missed="0" Right="100.00"/>
+				<CharacterSet Name="ASCII Lowercase Letters" Count="11" Missed="0" Right="100.00"/>
+				<CharacterSet Name="Total" Count="13" Missed="0" Right="100.00"/>
+			</CharacterSets>
+			<Confusions>
+				<Confusion Errors="1431" Marked="0" Correct="" Generated="é du Â/[¿Z7'ZÎ"/>
+			</Confusions>
+			<GTCharacters>
+				<GTCharacter Letter="SPACE_CHAR" Count="2" Missed="0" Right="100.00"/>
+				<GTCharacter Letter="a" Count="1" Missed="0" Right="100.00"/>
+				<GTCharacter Letter="d" Count="1" Missed="0" Right="100.00"/>
+				<GTCharacter Letter="g" Count="1" Missed="0" Right="100.00"/>
+				<GTCharacter Letter="i" Count="2" Missed="0" Right="100.00"/>
+				<GTCharacter Letter="l" Count="1" Missed="0" Right="100.00"/>
+				<GTCharacter Letter="n" Count="1" Missed="0" Right="100.00"/>
+				<GTCharacter Letter="r" Count="1" Missed="0" Right="100.00"/>
+				<GTCharacter Letter="s" Count="1" Missed="0" Right="100.00"/>
+				<GTCharacter Letter="t" Count="1" Missed="0" Right="100.00"/>
+				<GTCharacter Letter="u" Count="1" Missed="0" Right="100.00"/>
+			</GTCharacters>
+		</Character_Evaluation>
+		<Word_Evaluation>
+			<Words>3</Words>
+			<Misrecognized>1</Misrecognized>
+			<WordAccuracy>66.67</WordAccuracy>
+			<Stopwords>
+				<Stopword Length="3" Count="1" Missed="0" Right="100.00"/>
+				<Stopword Length="Total" Count="1" Missed="0" Right="100.00"/>
+			</Stopwords>
+			<NonStopwords>
+				<NonStopword Length="2" Count="1" Missed="0" Right="100.00"/>
+				<NonStopword Length="6" Count="1" Missed="1" Right="0.00"/>
+				<NonStopword Length="Total" Count="2" Missed="1" Right="50.00"/>
+			</NonStopwords>
+			<ConfusionStopwords>
+				<ConfusionStopword Word="sur" Count="1" Missed="0" Right="100.00"/>
+			</ConfusionStopwords>
+			<ConfusionNonStopwords>
+				<ConfusionNonStopword Word="dignit" Count="1" Missed="1" Right="0.00"/>
+				<ConfusionNonStopword Word="la" Count="1" Missed="0" Right="100.00"/>
+			</ConfusionNonStopwords>
+		</Word_Evaluation>
+	</Evaluation>

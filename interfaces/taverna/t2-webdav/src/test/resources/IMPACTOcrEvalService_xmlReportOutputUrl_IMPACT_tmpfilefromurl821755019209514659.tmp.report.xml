@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+	<Evaluation>
+		<Character_Evaluation>
+			<Characters>0</Characters>
+			<Errors>0</Errors>
+			<Accuracy>  ------</Accuracy>
+			<RejectCharacters>0</RejectCharacters>
+			<SuspectMarkers>0</SuspectMarkers>
+			<FalseMarks>0</FalseMarks>
+			<CharactersMarked>  ------</CharactersMarked>
+			<AccuracyAfterCorrection>  ------</AccuracyAfterCorrection>
+			<FigureOfMerit>  ------</FigureOfMerit>
+			<TypesOfErrors>
+				<Marked>
+					<Ins>0</Ins>
+					<Subst>0</Subst>
+					<Del>0</Del>
+					<SumOfErrors>0</SumOfErrors>
+				</Marked>
+				<UnMarked>
+					<Ins>0</Ins>
+					<Subst>0</Subst>
+					<Del>0</Del>
+					<SumOfErrors>0</SumOfErrors>
+				</UnMarked>
+				<Total>
+					<Ins>0</Ins>
+					<Subst>0</Subst>
+					<Del>0</Del>
+					<SumOfErrors>0</SumOfErrors>
+				</Total>
+			</TypesOfErrors>
+			<CharacterSets>
+				<CharacterSet	Name="Total"	Count="0"	Missed="0"	Right="  ------"/>
+			</CharacterSets>
+		</Character_Evaluation>
+		<Word_Evaluation>
+			<Words>0</Words>
+			<Misrecognized>0</Misrecognized>
+			<WordAccuracy>  ------</WordAccuracy>
+			<Stopwords>
+				<Stopword	Length="Total"	Count="0"	Missed="0"	Right="  ------"/>
+			</Stopwords>
+			<NonStopwords>
+				<NonStopword	Length="Total"	Count="0"	Missed="0"	Right="  ------"/>
+			</NonStopwords>
+			<ConfusionStopwords>
+			</ConfusionStopwords>
+			<ConfusionNonStopwords>
+			</ConfusionNonStopwords>
+		</Word_Evaluation>
+	</Evaluation>
