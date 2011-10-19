@@ -12,7 +12,7 @@
 	</scm>
 
 	<parent>
-		<groupId>eu.impact_project.iif</groupId>
+		<groupId>eu.impact_project.iif.t2</groupId>
 		<artifactId>T2-Client</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
