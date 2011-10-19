@@ -1,0 +1,9 @@
+<project name="WS-Client">
+	<body>
+		<menu name="WS-Client">
+			<item name="Overview" href="overview.html"/>
+			<item name="Deployment" href="deployment.html"/>
+		</menu>
+		${reports}
+	</body>
+</project> 

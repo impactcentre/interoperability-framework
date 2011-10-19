@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services>
+
+     	<service id="1">
+    		<title>IMPACT Gimp Image Conversion Service ..</title>
+    		<url>https://localhost/IMPACTGimpImageConversionProxy?wsdl</url>
+    		<description>Perform image format conversion operations for most commonly used image file formats using the <![CDATA[<a href="http://www.gimp.org/" target="_blank">GNU Image Manipulation Program</a>]]>. Implementation is based on GIMP Fu-Scripts which makes the process configurable to a very detailed level.</description>
+    	</service>
+
+	<service id="2">
+		<title>IMPACT ImageMagick Image Conversion Service</title>
+		<url>https://localhost/IMPACTImageMagickProxy?wsdl</url>
+		<description>Perform image conversion operations for most commonly used image file formats using the <![CDATA[<a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a>]]> software suite. Implementation is based on the ImageMagick Command-line Tools.</description>
+	</service>
+
+</services>
