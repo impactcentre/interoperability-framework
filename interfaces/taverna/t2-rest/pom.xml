@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--
+        <parent> <artifactId>taverna-server</artifactId>
+        <groupId>net.sf.taverna.t2</groupId> <version>0.2.0-SNAPSHOT</version>
+        </parent>
+    -->
+    <groupId>net.sf.taverna.t2</groupId>
+    <artifactId>taverna-server-rest-api</artifactId>
+    <version>0.2.0</version>
+    <name>Taverna Server REST API</name>
+    <repositories>
+        <repository>
+            <id>mygrid-repository</id>
+            <name>myGrid Repository</name>
+            <url>http://www.mygrid.org.uk/maven/repository</url>
+        </repository>
+    </repositories>
+    <properties>
+        <taverna.version>${project.version}</taverna.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>net.sf.taverna.t2</groupId>
+            <artifactId>taverna-server</artifactId>
+            <version>${taverna.version}</version>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+    <build>
+        <defaultGoal>package</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>truezip-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-out-files</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <fileset>
+                                <directory>${settings.localRepository}/net/sf/taverna/t2/taverna-server/${taverna.version}/taverna-server-${taverna.version}.war/WEB-INF/classes</directory>
+                                <includes>
+                                    <include>**/*.class</include>
+                                </includes>
+                                <excludes>
+                                    <exclude>*.text</exclude>
+                                    <exclude>plugins/**/*.*</exclude>
+                                </excludes>
+                                <outputDirectory>${project.build.directory}/classes</outputDirectory>
+                            </fileset>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
