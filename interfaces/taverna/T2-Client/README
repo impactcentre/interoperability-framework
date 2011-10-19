@@ -54,10 +54,7 @@ Deployment Guide
 
 	The application needs some classes from the Taverna Server which are currently not available
 	through a central Maven repository. That's why they must be first installed in the local 
-	repository. The project containing the POM file that handles this task can be retrieved 
-	with the command:
-	
-		* svn checkout https://develop.sub.uni-goettingen.de/repos/impact/bird/taverna-rest-api
+	repository. The project containing the POM file is "t2-rest".
 	
 	In the downloaded directory, execute the Maven command:
 	
