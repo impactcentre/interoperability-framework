@@ -68,7 +68,7 @@ public class XmlHandlerTest {
 		
 		assertEquals(2, evals.length);
 		assertEquals("1.00000", evals[0]);
-		assertEquals("1.00000", evals[0]);
+		assertEquals("1.00000", evals[1]);
 	}
 
 	@Test(expected=JDOMException.class)
@@ -81,6 +81,17 @@ public class XmlHandlerTest {
 	public void testGetLayoutEvaluationsText() throws MalformedURLException, JDOMException, IOException {
 		String url = "http://localhost:9001/IMPACTTesseractV3Service_outputUrl_tmpfile1.tif.out.txt";
 		XmlHandler.getLayoutEvaluations(url);
+	}
+
+	@Test
+	public void testGetWordEvaluations() throws MalformedURLException, JDOMException, IOException {
+		String url = "http://localhost:9001/IMPACTWordEvaluationService_outputFile_6922033601589215833.xml";
+		String[] evals = XmlHandler.getWordEvaluations(url);
+		
+		assertEquals(3, evals.length);
+		assertEquals("273", evals[0]);
+		assertEquals("207", evals[1]);
+		assertEquals("0.24175824175824176", evals[2]);
 	}
 
 }

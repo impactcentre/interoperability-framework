@@ -30,6 +30,7 @@ import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.JDOMException;
 import org.jdom.Namespace;
+import org.jdom.Text;
 import org.jdom.input.SAXBuilder;
 import org.jdom.xpath.XPath;
 
@@ -46,6 +47,20 @@ public class XmlHandler {
 	 */
 	public static boolean isEvaluation(String xml) {
 		if (xml != null && xml.indexOf("<Character_Evaluation>") >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Checks if the XML is a word evaluation.
+	 *
+	 * @param xml the xml
+	 * @return true, if is evaluation
+	 */
+	public static boolean isWordEvaluation(String xml) {
+		if (xml != null && xml.indexOf("<nWordsInGT>") >= 0) {
 			return true;
 		} else {
 			return false;
@@ -96,14 +111,34 @@ public class XmlHandler {
 		String[] evals = new String[2];
 		try {
 			String areaRate;
-			areaRate = getByXpath(doc, namespace,
+			areaRate = getAttributeByXpath(doc, namespace,
 					"//*[local-name()='Metrics' and not(@type)]/@overallWeightedAreaSuccessRate");
-			String countRate = getByXpath(doc, namespace,
+			String countRate = getAttributeByXpath(doc, namespace,
 					"//*[local-name()='Metrics' and not(@type)]/@overallWeightedCountSuccessRate");
 			evals[0] = areaRate;
 			evals[1] = countRate;
 		} catch (NoSuchFieldException e) {
 			throw new JDOMException("The layout evaluation values could not be found in file: " + url);
+		}
+		return evals;
+	}
+
+	public static String[] getWordEvaluations(String url)
+			throws MalformedURLException, JDOMException, IOException {
+
+		SAXBuilder builder = new SAXBuilder();
+		Document doc = builder.build(new URL(url));
+
+		String[] evals = new String[3];
+		try {
+			String words = getTextByXpath(doc, "/pageEvaluator/tWordsInGT/text()");
+			String misrecognized = getTextByXpath(doc, "/pageEvaluator/tMissedGTWords/text()");
+			String wordAccuracy = getTextByXpath(doc, "/pageEvaluator/recall/text()");
+			evals[0] = words;
+			evals[1] = misrecognized;
+			evals[2] = wordAccuracy;
+		} catch (NoSuchFieldException e) {
+			throw new JDOMException("The word evaluation values could not be found in file: " + url);
 		}
 		return evals;
 	}
@@ -118,7 +153,7 @@ public class XmlHandler {
 	 * @throws JDOMException the jDOM exception
 	 * @throws NoSuchFieldException if the attribute was not found.
 	 */
-	private static String getByXpath(Document doc, String namespace,
+	private static String getAttributeByXpath(Document doc, String namespace,
 			String xpathString) throws JDOMException, NoSuchFieldException {
 
 		Namespace ns = Namespace.getNamespace("n", namespace);
@@ -127,6 +162,20 @@ public class XmlHandler {
 		xpath.addNamespace(ns);
 		Attribute result = null;
 		result = (Attribute) xpath.selectSingleNode(doc);
+
+		if (result != null)
+			return result.getValue();
+		else
+			throw new NoSuchFieldException();
+
+	}
+
+	private static String getTextByXpath(Document doc,
+			String xpathString) throws JDOMException, NoSuchFieldException {
+
+		XPath xpath = XPath.newInstance(xpathString);
+		Text result = null;
+		result = (Text) xpath.selectSingleNode(doc);
 
 		if (result != null)
 			return result.getValue();

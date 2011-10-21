@@ -72,6 +72,19 @@ public class ServiceImplTest {
 	}
 	
 	@Test
+	public void testStoreDataWordEval() {
+		ArrayList<String> resultsList = new ArrayList<String>();
+		resultsList.add("http://localhost:9001/IMPACTWordEvaluationService_outputFile_6922033601589215833.xml");
+		String message = executeWithList(resultsList);
+		
+		System.out.println(message);
+		
+		assertTrue(message.indexOf("Stored results at") >= 0);
+		assertTrue(message.indexOf(demonstratorId + "/" + workflowId + "/") >= 0);
+		assertFalse(message.indexOf("warnings or errors") >= 0);
+	}
+	
+	@Test
 	public void testStoreDataLogs() throws MalformedURLException, IOException {
 		String message = executeWithString(getText("http://localhost:9001/log_eval.txt"));	
 		assertFalse(message.indexOf("warnings or errors") >= 0);
@@ -154,7 +167,6 @@ public class ServiceImplTest {
 		String noAccuracy = "http://localhost:9001/IMPACTOcrEvalService_xmlReportOutputUrl_IMPACT_tmpfilefromurl821755019209514659.tmp.report.xml";
 		String message = executeWithString(noAccuracy);
 		
-		System.out.println(message);
 		assertTrue(message.indexOf("Stored results at") >= 0);
 		assertTrue(message.indexOf(demonstratorId + "/" + workflowId + "/") >= 0);
 		assertFalse(message.indexOf("warnings or errors") >= 0);

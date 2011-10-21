@@ -16,7 +16,7 @@
 	See the License for the specific language governing permissions and
 	limitations under the License.
 
-*/
+ */
 
 package eu.impact_project.resultsrepository.report;
 
@@ -104,8 +104,9 @@ public class Report {
 		overviewRow++;
 		insert(overviewSheet, workflowId, overviewRow, overviewCol, STRING);
 		overviewRow++;
-//		insert(overviewSheet, System.currentTimeMillis()+"", overviewRow, overviewCol, DATE);
-//		overviewRow++;
+		// insert(overviewSheet, System.currentTimeMillis()+"", overviewRow,
+		// overviewCol, DATE);
+		// overviewRow++;
 		insert(overviewSheet, String.valueOf(processingTime), overviewRow,
 				overviewCol, DOUBLE);
 		overviewRow++;
@@ -141,14 +142,16 @@ public class Report {
 			for (OcrEvalTool.Evaluation eval : tool.getEvaluations()) {
 
 				evalCol = coords.evaluationsUpperLeft.column + 2;
-				insert(evalSheet, eval.characters, evalRow, evalCol, DOUBLE);
+				if (!eval.characters.equals(""))
+					insert(evalSheet, eval.characters, evalRow, evalCol, DOUBLE);
 				evalCol++;
-				insert(evalSheet, eval.errors, evalRow, evalCol, DOUBLE);
+				if (!eval.errors.equals(""))
+					insert(evalSheet, eval.errors, evalRow, evalCol, DOUBLE);
 				evalCol++;
 				if (eval.accuracy.contains("---")) {
 					insert(evalSheet, "Not computable", evalRow, evalCol,
 							STRING);
-				} else {
+				} else if(!eval.accuracy.equals("")){
 					insert(evalSheet, eval.accuracy, evalRow, evalCol, DOUBLE);
 				}
 				evalCol++;
@@ -156,7 +159,7 @@ public class Report {
 				evalCol++;
 				insert(evalSheet, eval.misrecognized, evalRow, evalCol, DOUBLE);
 				evalCol++;
-				if (eval.wordAccuracy.contains("---")) {
+				if (eval.wordAccuracy.contains("---") || eval.wordAccuracy.contains("NaN")) {
 					insert(evalSheet, "Not computable", evalRow, evalCol,
 							STRING);
 				} else {

@@ -22,7 +22,9 @@ package eu.impact_project.resultsrepository;
 
 import static eu.impact_project.resultsrepository.XmlHandler.getElementContent;
 import static eu.impact_project.resultsrepository.XmlHandler.getLayoutEvaluations;
+import static eu.impact_project.resultsrepository.XmlHandler.getWordEvaluations;
 import static eu.impact_project.resultsrepository.XmlHandler.isEvaluation;
+import static eu.impact_project.resultsrepository.XmlHandler.isWordEvaluation;
 import static eu.impact_project.resultsrepository.LogHandler.*;
 
 import java.io.IOException;
@@ -120,11 +122,12 @@ public class ServiceImpl implements Service {
 			Results logLists = new Results();
 			Results xmlEvalLists = new Results();
 			Results layoutEvalLists = new Results();
+			Results wordEvalLists = new Results();
 
-			splitResults(in, fileLists, logLists, xmlEvalLists, layoutEvalLists);
+			splitResults(in, fileLists, logLists, xmlEvalLists, layoutEvalLists, wordEvalLists);
 			saveFiles(fileLists);
 			saveToolLogs(logLists);
-			saveReport(in, logLists, xmlEvalLists, layoutEvalLists);
+			saveReport(in, logLists, xmlEvalLists, layoutEvalLists, wordEvalLists);
 
 			saveOwnLog();
 
@@ -232,7 +235,7 @@ public class ServiceImpl implements Service {
 	 * with an unknown format are ignored.
 	 */
 	private void splitResults(Inputs in, Results fileLists, Results logLists,
-			Results xmlEvalLists, Results layoutEvalLists) {
+			Results xmlEvalLists, Results layoutEvalLists, Results wordEvalLists) {
 		for (ToolResults resultList : in.wfResults.getToolResultsList()) {
 			String sample = resultList.getFields().get(0);
 			if (sample.equals("")) {
@@ -245,9 +248,12 @@ public class ServiceImpl implements Service {
 					.substring(sample.lastIndexOf(".") + 1);
 			boolean isFileList = isUrlList && endings.contains(currentEnding);
 			boolean isXmlEvalList = false;
+			boolean isWordEvalList = false;
 			try {
 				isXmlEvalList = isUrlList && sample.endsWith(".xml")
 						&& isEvaluation(dav.get().retrieveTextFile(sample));
+				isWordEvalList = isUrlList && sample.endsWith(".xml")
+						&& isWordEvaluation(dav.get().retrieveTextFile(sample));
 			} catch (IOException e) {
 				warn("Could not read file: " + sample);
 			}
@@ -259,6 +265,9 @@ public class ServiceImpl implements Service {
 			}
 			if (isLayoutEvalList) {
 				layoutEvalLists.addToolResults(resultList);
+			}
+			if (isWordEvalList) {
+				wordEvalLists.addToolResults(resultList);
 			}
 			if (isFileList) {
 				fileLists.addToolResults(resultList);
@@ -328,9 +337,9 @@ public class ServiceImpl implements Service {
 	 * Generates the Excel report and stores it into the repository.
 	 */
 	private void saveReport(Inputs in, Results logLists, Results xmlEvalLists,
-			Results layoutEvalLists) {
+			Results layoutEvalLists, Results wordEvalLists) {
 		List<AnyTool> tools = generateTools(logLists);
-		List<OcrEvalTool> evalTools = generateEvalTools(xmlEvalLists);
+		List<OcrEvalTool> evalTools = generateEvalTools(xmlEvalLists, wordEvalLists);
 		List<LayoutEvalTool> layoutEvalTools = generateLayoutEvalTools(layoutEvalLists);
 
 		try {
@@ -396,8 +405,52 @@ public class ServiceImpl implements Service {
 	 * 
 	 * @return Tool list.
 	 */
-	private List<OcrEvalTool> generateEvalTools(Results xmlEvalLists) {
+	private List<OcrEvalTool> generateEvalTools(Results xmlEvalLists, Results wordEvalLists) {
 		List<OcrEvalTool> evalTools = new ArrayList<OcrEvalTool>();
+		
+		for (ToolResults wordEvals : wordEvalLists.getToolResultsList()) {
+
+			String sample = wordEvals.getFields().get(0);
+			UrlParts urlParts = new UrlParts();
+			try {
+				urlParts = splitUrl(sample);
+			} catch (MalformedURLException e1) {
+				error("Could not process word evaluation URL, skipping: "
+						+ sample, e1);
+				continue;
+			}
+
+			String service = urlParts.service;
+			String evalId = urlParts.evalId;
+
+			OcrEvalTool tool = new OcrEvalTool(service, evalId);
+			
+			for (String url : wordEvals.getFields()) {
+				if (url != null && !url.equals("")) {
+					String[] evalArray = {};
+					try {
+						evalArray = getWordEvaluations(url);
+						String words = evalArray[0];
+						String misrecognzed = evalArray[1];
+						String wordAccuracy = toPercent(evalArray[2]);
+						tool.addEvaluation("", "", "", words, misrecognzed, wordAccuracy);
+					} catch (JDOMException e) {
+						error("Could not process word evaluation URL: " + url,
+								e);
+					} catch (IOException e) {
+						error("Could not process word evaluation URL: " + url,
+								e);
+					}
+				} else {
+					error("Could not process a word evaluation file. The sample of the group was: "
+							+ sample, new Exception());
+				}
+
+			}
+			evalTools.add(tool);
+
+		}
+		
 		for (ToolResults evals : xmlEvalLists.getToolResultsList()) {
 
 			String sample = evals.getFields().get(0);
@@ -444,6 +497,17 @@ public class ServiceImpl implements Service {
 			evalTools.add(tool);
 		}
 		return evalTools;
+	}
+	
+	private String toPercent(String decimal) {
+		Float percent = Float.parseFloat(decimal) * 100;
+//		String beforePoint = percent.intValue() + "";
+//		
+//		String percentString = percent.toString();
+//		int pointIndex = percentString.indexOf(".");
+//		String afterPoint = percentString.substring(pointIndex+1, pointIndex+3);
+		
+		return percent.toString();
 	}
 
 	/**
