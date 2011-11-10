@@ -46,6 +46,8 @@ ${outputsection}
         // success
         processing_success = true;
         processing_returncode = 0;
+        infolog("Process finished successfully after "
+                    + timeMillis + " milliseconds.");
         infolog("Service request has been processed successfully");
         OMElement result = ${operationname}Result(fac, omNs);
 #foreach( $resultelement in $resultelements )
