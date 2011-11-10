@@ -13,7 +13,7 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Simple Copy" type="migrate" servicepackage="eu.impact_project.iif.service">
+        <service sid="1" name="Simple Copy" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for copying files</description>
             <operations>
                 <operation oid="1" name="simpleCopy">

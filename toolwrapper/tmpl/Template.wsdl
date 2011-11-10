@@ -30,13 +30,13 @@
     </wsdl:binding>
     <wsdl:service name="${project_midfix}">
         <wsdl:port name="ServiceHttpSoap11Endpoint" binding="tns:ServiceSoap11Binding">
-            <soap:address location="http://${tomcat_public_host}:${tomcat_public_http_port}/${global_project_prefix_lc}-${project_midfix_lc}-service/services/${project_midfix}"/>
+            <soap:address location="http://${tomcat_public_host}:${tomcat_public_http_port}${contextpath_prefix}/${global_project_prefix_lc}-${project_midfix_lc}-service/services/${project_midfix}"/>
         </wsdl:port>
         <wsdl:port name="ServiceHttpSoap12Endpoint" binding="tns:ServiceSoap12Binding">
-            <soap12:address location="http://${tomcat_public_host}:${tomcat_public_http_port}/${global_project_prefix_lc}-${project_midfix_lc}-service/services/${project_midfix}"/>
+            <soap12:address location="http://${tomcat_public_host}:${tomcat_public_http_port}${contextpath_prefix}/${global_project_prefix_lc}-${project_midfix_lc}-service/services/${project_midfix}"/>
         </wsdl:port>
         <wsdl:port name="ServiceHttpEndpoint" binding="tns:ServiceHttpBinding">
-            <http:address location="http://${tomcat_public_host}:${tomcat_public_http_port}/${global_project_prefix_lc}-${project_midfix_lc}-service/services/${project_midfix}"/>
+            <http:address location="http://${tomcat_public_host}:${tomcat_public_http_port}${contextpath_prefix}/${global_project_prefix_lc}-${project_midfix_lc}-service/services/${project_midfix}"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>
