@@ -16,7 +16,7 @@
 	See the License for the specific language governing permissions and
 	limitations under the License.
 
-*/
+ */
 
 package eu.impact_project.resultsrepository;
 
@@ -36,10 +36,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
 import javax.net.ssl.SSLHandshakeException;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Layout;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
@@ -85,17 +87,19 @@ public class ServiceImpl implements Service {
 	 */
 	private class Inputs {
 
-		public Inputs(Results wfResults, String wfId, long wfTime, String demId) {
+		public Inputs(Results wfResults, String wfId, long timer, String demId, long executionTime) {
 			this.wfResults = wfResults;
 			this.wfId = wfId;
-			this.wfTime = wfTime;
+			this.timer = timer;
 			this.demId = demId;
+			this.executionTime = executionTime;
 		}
 
 		public Results wfResults;
 		public String wfId;
-		public long wfTime;
+		public long timer;
 		public String demId;
+		public long executionTime;
 	}
 
 	/*
@@ -109,14 +113,16 @@ public class ServiceImpl implements Service {
 	public String storeData(Results workflowResults, String wfId, long timer,
 			String demId) {
 
-		// is computed as soon as possible, because the storage time is not part
-		// of the overall workflow processing time
-		long processingTime = new Date().getTime() - timer;
-
 		try {
-			Inputs in = new Inputs(workflowResults, wfId, processingTime, demId);
+
+			Inputs in = new Inputs(workflowResults, wfId, timer, demId, 0l);
 			checkInputs(in);
 			init(in);
+
+			// is computed as soon as possible, because the storage time is not
+			// part of the overall workflow processing time
+			long workflowProcessingTime = getCurrentTimestamp() - timer;
+			in.executionTime = workflowProcessingTime;
 
 			Results fileLists = new Results();
 			Results logLists = new Results();
@@ -124,10 +130,12 @@ public class ServiceImpl implements Service {
 			Results layoutEvalLists = new Results();
 			Results wordEvalLists = new Results();
 
-			splitResults(in, fileLists, logLists, xmlEvalLists, layoutEvalLists, wordEvalLists);
+			splitResults(in, fileLists, logLists, xmlEvalLists,
+					layoutEvalLists, wordEvalLists);
 			saveFiles(fileLists);
 			saveToolLogs(logLists);
-			saveReport(in, logLists, xmlEvalLists, layoutEvalLists, wordEvalLists);
+			saveReport(in, logLists, xmlEvalLists, layoutEvalLists,
+					wordEvalLists);
 
 			saveOwnLog();
 
@@ -176,8 +184,6 @@ public class ServiceImpl implements Service {
 
 		logger.get().info("Workflow ID is: " + in.wfId);
 		logger.get().info("Demonstrator ID is: " + in.demId);
-		if (in.wfTime < 0)
-			warn("Workflow execution time is invalid: " + in.wfTime);
 
 		List<String> folderHierarchy = createFolderList(in);
 		try {
@@ -222,12 +228,36 @@ public class ServiceImpl implements Service {
 		List<String> folderHierarchy = new ArrayList<String>();
 
 		folderHierarchy.add(in.demId);
-		folderHierarchy.add(in.wfId);
+		folderHierarchy.add(in.wfId);	
 
 		String timestamp = "" + System.currentTimeMillis();
 		folderHierarchy.add(timestamp);
 
 		return folderHierarchy;
+	}
+
+	private long getCurrentTimestamp() {
+		long stamp = 0l;
+		try {
+			Properties properties = new Properties();
+			URL url = getClass().getResource("/report.properties");
+			if (url == null)
+				throw new IOException(
+						"Property file for report generation not found.");
+			InputStream is = url.openStream();
+			properties.load(is);
+			is.close();
+
+			URL stampUrl = new URL(properties.getProperty("timestampUrl"));
+
+			InputStream stampStream = stampUrl.openStream();
+			String stampString = IOUtils.toString(stampStream);
+			stamp = Long.parseLong(stampString);
+		} catch (IOException e) {
+			error("Could not compute the workflow execution time. ", e);
+		}
+
+		return stamp;
 	}
 
 	/**
@@ -339,13 +369,14 @@ public class ServiceImpl implements Service {
 	private void saveReport(Inputs in, Results logLists, Results xmlEvalLists,
 			Results layoutEvalLists, Results wordEvalLists) {
 		List<AnyTool> tools = generateTools(logLists);
-		List<OcrEvalTool> evalTools = generateEvalTools(xmlEvalLists, wordEvalLists);
+		List<OcrEvalTool> evalTools = generateEvalTools(xmlEvalLists,
+				wordEvalLists);
 		List<LayoutEvalTool> layoutEvalTools = generateLayoutEvalTools(layoutEvalLists);
 
 		try {
 			Report report = null;
 			logger.get().info("Generating report");
-			report = new Report(in.wfId, in.wfTime, in.demId, imageCount.get());
+			report = new Report(in.wfId, in.executionTime, in.demId, imageCount.get());
 			report.setTools(tools);
 			report.setOcrEvalTools(evalTools);
 			report.setLayoutEvalTools(layoutEvalTools);
@@ -405,9 +436,10 @@ public class ServiceImpl implements Service {
 	 * 
 	 * @return Tool list.
 	 */
-	private List<OcrEvalTool> generateEvalTools(Results xmlEvalLists, Results wordEvalLists) {
+	private List<OcrEvalTool> generateEvalTools(Results xmlEvalLists,
+			Results wordEvalLists) {
 		List<OcrEvalTool> evalTools = new ArrayList<OcrEvalTool>();
-		
+
 		for (ToolResults wordEvals : wordEvalLists.getToolResultsList()) {
 
 			String sample = wordEvals.getFields().get(0);
@@ -424,7 +456,7 @@ public class ServiceImpl implements Service {
 			String evalId = urlParts.evalId;
 
 			OcrEvalTool tool = new OcrEvalTool(service, evalId);
-			
+
 			for (String url : wordEvals.getFields()) {
 				if (url != null && !url.equals("")) {
 					String[] evalArray = {};
@@ -433,7 +465,8 @@ public class ServiceImpl implements Service {
 						String words = evalArray[0];
 						String misrecognzed = evalArray[1];
 						String wordAccuracy = toPercent(evalArray[2]);
-						tool.addEvaluation("", "", "", words, misrecognzed, wordAccuracy);
+						tool.addEvaluation("", "", "", words, misrecognzed,
+								wordAccuracy);
 					} catch (JDOMException e) {
 						error("Could not process word evaluation URL: " + url,
 								e);
@@ -450,7 +483,7 @@ public class ServiceImpl implements Service {
 			evalTools.add(tool);
 
 		}
-		
+
 		for (ToolResults evals : xmlEvalLists.getToolResultsList()) {
 
 			String sample = evals.getFields().get(0);
@@ -498,15 +531,16 @@ public class ServiceImpl implements Service {
 		}
 		return evalTools;
 	}
-	
+
 	private String toPercent(String decimal) {
 		Float percent = Float.parseFloat(decimal) * 100;
-//		String beforePoint = percent.intValue() + "";
-//		
-//		String percentString = percent.toString();
-//		int pointIndex = percentString.indexOf(".");
-//		String afterPoint = percentString.substring(pointIndex+1, pointIndex+3);
-		
+		// String beforePoint = percent.intValue() + "";
+		//
+		// String percentString = percent.toString();
+		// int pointIndex = percentString.indexOf(".");
+		// String afterPoint = percentString.substring(pointIndex+1,
+		// pointIndex+3);
+
 		return percent.toString();
 	}
 

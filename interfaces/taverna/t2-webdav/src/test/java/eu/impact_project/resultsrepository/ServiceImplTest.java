@@ -77,8 +77,6 @@ public class ServiceImplTest {
 		resultsList.add("http://localhost:9001/IMPACTWordEvaluationService_outputFile_6922033601589215833.xml");
 		String message = executeWithList(resultsList);
 		
-		System.out.println(message);
-		
 		assertTrue(message.indexOf("Stored results at") >= 0);
 		assertTrue(message.indexOf(demonstratorId + "/" + workflowId + "/") >= 0);
 		assertFalse(message.indexOf("warnings or errors") >= 0);

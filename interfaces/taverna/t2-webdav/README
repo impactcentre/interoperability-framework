@@ -29,11 +29,14 @@ Configuration
 
 dav.properties
    Here are the properties for your WebDAV server on which the data will be stored: 
-   URL, credentials for basic authentication, file types that should be stored.
+   - URL
+   - credentials for basic authentication
+   - file types that should be stored.
    
 report.properties
-   URL to the Excel report template that will be filled with statistical data,
-   coordinates for cells into which specific data will be written.
+   - URL to the Excel report template that will be filled with statistical data
+   - coordinates for cells into which specific data will be written
+   - URL to a service that retrieves the current timestamp
    
 
 Documentation
