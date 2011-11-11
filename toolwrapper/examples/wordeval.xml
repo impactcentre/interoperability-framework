@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+    <id>wordeval</id>
+    <name>INL Word Evaluation</name>
+    <homepage>http://www.digitisation.eu/</homepage>
+    <version>1.0</version>
+    <installation>
+        <os type="linux">
+            Fully supported through Java.
+        </os>
+        <os type="windows">
+            Fully supported through Java.
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="Word Evaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Service for evaluating word accuracy of OCR in PAGE format</description>
+            <operations>
+                <operation oid="1" name="evalByUrl">
+                    <description>Copies a file</description>
+                    <command>java -jar D:/iif/tools/eval/wordevaluation.jar -o ${output} ${groundtruth} ${ocrresult}</command>
+                    <inputs>
+                        <input name="groundtruth">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
+                            <CliMapping>groundtruth</CliMapping>
+                            <Documentation>URL reference to ground truth file in PAGE format</Documentation>
+                        </input>
+			<input name="ocrresult">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/words.xml</Default>
+                            <CliMapping>ocrresult</CliMapping>
+                            <Documentation>URL reference to OCR result file in PAGE format</Documentation>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <CliMapping>output</CliMapping>
+                            <Required>false</Required>
+                            <Documentation>URL reference to statistics output file</Documentation>
+                            <PrefixFromInput>groundtruth</PrefixFromInput>
+                            <Extension>xml</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="public"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="public">
+            <identifier>http://kbdemo.dnsalias.org/impact/kb-w/tomcat1/</identifier>
+            <host>kbdemo.dnsalias.org</host>
+            <ports>
+                <port type="http">80</port>
+                <port type="https">443</port>
+            </ports>
+            <manager>
+                <user>impact</user>
+                <password>kb100%OCR</password>
+		<path>manager</path>
+            </manager>
+            <dataexchange>
+                <accessdir>D:/iif/tomcat/apache-tomcat-6.0.26/webapps/ROOT/impact/out-w</accessdir>
+                <accessurl>http://kbdemo.dnsalias.org/impact/out-w/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>
