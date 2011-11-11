@@ -13,12 +13,12 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Word Evaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="Word Evaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
             <description>Service for evaluating word accuracy of OCR in PAGE format</description>
             <operations>
                 <operation oid="1" name="evalByUrl">
-                    <description>Copies a file</description>
-                    <command>java -jar D:/iif/tools/eval/wordevaluation.jar -o ${output} ${groundtruth} ${ocrresult}</command>
+                    <description>Evaluate OCR word accurracy</description>
+                    <command>java -jar /usr/local/java/impacttools/wordevaluation.jar -o ${output} ${groundtruth} ${ocrresult}</command>
                     <inputs>
                         <input name="groundtruth">
                             <Datatype>xsd:anyURI</Datatype>
@@ -48,26 +48,44 @@
                 </operation>
             </operations>
             <deployto>
-                <deployref default="true" ref="public"/>
+                <deployref default="true" ref="local"/>
+                <deployref default="false" ref="public"/>
             </deployto>
         </service>
     </services>
     <deployments>
-        <deployment id="public">
-            <identifier>http://kbdemo.dnsalias.org/impact/kb-w/tomcat1/</identifier>
-            <host>kbdemo.dnsalias.org</host>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
             <ports>
-                <port type="http">80</port>
-                <port type="https">443</port>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
             </ports>
             <manager>
-                <user>impact</user>
-                <password>kb100%OCR</password>
+                <user>tomcat</user>
+                <password>tomcat</password>
 		<path>manager</path>
             </manager>
             <dataexchange>
-                <accessdir>D:/iif/tomcat/apache-tomcat-6.0.26/webapps/ROOT/impact/out-w</accessdir>
-                <accessurl>http://kbdemo.dnsalias.org/impact/out-w/</accessurl>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+               <deployment id="public">
+            <identifier>http://fue.onb.ac.at/scape/fue-l/tomcat</identifier>
+            <host>fue.onb.ac.at</host>
+            <ports>
+                <port type="http">80</port>
+                <port type="https">43</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>TxF781!POnly4Us</password>
+                <path>manager-l</path>
+            </manager>
+            <dataexchange>
+                <accessdir>/usr/local/apache2/htdocs/scape/tmp/</accessdir>
+                <accessurl>http://fue.onb.ac.at/scape/tmp/</accessurl>
             </dataexchange>
         </deployment>
     </deployments>
