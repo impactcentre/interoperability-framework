@@ -95,6 +95,13 @@ public class Report {
 		workbook = openExcel(excelUrl);
 		ExcelCoordinates coords = new ExcelCoordinates(properties);
 
+		int dateCol = coords.date.column;
+		int dateRow = coords.date.row;
+		int dateSheetNr = coords.date.sheet;
+		Sheet dateSheet = workbook.getSheetAt(dateSheetNr);
+		insert(dateSheet, System.currentTimeMillis()+"", dateRow,
+				 dateCol, DATE);
+		
 		int overviewCol = coords.overviewUpperRight.column;
 		int overviewRow = coords.overviewUpperRight.row;
 		int overviewSheetNr = coords.overviewUpperRight.sheet;
@@ -104,9 +111,6 @@ public class Report {
 		overviewRow++;
 		insert(overviewSheet, workflowId, overviewRow, overviewCol, STRING);
 		overviewRow++;
-		// insert(overviewSheet, System.currentTimeMillis()+"", overviewRow,
-		// overviewCol, DATE);
-		// overviewRow++;
 		insert(overviewSheet, String.valueOf(processingTime), overviewRow,
 				overviewCol, DOUBLE);
 		overviewRow++;

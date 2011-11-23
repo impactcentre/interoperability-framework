@@ -24,6 +24,7 @@ import java.util.Properties;
 
 public class ExcelCoordinates {
 
+	public CellCoordinates date = new CellCoordinates();
 	public CellCoordinates overviewUpperRight = new CellCoordinates();
 	public CellCoordinates processingTimesUpperLeft = new CellCoordinates();
 	public CellCoordinates evaluationsUpperLeft = new CellCoordinates();
@@ -36,6 +37,10 @@ public class ExcelCoordinates {
 	}
 	
 	public ExcelCoordinates(Properties props) {
+		date.sheet = Integer.parseInt(props.getProperty("date.sheet")) - 1;
+		date.row = Integer.parseInt(props.getProperty("date.row")) - 1;
+		date.column = Integer.parseInt(props.getProperty("date.column")) - 1;
+		
 		overviewUpperRight.sheet = Integer.parseInt(props.getProperty("overviewUpperRight.sheet")) - 1;
 		overviewUpperRight.row = Integer.parseInt(props.getProperty("overviewUpperRight.row")) - 1;
 		overviewUpperRight.column = Integer.parseInt(props.getProperty("overviewUpperRight.column")) - 1;
