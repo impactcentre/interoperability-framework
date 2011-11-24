@@ -47,7 +47,13 @@ public class LogHandler {
 			throws NoSuchFieldException, MalformedURLException {
 		List<URL> urls = new ArrayList<URL>();
 		for (String log : logs.getFields()) {
+			int offset = 20;
 			int indexFrom = log.indexOf("URL of input image: ");
+			if (indexFrom < 0) {
+				offset = 19;
+				indexFrom = log.indexOf("URL of input file: ");
+			}
+			
 			if (indexFrom < 0)
 				throw new NoSuchFieldException(
 						"No input image URL found in log:\n\n" + log);
@@ -57,7 +63,7 @@ public class LogHandler {
 				throw new NoSuchFieldException(
 						"Image URL must be bounded by .\\n:\n\n" + log);
 
-			String origUrl = log.substring(indexFrom + 20, indexTo);
+			String origUrl = log.substring(indexFrom + offset, indexTo);
 			try {
 				urls.add(new URL(origUrl));
 			} catch (MalformedURLException e) {
@@ -107,7 +113,7 @@ public class LogHandler {
 	 * @return true, if successful
 	 */
 	public static boolean hasInputUrl(String log) {
-		return log.indexOf("URL of input image: ") >= 0;
+		return log.indexOf("URL of input image: ") >= 0 || log.indexOf("URL of input file: ") >= 0;
 	}
 
 	/**
