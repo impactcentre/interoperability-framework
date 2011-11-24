@@ -71,22 +71,5 @@
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
             </dataexchange>
         </deployment>
-               <deployment id="public">
-            <identifier>http://fue.onb.ac.at/scape/fue-l/tomcat</identifier>
-            <host>fue.onb.ac.at</host>
-            <ports>
-                <port type="http">80</port>
-                <port type="https">43</port>
-            </ports>
-            <manager>
-                <user>tomcat</user>
-                <password>TxF781!POnly4Us</password>
-                <path>manager-l</path>
-            </manager>
-            <dataexchange>
-                <accessdir>/usr/local/apache2/htdocs/scape/tmp/</accessdir>
-                <accessurl>http://fue.onb.ac.at/scape/tmp/</accessurl>
-            </dataexchange>
-        </deployment>
     </deployments>
 </toolspec>
