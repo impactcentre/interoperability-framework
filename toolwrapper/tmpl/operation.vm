@@ -47,7 +47,7 @@ ${outputsection}
 
         if(!processing_success) {
             errorlog("An error occurred while executing the process");
-            return ocrResult(fac, omNs);
+            return ${operationname}Result(fac, omNs);
         }
 
         // success
