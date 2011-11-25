@@ -49,7 +49,6 @@
             </operations>
             <deployto>
                 <deployref default="true" ref="local"/>
-                <deployref default="false" ref="public"/>
             </deployto>
         </service>
     </services>
