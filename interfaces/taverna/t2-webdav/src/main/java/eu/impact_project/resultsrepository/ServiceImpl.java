@@ -154,7 +154,7 @@ public class ServiceImpl implements Service {
 	private void checkInputs(Inputs in) {
 		String regexDemId = "[0-9a-zA-Z_-]+";
 		// the workflow id may be a URL
-		String regexWfId = "[:/?=0-9a-zA-Z_-]+";
+		String regexWfId = "[\\.:/?=0-9a-zA-Z_-]+";
 
 		if (in.wfResults == null
 				|| in.wfResults.getToolResultsList().size() < 1) {
@@ -215,8 +215,9 @@ public class ServiceImpl implements Service {
 		if (in.wfId.startsWith(wfIdPrefix)) {
 			in.wfId = in.wfId.substring(wfIdPrefix.length());
 		}
-		in.wfId = in.wfId.replace("/", "~");
-		in.wfId = in.wfId.replace("?", "*");
+		in.wfId = in.wfId.replaceAll("/", "~");
+		in.wfId = in.wfId.replace("?", "~");
+		in.wfId = in.wfId.replaceAll("=", "~");
 	}
 
 	/**
