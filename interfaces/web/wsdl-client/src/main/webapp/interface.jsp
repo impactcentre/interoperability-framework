@@ -24,9 +24,8 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%@page import="eu.impact_project.wsclient.WSDLinfo"%><html>
-<%@page import="eu.impact_project.wsclient.SOAPoperation"%>
-<%@page import="eu.impact_project.wsclient.SOAPinputField"%>
+<%@page import="eu.impact_project.wsclient.generic.*"%>
+<%@page import="eu.impact_project.wsclient.WSDLinfo"%>
 <%@page import="java.util.*"%>
 <%@page import="javax.xml.transform.*"%>
 <%@page import="javax.xml.transform.stream.*"%>
@@ -34,6 +33,7 @@
 <%@page import="java.util.Properties"%>
 <%@page import="java.io.InputStream"%>
 <%@page import="java.net.URL"%>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="http://www.impact-project.eu/fileadmin/css/iframe.css" media="screen" />
@@ -64,6 +64,10 @@ function removeStyle(element) {
 
 String folder = application.getRealPath("/");
 
+if(!folder.endsWith("/")) {	
+	folder = folder + "/";
+}
+
 Properties props = new Properties();
 InputStream stream = new URL("file:" + folder + "config.properties").openStream();
 
@@ -78,6 +82,11 @@ String defaultButton = props.getProperty("defaultButton");
 String defaultResultMessage = props.getProperty("defaultResultMessage");
 boolean supportFileUpload = Boolean.parseBoolean(props.getProperty("supportFileUpload"));
 boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResultFilesOnly"));
+
+SoapService serviceObject = null;
+if(session.getAttribute("serviceObject") != null) {
+	serviceObject = (SoapService)session.getAttribute("serviceObject");
+}
 
 %>
 <body <%if(loadDefault && request.getAttribute("round2") == null && request.getAttribute("round3") == null){ %>onload="document.forms['defaultForm'].submit()"<%} %>>
@@ -109,53 +118,34 @@ boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResult
 
 <br>
 <br>
-<!--form action="WSDLinfo" method="post"><input name="wsdlURL"
-	type="text" size="100"
-	value="<%if (session.getAttribute("wsdlURL") != null)
-				out.print(session.getAttribute("wsdlURL"));%>">
-<br>
-<br>
-<input type="submit" value="Get Operations"> <br>
-<br>
-<hr>
-<br>
-
-</form-->
 <%
 
-	List<SOAPoperation> soapOperations = null;
-	if (session.getAttribute("soapOperations") != null) {
-		soapOperations = (List<SOAPoperation>) session.getAttribute("soapOperations");
-	}
 
-	// display Web Service operations after committing the form above
+	
+	List<SoapOperation> soapOperations = serviceObject.getOperations();
+
 	if (request.getAttribute("round1") != null
 			|| request.getAttribute("round2") != null
 			|| request.getAttribute("round3") != null) {
-
-		//out.print(session.getAttribute("endpointURL"));
+		
 		out.print("<h3>" + session.getAttribute("wsName") + "</h3>");
 		out.print("<br>");
 
-		if (session.getAttribute("serviceDocumentation") != null
-				&& !session.getAttribute("serviceDocumentation")
-						.equals("")) {
-			out.print(session.getAttribute("serviceDocumentation"));
-		}
+		out.print(serviceObject.getDocumentation());
 
 		out.print("<hr>");
 		out.print("<br>");
 
-		SOAPoperation currentOperation = null;
+		SoapOperation currentOperation = null;
 		if (session.getAttribute("currentOperation") != null) {
-			currentOperation = (SOAPoperation) session
+			currentOperation = (SoapOperation) session
 					.getAttribute("currentOperation");
 		}
 %>
 <form action="SOAPinputs" method="post">Available Operations: <select
 	name="currentOperation">
 	<%
-		for (SOAPoperation op : soapOperations) {
+		for (SoapOperation op : soapOperations) {
 	%>
 	<option value="<%=op.getName()%>"
 		<%if (currentOperation != null
@@ -175,16 +165,23 @@ boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResult
 
 } // if(!loadDefaults)
 			
-			
+		
 	if (request.getAttribute("round2") != null
 			|| request.getAttribute("round3") != null) {
 
-		SOAPoperation currentOperation = (SOAPoperation) session
+
+		SoapOperation currentOperation = (SoapOperation) session
 				.getAttribute("currentOperation");
-		String message = currentOperation.getDefaultMessage();
+
+		String message = currentOperation.getDefaultRequest();
 
 		String opName = currentOperation.getName();
-		String opDocumentation = currentOperation.getDocumentation();
+		String opDocumentation = "";
+		try {
+			opDocumentation = currentOperation.getDocumentation();
+		} catch (IOException e) {
+			opDocumentation = "";
+		}
 		out.print("<br>");
 		if (!loadDefault) {
 			out.print("<br>");
@@ -198,28 +195,6 @@ boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResult
 		out.print("<br>");
 		try {
 
-			// XSLT transformer, transforms a SOAP message into an HTML form
-			//			TransformerFactory tFactory = TransformerFactory
-			//					.newInstance();
-			//			String rootDir = application.getRealPath("/");
-			//			Transformer transformer = tFactory
-			//					.newTransformer(new StreamSource(
-			//							new FileInputStream(rootDir
-			//									+ "SoapToForm.xslt")));
-
-			// convert the default message to StreamSource, because the transformer requires this type
-			//			InputStream is = new ByteArrayInputStream(message
-			//					.getBytes());
-			//			StreamSource source = new StreamSource(is);
-
-			// prepare an OutputStream for the transformation result
-			//			ByteArrayOutputStream bout = new ByteArrayOutputStream();
-			//			StreamResult result = new StreamResult(bout);
-
-			//			transformer.transform(source, result);
-
-			// get the result from the stream
-			//			String htmlFormBody = bout.toString();
 %>
 <form action="SOAPresults" method="post" <% if(supportFileUpload) { %> enctype="multipart/form-data"<%} %>>
 <input type="hidden" name="operationName" value="<%=opName%>"> <br>
@@ -227,15 +202,14 @@ boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResult
 		<table>
 <%
 
-	for (SOAPinputField field : currentOperation.getInputs()) {
+	for (SoapInput field : currentOperation.getInputs()) {
 		%>
 		<tr>
 		<td valign="top">
 		<%
+		out.print(field.getName());
 		if (field.getDocumentation() != null && !field.getDocumentation().equals("")){
-			out.print(field.getDocumentation() + ": ");
-		} else {
-			out.print(field.getName() + ": ");
+			out.print(" (" + field.getDocumentation() + ")");
 		}
 		%>
 		</td>
@@ -244,13 +218,12 @@ boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResult
 		Boolean displayDefaults = (Boolean) session.getAttribute("displayDefaults"); 
 		
 		List<String> values = field.getPossibleValues();
-		List<String> multipleSelectValues = field.getMultipleSelectValues();
 
 		%>
 		<td valign="top">
 		<%
 
-		if (values != null && values.size() > 0) { 
+		if (values != null && values.size() > 0 && !field.isMultiValued()) { 
 		%>
 			<select name="<%= field.getName() %>">
 				<%for (String value : values) { %>
@@ -261,9 +234,9 @@ boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResult
 				<%} %>
 			</select>
 			<br><br>
-		<%} else if(multipleSelectValues != null && multipleSelectValues.size() > 0) { %>
-			<select name="<%= field.getName() %>" size="<%= multipleSelectValues.size() %>" multiple="multiple">
-				<%for (String value : multipleSelectValues) { %>
+		<%} else if(field.isMultiValued()) { %>
+			<select name="<%= field.getName() %>" size="<%= values.size() %>" multiple="multiple">
+				<%for (String value : values) { %>
 					<option value="<%=value%>" 
 					<% if (displayDefaults && field.getDefaultValue() != null && value.equals(field.getDefaultValue())) { %> selected="selected" <%} %>>
 					<%=value%>
@@ -290,7 +263,7 @@ boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResult
 				name="<%= field.getName() %>"
 				id="<%= field.getName() %>"
 				<% if (displayDefaults != null && displayDefaults) { %>value="<%=field.getDefaultValue()%>"<% } %>><% 
-			if(field.getName().toLowerCase().contains("url")){
+			if(field.getName().toLowerCase().contains("url") || field.getDocumentation().toLowerCase().contains("url")){
 				String id = field.getName();
 				%>&nbsp;<span style="color: #7979b2;"
 					onmouseover="setStyle(this)"
@@ -324,6 +297,10 @@ boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResult
 	} // if(request .. round2
 
 	if (request.getAttribute("round3") != null) {
+		
+		SoapOperation currentOperation = (SoapOperation) session
+				.getAttribute("currentOperation");
+
 %>
 <hr>
 <br>
@@ -334,7 +311,24 @@ boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResult
 <br>
 
 <%
-	out.print(session.getAttribute("htmlResponse"));
+	for (SoapOutput output : currentOperation.getOutputs()) {
+		out.println("<h3>" + output.getName() + "</h3>");
+		
+		String value = output.getValue();
+		if (value.startsWith("http")) {
+			out.println("<br>");
+			out.println("<div>");
+			out.println("<a href='" + value + "'>");
+			out.println(value);
+			out.println("</a>");
+			out.println("</div>");	
+		} else {
+			out.println("<pre>");
+			out.println(value);
+			out.println("</pre>");
+		}
+		out.println("<br>");
+	}
 }
 %>
 		
@@ -365,7 +359,7 @@ Attached file:
 <br>
 <textarea cols="100" rows="40" name="textarea">
 <%
-out.print(session.getAttribute("soapResponse"));
+out.print(currentOperation.getResponse());
 %>	
 </textarea>
 <%

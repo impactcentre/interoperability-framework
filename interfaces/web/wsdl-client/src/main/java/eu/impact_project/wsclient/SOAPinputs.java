@@ -21,11 +21,9 @@
 package eu.impact_project.wsclient;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +34,9 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import eu.impact_project.wsclient.generic.SoapOperation;
+import eu.impact_project.wsclient.generic.SoapService;
+
 /**
  * Finds out all the inputs of a given web service operation.
  */
@@ -45,7 +46,6 @@ public class SOAPinputs extends HttpServlet {
 
 	public SOAPinputs() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public void init(ServletConfig config) throws ServletException {
@@ -55,7 +55,6 @@ public class SOAPinputs extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -70,17 +69,17 @@ public class SOAPinputs extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		List<SOAPoperation> soapOperations = null;
-		if (session.getAttribute("soapOperations") != null) {
-
-			soapOperations = (List<SOAPoperation>) session
-					.getAttribute("soapOperations");
-
+		
+		SoapService service = null;
+		if(session.getAttribute("serviceObject") != null) {
+			service = (SoapService)session.getAttribute("serviceObject");
 		}
+
+		List<SoapOperation> soapOperations = service.getOperations();
 
 		if (soapOperations != null) {
 			// search for the right operation object
-			for (SOAPoperation op : soapOperations) {
+			for (SoapOperation op : soapOperations) {
 				if (op.getName().equals(
 						request.getParameter("currentOperation"))) {
 					session.setAttribute("currentOperation", op);
@@ -88,7 +87,6 @@ public class SOAPinputs extends HttpServlet {
 				}
 			}
 		}
-		// session.setAttribute("currentOperation", currentOperation);
 
 		String displayDefaults = request.getParameter("displayDefaults");
 		if (displayDefaults != null) {

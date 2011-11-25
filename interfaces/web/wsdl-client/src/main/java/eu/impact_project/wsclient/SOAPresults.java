@@ -30,7 +30,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -47,6 +46,8 @@ import javax.servlet.http.HttpSession;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -56,22 +57,14 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.bouncycastle.util.encoders.Base64;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.XMLOutputter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.eviware.soapui.impl.wsdl.WsdlInterface;
-import com.eviware.soapui.impl.wsdl.WsdlOperation;
-import com.eviware.soapui.impl.wsdl.WsdlRequest;
-import com.eviware.soapui.impl.wsdl.WsdlSubmit;
-import com.eviware.soapui.impl.wsdl.WsdlSubmitContext;
-import com.eviware.soapui.model.iface.Attachment;
-import com.eviware.soapui.model.iface.Response;
-import com.eviware.soapui.model.iface.Request.SubmitException;
+import eu.impact_project.wsclient.generic.SoapAttachment;
+import eu.impact_project.wsclient.generic.SoapInput;
+import eu.impact_project.wsclient.generic.SoapOperation;
+import eu.impact_project.wsclient.generic.SoapOutput;
+import eu.impact_project.wsclient.generic.SoapService;
 
 /**
  * Responsible for executing the chosen operation of the web service.
@@ -79,8 +72,6 @@ import com.eviware.soapui.model.iface.Request.SubmitException;
 public class SOAPresults extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final Logger logger = LoggerFactory.getLogger(SOAPresults.class);
-
-	private Map<Element, List<Element>> additionalXmlElements = new HashMap<Element, List<Element>>();
 
 	public SOAPresults() {
 		super();
@@ -93,7 +84,6 @@ public class SOAPresults extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -112,6 +102,9 @@ public class SOAPresults extends HttpServlet {
 			HttpSession session = request.getSession(true);
 
 			String folder = session.getServletContext().getRealPath("/");
+			if(!folder.endsWith("/")) {	
+				folder = folder + "/";
+			}
 
 			Properties props = new Properties();
 			InputStream stream = new URL("file:" + folder + "config.properties")
@@ -128,24 +121,15 @@ public class SOAPresults extends HttpServlet {
 					.getProperty("oneResultFile"));
 			String defaultFilePrefix = props.getProperty("defaultFilePrefix");
 
-			
-			WsdlOperation wsdlOperation = null;
-			String messageToSend = "";
-			Document doc = null;
-			
-			
-			if (loadDefault && supportFileUpload) {
+			SoapService serviceObject = (SoapService) session.getAttribute("serviceObject");
+			SoapOperation operation = null;
+			if (supportFileUpload) {
 				
 				// stores all the strings and encoded files from the html form
 				Map<String, String> htmlFormItems = new HashMap<String, String>();
-
-				// Create a factory for disk-based file items
+				
 				FileItemFactory factory = new DiskFileItemFactory();
-
-				// Create a new file upload handler
 				ServletFileUpload upload = new ServletFileUpload(factory);
-
-				// Parse the request
 				List /* FileItem */items = upload.parseRequest(request);
 
 				// Process the uploaded items
@@ -155,8 +139,6 @@ public class SOAPresults extends HttpServlet {
 
 					// a normal string field
 					if (item.isFormField()) {
-
-						// put the string items into the map
 						htmlFormItems
 								.put(item.getFieldName(), item.getString());
 
@@ -167,109 +149,41 @@ public class SOAPresults extends HttpServlet {
 						String currentAttachment = new String(Base64
 								.encode(item.get()));
 
-						// put the encoded attachment into the map
 						htmlFormItems.put(item.getFieldName(),
 								currentAttachment);
 					}
 				}
 
-				WsdlInterface wsdlInterface = (WsdlInterface) session
-						.getAttribute("wsdlInterface");
-
 				// get the chosen WSDL operation
 				String operationName = htmlFormItems.get("operationName");
-				wsdlOperation = wsdlInterface
-						.getOperationByName(operationName);
-
-				// create a default SOAP message
-				messageToSend = wsdlOperation.createRequest(true);
-
-				// read SOAP message into an XML document
-				SAXBuilder parser = new SAXBuilder();
-				InputStream is = new ByteArrayInputStream(messageToSend
-						.getBytes());
-				doc = parser.build(is);
-
-				// insert the form values and encoded files into the XML message
-				Element root = doc.getRootElement();
-				insertFormValues(root, htmlFormItems);
-
+				
+				operation = serviceObject.getOperation(operationName);
+				for (SoapInput input : operation.getInputs()) {
+					input.setValue(htmlFormItems.get(input.getName()));
+				}
+				
 			} else {
-				WsdlInterface wsdlInterface = (WsdlInterface) session
-						.getAttribute("wsdlInterface");
-
 				// get the chosen WSDL operation
 				String operationName = request.getParameter("operationName");
-				wsdlOperation = wsdlInterface
-						.getOperationByName(operationName);
 
-				// create a default SOAP message
-				messageToSend = wsdlOperation.createRequest(true);
-
-				// read SOAP message into an XML document
-				SAXBuilder parser = new SAXBuilder();
-				InputStream is = new ByteArrayInputStream(messageToSend
-						.getBytes());
-				doc = parser.build(is);
-
-				// insert the form values and encoded files into the XML message
-				Element root = doc.getRootElement();
-				insertFormValues(root, request);
+				operation = serviceObject.getOperation(operationName);
+				for (SoapInput input : operation.getInputs()) {
+					String[] soapInputValues = request.getParameterValues(input.getName());
+					input.clearValues();
+					for (String value : soapInputValues) {						
+						input.addValue(value);
+					}
+				}
 
 			}
-
-			for (Element parent : additionalXmlElements.keySet()) {
-				List<Element> childNodes = additionalXmlElements.get(parent);
-				parent.addContent(childNodes);
-			}
-			additionalXmlElements.clear();
-
-			// store the XML document in a String
-			XMLOutputter serializer = new XMLOutputter();
-			ByteArrayOutputStream bout = new ByteArrayOutputStream();
-			serializer.output(doc, bout);
-			messageToSend = bout.toString();
-
-			// prepare the request
-			WsdlRequest wsdlRequest = wsdlOperation.addNewRequest("req");
-			wsdlRequest.setRequestContent(messageToSend);
-			// System.out.println(messageToSend);
-
-			// send the request
-			WsdlSubmit submit = (WsdlSubmit) wsdlRequest.submit(
-					new WsdlSubmitContext(wsdlRequest), false);
-
-			// get the response
-			Response wsdlResponse = submit.getResponse();
-
-			// get the response SOAP as string and store in the session
-			String soapResponse = wsdlResponse.getContentAsString();
-
-			InputStream soapStream = new ByteArrayInputStream(soapResponse
-					.getBytes());
-
-			System.getProperty("javax.xml.parsers.DocumentBuilderFactory",
-					"net.sf.saxon.TransformerFactoryImpl");
-
-			// JAXP liest Daten ueber die Source-Schnittstelle
-			Source xmlSource = new StreamSource(soapStream);
-
-			URL urlxsl = getClass().getResource("/SoapToHtml.xsl");
-			File xsltFile = new File(urlxsl.getFile());
-
-			Source xsltSource = new StreamSource(xsltFile);
-
-			// das Factory-Pattern unterstuetzt verschiedene XSLT-Prozessoren
-			TransformerFactory transFact = TransformerFactory.newInstance();
-			// System.out.println(transFact.getClass().getName());
-			Transformer trans = transFact.newTransformer(xsltSource);
-
-			ByteArrayOutputStream htmlOut = new ByteArrayOutputStream();
-			Result res = new StreamResult(htmlOut);
-
-			trans.transform(xmlSource, res);
-
-			String htmlResponse = htmlOut.toString();
+						
+			List<SoapOutput> outs = operation.execute();
+			String soapResponse = operation.getResponse();			
+			
+			
+			String htmlResponse = useXslt(soapResponse, "/SoapToHtml.xsl");
+			
+			
 			session.setAttribute("htmlResponse", htmlResponse);
 			session.setAttribute("soapResponse", soapResponse);
 
@@ -277,16 +191,19 @@ public class SOAPresults extends HttpServlet {
 			List<String> fileNames = new ArrayList<String>();
 
 			// process possible attachments in the response
-			for (int i = 0; i < wsdlResponse.getAttachments().length; i++) {
-
-				Attachment currentAttachment = wsdlResponse.getAttachments()[i];
+			List<SoapAttachment> attachments = operation.getReceivedAttachments();
+			int i = 0;
+			for (SoapAttachment attachment : attachments) {
 
 				// path to the server directory
 				String serverPath = getServletContext().getRealPath("/");
+				if(!serverPath.endsWith("/")) {	
+					serverPath = folder + "/";
+				}
 
 				// construct the file name for the attachment
 				String fileEnding = "";
-				String contentType = currentAttachment.getContentType();
+				String contentType = attachment.getContentType();
 				System.out.println("content type: " + contentType);
 				if (contentType.equals("image/gif")) {
 					fileEnding = ".gif";
@@ -308,8 +225,7 @@ public class SOAPresults extends HttpServlet {
 				File file = new File(serverPath + attachedFileName);
 				outStream = new FileOutputStream(file);
 
-				InputStream inStream = wsdlResponse.getAttachments()[0]
-						.getInputStream();
+				InputStream inStream = attachment.getInputStream();
 
 				bis = new BufferedInputStream(inStream);
 
@@ -329,6 +245,7 @@ public class SOAPresults extends HttpServlet {
 				bis.close();
 
 				fileNames.add(attachedFileName);
+				i++;
 			}
 
 			// pass the file names to JSP
@@ -340,10 +257,6 @@ public class SOAPresults extends HttpServlet {
 					"/interface.jsp");
 			rd.forward(request, response);
 
-		} catch (JDOMException e) {
-			logger.error("XML could not be parsed", e);
-		} catch (SubmitException e) {
-			logger.error("Submit exception", e);
 		} catch (Exception e) {
 			logger.error("Exception", e);
 			e.printStackTrace();
@@ -357,88 +270,30 @@ public class SOAPresults extends HttpServlet {
 		}
 
 	}
+	
+	private String useXslt(String xml, String xsltPath) throws TransformerException {
+		InputStream soapStream = new ByteArrayInputStream(xml
+				.getBytes());
 
-	/**
-	 * Extracts the user values and inserts them into the appropriate XML
-	 * element in the SOAP request message
-	 * 
-	 * @param current
-	 * @param htmlFormItems
-	 */
-	private void insertFormValues(Element current, HttpServletRequest request) {
+		System.getProperty("javax.xml.parsers.DocumentBuilderFactory",
+				"net.sf.saxon.TransformerFactoryImpl");
 
-		// check if the element should hold a base64 string (does currently the
-		// same as for strings, may change for MTOM attachments)
-		// if (request.getParameter(current.getName()) != null
-		// && current.getAttribute("contentType") != null
-		// && current.getAttribute("contentType").getValue().indexOf(
-		// "application") > -1) {
-		// String attachment = request.getParameter(current.getName());
-		// current.setText(attachment);
+		Source xmlSource = new StreamSource(soapStream);
 
-		// or else an input string is assumed
-		if (request.getParameter(current.getName()) != null) {
-			String[] soapInputValues = request.getParameterValues(current
-					.getName());
-			List<Element> clones = new ArrayList<Element>();
-			current.setText(soapInputValues[0]);
-			for (int i = 1; i < soapInputValues.length; i++) {
-				Element clone = (Element) current.clone();
-				clone.setText(soapInputValues[i]);
-				clones.add(clone);
-				// current.getParentElement().addContent(clone);
-			}
-			if (clones.size() > 0) {
-				additionalXmlElements.put(current.getParentElement(), clones);
-			}
+		URL urlxsl = getClass().getResource(xsltPath);
+		File xsltFile = new File(urlxsl.getFile());
 
-			// recursive checking of all children
-		} else {
-			List children = current.getChildren();
-			Iterator iterator = children.iterator();
-			while (iterator.hasNext()) {
-				Element child = (Element) iterator.next();
-				insertFormValues(child, request);
-			}
-		}
+		Source xsltSource = new StreamSource(xsltFile);
 
-	}
+		TransformerFactory transFact = TransformerFactory.newInstance();
+		Transformer trans = transFact.newTransformer(xsltSource);
 
-	/**
-	 * Extracts the user values and inserts them into the appropriate XML
-	 * element in the SOAP request message
-	 * 
-	 * @param current
-	 * @param htmlFormItems
-	 */
-	private void insertFormValues(Element current,
-			Map<String, String> htmlFormItems) {
+		ByteArrayOutputStream htmlOut = new ByteArrayOutputStream();
+		Result res = new StreamResult(htmlOut);
 
-		boolean itemPresent = htmlFormItems.get(current.getName()) != null;
-		// check if the element should hold a base64 string (does currently the
-		// same as for strings, may change for MTOM attachments)
-		if (itemPresent
-				&& current.getAttribute("contentType") != null
-				&& current.getAttribute("contentType").getValue().indexOf(
-						"application") > -1 || itemPresent
-				&& current.getTextTrim().startsWith("cid:")) {
-			String attachment = htmlFormItems.get(current.getName());
-			current.setText(attachment);
+		trans.transform(xmlSource, res);
 
-			// or else an input string is assumed
-		} else if (htmlFormItems.get(current.getName()) != null) {
-			String soapInputValue = htmlFormItems.get(current.getName());
-			current.setText(soapInputValue);
-
-			// recursive checking of all children
-		} else {
-			List children = current.getChildren();
-			Iterator iterator = children.iterator();
-			while (iterator.hasNext()) {
-				Element child = (Element) iterator.next();
-				insertFormValues(child, htmlFormItems);
-			}
-		}
+		return htmlOut.toString();
 
 	}
 
