@@ -166,7 +166,7 @@ public class WsdlCreator {
             List<Input> inputs = operation.getInputs().getInput();
             for (Input input : inputs) {
                 createMsgElm(reqTypeSeqElm, input.getName(), input.getDatatype(),
-                        input.getDefault(), input.getCliMapping(), input.getRequired(),
+                        input.getDefault().getValue(), input.getCliMapping(), input.getRequired(),
                         input.getDocumentation(), input.getRestriction());
                 createRestrictedType(input, schemaNode);
             }
@@ -454,7 +454,7 @@ public class WsdlCreator {
                 multipleType.setAttribute("name", name+"List");
                 Element sequenceElm = doc.createElement("xsd:sequence");
                 Element elm = doc.createElement("xsd:element");
-                elm.setAttribute("default", input.getDefault());
+                elm.setAttribute("default", input.getDefault().getValue());
                 elm.setAttribute("minOccurs", "0");
                 elm.setAttribute("maxOccurs", "unbounded");
                 elm.setAttribute("name", name+"Item");

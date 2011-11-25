@@ -200,7 +200,15 @@
 	<xs:element name="accessdir" type="xs:string"/>
 	<xs:element name="Required" type="xs:string"/>
 	<xs:element name="Documentation" type="xs:string"/>
-	<xs:element name="Default" type="xs:string"/>
+        <xs:element name="Default">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="clireplacement" type="xs:string" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="Datatype" type="xs:string"/>
 	<xs:element name="CliMapping" type="xs:string"/>
 </xs:schema>

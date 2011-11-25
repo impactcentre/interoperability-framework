@@ -17,6 +17,7 @@
 package eu.impact_project.iif.tw.gen;
 
 import eu.impact_project.iif.tw.gen.types.IOType;
+import eu.impact_project.iif.tw.tmpl.GenericCode;
 import eu.impact_project.iif.tw.tmpl.OperationCode;
 import eu.impact_project.iif.tw.tmpl.OutputItemCode;
 import eu.impact_project.iif.tw.tmpl.ResultElementCode;
@@ -79,14 +80,16 @@ public class ServiceCodeCreator {
         List<Input> inputs = operation.getInputs().getInput();
         for (Input input : inputs) {
             addDataSection(operation, oc, IOType.INPUT, input.getDatatype(),
-                    input.getName(), input.getCliMapping(), null, null, false, input.getRestriction(), input.getRequired());
+                    input.getName(), input.getCliMapping(), null, null, false, 
+                    input.getRestriction(), input.getRequired(), input.getDefault().getClireplacement());
         }
         List<Output> outputs = operation.getOutputs().getOutput();
         for (Output output : outputs) {
             addDataSection(operation, oc, IOType.OUTPUT, output.getDatatype(),
                     output.getName(), output.getCliMapping(),
                     output.getPrefixFromInput(), output.getExtension(),
-                    (output.isAutoExtension() != null && output.isAutoExtension()), null, output.getRequired());
+                    (output.isAutoExtension() != null && output.isAutoExtension()), 
+                    null, output.getRequired(), null);
         }
 
         oc.put("inputsection", oc.getInputSection());
@@ -123,7 +126,10 @@ public class ServiceCodeCreator {
      * @param dataType Data type (xsd:string, xsd:integer, etc.)
      * @throws GeneratorException
      */
-    protected void addDataSection(Operation operation, OperationCode oc, IOType iotype, String dataType, String nodeName, String cliMapping, String prefixFromInput, String extension, boolean autoExtension, Restriction restriction, String required) throws GeneratorException {
+    protected void addDataSection(Operation operation, OperationCode oc,
+            IOType iotype, String dataType, String nodeName, String cliMapping,
+            String prefixFromInput, String extension, boolean autoExtension,
+            Restriction restriction, String required, String cliReplacement) throws GeneratorException {
 
         boolean isRequired = (required != null && required.equalsIgnoreCase("true"));
         String opid = String.valueOf(operation.getOid());
@@ -133,7 +139,7 @@ public class ServiceCodeCreator {
                 + StringConverterUtil.typeToFilename(dataType)
                 +(isMultiple?"_restricted_list":"")
                 +(isMultiple?"_restricted_list":"")
-                +((iotype.equals(iotype.OUTPUT) && dataType.equals("xsd:anyURI")
+                +((dataType.equals("xsd:anyURI")
                   && !isRequired)?"_opt":"")
                 + ".vm";
         logger.debug("Using template \"" + template + "\" for node \"" + nodeName
@@ -146,7 +152,19 @@ public class ServiceCodeCreator {
                 sectCode.put("operationname", operation.getName());
                 if (iotype == IOType.INPUT) {
                     sectCode.put("input_variable", nodeName);
-                    String mapping = getCliMapping(iotype, cliMapping, dataType, nodeName, isMultiple);
+                    String mapping = null;
+                    if(cliReplacement == null) {
+                        // Simple mapping
+                        mapping = getCliMapping(iotype, cliMapping, dataType,
+                        nodeName, isMultiple);
+                    } else {
+                        // Mapping of a variable with replacement of null value
+                        GenericCode cliReplCode = new GenericCode("tmpl/clireplacement.vm");
+                        cliReplCode.put(sectCode.getCtx());
+                        cliReplCode.put("clireplacement", cliReplacement);
+                        cliReplCode.evaluate();
+                        mapping = cliReplCode.getCode();
+                    }
                     sectCode.put("mapping", mapping);
                     String parameter = getOperationParameter(dataType, nodeName, isMultiple);
                     oc.addParameter(parameter);
@@ -241,7 +259,8 @@ public class ServiceCodeCreator {
      * @param nodeName Node name
      * @return CLI mapping
      */
-    private String getCliMapping(IOType iotype, String cliMappingVar, String dataType, String nodeName, boolean isMultiple) {
+    private String getCliMapping(IOType iotype, String cliMappingVar,
+            String dataType, String nodeName, boolean isMultiple) {
 
         String mappingVal = null;
         if (cliMappingVar != null) {

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="c:\owndata\scape\toolspec.xsd">
+    <id>typewrittenocr</id>
+    <name>TypewrittenOcr</name>
+    <homepage>http://www.impact-project.eu</homepage>
+    <version>0.2</version>
+    <installation>
+        <os type="linux">
+           
+        </os>
+        <os type="windows">
+            
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="TypewrittenOcr" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>Service for copying files</description>
+            <operations>
+                <operation oid="1" name="ocr">
+                    <description>Remove the border from an input image file</description>
+                    <command>C:\\Programme\\IMPACTtypewrittenocr\\TypewrittenOCR-0.2\\bin\\TypewrittenOCR-0-2-145.exe ${bwimage} ${grayimage} ${colorimage} ${inputxml} ${outputxml} ${weights}</command>
+                    <inputs>
+                        <input name="bwimage">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <Default>http://fue.onb.ac.at/impact/testdata/00450822B.tif</Default>
+                            <CliMapping>bwimage</CliMapping>
+                            <Documentation>URL reference to bw image file</Documentation>
+                        </input>
+                        <input name="grayimage">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <Default clireplacement="-1">http://null</Default>
+                            <CliMapping>grayimage</CliMapping>
+                            <Documentation>URL reference to gray image file</Documentation>
+                        </input>
+                        <input name="colorimage">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <Default clireplacement="-1">http://null</Default>
+                            <CliMapping>colorimage</CliMapping>
+                            <Documentation>URL reference to color image file</Documentation>
+                        </input>
+                        <input name="inputxml">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <Default>http://fue.onb.ac.at/impact/testdata/00450822.lines.xml</Default>
+                            <CliMapping>inputxml</CliMapping>
+                            <Documentation>URL reference to input xml file</Documentation>
+                        </input>
+                        <input name="weights">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <Default>1,1</Default>
+                            <CliMapping>weights</CliMapping>
+                            <Documentation>URL reference to input xml file</Documentation>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outputxml">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <CliMapping>outputxml</CliMapping>
+                            <Required>true</Required>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>xml</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+		<path>manager</path>
+            </manager>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

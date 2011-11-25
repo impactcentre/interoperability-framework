@@ -48,7 +48,7 @@
                 </operation>
             </operations>
             <deployto>
-                <deployref default="true" ref="publicwin"/>
+                <deployref default="true" ref="local"/>
             </deployto>
         </service>
     </services>
