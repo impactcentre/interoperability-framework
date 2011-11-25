@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="c:\owndata\scape\toolspec.xsd">
+    <id>borderremoval</id>
+    <name>BorderRemoval</name>
+    <homepage>http://www.impact-project.eu/taa/tech/imgenh/bm</homepage>
+    <version>4</version>
+    <installation>
+        <os type="linux">
+           
+        </os>
+        <os type="windows">
+            
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="BorderRemoval" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>Service for copying files</description>
+            <operations>
+                <operation oid="1" name="removeBorder">
+                    <description>Remove the border from an input image file</description>
+                    <command>C:\\Programme\\IMPACTBorderRemovalV4\\Border_Detection_v4.exe ${pagesplit} ${infile} ${outfile1} ${outfile2}</command>
+                    <inputs>
+                        <input name="infile">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <Default>http://fue.onb.ac.at/impact/testdata/19080603_0001.tif</Default>
+                            <CliMapping>infile</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                        </input>
+                        <input name="pagesplit">
+                            <Datatype>xsd:boolean</Datatype>
+                            <Required>true</Required>
+                            <Default>false</Default>
+                            <CliMapping>pagesplit</CliMapping>
+                            <Documentation>Indicates if a page should be split or not (if an image represents two book pages)</Documentation>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outfile1">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <CliMapping>outfile1</CliMapping>
+                            <Required>false</Required>
+                            <Documentation>URL reference to first output file</Documentation>
+                            <Extension>tif</Extension>
+                        </output>
+                        <output name="outfile2">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <CliMapping>outfile2</CliMapping>
+                            <Required>false</Required>
+                            <Documentation>URL reference to first output file</Documentation>
+                            <Extension>tif</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+		<path>manager</path>
+            </manager>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

@@ -79,14 +79,14 @@ public class ServiceCodeCreator {
         List<Input> inputs = operation.getInputs().getInput();
         for (Input input : inputs) {
             addDataSection(operation, oc, IOType.INPUT, input.getDatatype(),
-                    input.getName(), input.getCliMapping(), null, null, false, input.getRestriction());
+                    input.getName(), input.getCliMapping(), null, null, false, input.getRestriction(), input.getRequired());
         }
         List<Output> outputs = operation.getOutputs().getOutput();
         for (Output output : outputs) {
             addDataSection(operation, oc, IOType.OUTPUT, output.getDatatype(),
                     output.getName(), output.getCliMapping(),
                     output.getPrefixFromInput(), output.getExtension(),
-                    (output.isAutoExtension() != null && output.isAutoExtension()), null);
+                    (output.isAutoExtension() != null && output.isAutoExtension()), null, output.getRequired());
         }
 
         oc.put("inputsection", oc.getInputSection());
@@ -123,14 +123,18 @@ public class ServiceCodeCreator {
      * @param dataType Data type (xsd:string, xsd:integer, etc.)
      * @throws GeneratorException
      */
-    protected void addDataSection(Operation operation, OperationCode oc, IOType iotype, String dataType, String nodeName, String cliMapping, String prefixFromInput, String extension, boolean autoExtension, Restriction restriction) throws GeneratorException {
-       
+    protected void addDataSection(Operation operation, OperationCode oc, IOType iotype, String dataType, String nodeName, String cliMapping, String prefixFromInput, String extension, boolean autoExtension, Restriction restriction, String required) throws GeneratorException {
+
+        boolean isRequired = (required != null && required.equalsIgnoreCase("true"));
         String opid = String.valueOf(operation.getOid());
         // code template for the current leaf node
         boolean isMultiple = restriction != null && restriction.isMultiple();
         String template = "tmpl/datatypes/" + iotype + "_"
                 + StringConverterUtil.typeToFilename(dataType)
                 +(isMultiple?"_restricted_list":"")
+                +(isMultiple?"_restricted_list":"")
+                +((iotype.equals(iotype.OUTPUT) && dataType.equals("xsd:anyURI")
+                  && !isRequired)?"_opt":"")
                 + ".vm";
         logger.debug("Using template \"" + template + "\" for node \"" + nodeName
                 + "\" in operation " + opid);
@@ -249,7 +253,7 @@ public class ServiceCodeCreator {
                 mappingVal = "Integer.toString(" + nodeName + ")";
             }
             if (dataType.equals("xsd:boolean")) {
-                mappingVal = nodeName;
+                mappingVal = "Boolean.toString("+nodeName+")";
             }
             if (dataType.equals("xsd:string")) {
                 mappingVal = nodeName;
