@@ -23,17 +23,19 @@
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testdata/impact-logo.png</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
+                            <!-- input specific -->
+                            <Default>http://localhost:8080/impact/testdata/impact-logo.png</Default>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>output</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
+                            <!-- output specific -->
                             <PrefixFromInput>input</PrefixFromInput>
                             <Extension>png</Extension>
                         </output>
@@ -58,6 +60,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
+            <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

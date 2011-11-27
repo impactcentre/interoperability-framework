@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="c:\owndata\scape\toolspec.xsd">
-    <id>borderremoval</id>
-    <name>BorderRemoval</name>
-    <homepage>http://www.impact-project.eu/taa/tech/imgenh/bm</homepage>
+    <id>geocorrpagecurl</id>
+    <name>Geocorrpagecurl</name>
+    <homepage>http://www.impact-project.eu</homepage>
     <version>4</version>
     <installation>
         <os type="linux">
@@ -13,40 +13,26 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="BorderRemoval" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>Service for copying files</description>
+        <service sid="1" name="Geocorrpagecurl" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>Geometric correction - Page curl (formerly Dewarping)</description>
             <operations>
-                <operation oid="1" name="removeBorder">
-                    <description>Remove the border from an input image file</description>
-                    <command>IMPACTBorderRemovalV4\\Border_Detection_v4.exe ${pagesplit} ${infile} ${outfile1} ${outfile2}</command>
+                <operation oid="1" name="uncurlPage">
+                    <description>Uncurl page</description>
+                    <command>IMPACTDewarpingV4\\Page_Curl_Correction_v4.exe 0 ${infile} ${outfile}</command>
                     <inputs>
                         <input name="infile">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>infile</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/19080603_0001.tif</Default>
-                        </input>
-                        <input name="pagesplit">
-                            <Datatype>xsd:boolean</Datatype>
-                            <Required>true</Required>
-                            <CliMapping>pagesplit</CliMapping>
-                            <Documentation>Indicates if a page should be split or not (if an image represents two book pages)</Documentation>
-                            <Default>false</Default>
+                            <Default>http://fue.onb.ac.at/impact/testdata/geocorr_pagecurl_test.tif</Default>
                         </input>
                     </inputs>
                     <outputs>
-                        <output name="outfile1">
+                        <output name="outfile">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
-                            <CliMapping>outfile1</CliMapping>
-                            <Documentation>URL reference to first output file</Documentation>
-                            <Extension>tif</Extension>
-                        </output>
-                        <output name="outfile2">
-                            <Datatype>xsd:anyURI</Datatype>
-                            <Required>false</Required>
-                            <CliMapping>outfile2</CliMapping>
+                            <CliMapping>outfile</CliMapping>
                             <Documentation>URL reference to first output file</Documentation>
                             <Extension>tif</Extension>
                         </output>

@@ -23,23 +23,23 @@
                         <input name="groundtruth">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
                             <CliMapping>groundtruth</CliMapping>
                             <Documentation>URL reference to ground truth file in PAGE format</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
                         </input>
 			<input name="ocrresult">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/words.xml</Default>
                             <CliMapping>ocrresult</CliMapping>
                             <Documentation>URL reference to OCR result file in PAGE format</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/words.xml</Default>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>output</CliMapping>
                             <Documentation>URL reference to statistics output file</Documentation>
                             <PrefixFromInput>groundtruth</PrefixFromInput>
                             <Extension>xml</Extension>
@@ -65,6 +65,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
+            <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

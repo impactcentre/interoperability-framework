@@ -18,49 +18,49 @@
             <operations>
                 <operation oid="1" name="ocr">
                     <description>Remove the border from an input image file</description>
-                    <command>C:\\Programme\\IMPACTtypewrittenocr\\TypewrittenOCR-0.2\\bin\\TypewrittenOCR-0-2-145.exe ${bwimage} ${grayimage} ${colorimage} ${inputxml} ${outputxml} ${weights}</command>
+                    <command>IMPACTtypewrittenocr\\TypewrittenOCR-0.2\\bin\\TypewrittenOCR-0-2-145.exe ${bwimage} ${grayimage} ${colorimage} ${inputxml} ${outputxml} ${weights}</command>
                     <inputs>
                         <input name="bwimage">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://fue.onb.ac.at/impact/testdata/00450822B.tif</Default>
                             <CliMapping>bwimage</CliMapping>
                             <Documentation>URL reference to bw image file</Documentation>
+                            <Default>http://fue.onb.ac.at/impact/testdata/00450822B.tif</Default>
                         </input>
                         <input name="grayimage">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
-                            <Default clireplacement="-1">http://null</Default>
                             <CliMapping>grayimage</CliMapping>
                             <Documentation>URL reference to gray image file</Documentation>
+                            <Default clireplacement="-1">http://null</Default>
                         </input>
                         <input name="colorimage">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
-                            <Default clireplacement="-1">http://null</Default>
                             <CliMapping>colorimage</CliMapping>
                             <Documentation>URL reference to color image file</Documentation>
+                            <Default clireplacement="-1">http://null</Default>
                         </input>
                         <input name="inputxml">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://fue.onb.ac.at/impact/testdata/00450822.lines.xml</Default>
                             <CliMapping>inputxml</CliMapping>
                             <Documentation>URL reference to input xml file</Documentation>
+                            <Default>http://fue.onb.ac.at/impact/testdata/00450822.lines.xml</Default>
                         </input>
                         <input name="weights">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
-                            <Default>1,1</Default>
                             <CliMapping>weights</CliMapping>
                             <Documentation>URL reference to input xml file</Documentation>
+                            <Default>1,1</Default>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="outputxml">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>outputxml</CliMapping>
                             <Required>true</Required>
+                            <CliMapping>outputxml</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
                             <Extension>xml</Extension>
                         </output>
@@ -85,6 +85,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
+            <toolsbasedir>C:\\Programme\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
