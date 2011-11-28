@@ -52,6 +52,7 @@ public class ToolspecValidatorTest {
         // All tool specification instances from the examples directory
         // will be validated
         addToolspecFilesFromDir("examples");
+        addToolspecFilesFromDir("production");
     }
 
     private ToolspecValidator getToolspecValidator(String toospecXml) throws GeneratorException {
