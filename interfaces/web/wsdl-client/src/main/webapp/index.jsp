@@ -48,6 +48,9 @@
 
 
 String folder = application.getRealPath("/");
+if(!folder.endsWith("/")) {	
+	folder = folder + "/";
+}
 
 Properties props = new Properties();
 InputStream stream = new URL("file:" + folder + "config.properties").openStream();
@@ -76,10 +79,6 @@ if (loadDefault.equals("true")) {
 <%
 } else {
 %>
-<!-- &gt;&gt; <a href="/WS-Client/">load services list from local XML file</a> &lt;&lt;  
-<br></br>
-<br></br>
--->
 
 <a href="http://www.impact-project.eu/taa/dp/" target="_top">Demonstrator Platform</a>
 <hr/>
@@ -87,12 +86,6 @@ if (loadDefault.equals("true")) {
 <h1>Web Service Client</h1>
 
 <%
-	Set<String> bannedServices = new HashSet<String>();
-	bannedServices.add("wso2carbon-sts ");
-	bannedServices.add(" X K M S Admin Service ");
-	bannedServices.add(" X K M S ");
-	bannedServices.add(" External Tryit Service ");
-
 	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -102,26 +95,8 @@ if (loadDefault.equals("true")) {
 	logger.info("Directory context is at: " + sc.getRealPath(".")
 			+ File.separator);
 
-	/*
-	 Set<String> rs = sc.getResourcePaths("/WEB-INF/classes/services.xml");
-
-	 for (String r: rs) {
-	 logger.info(r);
-	 }
-	 */
 
 	ServiceProvider sp;
-	/*
-	 if (configUrl != null && new File(configUrl.toURI()).exists()) {
-	 sp = new FileServiceProvider(configUrl);
-	 WSDLinfo.configLocation = new File(configUrl.toURI()).getAbsolutePath();
-	 } else if (new File(baseDir + "WEB-INF/classes/services.xml").exists()) {
-	 sp = new FileServiceProvider(baseDir + "WEB-INF/classes/services.xml");
-	 WSDLinfo.configLocation = baseDir + "WEB-INF/classes/services.xml";
-	 } else {
-	 sp = new FileServiceProvider(WSDLinfo.configLocation);
-	 }
-	 */
 
 	 String servicesXml = props.getProperty("servicesXml");
 	logger.info("Creating service list from XML");
@@ -133,7 +108,7 @@ if (loadDefault.equals("true")) {
 	List<Service> services = sp.getServiceList();
 
 	for (Service s : services) {
-		if(!bannedServices.contains(s.getTitle())) {
+		
 		logger.debug("Got service " + s.getIdentifier());
 		out.print("<form name=\"myForm" + s.getIdentifier()
 				+ "\" action=\"WSDLinfo\" method=\"post\">");
@@ -145,7 +120,7 @@ if (loadDefault.equals("true")) {
 				+ s.getIdentifier() + ".submit()\">" + s.getTitle()
 				+ "</a><br>");
 		out.print(s.getDescription() + "<br><br></form>");
-		}
+	
 
 	}
 	
@@ -153,44 +128,6 @@ if (loadDefault.equals("true")) {
 		out.print("IMPACT services list could not be loaded");
 	}
 
-
-	if (false) {
-//	if (services == null || services.isEmpty()) {
-		logger.debug("Falling back to XML config file");
-		URL configUrl = this
-				.getClass()
-				.getResource(
-						"./workspaceEE/WS-Client/src/main/resources/services.xml");
-		String cwd = new File(".").getAbsolutePath();
-		logger.info("Directory \".\" is at: " + cwd);
-		FileServiceProvider.setServletContext(sc);
-
-		sp = new FileServiceProvider(FileServiceProvider.findConfig());
-
-		//sp = new FileServiceProvider(baseDir + "WEB-INF/classes/services.xml");
-		//ServiceProvider sp = new FileServiceProvider(WSDLinfo.configLocation);
-
-		List<Service> fileServices = sp.getServiceList();
-		logger.info("Creating service list");
-
-		for (Service s : fileServices) {
-			logger.debug("Got service " + s.getIdentifier());
-			out.print("<form name=\"myForm" + s.getIdentifier()
-					+ "\" action=\"WSDLinfo\" method=\"post\">");
-			//out.print("<input type=\"hidden\" name=\"wsdlURL\" value=\"" + s.getURL().toString() + "\">");
-			out.print("<input type=\"hidden\" name=\"wsName\" value=\""
-					+ s.getTitle() + "\">");
-			out.print("<input type=\"hidden\" name=\"wsId\" value=\""
-					+ s.getIdentifier() + "\">");
-			out.print("<br><a href=\"javascript:document.myForm"
-					+ s.getIdentifier() + ".submit()\">" + s.getTitle()
-					+ "</a><br>");
-			out.print(s.getDescription() + "<br><br></form>");
-			//out.print("<input type=\"submit\" value=\"-> Try out\"></form>");
-
-		}
-
-	}
 %>
 
 <br>
