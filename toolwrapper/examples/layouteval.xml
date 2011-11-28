@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="c:\owndata\scape\toolspec.xsd">
+    <id>layouteval</id>
+    <name>LayoutEval</name>
+    <homepage>http://www.impact-project.eu</homepage>
+    <version></version>
+    <installation>
+        <os type="linux">
+           
+        </os>
+        <os type="windows">
+            
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="LayoutEval" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>Service for copying files</description>
+            <operations>
+                <operation oid="1" name="evalLayout">
+                    <description>Evaluate layout</description>
+                    <command>LayoutEvalCmd1.1\\layoutevalcmd-1-1-18.exe ${groundTruthXmlFileUrl} ${segXmlFileUrl} ${bwImageFileUrl} ${profileEvxFileUrl} ${outfile} ${opts}</command>
+                    <inputs>
+                        <input name="groundTruthXmlFileUrl">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>groundTruthXmlFileUrl</CliMapping>
+                            <Documentation>URL to the ground-truth document layout XML file (in PAGE format)</Documentation>
+                            <Default>http://fue.onb.ac.at/impact/testdata/layouteval_test_gt.xml</Default>
+                        </input>
+                        <input name="segXmlFileUrl">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>segXmlFileUrl</CliMapping>
+                            <Documentation>URL to the document layout XML file to be evaluated (segmentation result) (in PAGE format)</Documentation>
+                            <Default>http://fue.onb.ac.at/impact/testdata/layouteval_test_seg.xml</Default>
+                        </input>
+                        <input name="bwImageFileUrl">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>bwImageFileUrl</CliMapping>
+                            <Documentation>URL to the document black-and-white image (.tif)</Documentation>
+                            <Default>http://fue.onb.ac.at/impact/testdata/layouteval_test.tif</Default>
+                        </input>
+                        <input name="profileEvxFileUrl">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>profileEvxFileUrl</CliMapping>
+                            <Documentation>Full path to the .evx file containing the evaluation profile (weights and settings)</Documentation>
+                            <Default>http://fue.onb.ac.at/impact/testdata/laouteval_docstruct.evx</Default>
+                        </input>
+                        <input name="opts">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>opts</CliMapping>
+                            <Documentation>Combination of following characters (optional) (Note: No spaces between options! E.g. OW) 'O' - to overwrite existing result files, 'P' - print warnings and messages, 'V' - to output the evaluation results as comma separated values (CSV), 'H' - to output the column headers for the comma separated values (Note The values are written to std::out and not to a file. If necessary, the output can be redirected to a CSV file.) Structure levels (in none specified, all available will be used), 'B' – evaluate blocks (regions), 'L' – evaluate text lines, 'W' – evaluate words, 'G' – evaluate glyphs</Documentation>
+                            <Default>OP</Default>
+                        </input>
+                        <input name="evaluationId">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>false</Required>
+                            <CliMapping></CliMapping>
+                            <Documentation>Evaluation ID</Documentation>
+                            <Default>Default_Evaluation_ID</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outfile">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outfile</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>xml</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+		<path>manager</path>
+            </manager>
+            <toolsbasedir>C:\\Programme\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

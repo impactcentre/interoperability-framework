@@ -1,53 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="c:\owndata\scape\toolspec.xsd">
-    <id>borderremoval</id>
-    <name>BorderRemoval</name>
-    <homepage>http://www.impact-project.eu/taa/tech/imgenh/bm</homepage>
-    <version>4</version>
+    <id>abbyyfre10binarisation</id>
+    <name>AbbyyFRE10Binarisation</name>
+    <homepage>http://www.impact-project.eu</homepage>
+    <version></version>
     <installation>
         <os type="linux">
-           
+
         </os>
         <os type="windows">
-            
+
         </os>
     </installation>
     <services>
-        <service sid="1" name="BorderRemoval" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>Service for copying files</description>
+        <service sid="1" name="AbbyyFRE10Binarisation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>IMPACT Abbyy Fine Reader Engine 10 Binarisation Service. This service provides the basic functionality of the Abbyy Fine Reader 10 engine for binarising an image file.</description>
             <operations>
-                <operation oid="1" name="removeBorder">
-                    <description>Remove the border from an input image file</description>
-                    <command>IMPACTBorderRemovalV4\\Border_Detection_v4.exe ${pagesplit} ${infile} ${outfile1} ${outfile2}</command>
+                <operation oid="1" name="binarise">
+                    <description>Binarise image file</description>
+                    <command>abbyy-fre10-simplecli-binarisation\\AbbyyFRE10SimpleCliBinarisation.exe -if ${infile} -of ${outfile}</command>
                     <inputs>
                         <input name="infile">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>infile</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/19080603_0001.tif</Default>
-                        </input>
-                        <input name="pagesplit">
-                            <Datatype>xsd:boolean</Datatype>
-                            <Required>true</Required>
-                            <CliMapping>pagesplit</CliMapping>
-                            <Documentation>Indicates if a page should be split or not (if an image represents two book pages)</Documentation>
-                            <Default>false</Default>
+                            <Default>http://fue.onb.ac.at/impact/testdata/test3.tiff</Default>
                         </input>
                     </inputs>
                     <outputs>
-                        <output name="outfile1">
+                        <output name="outfile">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
-                            <CliMapping>outfile1</CliMapping>
-                            <Documentation>URL reference to first output file</Documentation>
-                            <Extension>tif</Extension>
-                        </output>
-                        <output name="outfile2">
-                            <Datatype>xsd:anyURI</Datatype>
-                            <Required>false</Required>
-                            <CliMapping>outfile2</CliMapping>
-                            <Documentation>URL reference to first output file</Documentation>
+                            <CliMapping>outfile</CliMapping>
+                            <Documentation>URL reference to the output file</Documentation>
                             <Extension>tif</Extension>
                         </output>
                     </outputs>
