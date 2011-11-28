@@ -1,0 +1,8 @@
+generic-soap-client
+-------------------
+
+This is a library that can execute operations of an arbitrary SOAP web service. 
+
+It takes a URL to a WSDL and generates a data structure corresponding to the definitions. 
+All operations and input fields can be accessed and set at runtime. After executing an operation,
+the returned values and file attachments can be read. 
