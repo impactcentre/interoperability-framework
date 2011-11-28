@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="c:\owndata\scape\toolspec.xsd">
+    <id>abbyyfre10binarisation</id>
+    <name>AbbyyFRE10Binarisation</name>
+    <homepage>http://www.impact-project.eu</homepage>
+    <version></version>
+    <installation>
+        <os type="linux">
+
+        </os>
+        <os type="windows">
+
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="AbbyyFRE10Binarisation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>IMPACT Abbyy Fine Reader Engine 10 Binarisation Service. This service provides the basic functionality of the Abbyy Fine Reader 10 engine for binarising an image file.</description>
+            <operations>
+                <operation oid="1" name="binarise">
+                    <description>Binarise image file</description>
+                    <command>abbyy-fre10-simplecli-binarisation\\AbbyyFRE10SimpleCliBinarisation.exe -if ${infile} -of ${outfile}</command>
+                    <inputs>
+                        <input name="infile">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>infile</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://fue.onb.ac.at/impact/testdata/test3.tiff</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outfile">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outfile</CliMapping>
+                            <Documentation>URL reference to the output file</Documentation>
+                            <Extension>tif</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+		<path>manager</path>
+            </manager>
+            <toolsbasedir>C:\\Programme\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

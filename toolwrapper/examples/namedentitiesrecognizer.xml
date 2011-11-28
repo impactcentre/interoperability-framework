@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="c:\owndata\scape\toolspec.xsd">
+    <id>namedentitiesrecognizer</id>
+    <name>NamedEntitiesRecognizer</name>
+    <homepage>http://www.impact-project.eu</homepage>
+    <version></version>
+    <installation>
+        <os type="linux">
+
+        </os>
+        <os type="windows">
+
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="NamedEntitiesRecognizer" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>The service can retrieve named entities (persons, locations and organizations) from a text file. It uses a supervised learning technique, which means it has to be trained with a manually tagged trainfile before it is applied to other text.</description>
+            <operations>
+                <operation oid="1" name="segmentCharacters">
+                    <description>Retrieve named entities (persons, locations and organizations) from a text file</description>
+                    <command>java -Xms512m -Xmx512m -jar C:/Programme/IMPACTNertV2.3/nert.jar -e -loadClassifier C:/Programme/IMPACTNertV2.3/models/${modelfile} -testfile ${infile} -in txt -out txt</command>
+                    <inputs>
+                        <input name="modelfile">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>modelfile</CliMapping>
+                            <Documentation>URL reference to text file</Documentation>
+                            <Default>dpo35_minpp56-65_ocr.ser.gz</Default>
+                            <Restriction>
+                                <Value>dpo35_minpp56-65_ocr.ser.gz</Value>
+                                <Value>sg20_min19291930_ocr.ser.gz</Value>
+                            </Restriction>
+                        </input>
+                        <input name="infile">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>infile</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/impact/testdata/nert/fre10out.txt</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outfile">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outfile</CliMapping>
+                            <Documentation>URL reference to annotated output text file</Documentation>
+                            <Extension>xml</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="publicwin"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+		<path>manager</path>
+            </manager>
+            <toolsbasedir></toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>
