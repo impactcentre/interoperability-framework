@@ -99,9 +99,9 @@ public class Report {
 		int dateRow = coords.date.row;
 		int dateSheetNr = coords.date.sheet;
 		Sheet dateSheet = workbook.getSheetAt(dateSheetNr);
-		insert(dateSheet, System.currentTimeMillis()+"", dateRow,
-				 dateCol, DATE);
-		
+		insert(dateSheet, System.currentTimeMillis() + "", dateRow, dateCol,
+				DATE);
+
 		int overviewCol = coords.overviewUpperRight.column;
 		int overviewRow = coords.overviewUpperRight.row;
 		int overviewSheetNr = coords.overviewUpperRight.sheet;
@@ -117,6 +117,8 @@ public class Report {
 		insert(overviewSheet, String.valueOf(imageCount), overviewRow,
 				overviewCol, DOUBLE);
 
+		List<URL> primaUrls = null;
+
 		int timesCol = coords.processingTimesUpperLeft.column;
 		int timesRow = coords.processingTimesUpperLeft.row;
 		int timesSheetNr = coords.processingTimesUpperLeft.sheet;
@@ -129,6 +131,14 @@ public class Report {
 			insert(timesSheet, String.valueOf(time), timesRow, timesCol + 1,
 					DOUBLE);
 
+			List<URL> tempList = tool.getInputUrl();
+			if (tempList.size() > 0) {
+				URL testUrl = tempList.get(0);
+				
+				if (testUrl != null
+						&& testUrl.toString().contains("prima.cse.salford"))
+					primaUrls = tempList;
+			}
 			timesRow++;
 		}
 
@@ -143,9 +153,26 @@ public class Report {
 			insert(evalSheet, tool.getEvaluationId(), evalRow, evalCol + 1,
 					STRING);
 
+			int i = -1;
 			for (OcrEvalTool.Evaluation eval : tool.getEvaluations()) {
 
+				i++;
 				evalCol = coords.evaluationsUpperLeft.column + 2;
+
+				if (eval.hasError()) {
+					insert(evalSheet, "error", evalRow, evalCol, STRING);
+					
+					URL primaUrl = null;
+					if(primaUrls != null && primaUrls.size() > i)
+						primaUrl = primaUrls.get(i);
+					if (primaUrl != null)
+						insert(evalSheet, primaUrl.toString(), evalRow,
+								evalCol + 1, STRING);
+
+					evalRow++;
+					continue;
+				}
+
 				if (!eval.characters.equals(""))
 					insert(evalSheet, eval.characters, evalRow, evalCol, DOUBLE);
 				evalCol++;
@@ -155,7 +182,7 @@ public class Report {
 				if (eval.accuracy.contains("---")) {
 					insert(evalSheet, "Not computable", evalRow, evalCol,
 							STRING);
-				} else if(!eval.accuracy.equals("")){
+				} else if (!eval.accuracy.equals("")) {
 					insert(evalSheet, eval.accuracy, evalRow, evalCol, DOUBLE);
 				}
 				evalCol++;
@@ -163,7 +190,8 @@ public class Report {
 				evalCol++;
 				insert(evalSheet, eval.misrecognized, evalRow, evalCol, DOUBLE);
 				evalCol++;
-				if (eval.wordAccuracy.contains("---") || eval.wordAccuracy.contains("NaN")) {
+				if (eval.wordAccuracy.contains("---")
+						|| eval.wordAccuracy.contains("NaN")) {
 					insert(evalSheet, "Not computable", evalRow, evalCol,
 							STRING);
 				} else {

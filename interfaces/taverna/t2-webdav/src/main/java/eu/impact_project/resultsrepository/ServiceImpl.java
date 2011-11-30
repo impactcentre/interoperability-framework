@@ -34,7 +34,6 @@ import java.io.Writer;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -519,11 +518,17 @@ public class ServiceImpl implements Service {
 						tool.addEvaluation(characters, errors, accuracy, words,
 								misrecognized, wordAccuracy);
 					} catch (IOException e) {
+						boolean hasError = true;
+						tool.addEvaluation(hasError);
 						error("Could not process evaluation file: " + url, e);
 					} catch (NoSuchFieldException e) {
+						boolean hasError = true;
+						tool.addEvaluation(hasError);
 						error("Could not process evaluation file: " + url, e);
 					}
 				} else {
+					boolean hasError = true;
+					tool.addEvaluation(hasError);
 					error("Could not process an evaluation file. The sample of the group was: "
 							+ sample, new Exception());
 				}

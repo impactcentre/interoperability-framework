@@ -27,7 +27,8 @@ public class OcrEvalTool extends Tool {
 
 	private String evaluationId;
 	private List<Evaluation> evals = new ArrayList<Evaluation>();
-
+	private boolean error = false;
+	
 	public OcrEvalTool(String name, String evaluationId) {
 		this.name = name;
 		this.evaluationId = evaluationId;
@@ -39,6 +40,15 @@ public class OcrEvalTool extends Tool {
 	
 	public String getEvaluationId() {
 		return evaluationId;
+	}
+	
+	public boolean hasError() {
+		return error;
+	}
+	
+	public void addEvaluation(boolean error) {
+		Evaluation eval = new Evaluation(error);
+		evals.add(eval);
 	}
 	
 	public void addEvaluation(String chars, String errors, String accuracy,
@@ -64,5 +74,18 @@ public class OcrEvalTool extends Tool {
 		public String words;
 		public String misrecognized;
 		public String wordAccuracy;
+
+		private boolean error = false;
+
+		public Evaluation() {
+		}
+		public Evaluation(boolean error) {
+			this.error = error;
+		}		
+		
+		public boolean hasError() {
+			return error;
+		}
+		
 	}
 }
