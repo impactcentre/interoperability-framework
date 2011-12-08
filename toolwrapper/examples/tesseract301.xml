@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="c:\owndata\scape\toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>tesseract</id>
-    <name>Tesseract</name>
-    <homepage>http://en.wikipedia.org/wiki/Cp_%28Unix%29</homepage>
+    <name>Tesseract OCR</name>
+    <homepage>http://code.google.com/p/tesseract-ocr/</homepage>
     <version>3.0.1</version>
     <installation>
         <os type="linux">
@@ -29,6 +29,50 @@
                         </input>
                         <input name="langmod">
                             <Datatype>xsd:string</Datatype>
+			    <Restriction>
+				<Value>ara</Value>
+				<Value>bul</Value>
+				<Value>cat</Value>
+				<Value>ces</Value>
+				<Value>chi_sim</Value>
+				<Value>chi_tra</Value>
+				<Value>dan</Value>
+				<Value>dan-frak</Value>
+				<Value>deu</Value>
+				<Value>deu-frak</Value>
+				<Value>ell</Value>
+				<Value>eng</Value>
+				<Value>fin</Value>
+				<Value>fra</Value>
+				<Value>heb</Value>
+				<Value>hin</Value>
+				<Value>hun</Value>
+				<Value>ind</Value>
+				<Value>ita</Value>
+				<Value>jpn</Value>
+				<Value>kor</Value>
+				<Value>lav</Value>
+				<Value>lit</Value>
+				<Value>nld</Value>
+				<Value>nor</Value>
+				<Value>osd</Value>
+				<Value>pol</Value>
+				<Value>por</Value>
+				<Value>ron</Value>
+				<Value>rus</Value>
+				<Value>slk</Value>
+				<Value>slk-frak</Value>
+				<Value>slv</Value>
+				<Value>spa</Value>
+				<Value>srp</Value>
+				<Value>swe</Value>
+				<Value>swe-frak</Value>
+				<Value>tha</Value>
+				<Value>tgl</Value>
+				<Value>tur</Value>
+				<Value>ukr</Value>
+				<Value>vie</Value>
+			    </Restriction>
                             <Required>true</Required>
                             <CliMapping>langmod</CliMapping>
                             <Documentation>Language module to be used by tesseract</Documentation>

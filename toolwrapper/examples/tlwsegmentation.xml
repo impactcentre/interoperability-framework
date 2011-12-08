@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="c:\owndata\scape\toolspec.xsd">
-    <id>tlwsegmentation</id>
-    <name>tlwsegmentation</name>
-    <homepage>http://www.impact-project.eu</homepage>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+    <id>usaltlwsegmentation</id>
+    <name>USAL Text Line and Word Segmenter</name>
+    <homepage>http://www.digitisation.eu/</homepage>
     <version></version>
     <installation>
         <os type="linux">
@@ -46,14 +46,14 @@
                             <Required>true</Required>
                             <CliMapping>bwImageFileUrl</CliMapping>
                             <Documentation>Filename of the 1-bit (binary) TIFF image to be segmented</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/impact/testdata/tools/tlwseg/00000086.swb.tif</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.bw.tif</Default>
                         </input>
                         <input name="segXmlFileUrl:">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>segXmlFileUrl:</CliMapping>
                             <Documentation>Filename of a PAGE XML file containing a region-level or word segmentation layout</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/impact/testdata/tools/tlwseg/00000086.xml</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/lines.xml</Default>
                         </input>
                         <input name="segmenter">
                             <Datatype>xsd:string</Datatype>
@@ -95,7 +95,7 @@
                             <Required>false</Required>
                             <CliMapping>paramFileUrl</CliMapping>
                             <Documentation>Full path to *.ini file containing a parameter set for the hybrid line segmenter or the density word segmenter - Note: Only regarded if option 'p' is set</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/dummy.ini</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/params.ini</Default>
                         </input>
                     </inputs>
                     <outputs>
