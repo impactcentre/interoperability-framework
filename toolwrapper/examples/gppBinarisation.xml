@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+    <id>gppBinarisation</id>
+    <name>NCSR GPP Binarisation</name>
+    <homepage>http://www.digitisation.eu/</homepage>
+    <version></version>
+    <installation>
+        <os type="linux">
+            Not supported.
+        </os>
+        <os type="windows">
+            Requires installation of the NCSR GPP Binarisation application.
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="GPP Binarisation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>Service for document image binarisation using GPP algorithm</description>
+            <operations>
+                <operation oid="1" name="binariseByUrl">
+                    <description>Binarise image using GPP algorithm</description>
+                    <command>ncsr-bin\\gpp.exe ${input} ${output}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.tif</Default>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to image file in TIF format</Documentation>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <CliMapping>output</CliMapping>
+                            <Required>false</Required>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>tif</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+		<path>manager</path>
+            </manager>
+			<toolsbasedir>C:\\Programme\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>
