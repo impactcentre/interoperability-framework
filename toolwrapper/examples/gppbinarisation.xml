@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
-    <id>gppBinarisation</id>
+    <id>gppbinarisation</id>
     <name>NCSR GPP Binarisation</name>
     <homepage>http://www.digitisation.eu/</homepage>
     <version></version>
