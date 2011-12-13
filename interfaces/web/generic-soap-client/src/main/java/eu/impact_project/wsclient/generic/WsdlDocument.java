@@ -45,6 +45,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.apache.xmlbeans.XmlException;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.eviware.soapui.impl.WsdlInterfaceFactory;
@@ -181,6 +182,21 @@ public class WsdlDocument {
 				el.setAttribute("xmlns:" + ns.getKey(), ns.getValue());
 		}
 
+		// in case that the schema is imported AND the path to it is relative
+		String url = wsdlUrl.toString();
+		String contextUrl = url.substring(0, url.lastIndexOf("/")+1);
+		NodeList imports = el.getElementsByTagNameNS("http://www.w3.org/2001/XMLSchema", "import");
+		for (int i = 0; i < imports.getLength(); i++) {
+			Element currentImport = (Element)imports.item(i);
+			String location = currentImport.getAttribute("schemaLocation");
+			boolean isAbsolute = location.startsWith("http");
+			if (!isAbsolute) {
+				// make relative paths to absolute paths
+				// or else the schema will not be found
+				currentImport.setAttribute("schemaLocation", contextUrl + location);
+			}
+		}
+		
 		TransformerFactory tFactory = TransformerFactory.newInstance();
 		Transformer transformer = tFactory.newTransformer();
 
