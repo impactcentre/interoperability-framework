@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="c:\owndata\scape\toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>borderremoval</id>
-    <name>BorderRemoval</name>
-    <homepage>http://www.impact-project.eu/taa/tech/imgenh/bm</homepage>
+    <name>NCSR Border Removal Toolkit</name>
+    <homepage>http://www.digitisation.eu/</homepage>
     <version>4</version>
     <installation>
         <os type="linux">
@@ -29,6 +29,10 @@
                         </input>
                         <input name="pagesplit">
                             <Datatype>xsd:boolean</Datatype>
+			    <Restriction>
+				<Value>true</Value>
+				<Value>false</Value>
+			    </Restriction>
                             <Required>true</Required>
                             <CliMapping>pagesplit</CliMapping>
                             <Documentation>Indicates if a page should be split or not (if an image represents two book pages)</Documentation>
