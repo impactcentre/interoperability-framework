@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
-    <id>gppbinarisation</id>
-    <name>NCSR GPP Binarisation</name>
-    <homepage>http://www.digitisation.eu/</homepage>
-    <version></version>
+    <id>unpaper</id>
+    <name>unpaper</name>
+    <homepage>http://unpaper.berlios.de/</homepage>
+    <version>0.3</version>
     <installation>
         <os type="linux">
-            Not supported.
+            Available under most distributions via package management.
         </os>
         <os type="windows">
-            Requires installation of the NCSR GPP Binarisation application.
+            Not supported.
         </os>
     </installation>
     <services>
-        <service sid="1" name="GPP Binarisation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>Service for document image binarisation using GPP algorithm</description>
+        <service sid="1" name="unpaper" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
+            <description>Service for document image enhancement using unpaper</description>
             <operations>
-                <operation oid="1" name="binariseByUrl">
-                    <description>Binarise image using GPP algorithm</description>
-                    <command>ncsr-bin\\gpp.exe ${input} ${output}</command>
+                <operation oid="1" name="unpaperByUrl">
+                    <description>Process image with unpaper</description>
+                    <command>unpaper ${options} ${input} ${output}</command>
                     <inputs>
+			<input name="options">
+			    <Datatype>xsd:string</Datatype>
+                            <Required>false</Required>
+                            <Default>-v</Default>
+                            <CliMapping>parameters</CliMapping>
+                            <Documentation>unpaper image processing command line parameters</Documentation>
+                        </input>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.tif</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.pgm</Default>
                             <CliMapping>input</CliMapping>
-                            <Documentation>URL reference to image file in TIF format</Documentation>
+                            <Documentation>URL reference to image file in PGM or PBM format</Documentation>
                         </input>
                     </inputs>
                     <outputs>
@@ -34,7 +41,7 @@
                             <CliMapping>output</CliMapping>
                             <Required>false</Required>
                             <Documentation>URL reference to output file</Documentation>
-                            <Extension>tif</Extension>
+                            <Extension>pgm</Extension>
                         </output>
                     </outputs>
                 </operation>
@@ -57,7 +64,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-	    <toolsbasedir>C:\\Programme\\</toolsbasedir>
+	    <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

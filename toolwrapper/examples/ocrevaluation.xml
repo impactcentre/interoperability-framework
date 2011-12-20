@@ -23,46 +23,47 @@
                         <input name="encoding">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-							    <Restriction>
-									<Value>a</Value>
-									<Value>ab</Value>
-									<Value>ac</Value>
-									<Value>al</Value>
-									<Value>ap</Value>
-									<Value>u8</Value>
-									<Value>u16</Value>
+			    <Restriction>
+				<Value>a</Value>
+				<Value>ab</Value>
+				<Value>ac</Value>
+				<Value>al</Value>
+				<Value>ap</Value>
+				<Value>u8</Value>
+				<Value>u16</Value>
+			    </Restriction>
                             <Default>u8</Default>
                             <CliMapping>encoding</CliMapping>
                             <Documentation>File encoding of the OCR result</Documentation>
                         </input>
-						<input name="stopwordlist">
-							<Datatype>xsd:anyURI</Datatype>
+			<input name="stopwordlist">
+			    <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-							<Default>http://kbdemo.dnsalias.org/testfiles/stopwords.txt</Default>
-							<CliMapping>stopwordlist</CliMapping>
-							<Documentation>URL reference to list with stop words to disregard in evaluation</Documentation>
-						</input>
-						<input name="groundtruth">
-							<Datatype>xsd:anyURI</Datatype>
+			    <Default>http://kbdemo.dnsalias.org/testfiles/stopwords.txt</Default>
+			    <CliMapping>stopwordlist</CliMapping>
+			    <Documentation>URL reference to list with stop words to disregard in evaluation</Documentation>
+			</input>
+			<input name="groundtruth">
+			    <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-							<Default>http://kbdemo.dnsalias.org/testfiles/groundtruth.txt</Default>
-							<CliMapping>groundtruth</CliMapping>
-							<Documentation>URL reference to ground truth text file</Documentation>
-						</input>
-						<input name="ocr">
-							<Datatype>xsd:anyURI</Datatype>
+			    <Default>http://kbdemo.dnsalias.org/testfiles/groundtruth.txt</Default>
+		  	    <CliMapping>groundtruth</CliMapping>
+			    <Documentation>URL reference to ground truth text file</Documentation>
+			</input>
+			<input name="ocr">
+			    <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-							<Default>http://kbdemo.dnsalias.org/testfiles/ocr.txt</Default>
-							<CliMapping>ocr</CliMapping>
-							<Documentation>URL reference to OCR result text file</Documentation>
-						</input>
-						<input name="evaluationId">
-							<Datatype>xsd:string</Datatype>
-							<Required>false</Required>
-							<CliMapping></CliMapping>
-							<Documentation>Evaluation ID</Documentation>
-							<Default>Default_Evaluation_ID</Default>
-						</input>
+			    <Default>http://kbdemo.dnsalias.org/testfiles/ocr.txt</Default>
+			    <CliMapping>ocr</CliMapping>
+			    <Documentation>URL reference to OCR result text file</Documentation>
+			</input>
+			<input name="evaluationId">
+			    <Datatype>xsd:string</Datatype>
+			    <Required>false</Required>
+			    <CliMapping></CliMapping>
+			    <Documentation>Evaluation ID</Documentation>
+			    <Default>Default_Evaluation_ID</Default>
+			</input>
                     </inputs>
                     <outputs>
                         <output name="charresult">
@@ -72,14 +73,14 @@
                             <Documentation>URL reference to character evaluation output file</Documentation>
                             <Extension>txt</Extension>
                         </output>
-						<output name="wordresult">
+			<output name="wordresult">
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>wordresult</CliMapping>
                             <Required>false</Required>
                             <Documentation>URL reference to word evaluation output file</Documentation>
                             <Extension>txt</Extension>
                         </output>
-						<output name="xmlreport">
+			<output name="xmlreport">
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>xmlreport</CliMapping>
                             <Required>false</Required>
@@ -107,7 +108,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-			<toolsbasedir>C:\\Programme\\</toolsbasedir>
+	    <toolsbasedir>C:\\Programme\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
