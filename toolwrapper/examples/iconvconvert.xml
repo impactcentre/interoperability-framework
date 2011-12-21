@@ -9,7 +9,7 @@
 	    Natively supported.
         </os>
         <os type="windows">
-	    Not supported.
+	    Not currently supported.
         </os>
     </installation>
     <services>

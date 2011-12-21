@@ -6,10 +6,10 @@
     <version></version>
     <installation>
         <os type="linux">
-           
+	    Not currently supported.           
         </os>
         <os type="windows">
-            
+            Requires installation of the USAL Layout Evaluation Tool.
         </os>
     </installation>
     <services>
@@ -25,28 +25,28 @@
                             <Required>true</Required>
                             <CliMapping>groundTruthXmlFileUrl</CliMapping>
                             <Documentation>URL to the ground-truth document layout XML file (in PAGE format)</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/layouteval_test_gt.xml</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
                         </input>
                         <input name="segXmlFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>segXmlFileUrl</CliMapping>
                             <Documentation>URL to the document layout XML file to be evaluated (segmentation result) (in PAGE format)</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/layouteval_test_seg.xml</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/words.xml</Default>
                         </input>
                         <input name="bwImageFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>bwImageFileUrl</CliMapping>
                             <Documentation>URL to the document black-and-white image (.tif)</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/layouteval_test.tif</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.bw.tif</Default>
                         </input>
                         <input name="profileEvxFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>profileEvxFileUrl</CliMapping>
                             <Documentation>Full path to the .evx file containing the evaluation profile (weights and settings)</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/laouteval_docstruct.evx</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/profile.evx</Default>
                         </input>
                         <input name="opts">
                             <Datatype>xsd:string</Datatype>
@@ -92,7 +92,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-            <toolsbasedir>C:\\Programme\\</toolsbasedir>
+            <toolsbasedir>C:\\impact\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

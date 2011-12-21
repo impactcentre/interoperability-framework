@@ -9,7 +9,7 @@
             Available under most distributions via package management.
         </os>
         <os type="windows">
-            Not supported.
+            Not currently supported.
         </os>
     </installation>
     <services>

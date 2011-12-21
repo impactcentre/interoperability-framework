@@ -6,18 +6,18 @@
     <version>0.2</version>
     <installation>
         <os type="linux">
-           
+	    Not currently supported.           
         </os>
         <os type="windows">
-            
+            Requires installation of the TypewrittenOCR-{version}.exe from PRImA.
         </os>
     </installation>
     <services>
         <service sid="1" name="TypewrittenOcr" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>Service for copying files</description>
+            <description>Service for OCR specifically for typewritten documents</description>
             <operations>
                 <operation oid="1" name="ocr">
-                    <description>Remove the border from an input image file</description>
+                    <description>Perform OCR on typewriter document image file in TIF format</description>
                     <command>IMPACTtypewrittenocr\\TypewrittenOCR-0.2\\bin\\TypewrittenOCR-0-2-145.exe ${bwimage} ${grayimage} ${colorimage} ${inputxml} ${outputxml} ${weights}</command>
                     <inputs>
                         <input name="bwimage">
@@ -25,7 +25,7 @@
                             <Required>true</Required>
                             <CliMapping>bwimage</CliMapping>
                             <Documentation>URL reference to bw image file</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/00450822B.tif</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.bw.tif</Default>
                         </input>
                         <input name="grayimage">
                             <Datatype>xsd:anyURI</Datatype>
@@ -46,13 +46,13 @@
                             <Required>true</Required>
                             <CliMapping>inputxml</CliMapping>
                             <Documentation>URL reference to input xml file</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/00450822.lines.xml</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/lines.xml</Default>
                         </input>
                         <input name="weights">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
                             <CliMapping>weights</CliMapping>
-                            <Documentation>URL reference to input xml file</Documentation>
+                            <Documentation>Weights for parameters</Documentation>
                             <Default>1,1</Default>
                         </input>
                     </inputs>
@@ -85,7 +85,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-            <toolsbasedir>C:\\Programme\\</toolsbasedir>
+            <toolsbasedir>C:\\impact\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

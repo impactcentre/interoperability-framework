@@ -6,10 +6,10 @@
     <version>6</version>
     <installation>
         <os type="linux">
-            Not supported.
+            Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the NCSR OCR Evaluation application.
+            Requires installation of the NCSR OCR Evaluation Toolkit.
         </os>
     </installation>
     <services>
@@ -108,7 +108,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-	    <toolsbasedir>C:\\Programme\\</toolsbasedir>
+	    <toolsbasedir>C:\\impact\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

@@ -6,10 +6,10 @@
     <version>3.0.1</version>
     <installation>
         <os type="linux">
-           
+	    Available under most distributions via package management.           
         </os>
         <os type="windows">
-            
+            Binaries for Windows are available from the project homepage.
         </os>
     </installation>
     <services>
@@ -25,7 +25,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/tesstest.tif</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.bw.tif</Default>
                         </input>
                         <input name="langmod">
                             <Datatype>xsd:string</Datatype>
@@ -109,7 +109,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-            <toolsbasedir>C:/Programme/</toolsbasedir>
+            <toolsbasedir>C:\\impact\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

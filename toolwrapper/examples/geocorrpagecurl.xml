@@ -6,17 +6,17 @@
     <version>4</version>
     <installation>
         <os type="linux">
-           
+	    Not currently supported.           
         </os>
         <os type="windows">
-            
+            Requires installation of the NCSR Geometric Defect Correction Toolkit for Page Curl.
         </os>
     </installation>
     <services>
         <service sid="1" name="Geocorrpagecurl" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
             <description>Geometric correction - Page curl (formerly Dewarping)</description>
             <operations>
-                <operation oid="1" name="uncurlPage">
+                <operation oid="1" name="uncurlByUrl">
                     <description>Uncurl page</description>
                     <command>IMPACTDewarpingV4\\Page_Curl_Correction_v4.exe 0 ${infile} ${outfile}</command>
                     <inputs>
@@ -25,7 +25,7 @@
                             <Required>true</Required>
                             <CliMapping>infile</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/geocorr_pagecurl_test.tif</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.bw..tif</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -57,7 +57,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-            <toolsbasedir>C:\\Programme\\</toolsbasedir>
+            <toolsbasedir>C:\\impact\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

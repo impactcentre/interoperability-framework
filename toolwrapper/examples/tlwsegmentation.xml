@@ -6,10 +6,10 @@
     <version></version>
     <installation>
         <os type="linux">
-           
+	    Not currently supported.           
         </os>
         <os type="windows">
-            
+            Requires the segmenter-{version}.exe from PRImA
         </os>
     </installation>
     <services>
@@ -39,7 +39,7 @@
                         p - For parameter file usage (hybrid/line or density/word only).
                     <paramfile> Full path to *.ini file containing a parameter set for the hybrid line segmenter or the density word segmenter. Only regarded if option 'p' is set.
                     -->
-                    <command>C:\\Programme\\IMPACTTlwSegmenter1.1\\Segmenter\\segmenter-1-1-395.exe ${segmenter} ${segmethod} ${bwimage} ${segxmlfile} ${outfile} ${opts} ${paramfile}</command>
+                    <command>\\tlwsegmenter\\segmenter-1-1-395.exe ${segmenter} ${segmethod} ${bwimage} ${segxmlfile} ${outfile} ${opts} ${paramfile}</command>
                     <inputs>
                         <input name="bwImageFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
@@ -127,7 +127,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-            <toolsbasedir>C:\\Programme\\</toolsbasedir>
+            <toolsbasedir>C:\\impact\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

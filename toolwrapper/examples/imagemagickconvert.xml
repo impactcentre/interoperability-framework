@@ -6,10 +6,10 @@
     <version></version>
     <installation>
         <os type="linux">
-            
+	    Available under most distributions via package management.            
         </os>
         <os type="windows">
-            
+            Binaries for Windows are available from the project homepage.
         </os>
     </installation>
     <services>
@@ -131,7 +131,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-	    <toolsbasedir>C:\\Programme\\</toolsbasedir>
+	    <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

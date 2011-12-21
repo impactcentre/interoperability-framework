@@ -6,10 +6,10 @@
     <version></version>
     <installation>
         <os type="linux">
-
+	    Not currently supported.
         </os>
         <os type="windows">
-
+	    Requires installation of the NCSR Character Segmentation Toolkit.
         </os>
     </installation>
     <services>
@@ -25,7 +25,7 @@
                             <Required>true</Required>
                             <CliMapping>infile</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://fue.onb.ac.at/impact/testdata/testfile_charsegm.tif</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/word.tif</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -33,14 +33,14 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>outfile</CliMapping>
-                            <Documentation>URL reference to the segmentation result XML</Documentation>
+                            <Documentation>URL reference to the segmentation hyptheses XML</Documentation>
                             <Extension>xml</Extension>
                         </output>
                     </outputs>
                 </operation>
             </operations>
             <deployto>
-                <deployref default="true" ref="publicwin"/>
+                <deployref default="true" ref="local"/>
             </deployto>
         </service>
     </services>
@@ -57,7 +57,7 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-            <toolsbasedir>C:\\Programme\\</toolsbasedir>
+            <toolsbasedir>C:\\impact\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
