@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+    <id>gocr</id>
+    <name>GOCR</name>
+    <homepage>http://jocr.sourceforge.net/</homepage>
+    <version>0.49</version>
+    <installation>
+        <os type="linux">
+            Available under most distributions via package management.
+        </os>
+        <os type="windows">
+            Binaries for Windows are available from the project homepage.
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="gocr" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>Service for OCR using GOCR</description>
+            <operations>
+                <operation oid="1" name="ocrByUrl">
+                    <description>Perform OCR using GOCR</description>
+                    <command>gocr049.exe -m 4 -i {input} -o {output} -f {format}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.pgm</Default>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to image file in PBM, PGM or PPM format</Documentation>
+                        </input>
+			<input name="format">
+			    <Datatype>xsd:string</Datatype>
+			    <Required>true</Required>
+			    <Restriction>
+				<Value>ISO8859_1</Value>
+				<Value>TeX</Value>
+				<Value>HTML</Value>
+				<Value>XML</Value>
+				<Value>UTF8</Value>
+				<Value>ASCII</Value>
+			    </Restriction>
+			    <Default>UTF8</Default>
+			    <CliMapping>format</CliMapping>
+			    <Documentation>OCR output format</Documentation>
+			</input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <CliMapping>output</CliMapping>
+                            <Required>false</Required>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>txt</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+	    	<path>manager</path>
+            </manager>
+	    <toolsbasedir>C:\\impact\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>
