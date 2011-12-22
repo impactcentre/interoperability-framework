@@ -51,7 +51,7 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>outfile2</CliMapping>
-                            <Documentation>URL reference to first output file</Documentation>
+                            <Documentation>URL reference to second output file</Documentation>
                             <Extension>tif</Extension>
                         </output>
                     </outputs>

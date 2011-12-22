@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>unpaper</id>
-    <name>unpaper</name>
+    <name>Unpaper</name>
     <homepage>http://unpaper.berlios.de/</homepage>
     <version>0.3</version>
     <installation>
@@ -13,10 +13,10 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="unpaper" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
+        <service sid="1" name="Unpaper" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
             <description>Service for document image enhancement using unpaper</description>
             <operations>
-                <operation oid="1" name="unpaperByUrl">
+                <operation oid="1" name="unpaper">
                     <description>Process image with unpaper</description>
                     <command>unpaper ${options} ${input} ${output}</command>
                     <inputs>

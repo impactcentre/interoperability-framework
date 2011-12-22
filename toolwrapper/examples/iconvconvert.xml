@@ -16,7 +16,7 @@
         <service sid="1" name="iconvconvert" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
             <description>Service for converting encoding of characters in input file from one coded character set to another</description>
             <operations>
-                <operation oid="1" name="convertByUrl">
+                <operation oid="1" name="iconv">
                     <description>Convert text file encoding</description>
                     <command>iconv --from-code=${fromcode} --to-code=${tocode} ${input} --output=${output}</command>
                     <inputs>

@@ -16,7 +16,7 @@
         <service sid="1" name="NamedEntitiesRecognizer" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
             <description>The service can retrieve named entities (persons, locations and organizations) from a text file. It uses a supervised learning technique, which means it has to be trained with a manually tagged trainfile before it is applied to other text.</description>
             <operations>
-                <operation oid="1" name="segmentCharacters">
+                <operation oid="1" name="recognizeNE">
                     <description>Retrieve named entities (persons, locations and organizations) from a text file</description>
                     <command>java -Xms512m -Xmx512m -jar ./IMPACTNertV2.3/nert.jar -e -loadClassifier ./IMPACTNertV2.3/models/${modelfile} -testfile ${infile} -in txt -out txt</command>
                     <inputs>

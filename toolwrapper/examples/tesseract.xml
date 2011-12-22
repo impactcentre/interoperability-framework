@@ -16,7 +16,7 @@
         <service sid="1" name="Tesseract" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
             <description>Service for copying files</description>
             <operations>
-                <operation oid="1" name="ocr">
+                <operation oid="1" name="tesseract">
                     <description>OCR a TIFF image file</description>
                     <command>tesseract-3.01/tesseract.exe ${input} ${output} -l ${langmod} </command>
                     <inputs>
@@ -75,7 +75,7 @@
 			    </Restriction>
                             <Required>true</Required>
                             <CliMapping>langmod</CliMapping>
-                            <Documentation>Language module to be used by tesseract</Documentation>
+                            <Documentation>Language module to be used by Tesseract</Documentation>
                             <Default>deu-frak</Default>
                         </input>
                     </inputs>

@@ -13,10 +13,10 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="exiftool" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+        <service sid="1" name="Exiftool" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
             <description>Service for reading image metadata using exiftool</description>
             <operations>
-                <operation oid="1" name="exiftoolByUrl">
+                <operation oid="1" name="exiftool">
                     <description>Extract image metadata using exiftool</description>
                     <command>exiftool.exe {input} > {output}</command>
                     <inputs>

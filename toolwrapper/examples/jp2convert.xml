@@ -16,7 +16,7 @@
         <service sid="1" name="jp2convert" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
             <description>Service for converting JPEG2000 images to other image file formats</description>
             <operations>
-                <operation oid="1" name="convertByUrl">
+                <operation oid="1" name="jp2convert">
                     <description>Convert JPEG2000 image file</description>
                     <command>j2k_to_image -i ${input} -o ${output} -OutFor {format}</command>
                     <inputs>

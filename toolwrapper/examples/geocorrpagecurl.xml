@@ -13,10 +13,10 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Geocorrpagecurl" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+        <service sid="1" name="GeocorrPagecurl" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
             <description>Geometric correction - Page curl (formerly Dewarping)</description>
             <operations>
-                <operation oid="1" name="uncurlByUrl">
+                <operation oid="1" name="uncurl">
                     <description>Uncurl page</description>
                     <command>IMPACTDewarpingV4\\Page_Curl_Correction_v4.exe 0 ${infile} ${outfile}</command>
                     <inputs>

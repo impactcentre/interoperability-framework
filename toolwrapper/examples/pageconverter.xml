@@ -6,17 +6,17 @@
     <version></version>
     <installation>
         <os type="linux">
-            Not supported.
+            Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the USAL PAGE Schema Converter application.
+            Requires installation of the USAL PAGE Schema Converter.
         </os>
     </installation>
     <services>
-        <service sid="1" name="pageconverter" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>Service for document image enhancement using unpaper</description>
+        <service sid="1" name="PAGE2SVGConverter" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>Service for converting PAGE XML to SVG</description>
             <operations>
-                <operation oid="1" name="convertByUrl">
+                <operation oid="1" name="page2svg">
                     <description>Transform PAGE XML according to filter replacement rules</description>
                     <command>PageSchemaConverter\\PageSchemaConverter-1-1-18.exe ${input} ${output} WOF ${filter}</command>
                     <inputs>

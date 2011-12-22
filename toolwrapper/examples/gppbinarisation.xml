@@ -6,17 +6,17 @@
     <version></version>
     <installation>
         <os type="linux">
-            Not supported.
+            Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the NCSR GPP Binarisation application.
+            Requires installation of the NCSR GPP Binarisation Toolkit.
         </os>
     </installation>
     <services>
-        <service sid="1" name="GPP Binarisation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+        <service sid="1" name="GPPBinarisation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
             <description>Service for document image binarisation using GPP algorithm</description>
             <operations>
-                <operation oid="1" name="binariseByUrl">
+                <operation oid="1" name="gppbinarise">
                     <description>Binarise image using GPP algorithm</description>
                     <command>ncsr-bin\\gpp.exe ${input} ${output}</command>
                     <inputs>

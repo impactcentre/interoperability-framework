@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
-    <id>ocrEvaluation</id>
+    <id>ocrevaluation</id>
     <name>NCSR OCR Evaluation Toolkit</name>
     <homepage>http://www.digitisation.eu/</homepage>
     <version>6</version>
@@ -13,10 +13,10 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="NCSR OCR Evaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>Service for evaluating OCR word and character accuracy against ground truth using plain text files</description>
+        <service sid="1" name="OCREvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>Service for evaluating OCR word and character accuracy vs ground truth using plain text files</description>
             <operations>
-                <operation oid="1" name="evalByUrl">
+                <operation oid="1" name="evalOcr">
                     <description>Evaluate OCR accuracy</description>
                     <command>ocr-eval\\OCREval.exe ${encoding} ${stopwordlist} ${groundtruth} ${ocr} ${charresult} ${wordresult} ${xmlreport}</command>
                     <inputs>

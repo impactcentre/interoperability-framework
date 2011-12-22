@@ -13,10 +13,10 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Imagemagick convert" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
+        <service sid="1" name="imagemagickconvert" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
             <description>Service for image conversion using imagemagick convert</description>
             <operations>
-                <operation oid="1" name="convertByUrl">
+                <operation oid="1" name="convert">
                     <description>Convert image using imagemagick</description>
                     <command>convert -depth ${depth} -quality ${quality} -colors ${numcolors} -colorspace ${colorspace} -compress ${compress} ${input} ${output}</command>
                     <inputs>

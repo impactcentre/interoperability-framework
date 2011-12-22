@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
-    <id>abbyyfre10binarisation</id>
+    <id>abbyy10binarisation</id>
     <name>ABBYY FineReader Engine 10 Binarisation</name>
-    <homepage>http://www.digitisation.eu/</homepage>
+    <homepage>http://www.ocr-sdk.com/</homepage>
     <version></version>
     <installation>
         <os type="linux">
 	    Not currently supported.
         </os>
         <os type="windows">
-	    Requires installation of the ABBYY FineReader Engine 10 Binarisation project.
+	    Requires installation of the ABBYY FineReader Engine 10 SDK.
         </os>
     </installation>
     <services>
-        <service sid="1" name="AbbyyFRE10Binarisation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>IMPACT Abbyy Fine Reader Engine 10 Binarisation Service. This service provides the basic functionality of the Abbyy Fine Reader 10 engine for binarising an image file.</description>
+        <service sid="1" name="Abbyy 10 Binarisation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>IMPACT Abbyy Fine Reader Engine 10 Binarisation Service. This service provides the basic functionality of the Abbyy Fine Reader Engine 10 for binarising an image file.</description>
             <operations>
                 <operation oid="1" name="binarise">
                     <description>Binarise image file</description>
@@ -33,7 +33,7 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>outfile</CliMapping>
-                            <Documentation>URL reference to the output file</Documentation>
+                            <Documentation>URL reference to output bitonal image file</Documentation>
                             <Extension>tif</Extension>
                         </output>
                     </outputs>

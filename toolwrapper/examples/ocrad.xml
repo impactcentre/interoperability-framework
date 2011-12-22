@@ -9,15 +9,15 @@
             Available under most distributions via package management.
         </os>
         <os type="windows">
-            Not supported.
+            Not currently supported.
         </os>
     </installation>
     <services>
-        <service sid="1" name="ocrad" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
-            <description>Service for converting JPEG2000 images to other image file formats</description>
+        <service sid="1" name="GNUOcrad" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
+            <description>Service for OCR using GNU Ocrad</description>
             <operations>
-                <operation oid="1" name="ocrByUrl">
-                    <description>Perform OCR using GNU ocrad</description>
+                <operation oid="1" name="ocrad">
+                    <description>OCR with ocrad</description>
                     <command>ocrad --format=utf8 --layout --output={output} {input}</command>
                     <inputs>
                         <input name="input">

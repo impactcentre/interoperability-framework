@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
-    <id>wordeval</id>
+    <id>wordevaluation</id>
     <name>INL Word Evaluation</name>
     <homepage>http://www.digitisation.eu/</homepage>
-    <version>1.0</version>
+    <version></version>
     <installation>
         <os type="linux">
             Fully supported through Java.
@@ -13,10 +13,10 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Word Evaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
-            <description>Service for evaluating word accuracy of OCR in PAGE format</description>
+        <service sid="1" name="WordEvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
+            <description>Service for evaluating word accuracy of OCR vs ground truth in PAGE format</description>
             <operations>
-                <operation oid="1" name="evalByUrl">
+                <operation oid="1" name="wordeval">
                     <description>Evaluate OCR word accurracy</description>
                     <command>java -jar /usr/local/java/impacttools/wordevaluation.jar -o ${output} ${groundtruth} ${ocrresult}</command>
                     <inputs>

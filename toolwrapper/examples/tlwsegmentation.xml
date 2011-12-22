@@ -9,11 +9,11 @@
 	    Not currently supported.           
         </os>
         <os type="windows">
-            Requires the segmenter-{version}.exe from PRImA
+            Requires installation of the USAL Text Line and Word Segmenter.
         </os>
     </installation>
     <services>
-        <service sid="1" name="TlwSegmentation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+        <service sid="1" name="Text Line and Word Segmentation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
             <description>Text line and Word Segmenter</description>
             <operations>
                 <operation oid="1" name="segmentTextLinesOrWords">

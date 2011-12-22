@@ -13,10 +13,10 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="gocr" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+        <service sid="1" name="Gocr" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
             <description>Service for OCR using GOCR</description>
             <operations>
-                <operation oid="1" name="ocrByUrl">
+                <operation oid="1" name="gocr">
                     <description>Perform OCR using GOCR</description>
                     <command>gocr049.exe -m 4 -i {input} -o {output} -f {format}</command>
                     <inputs>

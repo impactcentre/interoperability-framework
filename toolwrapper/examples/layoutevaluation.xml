@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
-    <id>layouteval</id>
+    <id>layoutevaluation</id>
     <name>USAL Layout Evaluation Tool</name>
     <homepage>http://www.digitisation.eu/</homepage>
     <version></version>
@@ -13,11 +13,11 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="LayoutEval" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>Service for copying files</description>
+        <service sid="1" name="LayoutEvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+            <description>Service for evaluating document layout detection</description>
             <operations>
                 <operation oid="1" name="evalLayout">
-                    <description>Evaluate layout</description>
+                    <description>Evaluate layout detection</description>
                     <command>LayoutEvalCmd1.1\\layoutevalcmd-1-1-18.exe ${groundTruthXmlFileUrl} ${segXmlFileUrl} ${bwImageFileUrl} ${profileEvxFileUrl} ${outfile} ${opts}</command>
                     <inputs>
                         <input name="groundTruthXmlFileUrl">
