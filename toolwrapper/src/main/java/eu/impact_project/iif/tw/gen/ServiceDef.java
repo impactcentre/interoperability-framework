@@ -15,7 +15,6 @@
  */
 package eu.impact_project.iif.tw.gen;
 
-import java.util.StringTokenizer;
 
 /**
  * Tool
@@ -55,31 +54,17 @@ public class ServiceDef {
         return projectName;
     }
 
-    /**
-     * Create a clean tool version
-     * @param v Version of the tool
-     * @return clean tool version
-     */
     private String getCleanVersion(String v) {
         String vrs = v.replaceAll("[^0-9]", "");
         vrs = vrs.replaceAll("\\.", "");
         return vrs;
     }
 
-    /**
-     * Service midfix is based on the name of the service and the
-     * version of the tool.
-     * @return
-     */
     private String getMidfixByNameAndVersion() {
         String mdf = name+version;
         return mdf;
     }
 
-    /**
-     * Lower case midfix
-     * @return
-     */
     private String getMidfixToLowercase() {
         return midfix.toLowerCase();
     }

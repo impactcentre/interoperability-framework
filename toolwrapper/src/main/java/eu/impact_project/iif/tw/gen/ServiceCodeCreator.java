@@ -155,7 +155,7 @@ public class ServiceCodeCreator {
             InOut inout) throws GeneratorException {
 
         // input or output field?
-        IOType iotype = (inout instanceof Input)?IOType.INPUT:IOType.OUTPUT;
+        IOType iotype = (inout instanceof Input) ? IOType.INPUT : IOType.OUTPUT;
         // input/output fields
         String nodeName = inout.getName();
         String required = inout.getRequired();
@@ -164,22 +164,22 @@ public class ServiceCodeCreator {
         // input specific fields
         Input input = null;
         boolean isInput = false;
-        if(inout instanceof Input) {
-            input = (Input)inout;
+        if (inout instanceof Input) {
+            input = (Input) inout;
             isInput = true;
         }
-        String cliReplacement = (isInput)?((Input)inout).getDefault().getClireplacement():null;
-        Restriction restriction = (isInput)?((Input)inout).getRestriction():null;
+        String cliReplacement = (isInput) ? ((Input) inout).getDefault().getClireplacement() : null;
+        Restriction restriction = (isInput) ? ((Input) inout).getRestriction() : null;
         // output specific fields
         Output output = null;
         boolean isOutput = false;
-        if(inout instanceof Output) {
-            output = (Output)inout;
+        if (inout instanceof Output) {
+            output = (Output) inout;
             isOutput = true;
         }
-        boolean autoExtension = (isOutput && output.isAutoExtension() != null)?output.isAutoExtension().booleanValue():false;
-        String prefixFromInput = (isOutput)?((Output)inout).getPrefixFromInput():null;
-        String extension = (isOutput)?((Output)inout).getExtension():null;
+        boolean autoExtension = (isOutput && output.isAutoExtension() != null) ? output.isAutoExtension().booleanValue() : false;
+        String prefixFromInput = (isOutput) ? ((Output) inout).getPrefixFromInput() : null;
+        String extension = (isOutput) ? ((Output) inout).getExtension() : null;
 
         boolean isRequired = (required != null && required.equalsIgnoreCase("true"));
         String opid = String.valueOf(operation.getOid());
@@ -187,9 +187,9 @@ public class ServiceCodeCreator {
         boolean isMultiple = restriction != null && restriction.isMultiple();
         String template = "tmpl/datatypes/" + iotype + "_"
                 + StringConverterUtil.typeToFilename(dataType)
-                +(isMultiple?"_restricted_list":"") // multiple string list
-                +((dataType.equals("xsd:anyURI") // URL with temporary file
-                  && !isRequired)?"_opt":"") // optional suffix
+                + (isMultiple ? "_restricted_list" : "") // multiple string list
+                + ((dataType.equals("xsd:anyURI") // URL with temporary file
+                && !isRequired) ? "_opt" : "") // optional suffix
                 + ".vm";
         logger.debug("Using template \"" + template + "\" for node \"" + nodeName
                 + "\" in operation " + opid);
@@ -203,7 +203,7 @@ public class ServiceCodeCreator {
 
                     sectCode.put("input_variable", nodeName);
                     String mapping = null;
-                    if(cliReplacement == null) {
+                    if (cliReplacement == null) {
                         // Simple mapping
                         mapping = getCliMapping(inout);
                     } else {
@@ -238,15 +238,16 @@ public class ServiceCodeCreator {
                         OutputItemCode oic = null;
                         // should the output file get the input file name as
                         // prefix? Different templates!
-                        String outfileId = ((Output)inout).getOutfileId();
+                        String outfileId = ((Output) inout).getOutfileId();
                         if (prefixFromInput == null || prefixFromInput.isEmpty()) {
-                            if(outfileId != null && !outfileId.equals("")) {
+                            if (outfileId != null && !outfileId.equals("")) {
                                 oic = new OutputItemCode("tmpl/outfileitem_id.vm");
                                 oic.put("outfileid", outfileId);
-                            } else
+                            } else {
                                 oic = new OutputItemCode("tmpl/outfileitem.vm");
+                            }
                         } else {
-                            if(outfileId != null && !outfileId.equals("")) {
+                            if (outfileId != null && !outfileId.equals("")) {
                                 oic = new OutputItemCode("tmpl/outfileitem_prefix_id.vm");
                                 oic.put("outfileid", outfileId);
                             } else {
@@ -303,10 +304,11 @@ public class ServiceCodeCreator {
             parameter = "Boolean " + nodeName;
         }
         if (dataType.equals("xsd:string")) {
-            if(isMultiple)
+            if (isMultiple) {
                 parameter = "OMElement " + nodeName;
-            else
+            } else {
                 parameter = "String " + nodeName;
+            }
         }
         if (parameter == null) {
             parameter = "null";
@@ -337,7 +339,7 @@ public class ServiceCodeCreator {
                 mappingVal = "Integer.toString(" + nodeName + ")";
             }
             if (dataType.equals("xsd:boolean")) {
-                mappingVal = "Boolean.toString("+nodeName+")";
+                mappingVal = "Boolean.toString(" + nodeName + ")";
             }
             if (dataType.equals("xsd:string")) {
                 mappingVal = nodeName;
@@ -350,12 +352,13 @@ public class ServiceCodeCreator {
             // types are mapped to command line interface pattern variables
             String mappingKeyVal = "";
             if (inout instanceof Input) {
-                Input input = (Input)inout;
+                Input input = (Input) inout;
                 Restriction restr = input.getRestriction();
-                if(restr != null) {
+                if (restr != null) {
                     boolean isMultiple = restr.isMultiple();
-                    if(isMultiple)
+                    if (isMultiple) {
                         mappingVal += "Csv";
+                    }
                 }
                 mappingKeyVal = "cliCmdKeyValPairs.put(\"" + cliMappingVar + "\", " + mappingVal + ");";
             }

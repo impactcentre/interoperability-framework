@@ -269,7 +269,7 @@ public class WsdlCreator {
      * @param documentation
      */
     private void createMsgElm(Node reqTypeSeqElm, InOut inout) {
-        
+
         String name = inout.getName();
         String dataType = inout.getDatatype();
         String required = inout.getRequired();

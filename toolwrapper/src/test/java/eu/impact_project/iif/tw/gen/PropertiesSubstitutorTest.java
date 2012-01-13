@@ -17,18 +17,15 @@
 
 package eu.impact_project.iif.tw.gen;
 
-import eu.impact_project.iif.tw.gen.GeneratorException;
-import eu.impact_project.iif.tw.gen.PropertiesSubstitutor;
-import eu.impact_project.iif.tw.gen.ServiceDef;
-import eu.impact_project.iif.tw.conf.Configuration;
-import eu.impact_project.iif.tw.util.PropertyUtil;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
-import org.junit.After;
-import org.junit.AfterClass;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import eu.impact_project.iif.tw.Constants;
+import eu.impact_project.iif.tw.conf.Configuration;
 
 /**
  *
@@ -44,8 +41,8 @@ public class PropertiesSubstitutorTest {
     @Before
     public void setUp() throws GeneratorException {
         Configuration ioc = new Configuration();
-        ioc.setXmlConf("default.xml");
-        ioc.setProjConf("toolwrapper.properties");
+        ioc.setXmlConf(new File(Constants.DEFAULT_TOOLSPEC));
+        ioc.setProjConf(new File(Constants.DEFAULT_PROJECT_PROPERTIES));
         st = new PropertiesSubstitutor(ioc.getProjConf());
     }
 

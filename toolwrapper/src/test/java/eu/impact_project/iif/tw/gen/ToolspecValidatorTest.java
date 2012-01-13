@@ -16,21 +16,22 @@
  */
 package eu.impact_project.iif.tw.gen;
 
-import eu.impact_project.iif.tw.gen.ToolspecValidator;
-import eu.impact_project.iif.tw.gen.GeneratorException;
-import eu.impact_project.iif.tw.conf.Configuration;
-import eu.impact_project.iif.tw.toolspec.Toolspec;
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import eu.impact_project.iif.tw.Constants;
+import eu.impact_project.iif.tw.conf.Configuration;
+import eu.impact_project.iif.tw.toolspec.Toolspec;
 
 /**
  *
@@ -46,21 +47,29 @@ public class ToolspecValidatorTest {
     }
 
     @Before
-    public void setUp() throws GeneratorException {
+    public void setUp() throws GeneratorException, URISyntaxException {
         toolspecs = new ArrayList<String>();
-        toolspecs.add("default.xml");
+        toolspecs.add(Constants.DEFAULT_TOOLSPEC);
         // All tool specification instances from the examples directory
         // will be validated
-        addToolspecFilesFromDir("examples");
-        addToolspecFilesFromDir("production");
+        try {
+            addToolspecFilesFromResourceDir("/examples");
+        } catch (IllegalArgumentException excep) {
+        	System.out.println(excep.getLocalizedMessage());
+        	excep.printStackTrace();
+        }
+        
+        if (this.toolspecs.isEmpty()) {
+        	throw new IllegalStateException("No toolspecs found to test.");
+        }
     }
 
     private ToolspecValidator getToolspecValidator(String toospecXml) throws GeneratorException {
         ToolspecValidator tv;
         try {
             Configuration ioc = new Configuration();
-            ioc.setXmlConf(toospecXml);
-            ioc.setProjConf("toolwrapper.properties");
+            ioc.setXmlConf(new File(Constants.DEFAULT_TOOLSPEC));
+            ioc.setProjConf(new File(Constants.DEFAULT_PROJECT_PROPERTIES));
             JAXBContext context;
             context = JAXBContext.newInstance("eu.impact_project.iif.tw.toolspec");
             Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -86,20 +95,28 @@ public class ToolspecValidatorTest {
         }
     }
 
-    private void addToolspecFilesFromDir(String directory) throws GeneratorException {
-        File dir = new File(directory);
-        String[] children = dir.list();
-        if (children == null) {
-            throw new GeneratorException("examples directory not available.");
-        } else {
-            for (int i=0; i<children.length; i++) {
-                String filename = children[i];
-                if(filename.endsWith(".xml")) {
-                    logger.info("Tool specification file \""+filename+"\" found");
-                    toolspecs.add(directory+"/"+filename);
+    private void addToolspecFilesFromResourceDir(String dirName) throws URISyntaxException {
+    	// OK get the resource directory as a file from the URL
+        File dir = new File(this.getClass().getResource(dirName).toURI());
+        this.addToolspecFilesFromDir(dir);
+    }
+
+    private void addToolspecFilesFromDir(File dir) {
+        // if it's not a good dir
+        if ((dir == null) || (!dir.exists()) || (!dir.isDirectory())) {
+        	throw new IllegalArgumentException("Argument dirname:" + dir.getAbsolutePath() + " is not an existing directory.");
+        }
+        // Get it's file children
+        File[] files = dir.listFiles();
+        if (files != null) {
+        	// If not null then
+            for (File file : files) {
+                if(file.getName().endsWith(".xml")) {
+                    logger.info("Tool specification file \"" + file.getName() + "\" found");
+                    toolspecs.add(file.getAbsolutePath());
                 }
             }
         }
+    	
     }
-
 }

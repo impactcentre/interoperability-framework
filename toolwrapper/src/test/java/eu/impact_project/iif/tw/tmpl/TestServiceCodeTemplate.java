@@ -16,21 +16,19 @@
  */
 package eu.impact_project.iif.tw.tmpl;
 
-import eu.impact_project.iif.tw.tmpl.ServiceCode;
-import eu.impact_project.iif.tw.tmpl.OperationCode;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
 import junit.framework.TestCase;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.exception.VelocityException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Test class for the template-based service code generator.
@@ -70,7 +68,7 @@ public class TestServiceCodeTemplate extends TestCase {
     }
 
     @Test
-    public void testTemplateEvaluation() throws IOException, VelocityException {
+    public void testTemplateEvaluation() throws IOException  {
 
         ServiceCode sc = new ServiceCode(serviceTmpl);
 

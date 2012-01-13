@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
-                  xmlns:axd="http://org.apache.axis2/xsd" 
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:axd="http://org.apache.axis2/xsd"
                   xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
                   xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -12,10 +12,10 @@
     <wsdl:types>
         <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="${project_namespace}"/>
     </wsdl:types>
-    
+
     <wsdl:portType name="ServicePortType">
     </wsdl:portType>
-    
+
     <wsdl:binding name="ServiceSoap11Binding" type="tns:ServicePortType">
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 

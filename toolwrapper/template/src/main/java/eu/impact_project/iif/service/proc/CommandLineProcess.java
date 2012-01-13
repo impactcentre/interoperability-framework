@@ -167,7 +167,7 @@ public class CommandLineProcess {
         if (cmd == null) {
             errorlog("No command defined. Unable to start command line process");
         } else {
-            pr.setCommandList(cmd);
+            pr.setCommand(cmd);
         }
     }
 
@@ -177,10 +177,10 @@ public class CommandLineProcess {
     public int execute() {
         pr.run();
         // assign return code from process controller
-        code = pr.getCode();
+        code = pr.getReturnCode();
         //String toolMsg = FileUtils.getStringFromInputStream(pr.getStdInputStream());
         StringWriter stdWriter = new StringWriter();
-        InputStream stdIs = pr.getStdInputStream();
+        InputStream stdIs = pr.getProcessOutput();
         if (stdIs != null) {
             try {
                 IOUtils.copy(stdIs, stdWriter);
@@ -190,7 +190,7 @@ public class CommandLineProcess {
             String toolMsg = stdWriter.toString();
             if (toolMsg != null && !toolMsg.equals("")) {
                 toolMsg = "Tool message: \n"+ toolMsg;
-                output = toolMsg;
+            output = toolMsg;
                 debuglog(toolMsg);
             }
         }
@@ -219,5 +219,8 @@ public class CommandLineProcess {
     private void errorlog(String msg) {
         logger.error(msg);
         processingLog += "ERROR: " + msg + ".\n";
+    }
+    public long getExecutionTime(){
+        return pr.getExecutionTime();
     }
 }

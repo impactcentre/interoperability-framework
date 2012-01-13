@@ -17,14 +17,11 @@
 
 package eu.impact_project.iif.tw.gen;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import eu.impact_project.iif.tw.gen.ServiceDef;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  *

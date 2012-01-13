@@ -252,7 +252,7 @@ public class DeploymentCreator {
                     if(toolsbasedir != null && !toolsbasedir.equals(""))
                     {
                         command = toolsbasedir + command;
-                    }
+                }
                     deplDepServXmlCode.put("cli_cmd_" + String.valueOf(operation.getOid()), command);
                 }
                 
@@ -261,6 +261,7 @@ public class DeploymentCreator {
 
                 String accessDir = FileUtil.makePath(de.getAccessdir());
                 String accessUrl = de.getAccessurl();
+
                 
                 deplDepServXmlCode.put("tomcat_public_http_access_dir", accessDir);
                 deplDepServXmlCode.put("tomcat_public_http_access_url", accessUrl);

@@ -17,8 +17,6 @@
 
 package eu.impact_project.iif.tw.gen;
 
-import eu.impact_project.iif.tw.gen.GeneratorException;
-import eu.impact_project.iif.tw.gen.PropertiesSubstitutor;
 import eu.impact_project.iif.tw.util.PropertyUtil;
 
 import org.junit.After;
