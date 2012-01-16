@@ -78,7 +78,8 @@ public class ToolspecValidator {
             Document doc = builder.parse(new File(ioc.getXmlConf()));
             // create a SchemaFactory and a Schema
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Source schemaFile = new StreamSource(ClassLoader.getSystemResourceAsStream(Constants.TOOLSPEC_SCHEMA_RESOURCE_PATH));
+            Source schemaFile = new StreamSource(new File("src/main/resources/toolspec.xsd"));
+            //Source schemaFile = new StreamSource(ClassLoader.getSystemResourceAsStream(Constants.TOOLSPEC_SCHEMA_RESOURCE_PATH));
             Schema schema = schemaFactory.newSchema(schemaFile);
             // create a Validator object and validate the XML file
             Validator validator = schema.newValidator();

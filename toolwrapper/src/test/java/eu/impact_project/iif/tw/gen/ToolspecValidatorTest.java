@@ -97,8 +97,7 @@ public class ToolspecValidatorTest {
 
     private void addToolspecFilesFromResourceDir(String dirName) throws URISyntaxException {
     	// OK get the resource directory as a file from the URL
-        File dir = new File(this.getClass().getResource(dirName).toURI());
-        this.addToolspecFilesFromDir(dir);
+        File dir = new File(("src/main/resources/toolspec.xsd"));
     }
 
     private void addToolspecFilesFromDir(File dir) {
