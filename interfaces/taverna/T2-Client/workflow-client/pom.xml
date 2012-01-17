@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Web frontend for uploading and executing Taverna 2 workflows either from the local disk or from the myExperiment online repository.</description>
 	<scm>
-		<url>https://develop.sub.uni-goettingen.de/repos/impact/bird/T2-Client/trunk/workflow-client</url>
+		<url>https://github.com/impactcentre/interoperability-framework/tree/master/interfaces/taverna/T2-Client/workflow-client</url>
 	</scm>
 
 	<parent>

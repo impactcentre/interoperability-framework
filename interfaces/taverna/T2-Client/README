@@ -27,9 +27,9 @@ What is T2-Client:
 Deployment Guide
 
 	To install the application locally, you have to get the source files, build them and deploy 
-	the resulting archives on a Java application server. This guide explains how to retrieve the
-	sources using <<<svn>>> utility, how to build the sources using Maven 2, and how to deploy
-	the application in Tomcat 6. It is assumed that those tools are already installed on your system.
+	the resulting archives on a Java application server. This guide explains how to build the sources 
+	using Maven 2, and how to deploy the application in Tomcat 6. It is assumed that those tools are 
+	already installed on your system.
 	
 *HTTPS support
 

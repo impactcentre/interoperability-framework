@@ -64,7 +64,7 @@ public class ToolspecValidatorTest {
         }
     }
 
-    private ToolspecValidator getToolspecValidator(String toospecXml) throws GeneratorException {
+    private ToolspecValidator getToolspecValidator(String toolspecXml) throws GeneratorException {
         ToolspecValidator tv;
         try {
             Configuration ioc = new Configuration();
