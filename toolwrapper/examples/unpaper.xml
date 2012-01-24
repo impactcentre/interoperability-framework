@@ -3,7 +3,7 @@
     <id>unpaper</id>
     <name>Unpaper</name>
     <homepage>http://unpaper.berlios.de/</homepage>
-    <version>0.3</version>
+    <version>0-3</version>
     <installation>
         <os type="linux">
             Available under most distributions via package management.
@@ -13,11 +13,23 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Unpaper" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
+        <service sid="1" name="Unpaper" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for document image enhancement using unpaper</description>
             <operations>
                 <operation oid="1" name="unpaper">
                     <description>Process image with unpaper</description>
+		    <!--
+                    Usage:
+                    unpaper -o <options> <input> <output>
+
+                    Where:
+		    <options> Command line parameters
+		    <input> Output file encoding
+		    <output> Input file
+
+		    For full documentation of unpaper processing parameters, see
+		    http://unpaper.berlios.de/#options
+		    -->
                     <command>unpaper ${options} ${input} ${output}</command>
                     <inputs>
 			<input name="options">

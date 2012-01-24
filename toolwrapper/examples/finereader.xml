@@ -2,23 +2,36 @@
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>finereader</id>
     <name>ABBYY FineReader Engine</name>
-    <homepage>http://www.ocr-sdk.com/</homepage>
+    <homepage>http://www.digitisation.eu/index.php?id=177</homepage>
     <version>10</version>
     <installation>
         <os type="linux">
             Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the ABBYY FineReader Engine SDK.
+            Requires installation of the ABBYY FineReader Engine SDK. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="FineReader" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+        <service sid="1" name="FineReader" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for OCR using ABBYY FineReader Engine technology</description>
             <operations>
                 <operation oid="1" name="ocr">
                     <description>Run OCR using ABBYY FineReader Engine</description>
-                    <command>abbyy-finereader\\CommandLineInterface.exe -lpp DocumentArchiving_Accuracy {langcs} -prn {texttype} -if ${input} -f {export} -tet UTF8 -of ${output}</command>
+		    <!--
+                    Usage:
+                    CommandLineInterface.exe [<-lpp DocumentArchiving_Accuracy>] <lang> -prn <textType> -if <in> -f <outputFormat> [<-tet UTF8>] -of <out>
+
+                    Where:
+		    <lpp DocumentArchiving_Accuracy> Configuration profile
+		    <lang> Language of document to be OCRed
+		    <textType> Text type of document to be OCRed
+		    <in> Input image file
+		    <outputFormat> Formatting of OCR result
+		    <tet UTF8> Default to UTF8 text encoding  
+		    <out> OCR output file
+		    -->
+                    <command>CommandLineInterface.exe -lpp DocumentArchiving_Accuracy {langcs} -prn {texttype} -if ${input} -f {export} -tet UTF8 -of ${output}</command>
                     <inputs>
 			<input name="langcs">
   			    <Datatype>xsd:string</Datatype>
@@ -104,7 +117,7 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>output</CliMapping>
                             <Required>false</Required>
-                            <Documentation>URL reference to output file</Documentation>
+                            <Documentation>URL reference to OCR result file</Documentation>
                             <Extension>xml</Extension>
                         </output>
                     </outputs>
@@ -128,7 +141,15 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-	    <toolsbasedir>C:\\impact\\</toolsbasedir>
+            <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice, 
+	    e.g. c:\\foo\\bar
+ 	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
+	    <toolsbasedir>C:\\ABBYY\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

@@ -3,22 +3,31 @@
     <id>tesseract</id>
     <name>Tesseract OCR</name>
     <homepage>http://code.google.com/p/tesseract-ocr/</homepage>
-    <version>3.0.1</version>
+    <version>3-0-1</version>
     <installation>
         <os type="linux">
 	    Available under most distributions via package management.           
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage.
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="Tesseract" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>Service for copying files</description>
+        <service sid="1" name="Tesseract" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Service for OCR using the Tesseract engine</description>
             <operations>
                 <operation oid="1" name="tesseract">
-                    <description>OCR a TIFF image file</description>
-                    <command>tesseract-3.01/tesseract.exe ${input} ${output} -l ${langmod} </command>
+                    <description>Perform OCR on TIFF image file</description>
+		    <!--
+                    Usage:
+                    tesseract.exe <input> <output> -l <lang>
+
+                    Where:
+		    <input> Input image file in TIF format
+		    <Output> OCR result file in TXT format
+		    <lang> Language model used for recognition
+		    -->
+                    <command>tesseract.exe ${input} ${output} -l ${langmod} </command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
@@ -109,7 +118,15 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-            <toolsbasedir>C:\\impact\\</toolsbasedir>
+            <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice, 
+	    e.g. c:\\foo\\bar
+ 	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
+            <toolsbasedir>C:\\TESSOCR\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

@@ -3,7 +3,7 @@
     <id>ocrad</id>
     <name>GNU Ocrad OCR</name>
     <homepage>http://www.gnu.org/s/ocrad/</homepage>
-    <version>0.17</version>
+    <version>0-17</version>
     <installation>
         <os type="linux">
             Available under most distributions via package management.
@@ -13,7 +13,7 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="GNUOcrad" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
+        <service sid="1" name="GNUOcrad" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for OCR using GNU Ocrad</description>
             <operations>
                 <operation oid="1" name="ocrad">

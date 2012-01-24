@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>charactersegmentation</id>
-    <name>NCSR Character Segmentation Toolkit</name>
-    <homepage>http://www.digitisation.eu/</homepage>
+    <name>NCSR Character Segmentation</name>
+    <homepage>http://www.digitisation.eu/index.php?id=101</homepage>
     <version>3</version>
     <installation>
         <os type="linux">
 	    Not currently supported.
         </os>
         <os type="windows">
-	    Requires installation of the NCSR Character Segmentation Toolkit.
+	    Requires installation of the NCSR Character Segmentation Tool. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="CharacterSegmentation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>Segments the characters in a given input text</description>
+        <service sid="1" name="CharacterSegmentation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Service for segmenting the characters in a given input word image</description>
             <operations>
                 <operation oid="1" name="segmentCharacters">
                     <description>Segments the characters in a given word image</description>
-                    <command>IMPACT_CharSegm_v3\\Character_Segmentation_v3.exe ${infile} ${outfile}</command>
+		    <!--
+                    Usage:
+                    Character_Segmentation_v3.exe <in> <out>
+
+                    Where:
+		    <in> Bitonal word image file in TIF format
+		    <out> XML file containing character segmentation hypotheses
+		    -->
+                    <command>Character_Segmentation_v3.exe ${infile} ${outfile}</command>
                     <inputs>
                         <input name="infile">
                             <Datatype>xsd:anyURI</Datatype>
@@ -57,7 +65,15 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-            <toolsbasedir>C:\\impact\\</toolsbasedir>
+            <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice, 
+	    e.g. c:\\foo\\bar
+ 	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
+	    <toolsbasedir>C:\\CHARSEG\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
