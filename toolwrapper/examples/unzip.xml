@@ -3,7 +3,7 @@
     <id>unzip</id>
     <name>Unzip</name>
     <homepage>http://linux.die.net/man/1/unzip</homepage>
-    <version>1.0</version>
+    <version>1</version>
     <installation>
         <os type="linux">
             Available by default.
@@ -13,7 +13,7 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Unzip" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
+        <service sid="1" name="Unzip" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for copying files</description>
             <operations>
                 <operation oid="1" name="unzip">

@@ -9,15 +9,31 @@
 	    Available under most distributions via package management.            
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage.
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="imagemagickconvert" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
+        <service sid="1" name="imagemagickconvert" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for image conversion using imagemagick convert</description>
             <operations>
                 <operation oid="1" name="convert">
                     <description>Convert image using imagemagick</description>
+		    <!--
+                    Usage:
+                    convert -depth <depth> -quality <quality> -colors <colors> -colorspace <colorspace> -compress <compress> <input> <output>
+
+                    Where:
+		    <depth> Image bit depth
+		    <quality> JPEG/MIFF/PNG compression level
+		    <colors> Number of colors in the image
+		    <colorspace> Set image colorspace
+		    <compress> Compression type
+		    <input> Input image file
+		    <output> Output image file
+
+		    For full documentation of imagemagick command line parameters, see
+		    http://www.imagemagick.org/script/convert.php
+		    -->
                     <command>convert -depth ${depth} -quality ${quality} -colors ${numcolors} -colorspace ${colorspace} -compress ${compress} ${input} ${output}</command>
                     <inputs>
 			<input name="depth">

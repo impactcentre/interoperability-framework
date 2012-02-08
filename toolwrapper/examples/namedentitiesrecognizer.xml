@@ -2,8 +2,8 @@
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>namedentitiesrecognizer</id>
     <name>INL Named Entities Recognition Tool</name>
-    <homepage>http://www.digitisation.eu/</homepage>
-    <version></version>
+    <homepage>http://www.digitisation.eu/index.php?id=111</homepage>
+    <version>2-3</version>
     <installation>
         <os type="linux">
 	    Fully supported through Java.
@@ -13,12 +13,22 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="NamedEntitiesRecognizer" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+        <service sid="1" name="NamedEntitiesRecognizer" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>The service can retrieve named entities (persons, locations and organizations) from a text file. It uses a supervised learning technique, which means it has to be trained with a manually tagged trainfile before it is applied to other text.</description>
             <operations>
                 <operation oid="1" name="recognizeNE">
                     <description>Retrieve named entities (persons, locations and organizations) from a text file</description>
-                    <command>java -Xms512m -Xmx512m -jar ./IMPACTNertV2.3/nert.jar -e -loadClassifier ./IMPACTNertV2.3/models/${modelfile} -testfile ${infile} -in txt -out txt</command>
+		    <!--
+                    Usage:
+                    java -jar nert.jar -e -loadClassifier <model> -testfile <testfile> -in <in> -out <out>
+
+                    Where:
+		    <model> Trained model for the text
+		    <testfile> Input file to be analysed
+		    <in> Input file format
+		    <out> Output file format
+		    -->
+                    <command>java -jar ./IMPACTNertV2.3/nert.jar -e -loadClassifier ./IMPACTNertV2.3/models/${modelfile} -testfile ${infile} -in txt -out txt</command>
                     <inputs>
                         <input name="modelfile">
                             <Datatype>xsd:string</Datatype>
@@ -68,6 +78,14 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
+            <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice, 
+	    e.g. c:\\foo\\bar
+ 	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
             <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>

@@ -1,24 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>ocrevaluation</id>
-    <name>NCSR OCR Evaluation Toolkit</name>
-    <homepage>http://www.digitisation.eu/</homepage>
+    <name>NCSR OCR Evaluation</name>
+    <homepage>http://www.digitisation.eu/index.php?id=76</homepage>
     <version>6</version>
     <installation>
         <os type="linux">
             Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the NCSR OCR Evaluation Toolkit.
+            Requires installation of the NCSR OCR Evaluation Toolkit. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="OCREvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>Service for evaluating OCR word and character accuracy vs ground truth using plain text files</description>
+        <service sid="1" name="OCREvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Service for evaluating OCR accuracy vs ground truth using plain text files</description>
             <operations>
                 <operation oid="1" name="evalOcr">
-                    <description>Evaluate OCR accuracy</description>
-                    <command>ocr-eval\\OCREval.exe ${encoding} ${stopwordlist} ${groundtruth} ${ocr} ${charresult} ${wordresult} ${xmlreport}</command>
+                    <description>Evaluate OCR word and character accuracy</description>
+		    <!--
+		    Usage:
+		    OCREval.exe <encoding> <stopwords> <groundtruth> <ocr> <charresult> <wordresult> <xmlreport>
+
+		    Where:
+		    <encoding> Character encoding. One of the following:
+				a - ASCII
+				ab - ASCII Bulgarian
+				ac - ASCII Czech
+				al - ASCII Slovene
+				ap - ASCII Polish
+				u8 - UTF-8
+				u16 - UTF-16
+		    <stopword> Full path to stop word list in plain text file
+		    <groundtruth> Full path to ground truth in plain text file
+		    <ocr> Full path to OCR result in plain text file
+		    <charresult> Character evaluation statistics report
+		    <wordresult> Word evaluation statistics report
+		    <xmlreport> Combined statistics XML report
+		    -->
+                    <command>OCREval.exe ${encoding} ${stopwordlist} ${groundtruth} ${ocr} ${charresult} ${wordresult} ${xmlreport}</command>
                     <inputs>
                         <input name="encoding">
                             <Datatype>xsd:anyURI</Datatype>
@@ -108,7 +128,15 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-	    <toolsbasedir>C:\\impact\\</toolsbasedir>
+            <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice, 
+	    e.g. c:\\foo\\bar
+ 	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
+	    <toolsbasedir>C:\\OCREVAL\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

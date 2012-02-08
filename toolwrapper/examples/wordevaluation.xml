@@ -13,12 +13,21 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="WordEvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/limpactservices">
+        <service sid="1" name="WordEvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for evaluating word accuracy of OCR vs ground truth in PAGE format</description>
             <operations>
-                <operation oid="1" name="wordeval">
+                <operation oid="1" name="wordEval">
                     <description>Evaluate OCR word accurracy</description>
-                    <command>java -jar /usr/local/java/impacttools/wordevaluation.jar -o ${output} ${groundtruth} ${ocrresult}</command>
+		    <!--
+                    Usage:
+                    java -jar wordevaluation.jar -o <output> <groundtruth> <ocr>
+
+                    Where:
+		    <output> Write output file
+		    <groundtruth> Ground truth file in PAGE format
+		    <ocr> OCR result file in PAGE format
+		    -->
+                    <command>java -jar wordevaluation.jar -o ${output} ${groundtruth} ${ocrresult}</command>
                     <inputs>
                         <input name="groundtruth">
                             <Datatype>xsd:anyURI</Datatype>
@@ -72,6 +81,14 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
+            <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice, 
+	    e.g. c:\\foo\\bar
+ 	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
             <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>

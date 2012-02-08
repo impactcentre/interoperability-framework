@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>borderremoval</id>
-    <name>NCSR Border Removal Toolkit</name>
-    <homepage>http://www.digitisation.eu/</homepage>
+    <name>NCSR Border Removal</name>
+    <homepage>http://www.digitisation.eu/index.php?id=96</homepage>
     <version>4</version>
     <installation>
         <os type="linux">
 	    Not currently supported.           
         </os>
         <os type="windows">
-            Requires installation of the NCSR Border Removal Toolkit.
+            Requires installation of the NCSR Border Removal Tool. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="BorderRemoval" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
-            <description>Service for copying files</description>
+        <service sid="1" name="BorderRemoval" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Service for removing noise and black borders from scanned document images</description>
             <operations>
                 <operation oid="1" name="removeBorder">
-                    <description>Remove the border from an input image file</description>
-                    <command>IMPACTBorderRemovalV4\\Border_Detection_v4.exe ${pagesplit} ${infile} ${outfile1} ${outfile2}</command>
+                    <description>Remove the border from an input image file. Optionally, double-pages can be split.</description>
+		    <!--
+                    Usage:
+                    Border_Detection_v4.exe [<pagesplit>] <in> <out1> <out2>
+
+                    Where:
+		    <pagesplit> Indicate double pages to be split (true/false)
+		    <in> Input image file in TIF format
+		    <out1> Output image file with borders removed
+		    <out2> Second output image file with borders removed (if pagesplit was set to true)
+		    -->
+                    <command>Border_Detection_v4.exe ${pagesplit} ${infile} ${outfile1} ${outfile2}</command>
                     <inputs>
                         <input name="infile">
                             <Datatype>xsd:anyURI</Datatype>
@@ -36,7 +46,7 @@
                             <Required>true</Required>
                             <CliMapping>pagesplit</CliMapping>
                             <Documentation>Indicates if a page should be split or not (if an image represents two book pages)</Documentation>
-                            <Default>false</Default>
+                            <Default>true</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -44,14 +54,14 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>outfile1</CliMapping>
-                            <Documentation>URL reference to first output file</Documentation>
+                            <Documentation>URL reference to output image</Documentation>
                             <Extension>tif</Extension>
                         </output>
                         <output name="outfile2">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>outfile2</CliMapping>
-                            <Documentation>URL reference to second output file</Documentation>
+                            <Documentation>URL reference to second output image if pagesplit was used</Documentation>
                             <Extension>tif</Extension>
                         </output>
                     </outputs>
@@ -75,7 +85,15 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-            <toolsbasedir>C:\\impact\\</toolsbasedir>
+            <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice, 
+	    e.g. c:\\foo\\bar
+ 	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
+	    <toolsbasedir>C:\\BORDREM\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

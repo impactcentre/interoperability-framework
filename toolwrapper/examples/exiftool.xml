@@ -3,22 +3,34 @@
     <id>exiftool</id>
     <name>ExifTool by Phil Harvey</name>
     <homepage>http://www.sno.phy.queensu.ca/~phil/exiftool/</homepage>
-    <version>8.73</version>
+    <version>8-73</version>
     <installation>
         <os type="linux">
             Available under most distributions via package management.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage.
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="Exiftool" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+        <service sid="1" name="Exiftool" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for reading image metadata using exiftool</description>
             <operations>
                 <operation oid="1" name="exiftool">
                     <description>Extract image metadata using exiftool</description>
-                    <command>exiftool.exe {input} > {output}</command>
+		    <!--
+                    Usage:
+                    exiftool.exe <in> -textOut <out>
+
+                    Where:
+		    <in> Input image file
+		    -textOut Write output text file
+		    <out> Output text file with extracted meta information
+
+		    For full documentation of exiftool command line parameters, see 
+		    http://www.sno.phy.queensu.ca/~phil/exiftool/exiftool_pod.html
+		    -->
+                    <command>exiftool.exe {input} -textOut {output}</command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
@@ -33,7 +45,7 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>output</CliMapping>
                             <Required>false</Required>
-                            <Documentation>URL reference to output file</Documentation>
+                            <Documentation>URL reference to output text file</Documentation>
                             <Extension>txt</Extension>
                         </output>
                     </outputs>
@@ -57,7 +69,15 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
-	    <toolsbasedir>C:\\impact\\</toolsbasedir>
+	    <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice, 
+	    e.g. c:\\foo\\bar
+ 	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
+	    <toolsbasedir>C:\\EXIFTOOL\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

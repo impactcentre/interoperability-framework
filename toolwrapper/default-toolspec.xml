@@ -3,7 +3,7 @@
     <id>copy</id>
     <name>Copy</name>
     <homepage>http://en.wikipedia.org/wiki/Cp_%28Unix%29</homepage>
-    <version>1.0</version>
+    <version></version>
     <installation>
         <os type="linux">
             Available by default.
@@ -13,10 +13,10 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Simple Copy" type="migrate" servicepackage="eu.impact_project.iif.services" contextpathprefix="/limpactservices">
+        <service sid="1" name="Simple Copy" type="migrate" servicepackage="eu.impact_project.iif.services" contextpathprefix="/impactservices">
             <description>Service for copying files</description>
             <operations>
-                <operation oid="1" name="simpleCopy">
+                <operation oid="1" name="copy">
                     <description>Copies a file</description>
                     <command>/bin/cp ${input} ${output}</command>
                     <inputs>
@@ -55,8 +55,8 @@
             </ports>
             <manager>
                 <user>tomcat</user>
-                <password>password</password>
-		        <path>manager</path>
+                <password>tomcat</password>
+		<path>manager</path>
             </manager>
             <toolsbasedir></toolsbasedir>
             <dataexchange>

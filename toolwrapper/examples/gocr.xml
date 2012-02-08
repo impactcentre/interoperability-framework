@@ -3,21 +3,34 @@
     <id>gocr</id>
     <name>GOCR</name>
     <homepage>http://jocr.sourceforge.net/</homepage>
-    <version>0.49</version>
+    <version>0-49</version>
     <installation>
         <os type="linux">
             Available under most distributions via package management.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage.
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="Gocr" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/wimpactservices">
+        <service sid="1" name="Gocr" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for OCR using GOCR</description>
             <operations>
                 <operation oid="1" name="gocr">
                     <description>Perform OCR using GOCR</description>
+		    <!--
+                    Usage:
+                    gocr049.exe -m 4 -i <input> -o <output> -f <format>
+
+                    Where:
+		    -m 4  switch on layout analysis or zoning (development)
+		    <input> Input image file in PNM format
+		    <output> Output file
+		    <format> Output format; either XML (with coordinates), HTML, UTF8, ASCII, ISO8859_1 or TeX
+
+		    For full documentation of gocr command line parameters, see
+		    http://manpages.ubuntu.com/manpages/gutsy/man1/gocr.1.html
+		    -->
                     <command>gocr049.exe -m 4 -i {input} -o {output} -f {format}</command>
                     <inputs>
                         <input name="input">
@@ -38,7 +51,7 @@
 				<Value>UTF8</Value>
 				<Value>ASCII</Value>
 			    </Restriction>
-			    <Default>UTF8</Default>
+			    <Default>XML</Default>
 			    <CliMapping>format</CliMapping>
 			    <Documentation>OCR output format</Documentation>
 			</input>
@@ -49,7 +62,7 @@
                             <CliMapping>output</CliMapping>
                             <Required>false</Required>
                             <Documentation>URL reference to output file</Documentation>
-                            <Extension>txt</Extension>
+                            <Extension>xml</Extension>
                         </output>
                     </outputs>
                 </operation>
@@ -72,7 +85,15 @@
                 <password>tomcat</password>
 	    	<path>manager</path>
             </manager>
-	    <toolsbasedir>C:\\impact\\</toolsbasedir>
+	    <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice, 
+	    e.g. c:\\foo\\bar
+ 	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
+	    <toolsbasedir>C:\\GOCR\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
