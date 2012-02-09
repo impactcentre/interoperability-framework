@@ -100,7 +100,7 @@ public class ToolWrapper {
 
     /**
      * Main method of the command line application
-     * 
+     *
      * @param args
      *        Arguments of the command line application
      * @throws GeneratorException
@@ -176,7 +176,7 @@ public class ToolWrapper {
     /**
      * Create a service. Each service is packaged in a separate web application archive (*.war) and can be deployed to
      * different web application container (e.g. Apache Tomcat).
-     * 
+     *
      * @param service
      *        Service
      * @param toolVersion

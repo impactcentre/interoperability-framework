@@ -16,6 +16,7 @@
  */
 package eu.impact_project.iif.tw.gen;
 
+import eu.impact_project.iif.tw.Constants;
 import eu.impact_project.iif.tw.conf.Configuration;
 import eu.impact_project.iif.tw.gen.types.ErrType;
 import eu.impact_project.iif.tw.toolspec.Deployment;

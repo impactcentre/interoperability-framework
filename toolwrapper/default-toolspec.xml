@@ -3,7 +3,7 @@
     <id>copy</id>
     <name>Copy</name>
     <homepage>http://en.wikipedia.org/wiki/Cp_%28Unix%29</homepage>
-    <version></version>
+    <version>1.0</version>
     <installation>
         <os type="linux">
             Available by default.
@@ -16,11 +16,11 @@
         <service sid="1" name="Simple Copy" type="migrate" servicepackage="eu.impact_project.iif.services" contextpathprefix="/impactservices">
             <description>Service for copying files</description>
             <operations>
-                <operation oid="1" name="copy">
+                <operation oid="1" name="simpleCopy">
                     <description>Copies a file</description>
                     <command>/bin/cp ${input} ${output}</command>
                     <inputs>
-                        <input name="input">
+                        <input name="inputUrl">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
@@ -60,7 +60,7 @@
             </manager>
             <toolsbasedir></toolsbasedir>
             <dataexchange>
-                <accessdir>webapps/ROOT/impact/tmp/</accessdir>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
             </dataexchange>
         </deployment>
