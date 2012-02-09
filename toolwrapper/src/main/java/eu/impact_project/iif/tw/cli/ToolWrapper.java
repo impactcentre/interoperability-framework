@@ -51,7 +51,7 @@ import eu.impact_project.iif.tw.util.FileUtil;
 /**
  * Command line interface of the tool wrapper. This program generates a maven project that can be used to deploy a
  * soap/rest web service.
- * 
+ *
  * @author shsdev https://github.com/shsdev
  * @version 0.3
  */
