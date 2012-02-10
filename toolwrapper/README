@@ -20,7 +20,7 @@ is recommended. Also make sure the JAVA_HOME environment variable is defined.
 
 1) In the xa-toolwrapper directory, run the maven package command:
 
-		mvn package
+	mvn package
 
 2) If the build is successful (it should be), then run the toolwrapper jar you've just built
 
@@ -34,7 +34,7 @@ is recommended. Also make sure the JAVA_HOME environment variable is defined.
 
    Customized project properties or another tool specification can be used:
 
-       java -jar toolwrapper.jar -pc toolwrapper.properties -xc default.xml
+       java -jar toolwrapper.jar -pc toolwrapper.properties -xc default-toospec.xml
 
    where:
 
@@ -53,58 +53,67 @@ is recommended. Also make sure the JAVA_HOME environment variable is defined.
 
    You can find the start page of the web application at:
 
-       http://localhost:8080/impact-simplecopy10-service/
+       http://localhost:8080/impactservices/impact-simplecopy10-service/
 
-   and the endpoint of the service at:
+   and the WSDL of the service at:
 
-       http://localhost:8080/impact-simplecopy10-service/services/SimpleCopy10
+       http://localhost:8080/impactservices/impact-simplecopy10-service/SimpleCopy10.wsdl
 
    Try the RESTless interface:
 
-       http://localhost:8080/impact-simplecopy10-service/services/SimpleCopy10/simpleCopy?inputUrl=http://localhost:8080/impact/testdata/impact-logo.png
+       http://localhost:8080/impactservices/impact-simplecopy10-service/services/SimpleCopy10/simpleCopy?inputUrl=http://localhost:8080/impactservices/impact-simplecopy10-service/test.txt
 
    and - if everything is setup correctly - you would receive a response like:
 
-   <ns:simpleCopyResponse>
+   <ns:simpleCopyResponse xmlns:ns="http://impact-project.eu/iif/services">
        <ns:return>
-           <tns:result>
+           <tns:result xmlns:tns="http://impact-project.eu/iif/services">
                <tns:success>true</tns:success>
                <tns:returncode>0</tns:returncode>
-               <tns:message>Service request has been processed successfully</tns:message>
-               <tns:time>0</tns:time>
-               <tns:unitid>http://fue.onb.ac.at/impact/fue-l/tomcat1</tns:unitid>
+               <tns:time>115</tns:time>
                <tns:log>========= PROCESSING REQUEST =========.
-               Using service: IMPACTSimpleCopy10Service.
-               Parameter processingUnit from services.xml: http://fue.onb.ac.at/impact/fue-l/tomcat1.
-               URL of input file: http://fue.onb.ac.at/impact/testdata/test.tiff.
-               Service request has been processed successfully.
+Using service: IMPACTSimpleCopy10Service.
+Parameter processingUnit from services.xml: http://localhost:8080/impact/instances/tomcat1.
+URL of input file: http://localhost:8080/impactservices/impact-simplecopy10-service/test.txt.
+Input file created: /tmp/simplecopy10-tmp-store/fromurl7101255115685982047.txt.
+Pattern (before substitution): /bin/cp ${input} ${output}.
+input substitution variable value: /tmp/simplecopy10-tmp-store/fromurl7101255115685982047.txt.
+output substitution variable value: /tmp/simplecopy10-tmp-store/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
+Command (after substitution): /bin/cp /tmp/simplecopy10-tmp-store/fromurl7101255115685982047.txt /tmp/simplecopy10-tmp-store/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
+Assigned exit code: 0.
+Process finished successfully with code 0.
+Output file of size 21 has been created successfully.
+Public output file: src/main/webapp/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
+Output URL: http://localhost:8080/impact/tmp/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
+Process finished successfully after 115 milliseconds..
+Service request has been processed successfully.
                </tns:log>
-               <tns:outputFile>http://localhost:8080/impact/tmp/impact-logo-1023892389923.png</tns:outputFile>
+               <tns:message>Service request has been processed successfully</tns:message>
+               <tns:output>http://localhost:8080/impact/tmp/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt</tns:output>
            </tns:result>
        </ns:return>
    </ns:simpleCopyResponse>
 
-  The service simply has copied the file available at the URL http://localhost:8080/impact/testdata/impact-logo.png
-  to a new location and made available by a new URL http://localhost:8080/impact/tmp/impact-logo-1023892389923.png.
+  The service simply has copied the file available at the URL http://localhost:8080/impactservices/impact-simplecopy10-service/test.txt
+  to a temporary location and then made it available at a URL http://localhost:8080/impact/tmp/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
+
+   Note regarding jetty: Jetty is using the test text file available in the jetty webapp directory:
+   toolwrapper/generated/simplecopy10/src/main/webapp/test.txt, also for storing temporary files, the default tool specificatioin
+   has configured the src/main/webapp/ directory as temporary directory (see default-toolspec.xml - 
+   /toolspec/deployments/deployment/dataexchange/accessdir).
 
 5) Try out the SOAP web service with soapUI by creating a project using the
    WSDL of the service:
 
-       http://localhost:8080/impact-simplecopy10-service/SimpleCopy10.wsdl
+       http://localhost:8080/impactservices/impact-simplecopy10-service/SimpleCopy10.wsdl
 
-   make a file available on a publicly accessible URL, e.g. by placing the
-   a sample file impact-logo.png in the webapps/ROOT/impact/tesdata/ folder
-   of your apache tomcat:
-
-       http://localhost:8080/impact/testdata/impact-logo.png
-
-   And then execute a soap request:
+   by executing the soap request:
 
    <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://impact-project.eu/pc/services">
        <soap:Header/>
        <soap:Body>
           <ser:Request1>
-             <ser:input>http://localhost:8080/impact/testdata/impact-logo.png</ser:input>
+             <ser:input>http://fue.onb.ac.at/scape/testdata/test.txt</ser:input>
           </ser:Request1>
        </soap:Body>
     </soap:Envelope>
@@ -122,20 +131,20 @@ is recommended. Also make sure the JAVA_HOME environment variable is defined.
                    <tns:time>22</tns:time>
                    <tns:log>========= PROCESSING REQUEST =========.
                     Using service: SimpleCopy10.
-                    URL of input file: http://localhost:8080/impact/testdata/impact-logo.png.
-                    Input file created: /usr/local/java/apache-tomcat-6.0.29/temp/simplecopy10-tmp-store/fromurl2399759179719296814.png.
+                    URL of input file: http://fue.onb.ac.at/scape/testdata/test.txt.
+                    Input file created: /usr/local/java/apache-tomcat-6.0.29/temp/simplecopy10-tmp-store/fromurl2399759179719296814.txt.
                     Pattern (before substitution): cp $INFILE $OUTFILE.
-                    OUTFILE substitution variable value: /usr/local/java/apache-tomcat-6.0.29/temp/simplecopy10-tmp-store/fromurl2399759179719296814.pngIMPACTSimpleCopy10Service_outputFile_8185195208001481281.png.
-                    INFILE substitution variable value: /usr/local/java/apache-tomcat-6.0.29/temp/simplecopy10-tmp-store/fromurl2399759179719296814.png.
-                    Command (after substitution): cp /usr/local/java/apache-tomcat-6.0.29/temp/simplecopy10-tmp-store/fromurl2399759179719296814.png /usr/local/java/apache-tomcat-6.0.29/temp/simplecopy10-tmp-store/fromurl2399759179719296814.pngIMPACTSimpleCopy10Service_outputFile_8185195208001481281.png.
+                    OUTFILE substitution variable value: /usr/local/java/apache-tomcat-6.0.29/temp/simplecopy10-tmp-store/fromurl2399759179719296814.txtIMPACTSimpleCopy10Service_outputFile_8185195208001481281.txt.
+                    INFILE substitution variable value: /usr/local/java/apache-tomcat-6.0.29/temp/simplecopy10-tmp-store/fromurl2399759179719296814.txt.
+                    Command (after substitution): cp /usr/local/java/apache-tomcat-6.0.29/temp/simplecopy10-tmp-store/fromurl2399759179719296814.png /usr/local/java/apache-tomcat-6.0.29/temp/simplecopy10-tmp-store/fromurl2399759179719296814.pngIMPACTSimpleCopy10Service_outputFile_8185195208001481281.txt.
                     Assigned exit code: 0.
                     Process finished successfully with code 0.
                     Output file of size 24805 has been created successfully.
-                    Public output file: /usr/local/java/apache-tomcat-6.0.29/webapps/ROOT/impact/tmp/fromurl2399759179719296814.pngIMPACTSimpleCopy10Service_outputFile_8185195208001481281.png.
-                    Output URL: http://localhost:8080/impact/tmp/fromurl2399759179719296814.pngIMPACTSimpleCopy10Service_outputFile_8185195208001481281.png.
+                    Public output file: /usr/local/java/apache-tomcat-6.0.29/webapps/ROOT/impact/tmp/fromurl2399759179719296814.pngIMPACTSimpleCopy10Service_outputFile_8185195208001481281.txt.
+                    Output URL: http://localhost:8080/impact/tmp/fromurl2399759179719296814.pngIMPACTSimpleCopy10Service_outputFile_8185195208001481281.txt.
                     Service request has been processed successfully.</tns:log>
                    <tns:message>Service request has been processed successfully</tns:message>
-                   <tns:output>http://localhost:8080/impact/tmp/fromurl2399759179719296814.pngIMPACTSimpleCopy10Service_outputFile_8185195208001481281.png</tns:output>
+                   <tns:output>http://localhost:8080/impact/tmp/fromurl2399759179719296814.pngIMPACTSimpleCopy10Service_outputFile_8185195208001481281.txt</tns:output>
                 </tns:result>
              </ns:return>
           </ns:simpleCopyResponse>

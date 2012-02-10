@@ -25,7 +25,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://localhost:8080/impact/testdata/impact-logo.png</Default>
+                            <Default>http://localhost:8080/test.txt</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -35,7 +35,7 @@
                             <CliMapping>output</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
                             <PrefixFromInput>input</PrefixFromInput>
-                            <Extension>png</Extension>
+                            <Extension>txt</Extension>
                         </output>
                     </outputs>
                 </operation>
@@ -60,7 +60,7 @@
             </manager>
             <toolsbasedir></toolsbasedir>
             <dataexchange>
-                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessdir>src/main/webapp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
             </dataexchange>
         </deployment>
