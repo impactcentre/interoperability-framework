@@ -61,7 +61,7 @@
             <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>src/main/webapp/</accessdir>
-                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+                <accessurl>http://localhost:8080/impactservices/impact-simplecopy10-service/</accessurl>
             </dataexchange>
         </deployment>
     </deployments>
