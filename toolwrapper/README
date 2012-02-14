@@ -34,12 +34,12 @@ is recommended. Also make sure the JAVA_HOME environment variable is defined.
 
    Customized project properties or another tool specification can be used:
 
-       java -jar toolwrapper.jar -pc toolwrapper.properties -xc default-toospec.xml
+       java -jar toolwrapper.jar --pc toolwrapper.properties --xc default-toospec.xml
 
    where:
 
-       -pc specifies the file that contains the project configuration
-       -xc Tool, service and service input/output data type defintions
+       --pc specifies the file that contains the project configuration
+       --xc Tool, service and service input/output data type defintions
 
 3) Change to the directory where the sample project has been generated:
 
@@ -172,12 +172,12 @@ Create a new project
 
    or indicating the configuration files to be used:
 
-       java -jar toolwrapper.jar -pc toolwrapper.properties -xc default.xml
+       java -jar toolwrapper.jar --pc toolwrapper.properties --xc default.xml
 
    where:
 
-       -pc specifies the file that contains the project configuration
-       -xc Tool, service and service input/output data type defintions
+       --pc specifies the file that contains the project configuration
+       --xc Tool, service and service input/output data type defintions
 
    It is possible to define multiple services for each tool, for each service
    a separate maven project will be created. Each service can have multiple
