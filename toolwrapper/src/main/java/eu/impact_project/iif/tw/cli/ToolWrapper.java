@@ -65,12 +65,12 @@ public class ToolWrapper {
     private static final String HELP_FLG = "h";
     private static final String HELP_OPT = "help";
     private static final String HELP_OPT_DESC = "print this message.";
-    private static final String PROPERTIES_FLG = "pc";
+    private static final String PROPERTIES_FLG = "p";
     private static final String PROPERTIES_OPT = "props";
     private static final String PROPERTIES_OPT_ARG = "FILE";
     private static final String PROPERTIES_OPT_DESC = "File containing project properties, default ./"
 	    + Constants.DEFAULT_PROJECT_PROPERTIES;
-    private static final String TOOLSPEC_FLG = "xc";
+    private static final String TOOLSPEC_FLG = "t";
     private static final String TOOLSPEC_OPT = "toolspec";
     private static final String TOOLSPEC_OPT_ARG = "FILE";
     private static final String TOOLSPEC_OPT_DESC = "XML file containg a tool specification, default ./"
