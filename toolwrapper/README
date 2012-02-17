@@ -18,13 +18,13 @@ Maven >= 2.2.1. For testing an internal jetty server is used for deployment,
 for productive deployment an Apache Tomcat application server version >=6.0.18
 is recommended. Also make sure the JAVA_HOME environment variable is defined.
 
-1) In the xa-toolwrapper directory, run the maven package command:
+1) In the toolwrapper directory, run the maven package command:
 
 	mvn package
 
 2) If the build is successful (it should be), then run the toolwrapper jar you've just built
 
-        java -jar ./target/xa-toolwrapper-0.3-SNAPSHOT-jar-with-dependencies.jar
+        java -jar ./target/toolwrapper-0.3-SNAPSHOT-jar-with-dependencies.jar
 
    This will generate an example project generated/simplecopy10. This service is
    a an example wrapper project for the linux copy command "cp" or the COPY
@@ -162,7 +162,7 @@ Create a new project
 
    b) default.xml
       Tool, service and service input/output data type definitions which must
-      comply with the xa-toolwrapper/src/main/resources/toolspec.xsd schema.
+      comply with the toolwrapper/src/main/resources/toolspec.xsd schema.
 
    See the "examples" folder which contains more configuration files.
 
@@ -172,12 +172,12 @@ Create a new project
 
    or indicating the configuration files to be used:
 
-       java -jar toolwrapper.jar --pc toolwrapper.properties --xc default.xml
+       java -jar toolwrapper.jar -p toolwrapper.properties -t default.xml
 
    where:
 
-       --pc specifies the file that contains the project configuration
-       --xc Tool, service and service input/output data type defintions
+       -p (--props) specifies the file that contains the project configuration
+       -t (--toolspec) Tool, service and service input/output data type defintions
 
    It is possible to define multiple services for each tool, for each service
    a separate maven project will be created. Each service can have multiple
