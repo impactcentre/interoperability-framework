@@ -41,7 +41,7 @@
                     <command>OCREval.exe ${encoding} ${stopwordlist} ${groundtruth} ${ocr} ${charresult} ${wordresult} ${xmlreport}</command>
                     <inputs>
                         <input name="encoding">
-                            <Datatype>xsd:anyURI</Datatype>
+                            <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
 			    <Restriction>
 				<Value>a</Value>
