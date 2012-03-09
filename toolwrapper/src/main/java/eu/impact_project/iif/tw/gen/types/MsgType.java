@@ -21,7 +21,7 @@ package eu.impact_project.iif.tw.gen.types;
  * @version 0.3
  */
 public enum MsgType {
-
+	/** Enum for a request message */
     REQUEST {
 
         @Override
@@ -29,6 +29,7 @@ public enum MsgType {
             return "Request";
         }
     },
+	/** Enum for a response message */
     RESPONSE {
 
         @Override

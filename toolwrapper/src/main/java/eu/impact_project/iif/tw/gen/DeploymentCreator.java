@@ -65,17 +65,21 @@ public class DeploymentCreator {
     private String defaultDeplWsdlFile;
     private String defaultWsdlFile;
 
+    /**
+     * Constructor for a DeploymentCreator
+     * @param pomAbsPath
+     * @param service
+     * @param st
+     */
     public DeploymentCreator(String pomAbsPath, Service service, PropertiesSubstitutor st) {
         this.pomAbsPath = pomAbsPath;
         this.service = service;
         this.st = st;
     }
 
-    public DeploymentCreator() {
-    }
-
     /**
      * Insert data types
+     * @throws GeneratorException 
      */
     public void createPom() throws GeneratorException {
         File wsdlTemplate = new File(this.pomAbsPath);
@@ -90,7 +94,6 @@ public class DeploymentCreator {
             NodeList profilesNodes = doc.getElementsByTagName("profiles");
             Node firstProfilesNode = profilesNodes.item(0);
             List<Deployref> dks = service.getDeployto().getDeployref();
-
 
             NodeList executionsNode = doc.getElementsByTagName("executions");
             Node thirdExecutionsNode = executionsNode.item(2);

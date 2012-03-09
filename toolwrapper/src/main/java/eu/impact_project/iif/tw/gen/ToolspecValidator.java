@@ -69,6 +69,9 @@ public class ToolspecValidator {
         valid = true;
     }
 
+    /**
+     * @throws GeneratorException
+     */
     public void validateWithXMLSchema() throws GeneratorException {
         try {
             // create a factory that understands namespaces and validates the XML input
@@ -102,6 +105,9 @@ public class ToolspecValidator {
         }
     }
 
+    /**
+     * @throws GeneratorException
+     */
     public void validate() throws GeneratorException {
         if (toolspec == null) {
             throw new GeneratorException("Tool specification is not available");
@@ -153,6 +159,9 @@ public class ToolspecValidator {
         }
     }
 
+    /**
+     * @throws GeneratorException
+     */
     public void checkpoint() throws GeneratorException {
         if (this.errors != null && this.errors.size() > 0) {
             for (Error err : errors) {
