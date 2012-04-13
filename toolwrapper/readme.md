@@ -89,12 +89,13 @@ and - if everything is setup correctly - you would receive a response like:
                <tns:output>http://localhost:8080/impact/tmp/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt</tns:output>
            </tns:result>
        </ns:return>
-   </ns:simpleCopyResponse>
+    </ns:simpleCopyResponse>
+
 The service simply has copied the file available at the URL  
    
     http://localhost:8080/impactservices/impact-simplecopy10-service/test.txt
 
-  to a temporary location and then made it available at a URL 
+to a temporary location and then made it available at a URL 
 
     http://localhost:8080/impact/tmp/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
 
