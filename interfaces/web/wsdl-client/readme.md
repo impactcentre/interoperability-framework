@@ -1,35 +1,63 @@
-generic-soap-client
--------------------
+Web Service Client
+------------------
 
-This is a library that can execute operations of an arbitrary SOAP web service. 
+The Web Service Client can be used to test operations of a SOAP Web Service.
+It analyzes the WSDL file of the Web Service and presents the operations and 
+the respective input fields to the user. Depending on the type of an input,
+the user is presented either a simple text input field, or a file upload field.
+The inserted values are sent to the Web Service and the resulting SOAP message
+is displayed. If there are any attached files (for example a converted image) in
+the returned message, those files can be downloaded via generated links.
+	
+**WS-Client for IMPACT**
 
-It takes a URL to a WSDL and generates a data structure corresponding to the definitions. 
-All operations and input fields can be accessed and set at runtime. After executing an operation,
-the returned values and file attachments can be read. 
+WS-Client is developed mainly to test the Web Services that wrap software tools
+implemented in the context of the IMPACT project. On the start page, a list of
+already functioning tools is displayed. This list is read from an XML configuration file.
+Nevertheless, it is possible to test an arbitrary Web Service by entering a URL
+to a WSDL file into the respective input field.
+	
+	
+**Deployment**
 
-Some simple usage examples:
+To install the application locally, you have to get the source files, build them and deploy 
+the resulting archive on a Java application server.
+	
+**Building the application**
 
+The project is managed using Maven 2. Again, you can use an IDE to build the sources.
+Alternatively, you can execute the following command in the project directory:
+	
+    mvn package
+	
+**Deploying the application**
 
-// initialize the service  
-SoapService service = new SoapService("http://myhost/myservice?wsdl");
+Maven generates a WAR archive in the '*target*' directory. In Tomcat, you can deploy 
+this archive using the Tomcat Manager application. Or, simply copy the archive into the '*webapp*' directory of your Tomcat installation and restart Tomcat.
+	
+**Configuration**
 
-// service operations  
-List<SoapOperation> allOps = service.getOperations();  
-SoapOperation op = service.getOperation("myOperation");
+In the simplest case, you enter a URL to a WSDL and an input form for the service will be presented.
 
-// analyzing and setting input values  
-List<SoapInput> allInputs = op.getInputs();  
-SoapInput in = allInputs.get(0);  
-String name = in.getName();  
-boolean multi = in.isMultiValued(); //&nbsp;can contain several values  
-List<String> possible = in.getPossibleValues(); //&nbsp;for restricted types  
-in.setValue("some value");
+It is also possible to manage a predefined list of WSDLs in an XML file that must look like this example:
 
-// executing the operation  
-List<SoapOutput> outs = op.execute();
+    <?xml version="1.0" encoding="UTF-8"?>
+    <services>
+        <service id="1">
+    	    <title>IMPACT Gimp Image Conversion Service</title>
+    	    <url>https://localhost/IMPACTGimpImageConversionProxy?wsdl</url>
+    	    <description>Perform image format conversion operations .</description>
+        </service>
+	    <service id="2">
+		    <title>IMPACT ImageMagick Image Conversion Service</title>
+		    <url>https://localhost/IMPACTImageMagickProxy?wsdl</url>
+		    <description>Perform image conversion operations.</description>
+	    </service>
+    </services>
+	
+The URL pointing to such a file has to be present in the file 
 
-// printing the outputs  
-for (SoapOutput out : outs) {  
-&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(out.getName());  
-&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(out.getValue());  
-}
+    main/webapp/config.properties
+	
+
+Furthermore, it is possible here to configure one specific web service which should be loaded automatically every time.
