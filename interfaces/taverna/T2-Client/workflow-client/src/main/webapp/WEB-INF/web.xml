@@ -66,7 +66,7 @@
     <description></description>
     <display-name>GroupSelector</display-name>
     <servlet-name>GroupSelector</servlet-name>
-    <servlet-class>eu.impact_project.iif.t2_client.GroupSelector</servlet-class>
+    <servlet-class>eu.impact_project.iif.t2.client.GroupSelector</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>GroupSelector</servlet-name>
