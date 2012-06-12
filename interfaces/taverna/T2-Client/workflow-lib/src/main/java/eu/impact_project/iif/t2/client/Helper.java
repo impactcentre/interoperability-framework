@@ -72,7 +72,7 @@ public class Helper {
 		HttpClient client = new HttpClient();
 
 		client.getParams().setAuthenticationPreemptive(true);
-		client.getState().setCredentials(new AuthScope(domain, 80),
+		client.getState().setCredentials(new AuthScope(domain, -1),
 				new UsernamePasswordCredentials(user, password));
 		return client;
 	}
