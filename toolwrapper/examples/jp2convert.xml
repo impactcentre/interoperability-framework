@@ -27,7 +27,7 @@
 		    <output> Output file 
 		    <format> Output format; currently accepts BMP, TIF, RAW, TGA, PGM, PPM, PNM and PGX
 		    -->
-                    <command>j2k_to_image -i ${input} -o ${output} -OutFor {format}</command>
+                    <command>j2k_to_image -i ${input} -o ${output} -OutFor ${format}</command>
                     <inputs>
   		        <input name="format">
 			    <Datatype>xsd:string</Datatype>

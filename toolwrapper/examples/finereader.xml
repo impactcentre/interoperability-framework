@@ -31,7 +31,7 @@
 		    <tet UTF8> Default to UTF8 text encoding  
 		    <out> OCR output file
 		    -->
-                    <command>CommandLineInterface.exe -lpp DocumentArchiving_Accuracy {langcs} -prn {texttype} -if ${input} -f {export} -tet UTF8 -of ${output}</command>
+                    <command>CommandLineInterface.exe -lpp DocumentArchiving_Accuracy ${langcs} -prn ${texttype} -if ${input} -f ${export} -tet UTF8 -of ${output}</command>
                     <inputs>
 			<input name="langcs">
   			    <Datatype>xsd:string</Datatype>

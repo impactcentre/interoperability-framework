@@ -31,7 +31,7 @@
 		    For full documentation of gocr command line parameters, see
 		    http://manpages.ubuntu.com/manpages/gutsy/man1/gocr.1.html
 		    -->
-                    <command>gocr049.exe -m 4 -i {input} -o {output} -f {format}</command>
+                    <command>gocr049.exe -m 4 -i ${input} -o ${output} -f ${format}</command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
