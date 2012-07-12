@@ -1,4 +1,4 @@
-Tool Wrapper v0.3
+Tool Wrapper v0.3 [![Build Status](https://secure.travis-ci.org/impactcentre/interoperability-framework.png)](http://travis-ci.org/impactcentre/interoperability-framework)
 -----------------
  
 **About**
