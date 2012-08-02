@@ -35,6 +35,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>truezip-maven-plugin</artifactId>
+		<version>1.0</version>
                 <executions>
                     <execution>
                         <id>copy-out-files</id>
