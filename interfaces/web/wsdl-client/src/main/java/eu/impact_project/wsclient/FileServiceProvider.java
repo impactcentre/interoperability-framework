@@ -83,7 +83,7 @@ public class FileServiceProvider implements ServiceProvider {
 			return;
 		}
 
-		this.configUrl = file.toURL();
+		this.configUrl = file.toURI().toURL();
 		loadConfig();
 
 	}

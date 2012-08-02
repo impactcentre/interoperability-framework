@@ -34,7 +34,7 @@
 		<jdk.version>1.6</jdk.version>
 		<org.apache.axis2.version>1.5.4</org.apache.axis2.version>
 		<ch.qos.logback.version>0.9.28</ch.qos.logback.version>
-        <taverna.version>0.2.0</taverna.version>
+        	<taverna.version>0.2.0</taverna.version>
 	</properties>
 	
 </project>
