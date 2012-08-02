@@ -1,3 +1,2 @@
 language: java
-before_script: cd toolwrapper
 script: mvn test

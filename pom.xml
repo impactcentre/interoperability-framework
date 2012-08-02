@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eu.impact-project</groupId>
+	<artifactId>iif</artifactId>
+	<packaging>pom</packaging>
+	<name>IMPACT Interoperability Framework</name>
+	<version>0.4-SNAPSHOT</version>
+	<description>Web Service Framework for Command Line Applications</description>
+	<url>http://www.digitisation.eu/tools/interoperability-framework/</url>
+	<organization>
+		<name>IMPACT Centre of Competence</name>
+		<url>http://www.digitisation.eu/</url>
+	</organization>
+	<inceptionYear>2009</inceptionYear>
+	<scm>
+		<url>https://github.com/impactcentre/interoperability-framework</url>
+	</scm>
+	
+	<modules>
+		<module>./toolwrapper</module>
+		<module>./interfaces/web/generic-soap-client</module>
+		<module>./interfaces/web/time-utils</module>
+		<module>./interfaces/web/wsdl-client</module>
+		<module>./interfaces/taverna/t2-rest</module>
+		<module>./interfaces/taverna/t2-webdav</module>
+		<module>./interfaces/taverna/T2-Client/workflow-client</module>
+		<module>./interfaces/taverna/T2-Client/metrics-toolkit</module>
+		<module>./interfaces/taverna/T2-Client/workflow-lib</module>
+	</modules>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.6</jdk.version>
+		<org.apache.axis2.version>1.5.4</org.apache.axis2.version>
+		<ch.qos.logback.version>0.9.28</ch.qos.logback.version>
+        <taverna.version>0.2.0</taverna.version>
+	</properties>
+	
+</project>
