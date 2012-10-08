@@ -17,7 +17,7 @@
             <description>Services for text recognition using gocr</description>
             <operations>
                 <operation oid="1" name="gocr">
-                    <description>Perform text recognition using gocr</description>
+                    <description>Perform text recognition on PNM image file</description>
 		    <!--
                     Usage:
                     gocr049[.exe] -m 4 -i <input> -o <output> -f <format>
@@ -31,7 +31,7 @@
 		    For full documentation of gocr command line parameters, see
 		    http://manpages.ubuntu.com/manpages/gutsy/man1/gocr.1.html
 		    -->
-                    <command>gocr049 -m 4 -i ${input} -o ${output} -f ${format}</command>
+                    <command>gocr -m 4 -i ${input} -o ${output} -f ${format}</command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>

@@ -13,11 +13,11 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Gamera" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Services for text recognition using gamera</description>
+        <service sid="1" name="Gamera" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/iif">
+            <description>Services for text recognition using Gamera</description>
             <operations>
                 <operation oid="1" name="gamera">
-                    <description>Perform text recognition using gamera</description>
+                    <description>Perform text recognition on PNG image file</description>
 		    <!--
                     Usage:
                     ocr4gamera.py -x <trainingdata> [options] <imagefile>
@@ -25,6 +25,8 @@
                     Where:
 		    <trainingdata> 	Training data in XML format
 		    <imagefile> 	Input image file in PNG format
+			For documentation on gamera, see
+		    http://gamera.informatik.hsnr.de/addons/ocr4gamera/index.html
 		    -->
                     <command>ocr4gamera.py -x ${traindata} -d  -o ${output} ${input}</command>
                     <inputs>

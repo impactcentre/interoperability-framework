@@ -13,11 +13,11 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Tesseract" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Services for text recognition using tesseract</description>
+        <service sid="1" name="Tesseract" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/iif">
+            <description>Services for text recognition using Tesseract</description>
             <operations>
                 <operation oid="1" name="tesseract">
-                    <description>Perform text recognition using tesseract</description>
+		    <description>Perform text recognition on image file</description>
 		    <!--
                     Usage:
                     tesseract[.exe] <input> <output> -l <lang> [+hocr]
@@ -109,7 +109,7 @@
 			    </Restriction>
                             <Required>true</Required>
                             <CliMapping>langmod</CliMapping>
-                            <Documentation>Language module to be used by Tesseract</Documentation>
+                            <Documentation>Language module used by Tesseract</Documentation>
                             <Default>deu-frak</Default>
                         </input>
                     </inputs>

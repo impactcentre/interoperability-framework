@@ -20,14 +20,14 @@
                     <description>Transform XML using XSLT</description>
                     <!--
                     Usage:
-                    xsltproc[.exe] <stylesheet> <document> -o <output>
+                    xsltproc [options] <stylesheet> <document>
 
                     Where:
-		    <stylesheet> 	XSL stylesheet
-		    <document> 		XML input document
-		    <output> 		XML output document
+		    <stylesheet> XSL stylesheet
+		    <document> XML input document
+		    [options] optional command line parameters
 		    -->
-                    <command>xsltproc ${stylesheet} ${document} -o ${output}</command>
+                    <command>xsltproc -o ${output} ${stylesheet} ${document}</command>
                     <inputs>
                         <input name="stylesheet">
                             <Datatype>xsd:anyURI</Datatype>

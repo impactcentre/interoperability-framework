@@ -13,18 +13,21 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Ocropus" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Services for text recognition using ocropus</description>
+        <service sid="1" name="Ocropus" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/iif">
+            <description>Services for text recognition using OCRopus</description>
             <operations>
                 <operation oid="1" name="ocropus">
-                    <description>Perform text recognition using ocropus</description>
+                    <description>Perform text recognition on PNG image file</description>
 		    <!--
                     Usage:
                     ocropus-recognize-book <input> -o <output>
 
                     Where:
-		    <input> 	Input image file in PNG format
-		    <output> 	OCR result file in hOCR format
+		    <input> Input image file in PNG format
+		    <output> Output file in hOCR format
+
+		    For documentation ocropus, see
+		    http://code.google.com/p/ocropus/
 		    -->
                     <command>ocropus-recognize-book ${input} -o ${output}</command>
                     <inputs>

@@ -46,12 +46,12 @@
 		    For full documentation of ocrad command line parameters, see
 		    http://www.gnu.org/software/ocrad/manual/ocrad_manual.html
 		    -->
-                    <command>ocrad --format=utf8 --layout --output=${output} ${input}</command>
+                    <command>ocrad --format=utf8 --force --layout --output=${output} --export=${result} ${input}</command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.pgm</Default>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.pnm</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file in PBM, PGM or PPM format</Documentation>
                         </input>
@@ -63,6 +63,13 @@
                             <Required>false</Required>
                             <Documentation>URL reference to output file</Documentation>
                             <Extension>txt</Extension>
+                        </output>
+                        <output name="result">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <CliMapping>result</CliMapping>
+                            <Required>false</Required>
+                            <Documentation>URL reference to result file</Documentation>
+                            <Extension>orf</Extension>
                         </output>
                     </outputs>
                 </operation>

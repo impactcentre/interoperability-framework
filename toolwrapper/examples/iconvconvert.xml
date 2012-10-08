@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>iconv</id>
-    <name>Iconv</name>
-    <homepage>http://www.gnu.org/savannah-checkouts/gnu/libiconv/documentation/libiconv-1.13/iconv.1.html</homepage>
+    <name>iconv</name>
+    <homepage>http://www.gnu.org/software/libiconv/</homepage>
     <version></version>
     <installation>
         <os type="linux">
@@ -17,7 +17,7 @@
             <description>Services for text file encoding conversion using iconv</description>
             <operations>
                 <operation oid="1" name="iconv">
-                    <description>Convert text file encoding</description>
+                    <description>Perform text file encoding conversion</description>
 		    <!--
                     Usage:
                     iconv -f <fromcode> -t <tocode> <input> -o <output>
