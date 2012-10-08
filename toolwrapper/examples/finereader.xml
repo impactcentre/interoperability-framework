@@ -34,7 +34,7 @@
                     <command>CommandLineInterface.exe -lpp DocumentArchiving_Accuracy ${langcs} -prn ${texttype} -if ${input} -f ${export} -tet UTF8 -of ${output}</command>
                     <inputs>
 			<input name="langcs">
-  			    <Datatype>xsd:string</Datatype>
+			    <Datatype>xsd:string</Datatype>
 			    <Required>true</Required>
 			    <Restriction multiple="true">
 				<Value>Bulgarian</Value>
@@ -146,7 +146,7 @@
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
- 	    or you can use just slashes, 
+	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
 	    <toolsbasedir>C:\\ABBYY\\</toolsbasedir>

@@ -14,7 +14,7 @@
     </installation>
     <services>
         <service sid="1" name="GPPBinarisation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for document image binarisation using GPP algorithm</description>
+            <description>Services for document image binarisation using GPP algorithm</description>
             <operations>
                 <operation oid="1" name="gppBinarise">
                     <description>Binarise document image using GPP algorithm</description>
@@ -70,7 +70,7 @@
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
- 	    or you can use just slashes, 
+	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
 	    <toolsbasedir>C:\\GPPBIN\\</toolsbasedir>

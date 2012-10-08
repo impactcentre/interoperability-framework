@@ -14,10 +14,10 @@
     </installation>
     <services>
         <service sid="1" name="FineReader10Binarisation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for binarisation using Abbyy Fine Reader Engine 10</description>
+            <description>Services for binarisation using Abbyy Fine Reader Engine 10</description>
             <operations>
                 <operation oid="1" name="binarise">
-                    <description>Binarise document image file with FineReader 10</description>
+                    <description>Binarise document image file using FineReader 10</description>
 		    <!--
                     Usage:
                     Abbyy10Binarisation.exe -if <in> -of <out>
@@ -70,7 +70,7 @@
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
- 	    or you can use just slashes, 
+	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
 	    <toolsbasedir>C:\\FRE10BIN\\</toolsbasedir>

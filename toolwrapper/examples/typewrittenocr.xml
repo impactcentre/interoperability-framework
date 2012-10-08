@@ -29,10 +29,8 @@
             	    <inputxml>          Filename of an XML file containing a region and line segmentation
             	    <outputxml>         Filename to which an XML file containing the resulting analysis should be written
             	    [classifierweights] A comma seperated list (without spaces) of the weight to give each classifier.
-                                	Currently there are two classifiers available:
-                                	Template matching and
-                                	Feature analysis
-                                	So to weight them equally, for example, input: 1,1
+                    Currently there are two classifiers available: Template matching and Feature analysis
+                    So to weight them equally, for example, input: 1,1
 		    [paramfile] 	Parameter file. Set to "-1" if not used
             	    -->
                     <command>TypewrittenOCR-0-2-145.exe ${bwimage} ${grayimage} ${colorimage} ${inputxml} ${outputxml} ${weights}</command>
@@ -107,7 +105,7 @@
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
- 	    or you can use just slashes, 
+	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
 	    <toolsbasedir>C:\\TOCR\\</toolsbasedir>

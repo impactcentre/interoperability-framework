@@ -29,16 +29,16 @@
 		    <profile> Full path to the .evx file containing the evaluation profile (weights and settings)
 		    <output file> Full path to the evaluation result file (.evx)
 		    <opts> Combination of following characters (optional)
-				(Note: No spaces between options! E.g.: OW)
-				'O' - to overwrite existing result files
-				'P' - print warnings and messages
-				'V' - to output the evaluation results as comma separated values (CSV)
-				'H' - to output the column headers for the comma separated values
-				Structure levels (in none specified, all available will be used)
-				'B' – evaluate blocks (regions)
-				'L' – evaluate text lines
-				'W' – evaluate words
-				'G' – evaluate glyphs
+		    (Note: No spaces between options! E.g.: OW)
+		    'O' - to overwrite existing result files
+		    'P' - print warnings and messages
+		    'V' - to output the evaluation results as comma separated values (CSV)
+		    'H' - to output the column headers for the comma separated values
+		    Structure levels (in none specified, all available will be used)
+		    'B' - evaluate blocks (regions)
+		    'L' - evaluate text lines
+		    'W' - evaluate words
+		    'G' - evaluate glyphs
 		    -->
                     <command>layoutevalcmd-1-2-33.exe ${groundTruthXmlFileUrl} ${segXmlFileUrl} ${bwImageFileUrl} ${profileEvxFileUrl} ${outfile} ${opts}</command>
                     <inputs>
@@ -119,7 +119,7 @@
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
- 	    or you can use just slashes, 
+	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
 	    <toolsbasedir>C:\\SEGEVAL\\</toolsbasedir>

@@ -1,64 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
-    <id>wordevaluation</id>
-    <name>INL Word Evaluation</name>
-    <homepage>http://www.digitisation.eu/</homepage>
-    <version></version>
+    <id>gamera</id>
+    <name>Gamera</name>
+    <homepage>http://gamera.informatik.hsnr.de/addons/ocr4gamera/index.html</homepage>
+    <version>1-0-6</version>
     <installation>
         <os type="linux">
-            Fully supported through Java.
+	    Available under most distributions via package management.           
         </os>
         <os type="windows">
-            Fully supported through Java.
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="WordEvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for evaluating word accuracy of OCR vs ground truth in PAGE format</description>
+        <service sid="1" name="Gamera" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for text recognition using gamera</description>
             <operations>
-                <operation oid="1" name="wordEval">
-                    <description>Evaluate OCR word accurracy</description>
+                <operation oid="1" name="gamera">
+                    <description>Perform text recognition using gamera</description>
 		    <!--
                     Usage:
-                    java -jar wordevaluation.jar -o <output> <groundtruth> <ocr>
+                    ocr4gamera.py -x <trainingdata> [options] <imagefile>
 
                     Where:
-		    <output> Write output file
-		    <groundtruth> Ground truth file in PAGE format
-		    <ocr> OCR result file in PAGE format
+		    <trainingdata> 	Training data in XML format
+		    <imagefile> 	Input image file in PNG format
 		    -->
-                    <command>java -jar wordevaluation.jar -o ${output} ${groundtruth} ${ocrresult}</command>
+                    <command>ocr4gamera.py -x ${traindata} -d  -o ${output} ${input}</command>
                     <inputs>
-                        <input name="groundtruth">
+                        <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <CliMapping>groundtruth</CliMapping>
-                            <Documentation>URL reference to ground truth file in PAGE format</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to image file in PNG format</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/image.png</Default>
                         </input>
-			<input name="ocrresult">
+			<input name="traindata">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <CliMapping>ocrresult</CliMapping>
-                            <Documentation>URL reference to OCR result file in PAGE format</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/words.xml</Default>
+                            <CliMapping>traindata</CliMapping>
+                            <Documentation>URL reference to classifier in XML format</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/gamera.xml</Default>
                         </input>
-			<input name="evaluationId">
-			    <Datatype>xsd:string</Datatype>
-			    <Required>false</Required>
-			    <CliMapping></CliMapping>
-			    <Documentation>Evaluation ID</Documentation>
-			    <Default>Default_Evaluation_ID</Default>
-			</input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>output</CliMapping>
-                            <Documentation>URL reference to statistics output file</Documentation>
-                            <PrefixFromInput>groundtruth</PrefixFromInput>
+                            <Documentation>URL reference to output file</Documentation>
                             <Extension>xml</Extension>
+                            <AutoExtension>true</AutoExtension>
                         </output>
                     </outputs>
                 </operation>

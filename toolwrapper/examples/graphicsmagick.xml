@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
-    <id>imagemagick</id>
-    <name>Imagemagick</name>
-    <homepage>http://www.imagemagick.org/</homepage>
+    <id>graphicsmagick</id>
+    <name>Graphicsmagick</name>
+    <homepage>http://www.graphicsmagick.org/</homepage>
     <version></version>
     <installation>
         <os type="linux">
@@ -13,14 +13,14 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Imagemagick" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Services for image conversion using imagemagick convert</description>
+        <service sid="1" name="Graphicsmagick" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for image conversion using graphicsmagick convert</description>
             <operations>
                 <operation oid="1" name="convert">
-                    <description>Convert image using imagemagick</description>
+                    <description>Convert image using graphicsmagick</description>
 		    <!--
                     Usage:
-                    convert -depth <depth> -quality <quality> -colors <colors> -colorspace <colorspace> -compress <compress> <input> <output>
+                    gm[.exe] convert -depth <depth> -quality <quality> -colors <colors> -colorspace <colorspace> -compress <compress> <input> <output>
 
                     Where:
 		    <depth> 		Image bit depth
@@ -30,11 +30,11 @@
 		    <compress> 		Compression type
 		    <input> 		Input image file
 		    <output> 		Output image file
-
-		    For full documentation of imagemagick command line parameters, see
-		    http://www.imagemagick.org/script/convert.php
+		    
+		    For full documentation of graphicsmagick command line parameters, see
+		    http://www.graphicsmagick.org/convert.html
 		    -->
-                    <command>convert -depth ${depth} -quality ${quality} -colors ${numcolors} -colorspace ${colorspace} -compress ${compress} ${input} ${output}</command>
+                    <command>gm convert -depth ${depth} -quality ${quality} -colors ${numcolors} -colorspace ${colorspace} -compress ${compress} ${input} ${output}</command>
                     <inputs>
 			<input name="depth">
 			    <Datatype>xsd:int</Datatype>

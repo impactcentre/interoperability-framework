@@ -20,7 +20,7 @@
                     <description>Extract image metadata using exiftool</description>
 		    <!--
                     Usage:
-                    exiftool.exe <in> -textOut <out>
+                    exiftool[.exe] <in> -textOut <out>
 
                     Where:
 		    <in> Input image file
@@ -30,7 +30,7 @@
 		    For full documentation of exiftool command line parameters, see 
 		    http://www.sno.phy.queensu.ca/~phil/exiftool/exiftool_pod.html
 		    -->
-                    <command>exiftool.exe ${input} -textOut ${output}</command>
+                    <command>exiftool ${input} -textOut ${output}</command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
@@ -74,7 +74,7 @@
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
- 	    or you can use just slashes, 
+	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
 	    <toolsbasedir>C:\\EXIFTOOL\\</toolsbasedir>

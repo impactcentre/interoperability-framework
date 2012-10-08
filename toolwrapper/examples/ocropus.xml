@@ -1,66 +1,49 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
-    <id>jp2convert</id>
-    <name>OpenJPEG JPEG2000 Converter</name>
-    <homepage>http://www.openjpeg.org/</homepage>
-    <version></version>
+    <id>ocropus</id>
+    <name>OCRopus</name>
+    <homepage>http://code.google.com/p/ocropus/</homepage>
+    <version>0-6</version>
     <installation>
         <os type="linux">
-	    Available under most distributions via package management.            
+	    Available under most distributions via package management.           
         </os>
         <os type="windows">
             Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="jp2convert" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for converting JPEG2000 images to other image file formats</description>
+        <service sid="1" name="Ocropus" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for text recognition using ocropus</description>
             <operations>
-                <operation oid="1" name="jp2convert">
-                    <description>Convert JPEG2000 image file</description>
+                <operation oid="1" name="ocropus">
+                    <description>Perform text recognition using ocropus</description>
 		    <!--
                     Usage:
-                    j2k_to_image -i <input> -o <output> -OutFor <format>
+                    ocropus-recognize-book <input> -o <output>
 
                     Where:
-		    <input> Input file; valid image extensions are J2K, JP2, JPC, JPT 
-		    <output> Output file 
-		    <format> Output format; currently accepts BMP, TIF, RAW, TGA, PGM, PPM, PNM and PGX
+		    <input> 	Input image file in PNG format
+		    <output> 	OCR result file in hOCR format
 		    -->
-                    <command>j2k_to_image -i ${input} -o ${output} -OutFor ${format}</command>
+                    <command>ocropus-recognize-book ${input} -o ${output}</command>
                     <inputs>
-			<input name="format">
-			    <Datatype>xsd:string</Datatype>
-                            <Required>true</Required>
-			    <Restriction>
-				<Value>BMP<Value>
-				<Value>TIF<Value>
-				<Value>RAW<Value>
-				<Value>TGA<Value>
-				<Value>PGM<Value>
-				<Value>PBM<Value>
-				<Value>PNM<Value>
-				<Value>PGX<Value>
-                            </Restriction>
-			    <Default>TIF</Default>
-                            <CliMapping>format</CliMapping>
-                            <Documentation>Output image file format</Documentation>
-                        </input>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/image.jp2</Default>
                             <CliMapping>input</CliMapping>
-                            <Documentation>URL reference to JPEG2000 image file</Documentation>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/image.png</Default>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
-                            <Documentation>URL reference to output image file</Documentation>
-                            <Extension>tif</Extension>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>html</Extension>
+                            <AutoExtension>true</AutoExtension>
                         </output>
                     </outputs>
                 </operation>
@@ -91,7 +74,7 @@
 	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
-	    <toolsbasedir></toolsbasedir>
+            <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

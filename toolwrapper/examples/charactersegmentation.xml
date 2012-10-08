@@ -14,7 +14,7 @@
     </installation>
     <services>
         <service sid="1" name="CharacterSegmentation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for segmenting the characters in a given input word image</description>
+            <description>Services for segmenting the characters in a given input word image</description>
             <operations>
                 <operation oid="1" name="segmentCharacters">
                     <description>Segments the characters in a given word image</description>
@@ -70,7 +70,7 @@
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
- 	    or you can use just slashes, 
+	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
 	    <toolsbasedir>C:\\CHARSEG\\</toolsbasedir>

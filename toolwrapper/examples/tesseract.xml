@@ -3,7 +3,7 @@
     <id>tesseract</id>
     <name>Tesseract OCR</name>
     <homepage>http://code.google.com/p/tesseract-ocr/</homepage>
-    <version>3-0-1</version>
+    <version>3-0-2</version>
     <installation>
         <os type="linux">
 	    Available under most distributions via package management.           
@@ -14,22 +14,21 @@
     </installation>
     <services>
         <service sid="1" name="Tesseract" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for OCR using the Tesseract engine</description>
+            <description>Services for text recognition using tesseract</description>
             <operations>
                 <operation oid="1" name="tesseract">
-                    <description>OCR a TIFF image file</description>
-                    <command>tesseract-3.01/tesseract.exe ${input} ${output} -l ${langmod}</command>
-		    <description>Perform OCR on TIFF image file</description>
+                    <description>Perform text recognition using tesseract</description>
 		    <!--
                     Usage:
-                    tesseract.exe <input> <output> -l <lang>
+                    tesseract[.exe] <input> <output> -l <lang> [+hocr]
 
                     Where:
-		    <input> Input image file in TIF format
-		    <Output> OCR result file in TXT format
-		    <lang> Language model used for recognition
+		    <input> 	Input image file in TIF format
+		    <output> 	OCR result file in TXT format
+		    <lang> 		Language model used for recognition
+		    [+hocr] 	Optional: write hOCR output file (with coordinates)
 		    -->
-                    <command>tesseract.exe ${input} ${output} -l ${langmod} </command>
+                    <command>tesseract ${input} ${output} -l ${langmod}</command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
@@ -41,29 +40,52 @@
                         <input name="langmod">
                             <Datatype>xsd:string</Datatype>
 			    <Restriction>
+				<Value>afr</Value>
 				<Value>ara</Value>
+				<Value>aze</Value>
+				<Value>bel</Value>
+				<Value>ben</Value>
 				<Value>bul</Value>
 				<Value>cat</Value>
 				<Value>ces</Value>
 				<Value>chi_sim</Value>
 				<Value>chi_tra</Value>
+				<Value>chr</Value>
 				<Value>dan</Value>
 				<Value>dan-frak</Value>
 				<Value>deu</Value>
 				<Value>deu-frak</Value>
 				<Value>ell</Value>
 				<Value>eng</Value>
+				<Value>enm</Value>
+				<Value>epo</Value>
+				<Value>equ</Value>
+				<Value>est</Value>
+				<Value>eus</Value>
 				<Value>fin</Value>
 				<Value>fra</Value>
+				<Value>frk</Value>
+				<Value>frm</Value>
+				<Value>glg</Value>
+				<Value>grc</Value>
 				<Value>heb</Value>
 				<Value>hin</Value>
+				<Value>hrv</Value>
 				<Value>hun</Value>
 				<Value>ind</Value>
+				<Value>isl</Value>
 				<Value>ita</Value>
+				<Value>ita-old</Value>
 				<Value>jpn</Value>
+				<Value>kan</Value>
 				<Value>kor</Value>
+				<Value>lat-lid</Value>
 				<Value>lav</Value>
 				<Value>lit</Value>
+				<Value>mal</Value>
+				<Value>mkd</Value>
+				<Value>mlt</Value>
+				<Value>msa</Value>
 				<Value>nld</Value>
 				<Value>nor</Value>
 				<Value>osd</Value>
@@ -75,6 +97,7 @@
 				<Value>slk-frak</Value>
 				<Value>slv</Value>
 				<Value>spa</Value>
+				<Value>spa-old</Value>
 				<Value>srp</Value>
 				<Value>swe</Value>
 				<Value>swe-frak</Value>
@@ -125,7 +148,7 @@
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
- 	    or you can use just slashes, 
+	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
             <toolsbasedir>C:\\TESSOCR\\</toolsbasedir>

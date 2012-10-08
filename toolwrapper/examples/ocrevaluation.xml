@@ -24,13 +24,13 @@
 
 		    Where:
 		    <encoding> Character encoding. One of the following:
-				a - ASCII
-				ab - ASCII Bulgarian
-				ac - ASCII Czech
-				al - ASCII Slovene
-				ap - ASCII Polish
-				u8 - UTF-8
-				u16 - UTF-16
+			a - ASCII
+			ab - ASCII Bulgarian
+			ac - ASCII Czech
+			al - ASCII Slovene
+			ap - ASCII Polish
+			u8 - UTF-8
+			u16 - UTF-16
 		    <stopword> Full path to stop word list in plain text file
 		    <groundtruth> Full path to ground truth in plain text file
 		    <ocr> Full path to OCR result in plain text file
@@ -67,7 +67,7 @@
 			    <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
 			    <Default>http://kbdemo.dnsalias.org/testfiles/groundtruth.txt</Default>
-		  	    <CliMapping>groundtruth</CliMapping>
+			    <CliMapping>groundtruth</CliMapping>
 			    <Documentation>URL reference to ground truth text file</Documentation>
 			</input>
 			<input name="ocr">
@@ -84,8 +84,8 @@
 			    <Documentation>Evaluation ID</Documentation>
 			    <Default>Default_Evaluation_ID</Default>
 			</input>
-                    </inputs>
-                    <outputs>
+		    </inputs>
+		    <outputs>
                         <output name="charresult">
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>charresult</CliMapping>
@@ -133,7 +133,7 @@
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
- 	    or you can use just slashes, 
+	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
 	    <toolsbasedir>C:\\OCREVAL\\</toolsbasedir>

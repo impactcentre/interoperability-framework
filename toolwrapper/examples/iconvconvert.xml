@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
-    <id>iconvconvert</id>
-    <name>Linux iconv convert</name>
-    <homepage>http://www.gnu.org/software/libiconv/</homepage>
+    <id>iconv</id>
+    <name>Iconv</name>
+    <homepage>http://www.gnu.org/savannah-checkouts/gnu/libiconv/documentation/libiconv-1.13/iconv.1.html</homepage>
     <version></version>
     <installation>
         <os type="linux">
@@ -13,8 +13,8 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="iconvconvert" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for converting encoding of given files from one encoding to another</description>
+        <service sid="1" name="Iconv" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for text file encoding conversion using iconv</description>
             <operations>
                 <operation oid="1" name="iconv">
                     <description>Convert text file encoding</description>
@@ -34,7 +34,7 @@
                     <command>iconv -f ${fromcode} -t ${tocode} ${input} -o ${output}</command>
                     <inputs>
 			<input name="fromcode">
-			    <Datatype>xsd>string</Datatype>
+			    <Datatype>xsd:string</Datatype>
 			    <Required>true</Required>
 			    <Restriction>
 				<Value>437</Value>
@@ -1211,7 +1211,7 @@
 			    <Documentation>Input file encoding</Documentation>
 			</input>
 			<input name="tocode">
-			    <Datatype>xsd>string</Datatype>
+			    <Datatype>xsd:string</Datatype>
 			    <Required>true</Required>
 			    <Restriction>
 				<Value>437</Value>
@@ -1943,7 +1943,6 @@
 				<Value>ISIRI3342</Value>
 				<Value>ISO-2022-CN-EXT</Value>
 				<Value>ISO-2022-CN</Value>
-
 				<Value>ISO-2022-JP-2</Value>
 				<Value>ISO-2022-JP-3</Value>
 				<Value>ISO-2022-JP</Value>
@@ -2425,6 +2424,14 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
+	    <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice, 
+	    e.g. c:\\foo\\bar
+	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
 	    <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>

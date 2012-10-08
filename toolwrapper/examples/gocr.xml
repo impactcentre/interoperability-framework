@@ -14,24 +14,24 @@
     </installation>
     <services>
         <service sid="1" name="Gocr" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for OCR using GOCR</description>
+            <description>Services for text recognition using gocr</description>
             <operations>
                 <operation oid="1" name="gocr">
-                    <description>Perform OCR using GOCR</description>
+                    <description>Perform text recognition using gocr</description>
 		    <!--
                     Usage:
-                    gocr049.exe -m 4 -i <input> -o <output> -f <format>
+                    gocr049[.exe] -m 4 -i <input> -o <output> -f <format>
 
                     Where:
-		    -m 4  switch on layout analysis or zoning (development)
-		    <input> Input image file in PNM format
-		    <output> Output file
-		    <format> Output format; either XML (with coordinates), HTML, UTF8, ASCII, ISO8859_1 or TeX
+		    -m 4  		switch on layout analysis or zoning (development)
+		    <input> 	Input image file in PNM format
+		    <output> 	Output file
+		    <format> 	Output format; either XML (with coordinates), HTML, UTF8, ASCII, ISO8859_1 or TeX
 
 		    For full documentation of gocr command line parameters, see
 		    http://manpages.ubuntu.com/manpages/gutsy/man1/gocr.1.html
 		    -->
-                    <command>gocr049.exe -m 4 -i ${input} -o ${output} -f ${format}</command>
+                    <command>gocr049 -m 4 -i ${input} -o ${output} -f ${format}</command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
@@ -55,7 +55,7 @@
 			    <CliMapping>format</CliMapping>
 			    <Documentation>OCR output format</Documentation>
 			</input>
-                    </inputs>
+		    </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
@@ -83,14 +83,14 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-	    	<path>manager</path>
+		<path>manager</path>
             </manager>
 	    <!--
 	    Full path to the directory where the tool has been installed.
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
- 	    or you can use just slashes, 
+	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
 	    <toolsbasedir>C:\\GOCR\\</toolsbasedir>

@@ -29,13 +29,13 @@
 		    -->
                     <command>PageSchemaConverter-1-1-33.exe ${input} ${output} WOF ${filter}</command>
                     <inputs>
-		    	<input name="filter">
-  			    <Datatype>xsd:anyURI</Datatype>
+			<input name="filter">
+			    <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <Default>http://kbdemo.dnsalias.org/testfiles/filter.xml</Default>
                             <CliMapping>filter</CliMapping>
                             <Documentation>Replacement rules for special characters</Documentation>
-           	    	</input>
+			</input>
                     	<input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
@@ -78,7 +78,7 @@
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
- 	    or you can use just slashes, 
+	    or you can use just slashes, 
 	    e.g. c:/foo/bar
 	    -->
 	    <toolsbasedir>C:\\PAGECONV\\</toolsbasedir>

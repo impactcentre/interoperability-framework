@@ -14,18 +14,18 @@
     </installation>
     <services>
         <service sid="1" name="XSLTProc" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for transforming XML documents using XSLT</description>
+            <description>Services for transforming XML documents using XSLT</description>
             <operations>
                 <operation oid="1" name="xsltproc">
                     <description>Transform XML using XSLT</description>
                     <!--
                     Usage:
-                    xsltproc <stylesheet> <document> -o <output>
+                    xsltproc[.exe] <stylesheet> <document> -o <output>
 
                     Where:
-		    <stylesheet> XSL stylesheet
-		    <document> XML input document
-		    <output> XML output document
+		    <stylesheet> 	XSL stylesheet
+		    <document> 		XML input document
+		    <output> 		XML output document
 		    -->
                     <command>xsltproc ${stylesheet} ${document} -o ${output}</command>
                     <inputs>
@@ -36,8 +36,8 @@
                             <CliMapping>stylesheet</CliMapping>
                             <Documentation>URL reference to XSL stylesheet</Documentation>
                         </input>
-		 	<input name="document">
-			    <Datatype>xsd:anyURI</Datatype>
+			<input name="document">
+		  	    <Datatype>xsd:anyURI</Datatype>
 			    <Required>true</Required>
 			    <Default>http://kbdemo.dnsalias.org/testfiles/abbyy10.xml</Default>
 			    <CliMapping>document</CliMapping>
@@ -78,11 +78,11 @@
 	    THE PATH MUST NOT CONTAIN WHITESPACES!
 	    If you want to use backslashes (\) then you must repeat them twice, 
 	    e.g. c:\\foo\\bar
-	   or you can use just slashes, 
-	   e.g. c:/foo/bar
-	   -->
-	   <toolsbasedir></toolsbasedir>
-           <dataexchange>
+	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
+	    <toolsbasedir></toolsbasedir>
+	    <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
             </dataexchange>

@@ -14,10 +14,42 @@
     </installation>
     <services>
         <service sid="1" name="Unzip" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for copying files</description>
+            <description>Services for extracting ZIP files</description>
             <operations>
                 <operation oid="1" name="unzip">
-                    <description>Unzip zip archive</description>
+                    <description>Unzip archive</description>
+		    <!--
+		    Usage: 
+		    unzip [-Z] [-opts[modifiers]] file[.zip] [list] [-x xlist] [-d exdir]
+		    Default action is to extract files in list, except those in xlist, to exdir;
+		    file[.zip] may be a wildcard.  -Z => ZipInfo mode ("unzip -Z" for usage).
+
+		    -p  extract files to pipe, no messages     
+		    -l  list files (short format)
+		    -f  freshen existing files, create none    
+		    -t  test compressed archive data
+		    -u  update files, create if necessary      
+		    -z  display archive comment only
+		    -v  list verbosely/show version info       
+		    -T  timestamp archive to latest
+		    -x  exclude files that follow (in xlist)   
+		    -d  extract files into exdir
+		    modifiers:
+		    -n  never overwrite existing files         
+		    -q  quiet mode (-qq => quieter)
+		    -o  overwrite files WITHOUT prompting      
+		    -a  auto-convert any text files
+		    -j  junk paths (do not make directories)   
+		    -aa treat ALL files as text
+		    -U  use escapes for all non-ASCII Unicode  
+		    -UU ignore any Unicode fields
+		    -C  match filenames case-insensitively     
+		    -L  make (some) names lowercase
+		    -X  restore UID/GID info                   
+		    -V  retain VMS version numbers
+		    -K  keep setuid/setgid/tacky permissions   
+		    -M  pipe through "more" pager
+		    -->
                     <command>unzip ${input} -d ${outputdir}</command>
                     <inputs>
                         <input name="input">
@@ -56,8 +88,16 @@
                 <password>tomcat</password>
 		<path>manager</path>
             </manager>
+	    <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice, 
+	    e.g. c:\\foo\\bar
+	    or you can use just slashes, 
+	    e.g. c:/foo/bar
+	    -->
             <toolsbasedir></toolsbasedir>
-            <dataexchange>
+	    <dataexchange>
                 <accessdir>/usr/local/java/apache-tomcat-6.0.29/webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
             </dataexchange>
