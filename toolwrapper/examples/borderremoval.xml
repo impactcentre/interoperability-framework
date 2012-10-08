@@ -14,7 +14,7 @@
     </installation>
     <services>
         <service sid="1" name="BorderRemoval" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for removing noise and black borders from scanned document images</description>
+            <description>Services for removing noise and black borders from scanned document images</description>
             <operations>
                 <operation oid="1" name="removeBorder">
                     <description>Remove the border from an input image file. Optionally, double-pages can be split.</description>
