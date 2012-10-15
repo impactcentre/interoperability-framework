@@ -18,18 +18,18 @@
             <operations>
                 <operation oid="1" name="exiftool">
                     <description>Extract image metadata using exiftool</description>
-		    <!--
+		            <!--
                     Usage:
                     exiftool[.exe] <in> -textOut <out>
 
                     Where:
-		    <in> Input image file
-		    -textOut Write output text file
-		    <out> Output text file with extracted meta information
+		            <in> Input image file
+		            -textOut Write output text file
+		            <out> Output text file with extracted meta information
 
-		    For full documentation of exiftool command line parameters, see 
-		    http://www.sno.phy.queensu.ca/~phil/exiftool/exiftool_pod.html
-		    -->
+		            For full documentation of exiftool command line parameters, see
+		            http://www.sno.phy.queensu.ca/~phil/exiftool/exiftool_pod.html
+		            -->
                     <command>exiftool ${input} -textOut ${output}</command>
                     <inputs>
                         <input name="input">
@@ -67,17 +67,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
-	    <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir>C:\\EXIFTOOL\\</toolsbasedir>
+	        <!--
+	        Full path to the directory where the tool has been installed.
+	        THE PATH MUST NOT CONTAIN WHITESPACES!
+	        If you want to use backslashes (\) then you must repeat them twice,
+	        e.g. c:\\foo\\bar
+	        or you can use just slashes,
+	        e.g. c:/foo/bar
+	        -->
+	        <toolsbasedir>C:\\EXIFTOOL\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

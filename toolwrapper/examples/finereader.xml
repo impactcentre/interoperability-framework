@@ -18,66 +18,66 @@
             <operations>
                 <operation oid="1" name="ocr">
                     <description>Run OCR using ABBYY FineReader Engine</description>
-		    <!--
+		            <!--
                     Usage:
                     CommandLineInterface.exe [<-lpp DocumentArchiving_Accuracy>] <lang> -prn <textType> -if <in> -f <outputFormat> [<-tet UTF8>] -of <out>
 
                     Where:
-		    <lpp DocumentArchiving_Accuracy> Configuration profile
-		    <lang> Language of document to be OCRed
-		    <textType> Text type of document to be OCRed
-		    <in> Input image file
-		    <outputFormat> Formatting of OCR result
-		    <tet UTF8> Default to UTF8 text encoding  
-		    <out> OCR output file
-		    -->
+		            <-lpp DocumentArchiving_Accuracy> Configuration profile
+		            <lang> Language of document to be OCRed
+		            <textType> Text type of document to be OCRed
+		            <in> Input image file
+		            <outputFormat> Formatting of OCR result
+		            <tet UTF8> Default to UTF8 text encoding
+		            <out> OCR output file
+		            -->
                     <command>CommandLineInterface.exe -lpp DocumentArchiving_Accuracy ${langcs} -prn ${texttype} -if ${input} -f ${export} -tet UTF8 -of ${output}</command>
                     <inputs>
-			<input name="langcs">
-			    <Datatype>xsd:string</Datatype>
-			    <Required>true</Required>
-			    <Restriction multiple="true">
-				<Value>Bulgarian</Value>
+			            <input name="langcs">
+			                <Datatype>xsd:string</Datatype>
+			                <Required>true</Required>
+			                <Restriction multiple="true">
+				                <Value>Bulgarian</Value>
                                 <Value>Catalan</Value>
-				<Value>Croatian</Value>
-				<Value>Czech</Value>
-				<Value>Danish</Value>
-				<Value>Dutch</Value>
-				<Value>English</Value>
-				<Value>Estonian</Value>
-				<Value>Finnish</Value>
-				<Value>French</Value>
-				<Value>German</Value>
-				<Value>Greek</Value>
-				<Value>Hungarian</Value>
-				<Value>Italian</Value>
-				<Value>Latin</Value>
-				<Value>Latvian</Value>
-				<Value>Lithuanian</Value>
-				<Value>Norwegian</Value>
-				<Value>OldEnglish</Value>
-				<Value>OldFrench</Value>
-				<Value>OldGerman</Value>
-				<Value>OldItalian</Value>
-				<Value>OldSpanish</Value>
-				<Value>Polish</Value>
-				<Value>PortugueseStandard</Value>
-				<Value>Romanian</Value>
-				<Value>Russian</Value>
-				<Value>SerbianCyrillic</Value>
-				<Value>SerbianLatin</Value>
-				<Value>Slovak</Value>
-				<Value>Slovenian</Value>
-				<Value>Spanish</Value>
-				<Value>Swedish</Value>
-				<Value>Turkish</Value>
-				<Value>Ukrainian</Value>
-			    </Restriction>
-			    <Default>German,OldGerman</Default>
-			    <CliMapping>langcs</CliMapping>
-			    <Documentation>Comma separated list of internal dictionaries to be used during recognition</Documentation>
-			</input>
-			<input name="texttype">
+                                <Value>Croatian</Value>
+                                <Value>Czech</Value>
+                                <Value>Danish</Value>
+                                <Value>Dutch</Value>
+                                <Value>English</Value>
+                                <Value>Estonian</Value>
+                                <Value>Finnish</Value>
+                                <Value>French</Value>
+                                <Value>German</Value>
+                                <Value>Greek</Value>
+                                <Value>Hungarian</Value>
+                                <Value>Italian</Value>
+                                <Value>Latin</Value>
+                                <Value>Latvian</Value>
+                                <Value>Lithuanian</Value>
+                                <Value>Norwegian</Value>
+                                <Value>OldEnglish</Value>
+                                <Value>OldFrench</Value>
+                                <Value>OldGerman</Value>
+                                <Value>OldItalian</Value>
+                                <Value>OldSpanish</Value>
+                                <Value>Polish</Value>
+                                <Value>PortugueseStandard</Value>
+                                <Value>Romanian</Value>
+                                <Value>Russian</Value>
+                                <Value>SerbianCyrillic</Value>
+                                <Value>SerbianLatin</Value>
+                                <Value>Slovak</Value>
+                                <Value>Slovenian</Value>
+                                <Value>Spanish</Value>
+                                <Value>Swedish</Value>
+                                <Value>Turkish</Value>
+                                <Value>Ukrainian</Value>
+			                </Restriction>
+			                <Default>German,OldGerman</Default>
+			                <CliMapping>langcs</CliMapping>
+			                <Documentation>Comma separated list of internal dictionaries to be used during recognition</Documentation>
+			            </input>
+			            <input name="texttype">
                             <Datatype>xsd:string</Datatype>
                             <Restriction>
                                 <Value>Normal</Value>
@@ -97,14 +97,14 @@
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file</Documentation>
                         </input>
-			<input name="export">
+			            <input name="export">
                             <Datatype>xsd:string</Datatype>
                             <Restriction>
                                 <Value>XML</Value>
                                 <Value>RTF</Value>
                                 <Value>Text</Value>
-				<Value>HTML</Value>
-				<Value>ALTO</Value>
+				                <Value>HTML</Value>
+				                <Value>ALTO</Value>
                             </Restriction>
                             <Required>true</Required>
                             <Default>XML</Default>
@@ -139,17 +139,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir>C:\\ABBYY\\</toolsbasedir>
+	        Full path to the directory where the tool has been installed.
+	        THE PATH MUST NOT CONTAIN WHITESPACES!
+	        If you want to use backslashes (\) then you must repeat them twice,
+	        e.g. c:\\foo\\bar
+	        or you can use just slashes,
+	        e.g. c:/foo/bar
+	        -->
+	        <toolsbasedir>C:\\ABBYY\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

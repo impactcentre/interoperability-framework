@@ -18,16 +18,16 @@
             <operations>
                 <operation oid="1" name="recognizeNE">
                     <description>Retrieve named entities (persons, locations and organizations) from a text file</description>
-		    <!--
+		            <!--
                     Usage:
                     java -jar nert.jar -e -loadClassifier <model> -testfile <testfile> -in <in> -out <out>
 
                     Where:
-		    <model> Trained model for the text
-		    <testfile> Input file to be analysed
-		    <in> Input file format
-		    <out> Output file format
-		    -->
+		            <model> Trained model for the text
+		            <testfile> Input file to be analysed
+		            <in> Input file format
+		            <out> Output file format
+		            -->
                     <command>java -jar ./IMPACTNertV2.3/nert.jar -e -loadClassifier ./IMPACTNertV2.3/models/${modelfile} -testfile ${infile} -in txt -out txt</command>
                     <inputs>
                         <input name="modelfile">
@@ -76,16 +76,16 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
+	        Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
             <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>

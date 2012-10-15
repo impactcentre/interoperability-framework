@@ -6,7 +6,7 @@
     <version>1-1-21</version>
     <installation>
         <os type="linux">
-	    Not currently supported.           
+	        Not currently supported.
         </os>
         <os type="windows">
             Requires installation of the USAL PAGE Extractor Tool. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
@@ -18,108 +18,109 @@
             <operations>
                 <operation oid="1" name="extractPage">
                     <description>Extract the plain text from a PAGE document</description>
-		    <!--
+		            <!--
                     Usage:
                     Extractor.exe <filter> <filter value> <image> <xml> <output folder> [options] [params]
 
                     Where:
-		    <filter> one of:
-			<type> - to extract all layout elements of the specified type
-			<id> - to extract the layout element with the specified ID
-		    <filter value> For filter <type>:
-			<text> - Text regions. Add a comma separated list of sub-types in brackets to filter by sub-type. E.g.:
-			<text(paragraph,heading,footnote)>
-			<textline> - Text lines
-			<word> - Words
-			<glyph> - Glyphs
-			<image> - Image regions
-			<linedrawing> - Line drawing regions
-			<graphic> - Graphic regions
-			<table> - Table regions
-			<chart> - Chart regions
-			<separator> - Separator regions
-			<maths> - Maths regions
-			<noise> - Noise regions
-			<frame> - Frame regions
-			<unknown> - Unknown regions
-			<border> - Document border
-		    For filter <id>:
-		    The ID of the element to be extracted (region, text line, word or glyph).
-		    <image> The document image file (TIFF format)
-		    <xml> The document layout file (PAGE format)
-		    <output folder> Folder where to store the output files. (Optional: Use <-> for current folder)
-		    [options] Extraction options. A combination of (no spaces):
-			x - To generate PAGE XML snippets in addition to image snippets.
-			b - To use bounding boxes for extracting elements. Usually the polygonal outline of an element is used to extract an image snippet. The background is filled with white. Use this option to cut rectangular instead so that no background has to be filled.
-			t - To export the text content (only on region level). Note: This option disables the image extraction. A placeholder (e.g. '-') may be used for the image file.
-		    [params] Optional parameter file (.ini) for text export (relative paths have to start with .\)
-		    UseOnlyRegionsInReadingOrder (<1> or <0>, default is <0>)
-		    If set to <1> only regions that are part of the logical reading order description are used for exporting the text. Not all text regions are necessary part of the reading order. Page numbers for instance are usually excluded. This option then also excludes these regions from the text output.
-		    InsertExtraLineBreaksAfterRegions (<1> or <0>, default is <1>)
-		    If set to <1> an extra line break is inserted after each text region (the text contents of regions are then separated by empty lines).
-		    -->
+                    <filter> one of:
+                    <type> - to extract all layout elements of the specified type
+                    <id> - to extract the layout element with the specified ID
+                    <filter value> For filter <type>:
+                    <text> - Text regions. Add a comma separated list of sub-types in brackets to filter by sub-type. E.g.:
+                    <text(paragraph,heading,footnote)>
+                    <textline> - Text lines
+                    <word> - Words
+                    <glyph> - Glyphs
+                    <image> - Image regions
+                    <linedrawing> - Line drawing regions
+                    <graphic> - Graphic regions
+                    <table> - Table regions
+                    <chart> - Chart regions
+                    <separator> - Separator regions
+                    <maths> - Maths regions
+                    <noise> - Noise regions
+                    <frame> - Frame regions
+                    <unknown> - Unknown regions
+                    <border> - Document border
+                    For filter <id>:
+                    The ID of the element to be extracted (region, text line, word or glyph).
+                    <image> The document image file (TIFF format)
+                    <xml> The document layout file (PAGE format)
+                    <output folder> Folder where to store the output files. (Optional: Use <-> for current folder)
+                    [options] Extraction options. A combination of (no spaces):
+                    x - To generate PAGE XML snippets in addition to image snippets.
+                    b - To use bounding boxes for extracting elements. Usually the polygonal outline of an element is used to extract an image snippet. The background is filled with white. Use this option to cut rectangular instead so that no background has to be filled.
+                    t - To export the text content (only on region level). Note: This option disables the image extraction. A placeholder (e.g. '-') may be used for the image file.
+                    [params] Optional parameter file (.ini) for text export (relative paths have to start with .\)
+                    UseOnlyRegionsInReadingOrder (<1> or <0>, default is <0>)
+                    If set to <1> only regions that are part of the logical reading order description are used for exporting the text. Not all text regions are necessary part of the reading order. Page numbers for instance are usually excluded. This option then also excludes these regions from the text output.
+                    InsertExtraLineBreaksAfterRegions (<1> or <0>, default is <1>)
+                    If set to <1> an extra line break is inserted after each text region (the text contents of regions are then separated by empty lines).
+                    -->
                     <command>Extractor.exe ${filter} ${filter_value} ${input_img} ${input_xml} ${outdir} ${options} ${params}</command>
                     <inputs>
-			<input name="filter">
-			    <Datatype>xsd:string</Datatype>
-			    <Restriction>
-				<Value>type</Value>
-				<Value>id</Value>
-			    </Restriction>
-			    <Required>true</Required>
-			    <CliMapping>filter</CliMapping>
-			    <Documentation>Type of extraction</Documentation>
-			    <Default>type</Default>
-			</input>
-			<input name="filterVal">
-			    <Datatype>xsd:string</Datatype>
-			    <Restriction>
-				<Value>text</Value>
-				<Value>textline</Value>
-				<Value>word</Value>
-				<Value>glyph</Value>
-				<Value>image</Value>
-				<Value>linedrawing</Value>
-				<Value>graphic</Value>
-				<Value>table</Value>
-				<Value>chart</Value>
-				<Value>separator</Value>
-				<Value>maths</Value>
-				<Value>noise</Value>
-				<Value>frame</Value>
-				<Value>unknown</Value>
-				<Value>border</Value>
-			    </Restriction>
-			    <Required>true</Required>
-			    <CliMapping>filter_value</CliMapping>
-			    <Documentation>Type of content to be extracted</Documentation>
-			    <Default>text</Default>
-			</input>
-                        <input name="inputXml">
-                            <Datatype>xsd:anyURI</Datatype>
-                            <Required>true</Required>
-                            <CliMapping>input_xml</CliMapping>
-                            <Documentation>URL reference to input file</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
-                        </input>
-			<input name="options">
-			    <Datatype>xsd:string</Datatypes>
-			    <Restriction>
-				<Value>x</Value>
-				<Value>b</Value>
-				<Value>t</Value>
-				<Required>false</Required>
-			    <CliMapping>options<CliMapping>
-			    <Documentation>Optional process parameters</Documentation>
-			    <Default>t</Default>
-			</input>
-			<input name="params">
-			    <Datatype>xsd:anyURI</Datatype>
-			    <Required>false</Required>
-			    <CliMapping>params</CliMapping>
-			    <Documentation>URL reference to optional parameter file</Documentation>
-			    <Default>http://kbdemo.dnsalias.org/testfiles/paramx.ini</Default>
-			</input>
+			            <input name="filter">
+                        <Datatype>xsd:string</Datatype>
+                        <Restriction>
+                        <Value>type</Value>
+                        <Value>id</Value>
+                        </Restriction>
+                        <Required>true</Required>
+                        <CliMapping>filter</CliMapping>
+                        <Documentation>Type of extraction</Documentation>
+                        <Default>type</Default>
+                    </input>
+			        <input name="filterVal">
+                        <Datatype>xsd:string</Datatype>
+                        <Restriction>
+                            <Value>text</Value>
+                            <Value>textline</Value>
+                            <Value>word</Value>
+                            <Value>glyph</Value>
+                            <Value>image</Value>
+                            <Value>linedrawing</Value>
+                            <Value>graphic</Value>
+                            <Value>table</Value>
+                            <Value>chart</Value>
+                            <Value>separator</Value>
+                            <Value>maths</Value>
+                            <Value>noise</Value>
+                            <Value>frame</Value>
+                            <Value>unknown</Value>
+                            <Value>border</Value>
+                        </Restriction>
+                        <Required>true</Required>
+                        <CliMapping>filter_value</CliMapping>
+                        <Documentation>Type of content to be extracted</Documentation>
+                        <Default>text</Default>
+			        </input>
+                    <input name="inputXml">
+                        <Datatype>xsd:anyURI</Datatype>
+                        <Required>true</Required>
+                        <CliMapping>input_xml</CliMapping>
+                        <Documentation>URL reference to input file</Documentation>
+                        <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
+                    </input>
+			        <input name="options">
+			            <Datatype>xsd:string</Datatype>
+			            <Restriction>
+                            <Value>x</Value>
+                            <Value>b</Value>
+                            <Value>t</Value>
+                        </Restriction>
+				        <Required>false</Required>
+			            <CliMapping>options</CliMapping>
+			            <Documentation>Optional process parameters</Documentation>
+			            <Default>t</Default>
+			        </input>
+			        <input name="params">
+			            <Datatype>xsd:anyURI</Datatype>
+			            <Required>false</Required>
+			            <CliMapping>params</CliMapping>
+			            <Documentation>URL reference to optional parameter file</Documentation>
+			            <Default>http://kbdemo.dnsalias.org/testfiles/paramx.ini</Default>
+			        </input>
                     </inputs>
                     <outputs>
                         <output name="output">
@@ -148,17 +149,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir>C:\\PAGEXTRACT\\</toolsbasedir>
+	        Full path to the directory where the tool has been installed.
+	        THE PATH MUST NOT CONTAIN WHITESPACES!
+	        If you want to use backslashes (\) then you must repeat them twice,
+	        e.g. c:\\foo\\bar
+	        or you can use just slashes,
+	        e.g. c:/foo/bar
+	        -->
+	        <toolsbasedir>C:\\PAGEXTRACT\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

@@ -6,10 +6,10 @@
     <version>3</version>
     <installation>
         <os type="linux">
-	    Not currently supported.
+	        Not currently supported.
         </os>
         <os type="windows">
-	    Requires installation of the NCSR Character Segmentation Tool. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+	        Requires installation of the NCSR Character Segmentation Tool. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
@@ -18,14 +18,14 @@
             <operations>
                 <operation oid="1" name="segmentCharacters">
                     <description>Segments the characters in a given word image</description>
-		    <!--
+		            <!--
                     Usage:
                     Character_Segmentation_v3.exe <in> <out>
 
                     Where:
-		    <in> Bitonal word image file in TIF format
-		    <out> XML file containing character segmentation hypotheses
-		    -->
+		            <in> Bitonal word image file in TIF format
+		            <out> XML file containing character segmentation hypotheses
+		            -->
                     <command>Character_Segmentation_v3.exe ${infile} ${outfile}</command>
                     <inputs>
                         <input name="infile">
@@ -63,17 +63,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir>C:\\CHARSEG\\</toolsbasedir>
+	        Full path to the directory where the tool has been installed.
+	        THE PATH MUST NOT CONTAIN WHITESPACES!
+	        If you want to use backslashes (\) then you must repeat them twice,
+	        e.g. c:\\foo\\bar
+	        or you can use just slashes,
+	        e.g. c:/foo/bar
+	        -->
+	        <toolsbasedir>C:\\CHARSEG\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

@@ -18,34 +18,34 @@
             <operations>
                 <operation oid="1" name="ocrad">
                     <description>Perform text recognition using ocrad</description>
-		    <!--
+		            <!--
                     Usage: 
-		    ocrad [options] <input>
+		            ocrad [options] <input>
 					
-		    Where:
-		    [options]
-		    -h, --help               display this help and exit
-		    -V, --version            output version information and exit
-		    -a, --append             append text to output file
-		    -b, --block=<n>          process only the specified text block
-		    -c, --charset=<name>     try `--charset=help' for a list of names
-		    -e, --filter=<name>      try `--filter=help' for a list of names
-		    -f, --force              force overwrite of output file
-		    -F, --format=<fmt>       output format (byte, utf8)
-		    -i, --invert             invert image levels (white on black)
-		    -l, --layout=<n>         layout analysis, 0=none, 1=column, 2=full
-		    -o <file>                place the output into <file>
-		    -p, --crop=<l,t,r,b>     crop input image by given rectangle
-		    -s, --scale=[-]<n>       scale input image by [1/]<n>
-		    -t, --transform=<name>   try `--transform=help' for a list of names
-		    -T, --threshold=<n%>     threshold for binarization (0-100%)
-		    -v, --verbose            be verbose
-		    -x <file>                export OCR Results File to <file>
-		    <input>					 path to input image file(s)
-					
-		    For full documentation of ocrad command line parameters, see
-		    http://www.gnu.org/software/ocrad/manual/ocrad_manual.html
-		    -->
+		            Where:
+                    [options]
+                    -h, - - help               display this help and exit
+                    -V, - - version            output version information and exit
+                    -a, - - append             append text to output file
+                    -b, - - block=<n>          process only the specified text block
+                    -c, - - charset=<name>     try `- - charset=help' for a list of names
+                    -e, - - filter=<name>      try `- - filter=help' for a list of names
+                    -f, - - force              force overwrite of output file
+                    -F, - - format=<fmt>       output format (byte, utf8)
+                    -i, - - invert             invert image levels (white on black)
+                    -l, - - layout=<n>         layout analysis, 0=none, 1=column, 2=full
+                    -o <file>                place the output into <file>
+                    -p, - - crop=<l,t,r,b>     crop input image by given rectangle
+                    -s, - - scale=[-]<n>       scale input image by [1/]<n>
+                    -t, - - transform=<name>   try `- - transform=help' for a list of names
+                    -T, - - threshold=<n%>     threshold for binarization (0-100%)
+                    -v, - - verbose            be verbose
+                    -x <file>                export OCR Results File to <file>
+                    <input>					 path to input image file(s)
+
+                    For full documentation of ocrad command line parameters, see
+                    http://www.gnu.org/software/ocrad/manual/ocrad_manual.html
+                    -->
                     <command>ocrad --format=utf8 --force --layout --output=${output} --export=${result} ${input}</command>
                     <inputs>
                         <input name="input">
@@ -90,17 +90,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
-	    <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir></toolsbasedir>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

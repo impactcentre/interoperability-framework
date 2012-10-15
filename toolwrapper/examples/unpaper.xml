@@ -18,18 +18,18 @@
             <operations>
                 <operation oid="1" name="unpaper">
                     <description>Perform document image enhancement using unpaper</description>
-		    <!--
+		            <!--
                     Usage:
                     unpaper -o [options] <input> <output>
 
                     Where:
-		    [options] 	Optional command line parameters
-		    <input> 	Output file encoding
-		    <output> 	Input file
+		            [options] 	Optional command line parameters
+		            <input> 	Output file encoding
+		            <output> 	Input file
 
-		    For full documentation of unpaper command line parameters, see
-		    http://unpaper.berlios.de/#options
-		    -->
+		            For full documentation of unpaper command line parameters, see
+		            http://unpaper.berlios.de/#options
+		            -->
                     <command>unpaper ${input} ${output}</command>
                     <inputs>
                         <input name="input">
@@ -67,17 +67,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
-	    <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir></toolsbasedir>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+	        <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

@@ -6,7 +6,7 @@
     <version>0-2-145</version>
     <installation>
         <os type="linux">
-	    Not currently supported.           
+	        Not currently supported.
         </os>
         <os type="windows">
             Requires installation of the USAL Typewritten OCR Prototype. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
@@ -18,8 +18,8 @@
             <operations>
                 <operation oid="1" name="tocr">
                     <description>Run OCR on typewritten document image file in TIF format</description>
-		    <!--
-		    Usage:
+		             <!--
+		            Usage:
                     TypewrittenOCR-0-2-145.exe <binaryimage> <greyscaleimage> <colourimage> <inputxml> <outputxml> [classifierweights] [paramfile]
 
             	    Where:
@@ -31,7 +31,7 @@
             	    [classifierweights] A comma seperated list (without spaces) of the weight to give each classifier.
                     Currently there are two classifiers available: Template matching and Feature analysis
                     So to weight them equally, for example, input: 1,1
-		    [paramfile] 	Parameter file. Set to "-1" if not used
+		            [paramfile] 	Parameter file. Set to "-1" if not used
             	    -->
                     <command>TypewrittenOCR-0-2-145.exe ${bwimage} ${grayimage} ${colorimage} ${inputxml} ${outputxml} ${weights}</command>
                     <inputs>
@@ -98,17 +98,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir>C:\\TOCR\\</toolsbasedir>
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+	        <toolsbasedir>C:\\TOCR\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

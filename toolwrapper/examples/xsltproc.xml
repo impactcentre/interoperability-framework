@@ -23,10 +23,10 @@
                     xsltproc [options] <stylesheet> <document>
 
                     Where:
-		    <stylesheet> XSL stylesheet
-		    <document> XML input document
-		    [options] optional command line parameters
-		    -->
+		            <stylesheet> XSL stylesheet
+		            <document> XML input document
+		            [options] optional command line parameters
+		            -->
                     <command>xsltproc -o ${output} ${stylesheet} ${document}</command>
                     <inputs>
                         <input name="stylesheet">
@@ -36,13 +36,13 @@
                             <CliMapping>stylesheet</CliMapping>
                             <Documentation>URL reference to XSL stylesheet</Documentation>
                         </input>
-			<input name="document">
-		  	    <Datatype>xsd:anyURI</Datatype>
-			    <Required>true</Required>
-			    <Default>http://kbdemo.dnsalias.org/testfiles/abbyy10.xml</Default>
-			    <CliMapping>document</CliMapping>
-			    <Documentation>URL reference to XML document</Documentation>
-			</input>
+			            <input name="document">
+		  	                <Datatype>xsd:anyURI</Datatype>
+			                <Required>true</Required>
+			                <Default>http://kbdemo.dnsalias.org/testfiles/abbyy10.xml</Default>
+			                <CliMapping>document</CliMapping>
+			                <Documentation>URL reference to XML document</Documentation>
+			            </input>
                     </inputs>
                     <outputs>
                         <output name="output">
@@ -71,17 +71,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir></toolsbasedir>
+	        Full path to the directory where the tool has been installed.
+	        THE PATH MUST NOT CONTAIN WHITESPACES!
+	        If you want to use backslashes (\) then you must repeat them twice,
+	        e.g. c:\\foo\\bar
+	        or you can use just slashes,
+	        e.g. c:/foo/bar
+	        -->
+	        <toolsbasedir></toolsbasedir>
 	    <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

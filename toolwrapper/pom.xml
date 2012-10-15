@@ -1,4 +1,3 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -54,21 +53,21 @@
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.0</version>
 			</plugin>
-                        <plugin>
-                            <groupId>org.jvnet.jaxb2.maven2</groupId>
-                            <artifactId>maven-jaxb2-plugin</artifactId>
-                            <version>0.8.0</version>
-                            <executions>
-                                <execution>
-                                    <goals>
-                                        <goal>generate</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                            <configuration>
-                                <generatePackage>eu.impact_project.iif.tw.toolspec</generatePackage>
-                            </configuration>
-                        </plugin>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.8.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <generatePackage>eu.impact_project.iif.tw.toolspec</generatePackage>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 

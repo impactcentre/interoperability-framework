@@ -18,74 +18,74 @@
             <operations>
                 <operation oid="1" name="evalOcr">
                     <description>Evaluate OCR word and character accuracy</description>
-		    <!--
-		    Usage:
-		    OCREval.exe <encoding> <stopwords> <groundtruth> <ocr> <charresult> <wordresult> <xmlreport>
+                    <!--
+                    Usage:
+                    OCREval.exe <encoding> <stopwords> <groundtruth> <ocr> <charresult> <wordresult> <xmlreport>
 
-		    Where:
-		    <encoding> Character encoding. One of the following:
-			a - ASCII
-			ab - ASCII Bulgarian
-			ac - ASCII Czech
-			al - ASCII Slovene
-			ap - ASCII Polish
-			u8 - UTF-8
-			u16 - UTF-16
-		    <stopword> Full path to stop word list in plain text file
-		    <groundtruth> Full path to ground truth in plain text file
-		    <ocr> Full path to OCR result in plain text file
-		    <charresult> Character evaluation statistics report
-		    <wordresult> Word evaluation statistics report
-		    <xmlreport> Combined statistics XML report
-		    -->
+                    Where:
+                    <encoding> Character encoding. One of the following:
+                    a - ASCII
+                    ab - ASCII Bulgarian
+                    ac - ASCII Czech
+                    al - ASCII Slovene
+                    ap - ASCII Polish
+                    u8 - UTF-8
+                    u16 - UTF-16
+                    <stopword> Full path to stop word list in plain text file
+                    <groundtruth> Full path to ground truth in plain text file
+                    <ocr> Full path to OCR result in plain text file
+                    <charresult> Character evaluation statistics report
+                    <wordresult> Word evaluation statistics report
+                    <xmlreport> Combined statistics XML report
+                    -->
                     <command>OCREval.exe ${encoding} ${stopwordlist} ${groundtruth} ${ocr} ${charresult} ${wordresult} ${xmlreport}</command>
                     <inputs>
                         <input name="encoding">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
-			    <Restriction>
-				<Value>a</Value>
-				<Value>ab</Value>
-				<Value>ac</Value>
-				<Value>al</Value>
-				<Value>ap</Value>
-				<Value>u8</Value>
-				<Value>u16</Value>
-			    </Restriction>
+                            <Restriction>
+                                <Value>a</Value>
+                                <Value>ab</Value>
+                                <Value>ac</Value>
+                                <Value>al</Value>
+                                <Value>ap</Value>
+                                <Value>u8</Value>
+                                <Value>u16</Value>
+                            </Restriction>
                             <Default>u8</Default>
                             <CliMapping>encoding</CliMapping>
                             <Documentation>File encoding of the OCR result</Documentation>
                         </input>
-			<input name="stopwordlist">
-			    <Datatype>xsd:anyURI</Datatype>
-                            <Required>true</Required>
-			    <Default>http://kbdemo.dnsalias.org/testfiles/stopwords.txt</Default>
-			    <CliMapping>stopwordlist</CliMapping>
-			    <Documentation>URL reference to list with stop words to disregard in evaluation</Documentation>
-			</input>
-			<input name="groundtruth">
-			    <Datatype>xsd:anyURI</Datatype>
-                            <Required>true</Required>
-			    <Default>http://kbdemo.dnsalias.org/testfiles/groundtruth.txt</Default>
-			    <CliMapping>groundtruth</CliMapping>
-			    <Documentation>URL reference to ground truth text file</Documentation>
-			</input>
-			<input name="ocr">
-			    <Datatype>xsd:anyURI</Datatype>
-                            <Required>true</Required>
-			    <Default>http://kbdemo.dnsalias.org/testfiles/ocr.txt</Default>
-			    <CliMapping>ocr</CliMapping>
-			    <Documentation>URL reference to OCR result text file</Documentation>
-			</input>
-			<input name="evaluationId">
-			    <Datatype>xsd:string</Datatype>
-			    <Required>false</Required>
-			    <CliMapping></CliMapping>
-			    <Documentation>Evaluation ID</Documentation>
-			    <Default>Default_Evaluation_ID</Default>
-			</input>
-		    </inputs>
-		    <outputs>
+                        <input name="stopwordlist">
+                            <Datatype>xsd:anyURI</Datatype>
+                                        <Required>true</Required>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/stopwords.txt</Default>
+                            <CliMapping>stopwordlist</CliMapping>
+                            <Documentation>URL reference to list with stop words to disregard in evaluation</Documentation>
+                        </input>
+                        <input name="groundtruth">
+                            <Datatype>xsd:anyURI</Datatype>
+                                        <Required>true</Required>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/groundtruth.txt</Default>
+                            <CliMapping>groundtruth</CliMapping>
+                            <Documentation>URL reference to ground truth text file</Documentation>
+                        </input>
+                        <input name="ocr">
+                            <Datatype>xsd:anyURI</Datatype>
+                                        <Required>true</Required>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/ocr.txt</Default>
+                            <CliMapping>ocr</CliMapping>
+                            <Documentation>URL reference to OCR result text file</Documentation>
+                        </input>
+                        <input name="evaluationId">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>false</Required>
+                            <CliMapping></CliMapping>
+                            <Documentation>Evaluation ID</Documentation>
+                            <Default>Default_Evaluation_ID</Default>
+                        </input>
+		            </inputs>
+		            <outputs>
                         <output name="charresult">
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>charresult</CliMapping>
@@ -93,14 +93,14 @@
                             <Documentation>URL reference to character evaluation output file</Documentation>
                             <Extension>txt</Extension>
                         </output>
-			<output name="wordresult">
+			            <output name="wordresult">
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>wordresult</CliMapping>
                             <Required>false</Required>
                             <Documentation>URL reference to word evaluation output file</Documentation>
                             <Extension>txt</Extension>
                         </output>
-			<output name="xmlreport">
+			            <output name="xmlreport">
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>xmlreport</CliMapping>
                             <Required>false</Required>
@@ -126,17 +126,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir>C:\\OCREVAL\\</toolsbasedir>
+	        Full path to the directory where the tool has been installed.
+	        THE PATH MUST NOT CONTAIN WHITESPACES!
+	        If you want to use backslashes (\) then you must repeat them twice,
+	        e.g. c:\\foo\\bar
+	        or you can use just slashes,
+	        e.g. c:/foo/bar
+	        -->
+	        <toolsbasedir>C:\\OCREVAL\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

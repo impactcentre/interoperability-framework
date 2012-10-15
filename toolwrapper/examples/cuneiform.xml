@@ -18,22 +18,22 @@
             <operations>
                 <operation oid="1" name="cuneiform">
                     <description>Perform text recognition using cuneiform</description>
-		    <!--
+		            <!--
                     Usage:
                     Usage: cuneiform[.exe] [-l <language> -f <format> - - <dotmatrix> - - <fax> - - <singlecolumn> -o <result>] <image>
 
                     Where:
-		    <language>		language of the document to be recognized
-		    <format> 		output format
-		    <dotmatrix> 	optimized for dot matrix prints
-		    <fax> 		optimized for fax prints
-		    <singlecolumn>	turn on/off layout detection and assume single text block
-		    <results>		write output to file
-		    <image>		input image to be recognized
+		            <language>		language of the document to be recognized
+		            <format> 		output format
+		            <dotmatrix> 	optimized for dot matrix prints
+		            <fax> 		optimized for fax prints
+		            <singlecolumn>	turn on/off layout detection and assume single text block
+		            <results>		write output to file
+		            <image>		input image to be recognized
 
-		    For full documentation of cuneiform command line parameters, see
-		    http://manpages.ubuntu.com/manpages/precise/man1/cuneiform.1.html
-		    -->
+		            For full documentation of cuneiform command line parameters, see
+		            http://manpages.ubuntu.com/manpages/precise/man1/cuneiform.1.html
+		            -->
                     <command>cuneiform -f ${format} -l ${language} -o ${output} ${input}</command>
                     <inputs>
                         <input name="input">
@@ -43,55 +43,55 @@
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input image file</Documentation>
                         </input>
-			<input name="format">
-			    <Datatype>xsd:string</Datatype>
-			    <Required>true</Required>
-			    <Restriction>
-				<Value>html</Value>
-				<Value>hocr</Value>
-				<Value>native</Value>
-				<Value>rtf</Value>
-				<Value>smarttext</Value>
-				<Value>text</Value>
-			    </Restriction>
-			    <Default>text</Default>
-			    <CliMapping>format</CliMapping>
-			    <Documentation>OCR output format</Documentation>
-			</input>
-			<input name="language">
-			    <Datatype>xsd:string</Datatype>
-			    <Required>true</Required>
-			    <Restriction>
-				<Value>bul</Value>
-				<Value>cze</Value>
-				<Value>dan</Value>
-				<Value>dut</Value>
-				<Value>eng</Value>
-				<Value>est</Value>
-				<Value>fra</Value>
-				<Value>ger</Value>
-				<Value>hrv</Value>
-				<Value>hun</Value>
-				<Value>ita</Value>
-				<Value>lav</Value>
-				<Value>lit</Value>
-				<Value>pol</Value>
-				<Value>po</Value>
-				<Value>rum</Value>
-				<Value>rus</Value>
-				<Value>ruseng</Value>
-				<Value>slv</Value>
-				<Value>spa</Value>
-				<Value>srp</Value>
-				<Value>swe</Value>
-				<Value>tur</Value>
-				<Value>ukr</Value>
-			    </Restriction>
-			    <Default>ger</Default>
-			    <CliMapping>language</CliMapping>
-			    <Documentation>Language model used in recognition</Documentation>
-			</input>
-		    </inputs>
+			            <input name="format">
+			                <Datatype>xsd:string</Datatype>
+			                <Required>true</Required>
+			                <Restriction>
+				                <Value>html</Value>
+				                <Value>hocr</Value>
+				                <Value>native</Value>
+				                <Value>rtf</Value>
+				                <Value>smarttext</Value>
+				                <Value>text</Value>
+			                </Restriction>
+			                <Default>text</Default>
+			                <CliMapping>format</CliMapping>
+			                <Documentation>OCR output format</Documentation>
+			            </input>
+			            <input name="language">
+			                <Datatype>xsd:string</Datatype>
+			                <Required>true</Required>
+			                <Restriction>
+				                <Value>bul</Value>
+				                <Value>cze</Value>
+				                <Value>dan</Value>
+				                <Value>dut</Value>
+				                <Value>eng</Value>
+				                <Value>est</Value>
+				                <Value>fra</Value>
+				                <Value>ger</Value>
+				                <Value>hrv</Value>
+				                <Value>hun</Value>
+				                <Value>ita</Value>
+				                <Value>lav</Value>
+				                <Value>lit</Value>
+				                <Value>pol</Value>
+				                <Value>po</Value>
+				                <Value>rum</Value>
+				                <Value>rus</Value>
+				                <Value>ruseng</Value>
+				                <Value>slv</Value>
+				                <Value>spa</Value>
+				                <Value>srp</Value>
+				                <Value>swe</Value>
+				                <Value>tur</Value>
+				                <Value>ukr</Value>
+			                </Restriction>
+			                <Default>ger</Default>
+			                <CliMapping>language</CliMapping>
+			                <Documentation>Language model used in recognition</Documentation>
+			            </input>
+		            </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
@@ -119,17 +119,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
-	    <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir>C:\\CUNEIFORM\\</toolsbasedir>
+	        <!--
+	        Full path to the directory where the tool has been installed.
+	        THE PATH MUST NOT CONTAIN WHITESPACES!
+	        If you want to use backslashes (\) then you must repeat them twice,
+	        e.g. c:\\foo\\bar
+	        or you can use just slashes,
+	        e.g. c:/foo/bar
+	        -->
+	        <toolsbasedir>C:\\CUNEIFORM\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

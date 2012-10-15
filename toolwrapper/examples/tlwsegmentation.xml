@@ -6,7 +6,7 @@
     <version>1-1-395</version>
     <installation>
         <os type="linux">
-	    Not currently supported.           
+	        Not currently supported.
         </os>
         <os type="windows">
             Requires installation of the USAL Text Line and Word Segmenter. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
@@ -125,17 +125,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-	 	<path>manager</path>
+	 	        <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir>C:\\TLWSEG\\</toolsbasedir>
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+	        <toolsbasedir>C:\\TLWSEG\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

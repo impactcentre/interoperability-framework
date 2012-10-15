@@ -18,14 +18,14 @@
             <operations>
                 <operation oid="1" name="gppBinarise">
                     <description>Binarise document image using GPP algorithm</description>
-		    <!--
+		            <!--
                     Usage:
                     gpp.exe <in> <out>
 
                     Where:
-		    <in> Input image file in TIF format
-		    <out> Bitonal output image file
-		    -->
+		            <in> Input image file in TIF format
+		            <out> Bitonal output image file
+		            -->
                     <command>gpp.exe ${input} ${output}</command>
                     <inputs>
                         <input name="input">
@@ -63,17 +63,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		<path>manager</path>
+		        <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice, 
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes, 
-	    e.g. c:/foo/bar
-	    -->
-	    <toolsbasedir>C:\\GPPBIN\\</toolsbasedir>
+	        Full path to the directory where the tool has been installed.
+	        THE PATH MUST NOT CONTAIN WHITESPACES!
+	        If you want to use backslashes (\) then you must repeat them twice,
+	        e.g. c:\\foo\\bar
+	        or you can use just slashes,
+	        e.g. c:/foo/bar
+	        -->
+	        <toolsbasedir>C:\\GPPBIN\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
