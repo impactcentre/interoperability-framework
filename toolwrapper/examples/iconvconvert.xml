@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>iconv</id>
     <name>iconv</name>
     <homepage>http://www.gnu.org/software/libiconv/</homepage>
     <version></version>
     <installation>
         <os type="linux">
-	        Natively supported.
+            Natively supported.
         </os>
         <os type="windows">
-	        Not currently supported.
+            Not currently supported.
         </os>
     </installation>
     <services>
-        <service sid="1" name="Iconv" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="Iconv" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Services for text file encoding conversion using iconv</description>
             <operations>
                 <operation oid="1" name="iconv">
                     <description>Perform text file encoding conversion</description>
-		            <!--
+                    <!--
                     Usage:
                     iconv -f <fromcode> -t <tocode> <input> -o <output>
 
                     Where:
-		            <fromcode> Read input file encoding
-		            <tocode> Output file encoding
-		            <input> Input file
-		            <output> Write output file
+                    <fromcode> Read input file encoding
+                    <tocode> Output file encoding
+                    <input> Input file
+                    <output> Write output file
 
-		            For full documentation of iconv command line parameters, see
-		            http://linux.die.net/man/1/iconv
-		            -->
+                    For full documentation of iconv command line parameters, see
+                    http://linux.die.net/man/1/iconv
+                    -->
                     <command>iconv -f ${fromcode} -t ${tocode} ${input} -o ${output}</command>
                     <inputs>
-			            <input name="fromcode">
-			                <Datatype>xsd:string</Datatype>
-			                <Required>true</Required>
-			                <Restriction>
+                        <input name="fromcode">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <Restriction>
                                 <Value>437</Value>
                                 <Value>500</Value>
                                 <Value>500V1</Value>
@@ -1205,15 +1207,15 @@
                                 <Value>WINSAMI2</Value>
                                 <Value>WS2</Value>
                                 <Value>YU</Value>
-			                </Restriction>
-			                <Default>ISO-8859-1</Default>
-			                <CliMapping>fromcode</CliMapping>
-			                <Documentation>Input file encoding</Documentation>
-			            </input>
-			            <input name="tocode">
-			                <Datatype>xsd:string</Datatype>
-			                <Required>true</Required>
-			                <Restriction>
+                            </Restriction>
+                            <Default>ISO-8859-1</Default>
+                            <CliMapping>fromcode</CliMapping>
+                            <Documentation>Input file encoding</Documentation>
+                        </input>
+                        <input name="tocode">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <Restriction>
                                 <Value>437</Value>
                                 <Value>500</Value>
                                 <Value>500V1</Value>
@@ -2382,11 +2384,11 @@
                                 <Value>WINSAMI2</Value>
                                 <Value>WS2</Value>
                                 <Value>YU</Value>
-			                </Restriction>
-			                <Default>UTF8</Default>
-			                <CliMapping>tocode</CliMapping>
-			                <Documentation>Output file encoding</Documentation>
-			            </input>
+                            </Restriction>
+                            <Default>UTF8</Default>
+                            <CliMapping>tocode</CliMapping>
+                            <Documentation>Output file encoding</Documentation>
+                        </input>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
@@ -2422,17 +2424,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
-	            <!--
-	            Full path to the directory where the tool has been installed.
-	            THE PATH MUST NOT CONTAIN WHITESPACES!
-	            If you want to use backslashes (\) then you must repeat them twice,
-	            e.g. c:\\foo\\bar
-	            or you can use just slashes,
-	            e.g. c:/foo/bar
-	            -->
-	        <toolsbasedir></toolsbasedir>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

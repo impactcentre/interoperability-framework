@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>layoutevaluation</id>
     <name>USAL Layout Evaluation</name>
     <homepage>http://www.digitisation.eu/index.php?id=76</homepage>
     <version>1-2-33</version>
     <installation>
         <os type="linux">
-	        Not currently supported.
+            Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the USAL Layout Evaluation Tool. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Requires installation of the USAL Layout Evaluation Tool. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN
+            WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="LayoutEvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
-            <description>Service for evaluating document layout detection against ground truth in PAGE format</description>
+        <service sid="1" name="LayoutEvaluation" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
+            <description>Service for evaluating document layout detection against ground truth in PAGE format
+            </description>
             <operations>
                 <operation oid="1" name="evalLayout">
                     <description>Evaluation of layout detection using profiles</description>
-		            <!--
+                    <!--
                     Usage:
                     layoutevalcmd-1-2-33.exe <ground-truth> <seg> <image> <profile> <output file> [<opts>]
 
@@ -40,20 +44,25 @@
                     'W' - evaluate words
                     'G' - evaluate glyphs
                     -->
-                    <command>layoutevalcmd-1-2-33.exe ${groundTruthXmlFileUrl} ${segXmlFileUrl} ${bwImageFileUrl} ${profileEvxFileUrl} ${outfile} ${opts}</command>
+                    <command>layoutevalcmd-1-2-33.exe ${groundTruthXmlFileUrl} ${segXmlFileUrl} ${bwImageFileUrl}
+                        ${profileEvxFileUrl} ${outfile} ${opts}
+                    </command>
                     <inputs>
                         <input name="groundTruthXmlFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>groundTruthXmlFileUrl</CliMapping>
-                            <Documentation>URL to the ground-truth document layout XML file (in PAGE format)</Documentation>
+                            <Documentation>URL to the ground-truth document layout XML file (in PAGE format)
+                            </Documentation>
                             <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
                         </input>
                         <input name="segXmlFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>segXmlFileUrl</CliMapping>
-                            <Documentation>URL to the document layout XML file to be evaluated (segmentation result) (in PAGE format)</Documentation>
+                            <Documentation>URL to the document layout XML file to be evaluated (segmentation result) (in
+                                PAGE format)
+                            </Documentation>
                             <Default>http://kbdemo.dnsalias.org/testfiles/words.xml</Default>
                         </input>
                         <input name="bwImageFileUrl">
@@ -67,14 +76,23 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>profileEvxFileUrl</CliMapping>
-                            <Documentation>Full path to the .evx file containing the evaluation profile (weights and settings)</Documentation>
+                            <Documentation>Full path to the .evx file containing the evaluation profile (weights and
+                                settings)
+                            </Documentation>
                             <Default>http://kbdemo.dnsalias.org/testfiles/profile.evx</Default>
                         </input>
                         <input name="opts">
                             <Datatype>xsd:string</Datatype>
                             <Required>false</Required>
                             <CliMapping>opts</CliMapping>
-                            <Documentation>Combination of following characters (optional) (Note: No spaces between options! E.g. OW) 'O' - to overwrite existing result files, 'P' - print warnings and messages, 'V' - to output the evaluation results as comma separated values (CSV), 'H' - to output the column headers for the comma separated values (Note The values are written to std::out and not to a file. If necessary, the output can be redirected to a CSV file.) Structure levels (in none specified, all available will be used), 'B' – evaluate blocks (regions), 'L' – evaluate text lines, 'W' – evaluate words, 'G' – evaluate glyphs</Documentation>
+                            <Documentation>Combination of following characters (optional) (Note: No spaces between
+                                options! E.g. OW) 'O' - to overwrite existing result files, 'P' - print warnings and
+                                messages, 'V' - to output the evaluation results as comma separated values (CSV), 'H' -
+                                to output the column headers for the comma separated values (Note The values are written
+                                to std::out and not to a file. If necessary, the output can be redirected to a CSV
+                                file.) Structure levels (in none specified, all available will be used), 'B' – evaluate
+                                blocks (regions), 'L' – evaluate text lines, 'W' – evaluate words, 'G' – evaluate glyphs
+                            </Documentation>
                             <Default>OP</Default>
                         </input>
                         <input name="evaluationId">
@@ -112,7 +130,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
             Full path to the directory where the tool has been installed.
@@ -122,7 +140,7 @@
             or you can use just slashes,
             e.g. c:/foo/bar
             -->
-	        <toolsbasedir>C:\\SEGEVAL\\</toolsbasedir>
+            <toolsbasedir>C:\\SEGEVAL\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

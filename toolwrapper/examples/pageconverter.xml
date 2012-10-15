@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>pageconverter</id>
     <name>USAL PAGE Converter</name>
     <homepage>http://www.digitisation.eu/</homepage>
@@ -9,34 +10,36 @@
             Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the USAL PAGE Schema Converter. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Requires installation of the USAL PAGE Schema Converter. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN
+            WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="PAGEConverter" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="PAGEConverter" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Service for converting PAGE XML files according to replacement rules</description>
             <operations>
                 <operation oid="1" name="pageconverter">
                     <description>Apply text filter to XML</description>
-		            <!--
+                    <!--
                     Usage:
                     PageSchemaConverter-1-1-33.exe <in> <out> wof <filter>
 
                     Where:
-		            <in> Input PAGE XML file
-		            <out> Transformed output PAGE XML file
-		            <filter> Filter list with replacement rules for a character or a sequence of characters by another character or sequence
-		            -->
+                    <in> Input PAGE XML file
+                    <out> Transformed output PAGE XML file
+                    <filter> Filter list with replacement rules for a character or a sequence of characters by another character or sequence
+                    -->
                     <command>PageSchemaConverter-1-1-33.exe ${input} ${output} WOF ${filter}</command>
                     <inputs>
-			            <input name="filter">
-			                <Datatype>xsd:anyURI</Datatype>
+                        <input name="filter">
+                            <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <Default>http://kbdemo.dnsalias.org/testfiles/filter.xml</Default>
                             <CliMapping>filter</CliMapping>
                             <Documentation>Replacement rules for special characters</Documentation>
-			            </input>
-                    	<input name="input">
+                        </input>
+                        <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
@@ -71,7 +74,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
             Full path to the directory where the tool has been installed.

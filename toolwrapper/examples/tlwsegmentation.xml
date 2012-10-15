@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>tlwsegmentation</id>
     <name>USAL Text Line and Word Segmentation</name>
     <homepage>http://www.digitisation.eu/index.php?id=100</homepage>
     <version>1-1-395</version>
     <installation>
         <os type="linux">
-	        Not currently supported.
+            Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the USAL Text Line and Word Segmenter. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Requires installation of the USAL Text Line and Word Segmenter. THE FULL PATH TO THE EXECUTABLE MUST NOT
+            CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="TextLineOrWordSegmentation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="TextLineOrWordSegmentation" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Service for text line/word segmentation of regions/lines</description>
             <operations>
                 <operation oid="1" name="segmentTextLinesOrWords">
@@ -39,7 +42,9 @@
                         p - For parameter file usage (hybrid/line or density/word only).
                     <paramfile> Full path to *.ini file containing a parameter set for the hybrid line segmenter or the density word segmenter. Only regarded if option 'p' is set.
                     -->
-                    <command>segmenter-1-1-395.exe ${segm} ${method} ${binimg} ${inputxml} ${outxml} ${opts} ${paramfile}</command>
+                    <command>segmenter-1-1-395.exe ${segm} ${method} ${binimg} ${inputxml} ${outxml} ${opts}
+                        ${paramfile}
+                    </command>
                     <inputs>
                         <input name="bwImageFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
@@ -52,14 +57,17 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>inputxml</CliMapping>
-                            <Documentation>Filename of a PAGE XML file containing a region-level or word segmentation layout</Documentation>
+                            <Documentation>Filename of a PAGE XML file containing a region-level or word segmentation
+                                layout
+                            </Documentation>
                             <Default>http://kbdemo.dnsalias.org/testfiles/lines.xml</Default>
                         </input>
                         <input name="segmenter">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
                             <CliMapping>segm</CliMapping>
-                            <Documentation>One of: line - Text line segmentation, word - Word segmentation</Documentation>
+                            <Documentation>One of: line - Text line segmentation, word - Word segmentation
+                            </Documentation>
                             <Default>word</Default>
                             <Restriction>
                                 <Value>word</Value>
@@ -70,7 +78,12 @@
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
                             <CliMapping>method</CliMapping>
-                            <Documentation>One of: component - Technique based on connected component aggregation, profile - Profile-based technique which uses profile minima and maxima to detect text lines/words, hybrid: Hybrid approach using component aggregation and projection. Note: Line segmentation only, density: Profile-based approach using pixel density - Note: Word segmentation only</Documentation>
+                            <Documentation>One of: component - Technique based on connected component aggregation,
+                                profile - Profile-based technique which uses profile minima and maxima to detect text
+                                lines/words, hybrid: Hybrid approach using component aggregation and projection. Note:
+                                Line segmentation only, density: Profile-based approach using pixel density - Note: Word
+                                segmentation only
+                            </Documentation>
                             <Default>word</Default>
                             <Restriction>
                                 <Value>component</Value>
@@ -83,7 +96,10 @@
                             <Datatype>xsd:string</Datatype>
                             <Required>false</Required>
                             <CliMapping>opts</CliMapping>
-                            <Documentation>A combination of the following options - Note: Don't use spaces between options: r - Removes the text lines or words from the document before the segmentation, p - For parameter file usage (hybrid/line or density/word only)</Documentation>
+                            <Documentation>A combination of the following options - Note: Don't use spaces between
+                                options: r - Removes the text lines or words from the document before the segmentation,
+                                p - For parameter file usage (hybrid/line or density/word only)
+                            </Documentation>
                             <Default>r</Default>
                             <Restriction>
                                 <Value>p</Value>
@@ -94,7 +110,9 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>paramfile</CliMapping>
-                            <Documentation>Full path to *.ini file containing a parameter set for the hybrid line segmenter or the density word segmenter - Note: Only regarded if option 'p' is set</Documentation>
+                            <Documentation>Full path to *.ini file containing a parameter set for the hybrid line
+                                segmenter or the density word segmenter - Note: Only regarded if option 'p' is set
+                            </Documentation>
                             <Default>http://kbdemo.dnsalias.org/testfiles/params.ini</Default>
                         </input>
                     </inputs>
@@ -125,7 +143,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-	 	        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
             Full path to the directory where the tool has been installed.
@@ -135,7 +153,7 @@
             or you can use just slashes,
             e.g. c:/foo/bar
             -->
-	        <toolsbasedir>C:\\TLWSEG\\</toolsbasedir>
+            <toolsbasedir>C:\\TLWSEG\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

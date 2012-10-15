@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>wordevaluation</id>
     <name>INL Word Evaluation</name>
     <homepage>http://www.digitisation.eu/</homepage>
@@ -13,20 +14,21 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="WordEvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="WordEvaluation" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Service for evaluating word accuracy of OCR vs ground truth in PAGE format</description>
             <operations>
                 <operation oid="1" name="wordEval">
                     <description>Evaluate OCR word accurracy</description>
-		            <!--
+                    <!--
                     Usage:
                     java -jar wordevaluation.jar -o <output> <groundtruth> <ocr>
 
                     Where:
-		            <output> Write output file
-		            <groundtruth> Ground truth file in PAGE format
-		            <ocr> OCR result file in PAGE format
-		            -->
+                    <output> Write output file
+                    <groundtruth> Ground truth file in PAGE format
+                    <ocr> OCR result file in PAGE format
+                    -->
                     <command>java -jar wordevaluation.jar -o ${output} ${groundtruth} ${ocrresult}</command>
                     <inputs>
                         <input name="groundtruth">
@@ -36,20 +38,20 @@
                             <Documentation>URL reference to ground truth file in PAGE format</Documentation>
                             <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
                         </input>
-			            <input name="ocrresult">
+                        <input name="ocrresult">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>ocrresult</CliMapping>
                             <Documentation>URL reference to OCR result file in PAGE format</Documentation>
                             <Default>http://kbdemo.dnsalias.org/testfiles/words.xml</Default>
                         </input>
-			            <input name="evaluationId">
-			                <Datatype>xsd:string</Datatype>
-			                <Required>false</Required>
-			                <CliMapping></CliMapping>
-			                <Documentation>Evaluation ID</Documentation>
-			                <Default>Default_Evaluation_ID</Default>
-			            </input>
+                        <input name="evaluationId">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>false</Required>
+                            <CliMapping></CliMapping>
+                            <Documentation>Evaluation ID</Documentation>
+                            <Default>Default_Evaluation_ID</Default>
+                        </input>
                     </inputs>
                     <outputs>
                         <output name="output">
@@ -79,7 +81,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
 	        Full path to the directory where the tool has been installed.

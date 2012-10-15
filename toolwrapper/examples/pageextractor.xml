@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>pagextractor</id>
     <name>USAL PAGE Extractor</name>
     <homepage>http://www.digitisation.eu/tools/evaluation-toolkit/</homepage>
     <version>1-1-21</version>
     <installation>
         <os type="linux">
-	        Not currently supported.
+            Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the USAL PAGE Extractor Tool. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Requires installation of the USAL PAGE Extractor Tool. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN
+            WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="PageExtractor" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="PageExtractor" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Service for extracting text and snippets from a PAGE document</description>
             <operations>
                 <operation oid="1" name="extractPage">
                     <description>Extract the plain text from a PAGE document</description>
-		            <!--
+                    <!--
                     Usage:
                     Extractor.exe <filter> <filter value> <image> <xml> <output folder> [options] [params]
 
@@ -58,69 +61,71 @@
                     InsertExtraLineBreaksAfterRegions (<1> or <0>, default is <1>)
                     If set to <1> an extra line break is inserted after each text region (the text contents of regions are then separated by empty lines).
                     -->
-                    <command>Extractor.exe ${filter} ${filter_value} ${input_img} ${input_xml} ${outdir} ${options} ${params}</command>
+                    <command>Extractor.exe ${filter} ${filter_value} ${input_img} ${input_xml} ${outdir} ${options}
+                        ${params}
+                    </command>
                     <inputs>
-			            <input name="filter">
-                        <Datatype>xsd:string</Datatype>
-                        <Restriction>
-                        <Value>type</Value>
-                        <Value>id</Value>
-                        </Restriction>
-                        <Required>true</Required>
-                        <CliMapping>filter</CliMapping>
-                        <Documentation>Type of extraction</Documentation>
-                        <Default>type</Default>
-                    </input>
-			        <input name="filterVal">
-                        <Datatype>xsd:string</Datatype>
-                        <Restriction>
-                            <Value>text</Value>
-                            <Value>textline</Value>
-                            <Value>word</Value>
-                            <Value>glyph</Value>
-                            <Value>image</Value>
-                            <Value>linedrawing</Value>
-                            <Value>graphic</Value>
-                            <Value>table</Value>
-                            <Value>chart</Value>
-                            <Value>separator</Value>
-                            <Value>maths</Value>
-                            <Value>noise</Value>
-                            <Value>frame</Value>
-                            <Value>unknown</Value>
-                            <Value>border</Value>
-                        </Restriction>
-                        <Required>true</Required>
-                        <CliMapping>filter_value</CliMapping>
-                        <Documentation>Type of content to be extracted</Documentation>
-                        <Default>text</Default>
-			        </input>
-                    <input name="inputXml">
-                        <Datatype>xsd:anyURI</Datatype>
-                        <Required>true</Required>
-                        <CliMapping>input_xml</CliMapping>
-                        <Documentation>URL reference to input file</Documentation>
-                        <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
-                    </input>
-			        <input name="options">
-			            <Datatype>xsd:string</Datatype>
-			            <Restriction>
-                            <Value>x</Value>
-                            <Value>b</Value>
-                            <Value>t</Value>
-                        </Restriction>
-				        <Required>false</Required>
-			            <CliMapping>options</CliMapping>
-			            <Documentation>Optional process parameters</Documentation>
-			            <Default>t</Default>
-			        </input>
-			        <input name="params">
-			            <Datatype>xsd:anyURI</Datatype>
-			            <Required>false</Required>
-			            <CliMapping>params</CliMapping>
-			            <Documentation>URL reference to optional parameter file</Documentation>
-			            <Default>http://kbdemo.dnsalias.org/testfiles/paramx.ini</Default>
-			        </input>
+                        <input name="filter">
+                            <Datatype>xsd:string</Datatype>
+                            <Restriction>
+                                <Value>type</Value>
+                                <Value>id</Value>
+                            </Restriction>
+                            <Required>true</Required>
+                            <CliMapping>filter</CliMapping>
+                            <Documentation>Type of extraction</Documentation>
+                            <Default>type</Default>
+                        </input>
+                        <input name="filterVal">
+                            <Datatype>xsd:string</Datatype>
+                            <Restriction>
+                                <Value>text</Value>
+                                <Value>textline</Value>
+                                <Value>word</Value>
+                                <Value>glyph</Value>
+                                <Value>image</Value>
+                                <Value>linedrawing</Value>
+                                <Value>graphic</Value>
+                                <Value>table</Value>
+                                <Value>chart</Value>
+                                <Value>separator</Value>
+                                <Value>maths</Value>
+                                <Value>noise</Value>
+                                <Value>frame</Value>
+                                <Value>unknown</Value>
+                                <Value>border</Value>
+                            </Restriction>
+                            <Required>true</Required>
+                            <CliMapping>filter_value</CliMapping>
+                            <Documentation>Type of content to be extracted</Documentation>
+                            <Default>text</Default>
+                        </input>
+                        <input name="inputXml">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input_xml</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
+                        </input>
+                        <input name="options">
+                            <Datatype>xsd:string</Datatype>
+                            <Restriction>
+                                <Value>x</Value>
+                                <Value>b</Value>
+                                <Value>t</Value>
+                            </Restriction>
+                            <Required>false</Required>
+                            <CliMapping>options</CliMapping>
+                            <Documentation>Optional process parameters</Documentation>
+                            <Default>t</Default>
+                        </input>
+                        <input name="params">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>params</CliMapping>
+                            <Documentation>URL reference to optional parameter file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/paramx.ini</Default>
+                        </input>
                     </inputs>
                     <outputs>
                         <output name="output">
@@ -149,7 +154,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
 	        Full path to the directory where the tool has been installed.
@@ -159,7 +164,7 @@
 	        or you can use just slashes,
 	        e.g. c:/foo/bar
 	        -->
-	        <toolsbasedir>C:\\PAGEXTRACT\\</toolsbasedir>
+            <toolsbasedir>C:\\PAGEXTRACT\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

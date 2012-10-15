@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>xsltproc</id>
     <name>XSLT Processor</name>
     <homepage>http://xmlsoft.org/XSLT/xsltproc.html</homepage>
@@ -9,11 +10,13 @@
             Available under most distributions via package management.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT
+            CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="XSLTProc" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="XSLTProc" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Services for transforming XML documents using XSLT</description>
             <operations>
                 <operation oid="1" name="xsltproc">
@@ -36,13 +39,13 @@
                             <CliMapping>stylesheet</CliMapping>
                             <Documentation>URL reference to XSL stylesheet</Documentation>
                         </input>
-			            <input name="document">
-		  	                <Datatype>xsd:anyURI</Datatype>
-			                <Required>true</Required>
-			                <Default>http://kbdemo.dnsalias.org/testfiles/abbyy10.xml</Default>
-			                <CliMapping>document</CliMapping>
-			                <Documentation>URL reference to XML document</Documentation>
-			            </input>
+                        <input name="document">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/abbyy10.xml</Default>
+                            <CliMapping>document</CliMapping>
+                            <Documentation>URL reference to XML document</Documentation>
+                        </input>
                     </inputs>
                     <outputs>
                         <output name="output">
@@ -71,7 +74,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
 	        Full path to the directory where the tool has been installed.
@@ -81,8 +84,8 @@
 	        or you can use just slashes,
 	        e.g. c:/foo/bar
 	        -->
-	        <toolsbasedir></toolsbasedir>
-	    <dataexchange>
+            <toolsbasedir></toolsbasedir>
+            <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
             </dataexchange>

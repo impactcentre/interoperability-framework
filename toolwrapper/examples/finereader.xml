@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>finereader</id>
     <name>ABBYY FineReader Engine</name>
     <homepage>http://www.digitisation.eu/index.php?id=177</homepage>
@@ -9,35 +10,39 @@
             Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the ABBYY FineReader Engine SDK. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Requires installation of the ABBYY FineReader Engine SDK. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN
+            WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="FineReader" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="FineReader" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Service for OCR using ABBYY FineReader Engine technology</description>
             <operations>
                 <operation oid="1" name="ocr">
                     <description>Run OCR using ABBYY FineReader Engine</description>
-		            <!--
+                    <!--
                     Usage:
                     CommandLineInterface.exe [<-lpp DocumentArchiving_Accuracy>] <lang> -prn <textType> -if <in> -f <outputFormat> [<-tet UTF8>] -of <out>
 
                     Where:
-		            <-lpp DocumentArchiving_Accuracy> Configuration profile
-		            <lang> Language of document to be OCRed
-		            <textType> Text type of document to be OCRed
-		            <in> Input image file
-		            <outputFormat> Formatting of OCR result
-		            <tet UTF8> Default to UTF8 text encoding
-		            <out> OCR output file
-		            -->
-                    <command>CommandLineInterface.exe -lpp DocumentArchiving_Accuracy ${langcs} -prn ${texttype} -if ${input} -f ${export} -tet UTF8 -of ${output}</command>
+                    <-lpp DocumentArchiving_Accuracy> Configuration profile
+                    <lang> Language of document to be OCRed
+                    <textType> Text type of document to be OCRed
+                    <in> Input image file
+                    <outputFormat> Formatting of OCR result
+                    <tet UTF8> Default to UTF8 text encoding
+                    <out> OCR output file
+                    -->
+                    <command>CommandLineInterface.exe -lpp DocumentArchiving_Accuracy ${langcs} -prn ${texttype} -if
+                        ${input} -f ${export} -tet UTF8 -of ${output}
+                    </command>
                     <inputs>
-			            <input name="langcs">
-			                <Datatype>xsd:string</Datatype>
-			                <Required>true</Required>
-			                <Restriction multiple="true">
-				                <Value>Bulgarian</Value>
+                        <input name="langcs">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <Restriction multiple="true">
+                                <Value>Bulgarian</Value>
                                 <Value>Catalan</Value>
                                 <Value>Croatian</Value>
                                 <Value>Czech</Value>
@@ -72,12 +77,13 @@
                                 <Value>Swedish</Value>
                                 <Value>Turkish</Value>
                                 <Value>Ukrainian</Value>
-			                </Restriction>
-			                <Default>German,OldGerman</Default>
-			                <CliMapping>langcs</CliMapping>
-			                <Documentation>Comma separated list of internal dictionaries to be used during recognition</Documentation>
-			            </input>
-			            <input name="texttype">
+                            </Restriction>
+                            <Default>German,OldGerman</Default>
+                            <CliMapping>langcs</CliMapping>
+                            <Documentation>Comma separated list of internal dictionaries to be used during recognition
+                            </Documentation>
+                        </input>
+                        <input name="texttype">
                             <Datatype>xsd:string</Datatype>
                             <Restriction>
                                 <Value>Normal</Value>
@@ -97,14 +103,14 @@
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file</Documentation>
                         </input>
-			            <input name="export">
+                        <input name="export">
                             <Datatype>xsd:string</Datatype>
                             <Restriction>
                                 <Value>XML</Value>
                                 <Value>RTF</Value>
                                 <Value>Text</Value>
-				                <Value>HTML</Value>
-				                <Value>ALTO</Value>
+                                <Value>HTML</Value>
+                                <Value>ALTO</Value>
                             </Restriction>
                             <Required>true</Required>
                             <Default>XML</Default>
@@ -139,7 +145,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
 	        Full path to the directory where the tool has been installed.
@@ -149,7 +155,7 @@
 	        or you can use just slashes,
 	        e.g. c:/foo/bar
 	        -->
-	        <toolsbasedir>C:\\ABBYY\\</toolsbasedir>
+            <toolsbasedir>C:\\ABBYY\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>fre10binarisation</id>
     <name>ABBYY FineReader Engine 10 Binarisation</name>
     <homepage>http://www.digitisation.eu/index.php?id=95</homepage>
     <version>10</version>
     <installation>
         <os type="linux">
-	        Not currently supported.
+            Not currently supported.
         </os>
         <os type="windows">
-	        Requires installation of the ABBYY FineReader Engine 10 SDK. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Requires installation of the ABBYY FineReader Engine 10 SDK. THE FULL PATH TO THE EXECUTABLE MUST NOT
+            CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="FineReader10Binarisation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="FineReader10Binarisation" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Services for binarisation using Abbyy Fine Reader Engine 10</description>
             <operations>
                 <operation oid="1" name="binarise">
                     <description>Binarise document image file using FineReader 10</description>
-		            <!--
+                    <!--
                     Usage:
                     Abbyy10Binarisation.exe -if <in> -of <out>
 
                     Where:
-		            <in> Input image file
-		            <out> Bitonal output image file
-		            -->
+                    <in> Input image file
+                    <out> Bitonal output image file
+                    -->
                     <command>Abbyy10Binarisation.exe -if ${infile} -of ${outfile}</command>
                     <inputs>
                         <input name="infile">
@@ -63,7 +66,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
 	        Full path to the directory where the tool has been installed.
@@ -73,7 +76,7 @@
 	        or you can use just slashes,
 	        e.g. c:/foo/bar
 	        -->
-	        <toolsbasedir>C:\\FRE10BIN\\</toolsbasedir>
+            <toolsbasedir>C:\\FRE10BIN\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

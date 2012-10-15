@@ -1,48 +1,51 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>jp2convert</id>
     <name>OpenJPEG JPEG2000 Converter</name>
     <homepage>http://www.openjpeg.org/</homepage>
     <version></version>
     <installation>
         <os type="linux">
-	        Available under most distributions via package management.
+            Available under most distributions via package management.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT
+            CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="jp2convert" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="jp2convert" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Service for converting JPEG2000 images to other image file formats</description>
             <operations>
                 <operation oid="1" name="jp2convert">
                     <description>Convert JPEG2000 image file</description>
-		            <!--
+                    <!--
                     Usage:
                     j2k_to_image -i <input> -o <output> -OutFor <format>
 
                     Where:
-		            <input> Input file; valid image extensions are J2K, JP2, JPC, JPT
-		            <output> Output file
-		            <format> Output format; currently accepts BMP, TIF, RAW, TGA, PGM, PPM, PNM and PGX
-		            -->
+                    <input> Input file; valid image extensions are J2K, JP2, JPC, JPT
+                    <output> Output file
+                    <format> Output format; currently accepts BMP, TIF, RAW, TGA, PGM, PPM, PNM and PGX
+                    -->
                     <command>j2k_to_image -i ${input} -o ${output} -OutFor ${format}</command>
                     <inputs>
-			            <input name="format">
-			                <Datatype>xsd:string</Datatype>
+                        <input name="format">
+                            <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
-			                <Restriction>
-				                <Value>BMP</Value>
-				                <Value>TIF</Value>
-				                <Value>RAW</Value>
-				                <Value>TGA</Value>
-				                <Value>PGM</Value>
-				                <Value>PBM</Value>
-				                <Value>PNM</Value>
-				                <Value>PGX</Value>
+                            <Restriction>
+                                <Value>BMP</Value>
+                                <Value>TIF</Value>
+                                <Value>RAW</Value>
+                                <Value>TGA</Value>
+                                <Value>PGM</Value>
+                                <Value>PBM</Value>
+                                <Value>PNM</Value>
+                                <Value>PGX</Value>
                             </Restriction>
-			                <Default>TIF</Default>
+                            <Default>TIF</Default>
                             <CliMapping>format</CliMapping>
                             <Documentation>Output image file format</Documentation>
                         </input>
@@ -81,7 +84,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
 	        Full path to the directory where the tool has been installed.
@@ -91,7 +94,7 @@
 	        or you can use just slashes,
 	        e.g. c:/foo/bar
 	        -->
-	        <toolsbasedir></toolsbasedir>
+            <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

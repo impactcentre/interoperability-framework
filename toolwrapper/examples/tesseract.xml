@@ -1,118 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>tesseract</id>
     <name>Tesseract OCR</name>
     <homepage>http://code.google.com/p/tesseract-ocr/</homepage>
     <version>3-0-2</version>
     <installation>
         <os type="linux">
-	        Available under most distributions via package management.
+            Available under most distributions via package management.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT
+            CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="Tesseract" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/iif">
+        <service sid="1" name="Tesseract" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/iif">
             <description>Services for text recognition using Tesseract</description>
             <operations>
                 <operation oid="1" name="tesseract">
-		        <description>Perform text recognition on image file</description>
-		        <!--
-                Usage:
-                tesseract[.exe] <input> <output> -l <lang> [+hocr]
+                    <description>Perform text recognition on image file</description>
+                    <!--
+                    Usage:
+                    tesseract[.exe] <input> <output> -l <lang> [+hocr]
 
-                Where:
-                <input> 	Input image file in TIF format
-                <output> 	OCR result file in TXT format
-                <lang> 		Language model used for recognition
-                [+hocr] 	Optional: write hOCR output file (with coordinates)
-                -->
-                <command>tesseract ${input} ${output} -l ${langmod}</command>
-                <inputs>
-                    <input name="input">
-                        <Datatype>xsd:anyURI</Datatype>
-                        <Required>true</Required>
-                        <CliMapping>input</CliMapping>
-                        <Documentation>URL reference to input file</Documentation>
-                        <Default>http://kbdemo.dnsalias.org/testfiles/00046135.bw.tif</Default>
-                    </input>
-                    <input name="langmod">
-                        <Datatype>xsd:string</Datatype>
-			            <Restriction>
-                            <Value>afr</Value>
-                            <Value>ara</Value>
-                            <Value>aze</Value>
-                            <Value>bel</Value>
-                            <Value>ben</Value>
-                            <Value>bul</Value>
-                            <Value>cat</Value>
-                            <Value>ces</Value>
-                            <Value>chi_sim</Value>
-                            <Value>chi_tra</Value>
-                            <Value>chr</Value>
-                            <Value>dan</Value>
-                            <Value>dan-frak</Value>
-                            <Value>deu</Value>
-                            <Value>deu-frak</Value>
-                            <Value>ell</Value>
-                            <Value>eng</Value>
-                            <Value>enm</Value>
-                            <Value>epo</Value>
-                            <Value>equ</Value>
-                            <Value>est</Value>
-                            <Value>eus</Value>
-                            <Value>fin</Value>
-                            <Value>fra</Value>
-                            <Value>frk</Value>
-                            <Value>frm</Value>
-                            <Value>glg</Value>
-                            <Value>grc</Value>
-                            <Value>heb</Value>
-                            <Value>hin</Value>
-                            <Value>hrv</Value>
-                            <Value>hun</Value>
-                            <Value>ind</Value>
-                            <Value>isl</Value>
-                            <Value>ita</Value>
-                            <Value>ita-old</Value>
-                            <Value>jpn</Value>
-                            <Value>kan</Value>
-                            <Value>kor</Value>
-                            <Value>lat-lid</Value>
-                            <Value>lav</Value>
-                            <Value>lit</Value>
-                            <Value>mal</Value>
-                            <Value>mkd</Value>
-                            <Value>mlt</Value>
-                            <Value>msa</Value>
-                            <Value>nld</Value>
-                            <Value>nor</Value>
-                            <Value>osd</Value>
-                            <Value>pol</Value>
-                            <Value>por</Value>
-                            <Value>ron</Value>
-                            <Value>rus</Value>
-                            <Value>slk</Value>
-                            <Value>slk-frak</Value>
-                            <Value>slv</Value>
-                            <Value>spa</Value>
-                            <Value>spa-old</Value>
-                            <Value>srp</Value>
-                            <Value>swe</Value>
-                            <Value>swe-frak</Value>
-                            <Value>tha</Value>
-                            <Value>tgl</Value>
-                            <Value>tur</Value>
-                            <Value>ukr</Value>
-                            <Value>vie</Value>
-			            </Restriction>
-                        <Required>true</Required>
-                        <CliMapping>langmod</CliMapping>
-                        <Documentation>Language module used by Tesseract</Documentation>
-                        <Default>deu-frak</Default>
-                    </input>
-                </inputs>
+                    Where:
+                    <input> 	Input image file in TIF format
+                    <output> 	OCR result file in TXT format
+                    <lang> 		Language model used for recognition
+                    [+hocr] 	Optional: write hOCR output file (with coordinates)
+                    -->
+                    <command>tesseract ${input} ${output} -l ${langmod}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.bw.tif</Default>
+                        </input>
+                        <input name="langmod">
+                            <Datatype>xsd:string</Datatype>
+                            <Restriction>
+                                <Value>afr</Value>
+                                <Value>ara</Value>
+                                <Value>aze</Value>
+                                <Value>bel</Value>
+                                <Value>ben</Value>
+                                <Value>bul</Value>
+                                <Value>cat</Value>
+                                <Value>ces</Value>
+                                <Value>chi_sim</Value>
+                                <Value>chi_tra</Value>
+                                <Value>chr</Value>
+                                <Value>dan</Value>
+                                <Value>dan-frak</Value>
+                                <Value>deu</Value>
+                                <Value>deu-frak</Value>
+                                <Value>ell</Value>
+                                <Value>eng</Value>
+                                <Value>enm</Value>
+                                <Value>epo</Value>
+                                <Value>equ</Value>
+                                <Value>est</Value>
+                                <Value>eus</Value>
+                                <Value>fin</Value>
+                                <Value>fra</Value>
+                                <Value>frk</Value>
+                                <Value>frm</Value>
+                                <Value>glg</Value>
+                                <Value>grc</Value>
+                                <Value>heb</Value>
+                                <Value>hin</Value>
+                                <Value>hrv</Value>
+                                <Value>hun</Value>
+                                <Value>ind</Value>
+                                <Value>isl</Value>
+                                <Value>ita</Value>
+                                <Value>ita-old</Value>
+                                <Value>jpn</Value>
+                                <Value>kan</Value>
+                                <Value>kor</Value>
+                                <Value>lat-lid</Value>
+                                <Value>lav</Value>
+                                <Value>lit</Value>
+                                <Value>mal</Value>
+                                <Value>mkd</Value>
+                                <Value>mlt</Value>
+                                <Value>msa</Value>
+                                <Value>nld</Value>
+                                <Value>nor</Value>
+                                <Value>osd</Value>
+                                <Value>pol</Value>
+                                <Value>por</Value>
+                                <Value>ron</Value>
+                                <Value>rus</Value>
+                                <Value>slk</Value>
+                                <Value>slk-frak</Value>
+                                <Value>slv</Value>
+                                <Value>spa</Value>
+                                <Value>spa-old</Value>
+                                <Value>srp</Value>
+                                <Value>swe</Value>
+                                <Value>swe-frak</Value>
+                                <Value>tha</Value>
+                                <Value>tgl</Value>
+                                <Value>tur</Value>
+                                <Value>ukr</Value>
+                                <Value>vie</Value>
+                            </Restriction>
+                            <Required>true</Required>
+                            <CliMapping>langmod</CliMapping>
+                            <Documentation>Language module used by Tesseract</Documentation>
+                            <Default>deu-frak</Default>
+                        </input>
+                    </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
@@ -141,7 +144,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
             Full path to the directory where the tool has been installed.

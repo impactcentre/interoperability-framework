@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>geocorrpagecurl</id>
     <name>NCSR Geometric Correction Page Curl</name>
     <homepage>http://www.digitisation.eu/index.php?id=97</homepage>
     <version>4</version>
     <installation>
         <os type="linux">
-	        Not currently supported.
+            Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the NCSR Geometric Correction Toolkit for Page Curl. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Requires installation of the NCSR Geometric Correction Toolkit for Page Curl. THE FULL PATH TO THE
+            EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="GeometricCorrectionPageCurl" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="GeometricCorrectionPageCurl" type="migrate"
+                 servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for geometric correction of page curl in scanned document images</description>
             <operations>
                 <operation oid="1" name="uncurl">
                     <description>Correct page curl in document image</description>
-		            <!--
+                    <!--
                     Usage:
                     Page_Curl_Correction_v4.exe 0|1 <in> <out>
 
                     Where:
-		            0|1  If this parameter is 1 then only coarse rectification is applied otherwise coarse and fine rectification are applied
-		            <in> Input image file in TIF format
-		            <out> Corrected output image file
-		            -->
+                    0|1  If this parameter is 1 then only coarse rectification is applied otherwise coarse and fine rectification are applied
+                    <in> Input image file in TIF format
+                    <out> Corrected output image file
+                    -->
                     <command>Page_Curl_Correction_v4.exe 0 ${infile} ${outfile}</command>
                     <inputs>
                         <input name="infile">
@@ -64,7 +67,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
 	        Full path to the directory where the tool has been installed.
@@ -74,7 +77,7 @@
 	        or you can use just slashes,
 	        e.g. c:/foo/bar
 	        -->
-	        <toolsbasedir>C:\\GEOCORR\\</toolsbasedir>
+            <toolsbasedir>C:\\GEOCORR\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

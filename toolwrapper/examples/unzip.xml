@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>unzip</id>
     <name>Unzip</name>
     <homepage>http://linux.die.net/man/1/unzip</homepage>
@@ -13,7 +14,8 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Unzip" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="Unzip" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Services for extracting ZIP files</description>
             <operations>
                 <operation oid="1" name="unzip">
@@ -86,7 +88,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
             Full path to the directory where the tool has been installed.

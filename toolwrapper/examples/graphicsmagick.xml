@@ -1,72 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>graphicsmagick</id>
     <name>Graphicsmagick</name>
     <homepage>http://www.graphicsmagick.org/</homepage>
     <version></version>
     <installation>
         <os type="linux">
-	        Available under most distributions via package management.
+            Available under most distributions via package management.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT
+            CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="Graphicsmagick" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="Graphicsmagick" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Services for image conversion using graphicsmagick convert</description>
             <operations>
                 <operation oid="1" name="convert">
                     <description>Convert image using graphicsmagick</description>
-		            <!--
+                    <!--
                     Usage:
                     gm[.exe] convert -depth <depth> -quality <quality> -colors <colors> -colorspace <colorspace> -compress <compress> <input> <output>
 
                     Where:
-		            <depth> 		Image bit depth
-		            <quality> 		JPEG/MIFF/PNG compression level
-		            <colors> 		Number of colors in the image
-		            <colorspace> 	Set image colorspace
-		            <compress> 		Compression type
-		            <input> 		Input image file
-		            <output> 		Output image file
-		    
-		            For full documentation of graphicsmagick command line parameters, see
-		            http://www.graphicsmagick.org/convert.html
-		            -->
-                    <command>gm convert -depth ${depth} -quality ${quality} -colors ${numcolors} -colorspace ${colorspace} -compress ${compress} ${input} ${output}</command>
+                    <depth> 		Image bit depth
+                    <quality> 		JPEG/MIFF/PNG compression level
+                    <colors> 		Number of colors in the image
+                    <colorspace> 	Set image colorspace
+                    <compress> 		Compression type
+                    <input> 		Input image file
+                    <output> 		Output image file
+
+                    For full documentation of graphicsmagick command line parameters, see
+                    http://www.graphicsmagick.org/convert.html
+                    -->
+                    <command>gm convert -depth ${depth} -quality ${quality} -colors ${numcolors} -colorspace
+                        ${colorspace} -compress ${compress} ${input} ${output}
+                    </command>
                     <inputs>
-			            <input name="depth">
-			                <Datatype>xsd:int</Datatype>
-			                <Required>true</Required>
-			                <Restriction>
-				                <Value>1</Value>
-				                <Value>8</Value>
-				                <Value>16</Value>
-				                <Value>24</Value>
-			                </Restriction>
-			                <Default>8</Default>
-			                <CliMapping>depth</CliMapping>
-			                <Documentation>Color depth of output image</Documentation>
-			            </input>
-			            <input name="quality">
-			                <Datatype>xsd:int</Datatype>
-			                <Required>true</Required>
-			                <Default>100</Default>
-			                <CliMapping>quality</CliMapping>
-			                <Documentation>Image compression quality: integer between 1 - 100</Documentation>
-			            </input>
-			            <input name="numcolors">
-			                <Datatype>xsd:int</Datatype>
-			                <Required>true</Required>
-			                <Default>256</Default>
-			                <CliMapping>numcolors</CliMapping>
-			                <Documentation>Number of colors of output image</Documentation>
-			            </input>
-			            <input name="colorspace">
-			                <Datatype>xsd:string</Datatype>
-			                <Required>true</Required>
-			                <Restriction>
+                        <input name="depth">
+                            <Datatype>xsd:int</Datatype>
+                            <Required>true</Required>
+                            <Restriction>
+                                <Value>1</Value>
+                                <Value>8</Value>
+                                <Value>16</Value>
+                                <Value>24</Value>
+                            </Restriction>
+                            <Default>8</Default>
+                            <CliMapping>depth</CliMapping>
+                            <Documentation>Color depth of output image</Documentation>
+                        </input>
+                        <input name="quality">
+                            <Datatype>xsd:int</Datatype>
+                            <Required>true</Required>
+                            <Default>100</Default>
+                            <CliMapping>quality</CliMapping>
+                            <Documentation>Image compression quality: integer between 1 - 100</Documentation>
+                        </input>
+                        <input name="numcolors">
+                            <Datatype>xsd:int</Datatype>
+                            <Required>true</Required>
+                            <Default>256</Default>
+                            <CliMapping>numcolors</CliMapping>
+                            <Documentation>Number of colors of output image</Documentation>
+                        </input>
+                        <input name="colorspace">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <Restriction>
                                 <Value>CMY</Value>
                                 <Value>CMYK</Value>
                                 <Value>Gray</Value>
@@ -91,13 +96,13 @@
                                 <Value>YUV</Value>
                             </Restriction>
                             <Default>Gray</Default>
-			                <CliMapping>colorspace</CliMapping>
-			                <Documentation>Color space of output image</Documentation>
-			            </input>
-			            <input name="compress">
-			                <Datatype>xsd:string</Datatype>
-			                <Required>true</Required>
-			                <Restriction>
+                            <CliMapping>colorspace</CliMapping>
+                            <Documentation>Color space of output image</Documentation>
+                        </input>
+                        <input name="compress">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <Restriction>
                                 <Value>None</Value>
                                 <Value>Fax</Value>
                                 <Value>Group4</Value>
@@ -105,11 +110,11 @@
                                 <Value>LZW</Value>
                                 <Value>RLE</Value>
                                 <Value>Zip</Value>
-			                </Restriction>
-			                <Default>None</Default>
-			                <CliMapping>compress</CliMapping>
-			                <Documentation>Compression used for output image</Documentation>
-			            </input>
+                            </Restriction>
+                            <Default>None</Default>
+                            <CliMapping>compress</CliMapping>
+                            <Documentation>Compression used for output image</Documentation>
+                        </input>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
@@ -145,17 +150,17 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
-	        <!--
-	        Full path to the directory where the tool has been installed.
-	        THE PATH MUST NOT CONTAIN WHITESPACES!
-	        If you want to use backslashes (\) then you must repeat them twice,
-	        e.g. c:\\foo\\bar
-	        or you can use just slashes,
-	        e.g. c:/foo/bar
-	        -->
-	        <toolsbasedir></toolsbasedir>
+            <!--
+               Full path to the directory where the tool has been installed.
+               THE PATH MUST NOT CONTAIN WHITESPACES!
+               If you want to use backslashes (\) then you must repeat them twice,
+               e.g. c:\\foo\\bar
+               or you can use just slashes,
+               e.g. c:/foo/bar
+               -->
+            <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>

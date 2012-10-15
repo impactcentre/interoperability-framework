@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>gamera</id>
     <name>Gamera</name>
     <homepage>http://gamera.informatik.hsnr.de/addons/ocr4gamera/index.html</homepage>
     <version>1-0-6</version>
     <installation>
         <os type="linux">
-	        Available under most distributions via package management.
+            Available under most distributions via package management.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT
+            CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="Gamera" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="Gamera" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Services for text recognition using Gamera</description>
             <operations>
                 <operation oid="1" name="gamera">
                     <description>Perform text recognition on PNG image file</description>
-		            <!--
+                    <!--
                     Usage:
                     ocr4gamera.py -x <trainingdata> [options] <imagefile>
 
                     Where:
-		            <trainingdata> 	Training data in XML format
-		            <imagefile> 	Input image file in PNG format
-			        For documentation on gamera, see
-		            http://gamera.informatik.hsnr.de/addons/ocr4gamera/index.html
-		            -->
-                    <command>ocr4gamera.py -x ${traindata} -d  -o ${output} ${input}</command>
+                    <trainingdata> 	Training data in XML format
+                    <imagefile> 	Input image file in PNG format
+                    For documentation on gamera, see
+                    http://gamera.informatik.hsnr.de/addons/ocr4gamera/index.html
+                    -->
+                    <command>ocr4gamera.py -x ${traindata} -d -o ${output} ${input}</command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
@@ -37,7 +40,7 @@
                             <Documentation>URL reference to image file in PNG format</Documentation>
                             <Default>http://kbdemo.dnsalias.org/testfiles/image.png</Default>
                         </input>
-			            <input name="traindata">
+                        <input name="traindata">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>traindata</CliMapping>
@@ -73,7 +76,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
 	        Full path to the directory where the tool has been installed.

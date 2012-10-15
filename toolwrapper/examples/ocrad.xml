@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
     <id>ocrad</id>
     <name>Ocrad</name>
     <homepage>http://www.gnu.org/s/ocrad/</homepage>
@@ -13,16 +14,17 @@
         </os>
     </installation>
     <services>
-        <service sid="1" name="Ocrad" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="Ocrad" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Services for text recognition using GNU Ocrad</description>
             <operations>
                 <operation oid="1" name="ocrad">
                     <description>Perform text recognition using ocrad</description>
-		            <!--
+                    <!--
                     Usage: 
-		            ocrad [options] <input>
-					
-		            Where:
+                    ocrad [options] <input>
+
+                    Where:
                     [options]
                     -h, - - help               display this help and exit
                     -V, - - version            output version information and exit
@@ -46,7 +48,8 @@
                     For full documentation of ocrad command line parameters, see
                     http://www.gnu.org/software/ocrad/manual/ocrad_manual.html
                     -->
-                    <command>ocrad --format=utf8 --force --layout --output=${output} --export=${result} ${input}</command>
+                    <command>ocrad --format=utf8 --force --layout --output=${output} --export=${result} ${input}
+                    </command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
@@ -90,7 +93,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
             Full path to the directory where the tool has been installed.

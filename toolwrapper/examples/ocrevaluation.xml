@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>ocrevaluation</id>
     <name>NCSR OCR Evaluation</name>
     <homepage>http://www.digitisation.eu/index.php?id=76</homepage>
@@ -9,11 +10,13 @@
             Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the NCSR OCR Evaluation Toolkit. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Requires installation of the NCSR OCR Evaluation Toolkit. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN
+            WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="OCREvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+        <service sid="1" name="OCREvaluation" type="migrate" servicepackage="eu.impact_project.iif.service"
+                 contextpathprefix="/impactservices">
             <description>Service for evaluating OCR accuracy vs ground truth using plain text files</description>
             <operations>
                 <operation oid="1" name="evalOcr">
@@ -38,7 +41,9 @@
                     <wordresult> Word evaluation statistics report
                     <xmlreport> Combined statistics XML report
                     -->
-                    <command>OCREval.exe ${encoding} ${stopwordlist} ${groundtruth} ${ocr} ${charresult} ${wordresult} ${xmlreport}</command>
+                    <command>OCREval.exe ${encoding} ${stopwordlist} ${groundtruth} ${ocr} ${charresult} ${wordresult}
+                        ${xmlreport}
+                    </command>
                     <inputs>
                         <input name="encoding">
                             <Datatype>xsd:string</Datatype>
@@ -58,21 +63,22 @@
                         </input>
                         <input name="stopwordlist">
                             <Datatype>xsd:anyURI</Datatype>
-                                        <Required>true</Required>
+                            <Required>true</Required>
                             <Default>http://kbdemo.dnsalias.org/testfiles/stopwords.txt</Default>
                             <CliMapping>stopwordlist</CliMapping>
-                            <Documentation>URL reference to list with stop words to disregard in evaluation</Documentation>
+                            <Documentation>URL reference to list with stop words to disregard in evaluation
+                            </Documentation>
                         </input>
                         <input name="groundtruth">
                             <Datatype>xsd:anyURI</Datatype>
-                                        <Required>true</Required>
+                            <Required>true</Required>
                             <Default>http://kbdemo.dnsalias.org/testfiles/groundtruth.txt</Default>
                             <CliMapping>groundtruth</CliMapping>
                             <Documentation>URL reference to ground truth text file</Documentation>
                         </input>
                         <input name="ocr">
                             <Datatype>xsd:anyURI</Datatype>
-                                        <Required>true</Required>
+                            <Required>true</Required>
                             <Default>http://kbdemo.dnsalias.org/testfiles/ocr.txt</Default>
                             <CliMapping>ocr</CliMapping>
                             <Documentation>URL reference to OCR result text file</Documentation>
@@ -84,8 +90,8 @@
                             <Documentation>Evaluation ID</Documentation>
                             <Default>Default_Evaluation_ID</Default>
                         </input>
-		            </inputs>
-		            <outputs>
+                    </inputs>
+                    <outputs>
                         <output name="charresult">
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>charresult</CliMapping>
@@ -93,14 +99,14 @@
                             <Documentation>URL reference to character evaluation output file</Documentation>
                             <Extension>txt</Extension>
                         </output>
-			            <output name="wordresult">
+                        <output name="wordresult">
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>wordresult</CliMapping>
                             <Required>false</Required>
                             <Documentation>URL reference to word evaluation output file</Documentation>
                             <Extension>txt</Extension>
                         </output>
-			            <output name="xmlreport">
+                        <output name="xmlreport">
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>xmlreport</CliMapping>
                             <Required>false</Required>
@@ -126,7 +132,7 @@
             <manager>
                 <user>tomcat</user>
                 <password>tomcat</password>
-		        <path>manager</path>
+                <path>manager</path>
             </manager>
             <!--
 	        Full path to the directory where the tool has been installed.
@@ -136,7 +142,7 @@
 	        or you can use just slashes,
 	        e.g. c:/foo/bar
 	        -->
-	        <toolsbasedir>C:\\OCREVAL\\</toolsbasedir>
+            <toolsbasedir>C:\\OCREVAL\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
