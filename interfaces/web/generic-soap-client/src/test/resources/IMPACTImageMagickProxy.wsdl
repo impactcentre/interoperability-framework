@@ -121,7 +121,7 @@
 
             <xsd:complexType name="ByUrlRequestType">
                 <xsd:sequence>
-                    <xsd:element default="http://fue.onb.ac.at/impact/testdata/19080603_0020.png" maxOccurs="1" minOccurs="1" name="inputUrl" type="xsd:anyURI" use="required"/>
+                    <xsd:element default="http://kbdemo.dnsalias.org/testfiles/00046135.tif" maxOccurs="1" minOccurs="1" name="inputUrl" type="xsd:anyURI"/>
                     <xsd:element default="tiff" maxOccurs="1" minOccurs="0" name="targetFormat" type="tns:fileFormatType"/>
                     <xsd:element default="None" maxOccurs="1" minOccurs="0" name="compression" type="tns:compressionType"/>
                     <xsd:element default="Gray" maxOccurs="1" minOccurs="0" name="colorspace" type="tns:colorspaceType"/>
@@ -131,21 +131,22 @@
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:element name="ByUrlRequest" type="tns:ByUrlRequestType"/>
+
             <xsd:complexType name="SimpleByUrlRequestType">
                 <xsd:sequence>
-                    <xsd:element maxOccurs="1" minOccurs="1" name="inputUrl" type="xsd:anyURI" use="required"/>
+                    <xsd:element default="http://kbdemo.dnsalias.org/testfiles/00046135.tif" maxOccurs="1" minOccurs="1" name="inputUrl" type="xsd:anyURI" />
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:element name="SimpleByUrlRequest" type="tns:SimpleByUrlRequestType"/>
 
             <xsd:complexType name="ByUrlResponseType">
                 <xsd:sequence>
-                    <xsd:element maxOccurs="1" minOccurs="1" name="success" type="xsd:boolean" use="required"/>
-                    <xsd:element maxOccurs="1" minOccurs="1" name="returncode" type="xsd:int" use="required"/>
-                    <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string" use="required"/>
-                    <xsd:element maxOccurs="1" minOccurs="1" name="toolProcessingTime" type="xsd:int" use="required"/>
-                    <xsd:element maxOccurs="1" minOccurs="1" name="processingUnit" type="xsd:string" use="required"/>
-                    <xsd:element maxOccurs="1" minOccurs="1" name="processingLog" type="xsd:string" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="success" type="xsd:boolean"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="returncode" type="xsd:int"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="toolProcessingTime" type="xsd:int"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="processingUnit" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="processingLog" type="xsd:string"/>
                     <xsd:element maxOccurs="1" minOccurs="0" name="outputUrl" type="xsd:anyURI"/>
                 </xsd:sequence>
             </xsd:complexType>
