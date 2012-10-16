@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>typewrittenocr</id>
     <name>USAL Typewritten OCR Prototype</name>
     <homepage>http://www.digitisation.eu/index.php?id=105</homepage>
@@ -10,13 +9,11 @@
             Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the USAL Typewritten OCR Prototype. THE FULL PATH TO THE EXECUTABLE MUST NOT
-            CONTAIN WHITESPACES!
+            Requires installation of the USAL Typewritten OCR Prototype. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="TypewrittenOcrPrototype" type="migrate" servicepackage="eu.impact_project.iif.service"
-                 contextpathprefix="/impactservices">
+        <service sid="1" name="TypewrittenOcrPrototype" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for OCR prototype developed specifically for typewritten documents</description>
             <operations>
                 <operation oid="1" name="tocr">
@@ -32,13 +29,11 @@
                     <inputxml>          Filename of an XML file containing a region and line segmentation
                     <outputxml>         Filename to which an XML file containing the resulting analysis should be written
                     [classifierweights] A comma seperated list (without spaces) of the weight to give each classifier.
-                    Currently there are two classifiers available: Template matching and Feature analysis
-                    So to weight them equally, for example, input: 1,1
+                    			Currently there are two classifiers available: Template matching and Feature analysis
+                    			So to weight them equally, for example, input: 1,1
                     [paramfile] 	Parameter file. Set to "-1" if not used
                     -->
-                    <command>TypewrittenOCR-0-2-145.exe ${bwimage} ${grayimage} ${colorimage} ${inputxml} ${outputxml}
-                        ${weights}
-                    </command>
+                    <command>TypewrittenOCR-0-2-145.exe ${bwimage} ${grayimage} ${colorimage} ${inputxml} ${outputxml} ${weights}</command>
                     <inputs>
                         <input name="bwimage">
                             <Datatype>xsd:anyURI</Datatype>

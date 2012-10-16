@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>exiftool</id>
     <name>ExifTool by Phil Harvey</name>
     <homepage>http://www.sno.phy.queensu.ca/~phil/exiftool/</homepage>
@@ -10,13 +9,11 @@
             Available under most distributions via package management.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT
-            CONTAIN WHITESPACES!
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="Exiftool" type="migrate" servicepackage="eu.impact_project.iif.service"
-                 contextpathprefix="/impactservices">
+        <service sid="1" name="Exiftool" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for reading image metadata using exiftool</description>
             <operations>
                 <operation oid="1" name="exiftool">

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+    <id>abbyyocrcloud</id>
+    <name>Abbyy OCR Cloud</name>
+    <homepage>http://ocrsdk.com/</homepage>
+    <version></version>
+    <installation>
+        <os type="linux">
+            Natively supported.
+        </os>
+        <os type="windows">
+            Not currently supported. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="AbbyyOcrCloud" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for text recognition using Abbyy OCR cloud</description>
+            <operations>
+                <operation oid="1" name="ocr">
+                    <description>Perform text recognition on input image file</description>
+                    <!--
+                    Usage:
+                    cloud_recognize <input> <output> [-l language] [-f txt|rtf|docx|xlsx|pptx|pdfSearchable|pdfTextAndImages|xml]
+		    - Note that you need to have the {ABBYY_APPID} and {ABBYY_PWD} environment variables defined!
+
+                    Where:
+                    <input> Input image file
+                    <output> Output file
+                    <language> Language used in recognition
+		    <txt|rtf|docx|xlsx|pptx|pdfSearchable|pdfTextAndImages|xml> Output format
+                    -->
+                    <command>sh cloud_recognize.sh ${input} ${output} -l ${language} -f ${format}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>infile</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/0046135.tif</Default>
+                        </input>
+                        <input name="language">
+                            <Datatype>xsd:string</Datatype>
+                            <Restriction>
+				<Value>Bulgarian</Value>
+                                <Value>Catalan</Value>
+                                <Value>Croatian</Value>
+                                <Value>Czech</Value>
+                                <Value>Danish</Value>
+                                <Value>Dutch</Value>
+                                <Value>English</Value>
+                                <Value>Estonian</Value>
+                                <Value>Finnish</Value>
+                                <Value>French</Value>
+                                <Value>German</Value>
+                                <Value>Greek</Value>
+                                <Value>Hungarian</Value>
+                                <Value>Italian</Value>
+                                <Value>Latin</Value>
+                                <Value>Latvian</Value>
+                                <Value>Lithuanian</Value>
+                                <Value>Norwegian</Value>
+                                <Value>OldEnglish</Value>
+                                <Value>OldFrench</Value>
+                                <Value>OldGerman</Value>
+                                <Value>OldItalian</Value>
+                                <Value>OldSpanish</Value>
+                                <Value>Polish</Value>
+                                <Value>PortugueseStandard</Value>
+                                <Value>Romanian</Value>
+                                <Value>Russian</Value>
+                                <Value>SerbianCyrillic</Value>
+                                <Value>SerbianLatin</Value>
+                                <Value>Slovak</Value>
+                                <Value>Slovenian</Value>
+                                <Value>Spanish</Value>
+                                <Value>Swedish</Value>
+                                <Value>Turkish</Value>
+                                <Value>Ukrainian</Value>
+                            </Restriction>
+                            <Required>true</Required>
+                            <CliMapping>language</CliMapping>
+                            <Documentation>Language used in recognition process</Documentation>
+                            <Default>German</Default>
+                        </input>
+			<input name="format">
+                            <Datatype>xsd:string</Datatype>
+                            <Restriction>
+                                <Value>txt</Value>
+                                <Value>rtf</Value>
+				<Value>docx</Value>
+				<Value>xlsx</Value>
+				<Value>pptx</Value>
+				<Value>pdfSearchable</Value>
+				<Value>pdfTextAndImages</Value>
+				<Value>xml</Value>
+                            </Restriction>
+                            <Required>true</Required>
+                            <CliMapping>format</CliMapping>
+                            <Documentation>Output file format</Documentation>
+                            <Default>txt</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>txt</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+	    Full path to the directory where the tool has been installed.
+	    THE PATH MUST NOT CONTAIN WHITESPACES!
+	    If you want to use backslashes (\) then you must repeat them twice,
+	    e.g. c:\\foo\\bar
+ 	    or you can use just slashes,
+	    e.g. c:/foo/bar
+	    -->
+            <toolsbasedir></toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

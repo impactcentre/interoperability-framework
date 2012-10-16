@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>gocr</id>
     <name>GOCR</name>
     <homepage>http://jocr.sourceforge.net/</homepage>
@@ -10,13 +9,11 @@
             Available under most distributions via package management.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT
-            CONTAIN WHITESPACES!
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="Gocr" type="migrate" servicepackage="eu.impact_project.iif.service"
-                 contextpathprefix="/impactservices">
+        <service sid="1" name="Gocr" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Services for text recognition using gocr</description>
             <operations>
                 <operation oid="1" name="gocr">
@@ -26,7 +23,7 @@
                     gocr[049.exe] -m 4 -i <input> -o <output> -f <format>
 
                     Where:
-                    -m 4  		switch on layout analysis or zoning (development)
+                    -m 4  	Switch on layout analysis or zoning (development)
                     <input> 	Input image file in PNM format
                     <output> 	Output file
                     <format> 	Output format; either XML (with coordinates), HTML, UTF8, ASCII, ISO8859_1 or TeX

@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>pageconverter</id>
     <name>USAL PAGE Converter</name>
     <homepage>http://www.digitisation.eu/</homepage>
@@ -10,13 +9,11 @@
             Not currently supported.
         </os>
         <os type="windows">
-            Requires installation of the USAL PAGE Schema Converter. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN
-            WHITESPACES!
+            Requires installation of the USAL PAGE Schema Converter. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="PAGEConverter" type="migrate" servicepackage="eu.impact_project.iif.service"
-                 contextpathprefix="/impactservices">
+        <service sid="1" name="PAGEConverter" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Service for converting PAGE XML files according to replacement rules</description>
             <operations>
                 <operation oid="1" name="pageconverter">

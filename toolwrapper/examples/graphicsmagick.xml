@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
     <id>graphicsmagick</id>
     <name>Graphicsmagick</name>
     <homepage>http://www.graphicsmagick.org/</homepage>
@@ -10,13 +9,11 @@
             Available under most distributions via package management.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT
-            CONTAIN WHITESPACES!
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="Graphicsmagick" type="migrate" servicepackage="eu.impact_project.iif.service"
-                 contextpathprefix="/impactservices">
+        <service sid="1" name="Graphicsmagick" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Services for image conversion using graphicsmagick convert</description>
             <operations>
                 <operation oid="1" name="convert">
@@ -37,8 +34,7 @@
                     For full documentation of graphicsmagick command line parameters, see
                     http://www.graphicsmagick.org/convert.html
                     -->
-                    <command>gm convert -depth ${depth} -quality ${quality} -colors ${numcolors} -colorspace
-                        ${colorspace} -compress ${compress} ${input} ${output}
+                    <command>gm convert -depth ${depth} -quality ${quality} -colors ${numcolors} -colorspace ${colorspace} -compress ${compress} ${input} ${output}
                     </command>
                     <inputs>
                         <input name="depth">
@@ -153,13 +149,13 @@
                 <path>manager</path>
             </manager>
             <!--
-               Full path to the directory where the tool has been installed.
-               THE PATH MUST NOT CONTAIN WHITESPACES!
-               If you want to use backslashes (\) then you must repeat them twice,
-               e.g. c:\\foo\\bar
-               or you can use just slashes,
-               e.g. c:/foo/bar
-               -->
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
             <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
