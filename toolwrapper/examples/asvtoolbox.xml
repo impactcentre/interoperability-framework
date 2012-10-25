@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+    <id>asvtoolbox</id>
+    <name>ASV Toolbox</name>
+    <homepage>http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/</homepage>
+    <version>1-0</version>
+    <installation>
+        <os type="linux">
+            Requires Java. The ASV Toolbox is available from here: http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/.
+        </os>
+        <os type="windows">
+            Requires Java. The ASV Toolbox is available from here: http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/.
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="ASV_chineseWhispers" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Service for efficient graph clustering</description>
+            <operations>
+                <operation oid="1" name="chineseWhispers">
+                    <description>Cluster undirected, weighted graphs</description>
+                    <!--
+                    Usage:
+					java -Xmx500M -classpath .;./lib/ASV_CW.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.ChineseWhispers.main.Start -F -i examples\7lang_nodes.txt -o 7lang_result.txt
+ 
+					-H | -h | --help   Writes out this Help.
+					-D Use database specified in CW_DBproperties.ini as input.
+					-F Use files specified by -i as input.
+					-i Use files as input.
+					filename1  The node list 2-col.
+					filename2  The edge list 3-col.
+					-a Sets the algorithm options
+						"top"
+						"dist_nolog"
+						"dist_log"
+						"vote x" with x in [0.0,1.0]
+					-t Weight threshold (default 0)
+					-k Keep class rate (default 0.0)
+					-m Mutation mode [dec|constant] value(pos.real)
+					-d Number of iterations x>0 (default x=20).
+					-o Writes clustering to filename.
+					filename    The filename for output.
+					-O Writes clustering into database specified in CW_DBproperties.ini.
+					-S Do not renumber input.
+					-R keep graph on disk (large graphs)
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/CW.html
+                    -->
+                    <command>java -Xmx500M -classpath .;./lib/ASV_CW.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.ChineseWhispers.main.Start -F -i ${input} -o ${output}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/7lang_nodes.txt</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+		<service sid="2" name="ASV_levenshtein" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for verifying a words spelling and finding prosecutions for this word</description>
+            <operations>
+                <operation oid="1" name="levenshtein">
+                    <description>Verify a words spelling and find prosecutions</description>
+                    <!--
+                    Usage:
+					java -Xmx500M -classpath .; ./lib/ASV_Levenshtein.jar -Djava.ext.dirs=.;.lib de.uni_leipzig.asv.toolbox.levenshtein.Levenshtein -C -i ./resources/levenshtein/plain/wordlist_de.txt -o ./examples/de_cli.dawg
+ 
+					-? Print this information.
+					-C Create a word graph from file (-i) or from a database.
+					-g Start gui mode.
+					-w Specify the word to check. (Use with -f)
+					-f Specify the dawg file to use.
+					-i Specify the file containing words. (Use with -C).
+					-o Save output to the specified file.
+					-l Levenshtein distance to use. (default is 1)
+					-D Specify the driver (default is com.mysql.jdbc.Driver).
+					-P Specify the protocol (default is mysql).
+					-h Specify the database host (default is localhost).
+					-x Set the port to use. (default is 3306).
+					-d Specify the database
+					-u Database user name.
+					-p The user's password.
+					-t Specify the table.
+					-W Specify the table's column which contains the words.
+					-c Specify the table's column which contains the word ids.
+					-I Specify the lowest word id. (default is 101)
+					-O Specify the numbers of words. (default is 2000)
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/Levensthein.htm
+                    -->
+                    <command>java -Xmx500M -classpath .;./lib/ASV_Levenshtein.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.levenshtein.Levenshtein -C -i ${input} -o ${output}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/wordlist_de.txt</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+		<service sid="3" name="ASV_baseforms" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for reducing inflected word forms to their base form and splitting compound nouns</description>
+            <operations>
+                <operation oid="1" name="baseforms">
+                    <description>Reduce inflected word forms to their base form and split compound nouns</description>
+                    <!--
+                    Usage:
+					java -classpath .;./lib/ASV_Baseforms.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.baseforms.BaseformsCL -cnd -i Baumschule -l German -o
+ 
+					-help print this help
+					-br baseform reduction
+					-cnd compound noun decomposition
+					
+					Options:
+					-i word input a word
+					-if file input a wordfile
+					-o output at screen
+					-of file output in spezified file
+					-l lang choose a language
+					-rt file load a reduction tree from spezified file
+					
+					following option are only for baseform reduction:
+					-wf worform choose a wordform
+					
+					following options are only for compound noun decompodition:
+					-ft file load a forward tree from the spezified file
+					-bt file load a backward tree from the spezified file
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/Baseforms%20Tool.htm
+                    -->
+                    <command>java -classpath .;./lib/ASV_Baseforms.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.baseforms.BaseformsCL -cnd -if ${input} -l {language} -of ${output}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/word_de.txt</Default>
+                        </input>
+						<input name="language">
+							<Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>language</CliMapping>
+                            <Documentation>Language model</Documentation>
+                            <Default>German</Default>
+						</input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+		<service sid="4" name="ASV_pretree" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for classifying words with Pretrees, evaluating your Pretree with a word set and creating Pretrees from your data</description>
+            <operations>
+                <operation oid="1" name="pretree">
+                    <description>Classify words with Pretrees, evaluate your Pretree with a word set and create Pretrees from your data</description>
+                    <!--
+                    Usage:
+					java -classpath .;./lib/ASV_Pretree.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.toolbox.pretree.PretreeTool [commands][options] [parameters]
+ 
+					train, t: trains a pretree from a map file and save it to a tree file
+                                        java de.uni_leipzig.toolbox.pretree.PretreeTool t [options] <mapfile> <treefile>
+					prune, p: prune a pretree given as a tree file and save it to another tree file
+                                        java de.uni_leipzig.toolbox.pretree.PretreeTool p [options] <treefile_not_pruned> <treefile_pruned>
+					trainprune, tp: train and prune a pretree from a map file and save it to a tree file
+                                        java de.uni_leipzig.toolbox.pretree.PretreeTool tp [options] <mapfile> <treefile>
+					classify, c: classifies a word with the tree from a given tree file
+                                        java de.uni_leipzig.toolbox.pretree.PretreeTool c [options] <word> <treefile>
+					convert, cv: converts trees in the given tree files in to the latest format
+                                        java de.uni_leipzig.toolbox.pretree.PretreeTool cv [options] <treefile_0> <treefile_1> … <treefile_n>
+					print, pr: print out the pretrees that are given in the tree files
+                                        java de.uni_leipzig.toolbox.pretree.PretreeTool pr [options] <treefile_0> <treefile_1> … <treefile_n>
+
+					Options:
+					[options] could be replaced through following commands
+
+					-t=#: sets the threshold for classifying to #, this should be a value between 0 and 1
+					-f: can be used only with the command classify, c : instead of single word all words from a word will are taken for classification, -f must appear directly before the
+						absolute path to the word file
+						
+					the following options are only for commands train and trainprune
+					-rv: reverse tree
+					-ic: ignore case
+					-sc=#: character # as first “number”, default: 33
+					-ec=#: character # as last “number”, default: 248
+					-az=#: character # as number separator, default: 2
+					-ak=#: character # as node separator, default: 3
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/Pretree.html
+                    -->
+                    <command>java -classpath .;./lib/ASV_Pretree.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.toolbox.pretree.PretreeTool trainprune ${input} ${output}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/de-BaseRulesV.txt</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+		<service sid="5" name="ASV_terminologyExtraction" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for extracting technical terms from a given text for use in terminological databases and dictionaries</description>
+            <operations>
+                <operation oid="1" name="terminologyExtraction">
+                    <description>Extract technical terms from a given text for use in terminological databases and dictionaries</description>
+                    <!--
+                    Usage:
+					java -Xmx500M -classpath .;./lib/ASV_TE.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.te.TETool [OPTIONS] TEXTFILE [TERMSFILE]
+ 
+					-l=# --language=# specifies the language of the text; possible: en, de; default: en
+					-ft=# --min_freq_text=# sets minimum frequency of a word in the text to be taken into account to #, default 1
+					-fc=# --min_freq_corpus=# sets minimum frequency of a word in the corpus to be taken into account to #, default 2
+					-ms=# --min_significance=# sets minimum significane of a word to be taken into account to #, default 20.0
+					-sm=# --sig_measure=# specifies the significances measure; possible: lr (likelihood ratio), fr (frequency ratio); default: lr
+					-s --show_significances show significances
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/TE.html
+                    -->
+                    <command>java -Xmx500M -classpath .;./lib/ASV_TE.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.te.TETool -l=de -s ${input} ${output}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/text_deutsch.txt</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+		<service sid="6" name="ASV_pendulum" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for finding named entities by bootstrapping</description>
+            <operations>
+                <operation oid="1" name="pendulum">
+                    <description>Find named entities by bootstrapping</description>
+                    <!--
+                    Usage:
+					java -Xmx500M -classpath .;./lib/ASV_Pendulum.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.pendel.PendelCL configfile -o outputfile [-t]
+ 
+					configfile path to the configuration file which should be used for the run
+					-o outputfile path to the output file in which the output will be written
+					-t use the internal tokenizer
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/Pendulum.html
+                    -->
+                    <command>java -Xmx500M -classpath .;./lib/ASV_Pendulum.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.pendel.PendelCL ${input} -o ${output} -t</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to config file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/Pendel_localhost.cfg</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+		<service sid="7" name="ASV_namerec" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for finding named entities by bootstrapping</description>
+            <operations>
+                <operation oid="1" name="pendulum">
+                    <description>Find named entities by bootstrapping</description>
+                    <!--
+                    Usage:
+					java -Xmx500M -classpath .;./lib/ASV_Namerec.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.namerec.Recognizer configfile [-t -rn] [-o outfile] db|file|sentence [filename|sentence]
+ 
+					configfile - path to a configuration file of this tool containing the settings for this run
+					-t use tokenizer
+					-rn replace numbers
+					-o outputfile write output to file outputfile, if not specified written to console
+					db use sentences from database for run(configured in configfile)
+					file (needs filename behind separated by space) use sentences from file filename for run
+					sentence (needs sentence behind separated by space) use the specified sentence for run
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/Namerec.html
+                    -->
+                    <command>java -Xmx500M -classpath .;./lib/ASV_Namerec.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.namerec.Recognizer ${config} -t -o ${output} file ${input}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/Namerec.txt</Default>
+                        </input>
+						<input name="config">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>config</CliMapping>
+                            <Documentation>URL reference to config file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/NameRec_noWriteback.cfg</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+		<service sid="8" name="ASV_jlani" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for identifying the language of sentences</description>
+            <operations>
+                <operation oid="1" name="jlani">
+                    <description>Identify the language of sentences</description>
+                    <!--
+                    Usage:
+					java -Xmx500M -classpath .;./lib/ASV_JLanI.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.jLanI.main.CLIMain <inFile> <outFile>
+ 
+					<inFile> here you have to specify the path of the input file, e.g c:\input.txt
+					<outFile> here you have to specify the path of the output file, e.g. c:\output.txt
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/JLanI.htm
+                    -->
+                    <command>java -Xmx500M -classpath .;./lib/ASV_JLanI.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.jLanI.main.CLIMain ${input} ${output}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/jLanI_text.txt</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+		<service sid="9" name="ASV_viterbiTagger" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for training a Viterbitagger from tagged text in horizontal and vertical format with one or two tags per word</description>
+            <operations>
+                <operation oid="1" name="viterbiTagger">
+                    <description>Train a Viterbitagger from tagged text in horizontal and vertical format with one or two tags per word</description>
+                    <!--
+                    Usage:
+					java -Xmx500M -classpath .;./lib/ASV_Viterbitagger.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.viterbitagger.gui.ViterbitaggerCL ability option [options ...]
+ 
+					Abilities
+					train for training a Viterbitagger
+					tag for tag with a given Viterbitagger model some text
+					evaluate for evaluate a given Viterbitagger model with a file
+
+					Options:
+					-tm taggermodelfile the taggermodel which will be used(tag/evaluate) or which will be created(train)
+					only for train:
+					-db train from db, uses configuration from config/viterbiTagger/viterbiTagger.query
+					-f file train from the given file
+					-h file is in horizontal file format else file is in vertical file format
+					-s seperator sign between word and tag, use this only together with -h option
+					-set sentenceendtag tag for the end of a sentence, use this only without -h option
+					-rn replace numbers option
+					-wp word position, default 1
+					-ptp primary tag position, default 2
+					-stp secondary tag position, -1 means not in use, default –1
+					only for tag and evaluate:
+					-ram viterbitagger will be loaded complete into RAM(faster) else part of the tagger will be on disk(for small RAM)
+					only for tag:
+					-tokenizer uses tokenizer before tag the text
+					-if infile specify the input file for tagging
+					-of outfile specify the output file for tagging 
+					-it use this option for input from console
+					-ot print tagged text to screen
+					-idb use db for input, uses configuration from config/viterbiTagger/viterbiTagger.query
+					-odb write tagged sentences back to db, uses configuration from config/viterbiTagger/viterbiTagger.query
+					-ids start id for tagging sentences from database, default 0
+					-ide end id for tagging sentences from database, -1 means all, default –1
+					only use for evaluate:
+					-ef evaluatefile specify the file for evaluation
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/Viterbitagger.htm
+                    -->
+                    <command>java -Xmx500M -classpath .;./lib/ASV_Viterbitagger.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.viterbitagger.gui.ViterbitaggerCL tag -tm ./examples/tagger/clTaggermodelhor.model -tokenizer -if ${input} -of ${output} -ram -ot</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/text_englisch.txt</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+		<service sid="10" name="ASV_zipfel" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for demonstrating Zipf’s law</description>
+            <operations>
+                <operation oid="1" name="zipfel">
+                    <description>Demonstrate Zipf’s law</description>
+                    <!--
+                    Usage:
+					java -classpath .;./lib/ASV_Zipfel.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.toolbox.zipfel.ZipfelCmdLine [parameter …]
+ 
+					-host <host> host of your database
+					-port <port; default=3306> port of the database
+					-user <user> your user name of the database
+					-pw <password> your password of the database
+					-db <database> database containing data for Zipfel
+					-table <database table> table on which Zipfel should run
+					-wordcol <column containing words or word numbers> column containing the words or their word numbers for Zipfel
+					-countcol <column containing frequency> column containing the frequency of the words
+					-where <restriction using where; embed in quotation marks> This option allow you to specify a where clause for restricting the data
+					-filenamediagram <output file for diagram in png format> absolute path of the output file in png format 
+					-filenametablecsv <output file for table in csv format> absolute path of the output file in csv format
+					-filenametableods <output file for table in open document format> absolute path of the output file in open document format
+ 
+					command line output will be in the following format :
+					[restriction of the selection] TAB types TAB tokens TAB k TAB c TAB a TAB b
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/Zipfel.htm
+                    -->
+                    <command>java -classpath .;./lib/ASV_Zipfel.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.toolbox.zipfel.ZipfelCmdLine -host localhost -port 3306 -user root -pw root -db {input} -table words -wordcol word -countcol freq -filenamediagram ${output}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>Reference to input database</Documentation>
+                            <Default>de1M</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+		<service sid="11" name="ASV_hac" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services that can be used to create a clustering of objects</description>
+            <operations>
+                <operation oid="1" name="hac">
+                    <description>Create a clustering of objects</description>
+                    <!--
+                    Usage:
+					java -classpath .;./lib/ASV_HAC.jar -Djava.ext.dirs=./lib de.uni_leipzig.asv.toolbox.hac.main.CLIMain --test -o "1_clustering_output_test" -x -v Cosine -c SingleLinkage
+ 
+					-?, --help                  print this help
+					-g  --gui                   starts the GUI of this clustering tool
+												This ignores all other command-line parameters,
+												except any specified property file
+					-t  --threads <nr>          number of background threads that should be used
+												for calculations (default is 1)
+					 
+					Datasources (Hint only ONE datasource may be used!):
+					-v  --vectorfile <filename> uses the vector file indicated by <filename>
+												as datasource
+						--compact               indicates that the file is in
+												short/compact format (default)
+						--explicit              indicates that the file in in long/explicit format
+						--wordserv <filename>   indicates that the vector names should be retrieved
+												from the wordserver file indicated by <filename>
+					-d  --database              uses a database connection as datasource.
+					-f  --textfile <filename>   uses the text file indicated by <filename>
+												as word list source along with a database connection
+												to retrieve feature vectors
+						--propfile <filename>   indicates that database connection and input
+												settings should be loaded from the property file
+												<filename>   
+						--restrictrange         indicates that candidate words must have database
+												IDs within a certain range, as defined in the
+												property file. Other words will be excluded.
+												If omitted (default), range will not be
+												restricted.
+						--restrictfreq          indicates that candidate words must have database
+												frequencies within a certain range, as defined in
+												the property file. Other words will be excluded.
+												If omitted (default), frequency will not be
+												restricted.
+						--applyfeatureminsig    indicates that feature vector elements must have
+												a minimum significance, whose value is specified
+												in the property file.
+												If omited (default), this minimum is not
+												considered.          
+						--applyfeaturelimit     indicates that only a number of most significant
+												features be used as feature vector elements.
+												This number is specified in the property file.
+												If omited (default), all available features
+												are used as feature vector elements.
+					-u  --user <username>       the database user name
+					-p  --password <password>   the database password
+						--test                  use randomly created test data
+					 
+					Output options:
+					-o  --out <filename>        the filename for output without extension!
+												For example, using myout you will get myout.png
+												for dendrogram or myout.xml for xml output (or both)
+						--disabledendrogram     disable dendrogram drawing (enabled by default)
+					-x  --xml                   enable xml output (disabled by default)
+						--depth <int>           the depth for xml output: number of top cluster
+												levels
+						
+					Algorithm options:
+					-v  --vectordist <dist>     set the vector distance, possible distances are:
+												  L1 Norm
+												  L2 Norm
+												  Cosine
+												  Dice
+												  Jaccard
+					-c  --cluster <dist>        set the cluster distance, possible distances are:
+												  SingleLinkage
+												  CompleteLinkage
+												  AverageLinkage
+												  AvgGroupLinkage
+												  CentroidMethod
+												  WardsMethod
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/HAC.html
+                    -->
+                    <command>java -classpath .;./lib/ASV_HAC.jar -Djava.ext.dirs=./lib de.uni_leipzig.asv.toolbox.hac.main.CLIMain -f ${input} -q my_clustering.properties -o ${output} -x -v Cosine -c AverageLinkage</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/wortschatz.uni-leipzig.de_asv.htm</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+		<service sid="12" name="ASV_genetomorph" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for using a genetic algorithm to find morphologic structure, so called morphemes</description>
+            <operations>
+                <operation oid="1" name="genetomorph">
+                    <description>Use a genetic algorithm to find morphologic structure</description>
+                    <!--
+                    Usage:
+					java -Xmx500M -classpath .;./lib/ASV_Genetomorph.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.genetoMorph.GenetoMorphCL -i inputfile [-o outputfile -nc numberOfChildren -mr mutationrate -sc simulationCycles -ee]
+ 
+					-i inputfile specify the absolut path to the input file
+					-o outputfile specify the absolute path to the output file, if not specified output will print to screen(default: print to screen)
+					-nc NumberOfChildren specify the number of children for one simulation cycle, should be an integer(default: 10)
+					-mr muatationrate specify the mutation rate for the simulation, should be an integer(default: 1)
+					-sc simulationCycles specify the number of simulation cycles for this run(default 10)
+					-ee eliminate equals individuals, (default: not choosen)
+   
+					Documentation:
+					http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/Genetomorph.html
+                    -->
+                    <command>java -Xmx500M -classpath .; ./lib/ASV_Genetomorph.jar -Djava.ext.dirs=.;./lib de.uni_leipzig.asv.toolbox.genetoMorph.GenetoMorphCL -i ${input} -nc 30 -mr 5 -sc 50 -ee -o ${output}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/training.txt</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir></toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>
