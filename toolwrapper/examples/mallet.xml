@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+    <id>mallet</id>
+    <name>MAchine Learning for LanguagE Toolkit</name>
+    <homepage>http://mallet.cs.umass.edu/</homepage>
+    <version>2-0-7</version>
+    <installation>
+        <os type="linux">
+            Binaries for Linux are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+        <os type="windows">
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="Mallet" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for topic modelling using Mallet</description>
+            <operations>
+                <operation oid="1" name="mallet">
+                    <description>Topic modelling</description>
+                    <!--
+                    Usage:
+                    bin\mallet [options] <input> <outputs>
+
+                    Where:
+					[options] 		optional command line parameters
+					<input> 		input data in MALLET format
+					<outputs> 		topic modelling results
+					
+					For more documentation on available command line parameters, see
+					http://mallet.cs.umass.edu/topics.php
+					-->
+                    <command>bin\mallet train-topics  --num-topics 20 --optimize-interval 20 --input ${input} --output-state ${outstate} --output-topic-keys ${outkeys} --output-doc-topics ${outtopics}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <Default>http://kbdemo.dnsalias.org/testfiles/tutorial.mallet</Default>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outstate">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <CliMapping>outstate</CliMapping>
+                            <Required>false</Required>
+                            <Documentation>URL reference to topic model output</Documentation>
+                            <Extension>gz</Extension>
+                        </output>
+						<output name="outkeys">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <CliMapping>outkeys</CliMapping>
+                            <Required>false</Required>
+                            <Documentation>URL reference to topic keys output</Documentation>
+                            <Extension>txt</Extension>
+                        </output>
+						<output name="outtopics">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <CliMapping>outtopics</CliMapping>
+                            <Required>false</Required>
+                            <Documentation>URL reference to topic composition output</Documentation>
+                            <Extension>txt</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir></toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>
