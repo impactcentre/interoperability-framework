@@ -23,13 +23,13 @@
                     bin\mallet [options] <input> <outputs>
 
                     Where:
-					[options] 		optional command line parameters
-					<input> 		input data in MALLET format
-					<outputs> 		topic modelling results
+		    [options] 	optional command line parameters
+		    <input> 	input data in MALLET format
+		    <outputs> 	topic modelling results
 					
-					For more documentation on available command line parameters, see
-					http://mallet.cs.umass.edu/topics.php
-					-->
+		    For more documentation on available command line parameters, see
+		    http://mallet.cs.umass.edu/topics.php
+		    -->
                     <command>bin\mallet train-topics  --num-topics 20 --optimize-interval 20 --input ${input} --output-state ${outstate} --output-topic-keys ${outkeys} --output-doc-topics ${outtopics}</command>
                     <inputs>
                         <input name="input">
@@ -48,14 +48,14 @@
                             <Documentation>URL reference to topic model output</Documentation>
                             <Extension>gz</Extension>
                         </output>
-						<output name="outkeys">
+			<output name="outkeys">
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>outkeys</CliMapping>
                             <Required>false</Required>
                             <Documentation>URL reference to topic keys output</Documentation>
                             <Extension>txt</Extension>
                         </output>
-						<output name="outtopics">
+			<output name="outtopics">
                             <Datatype>xsd:anyURI</Datatype>
                             <CliMapping>outtopics</CliMapping>
                             <Required>false</Required>
