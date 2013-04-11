@@ -4,6 +4,7 @@
 	<groupId>impact_project</groupId>
 	<artifactId>time-utils</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<name>time-utils</name>
 	<packaging>war</packaging>
 
 
