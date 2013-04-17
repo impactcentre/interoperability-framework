@@ -36,6 +36,9 @@
                         <input name="fromcode">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
+                            <CliMapping>fromcode</CliMapping>
+                            <Documentation>Input file encoding</Documentation>
+                            <Default>ISO-8859-1</Default>
                             <Restriction>
                                 <Value>437</Value>
                                 <Value>500</Value>
@@ -1206,13 +1209,13 @@
                                 <Value>WS2</Value>
                                 <Value>YU</Value>
                             </Restriction>
-                            <Default>ISO-8859-1</Default>
-                            <CliMapping>fromcode</CliMapping>
-                            <Documentation>Input file encoding</Documentation>
                         </input>
                         <input name="tocode">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
+                            <CliMapping>tocode</CliMapping>
+                            <Documentation>Output file encoding</Documentation>
+                            <Default>UTF8</Default>
                             <Restriction>
                                 <Value>437</Value>
                                 <Value>500</Value>
@@ -2383,23 +2386,20 @@
                                 <Value>WS2</Value>
                                 <Value>YU</Value>
                             </Restriction>
-                            <Default>UTF8</Default>
-                            <CliMapping>tocode</CliMapping>
-                            <Documentation>Output file encoding</Documentation>
                         </input>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/ocr_iso-8859-1.txt</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/ocr_iso-8859-1.txt</Default>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>output</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
                             <Extension>txt</Extension>
                         </output>

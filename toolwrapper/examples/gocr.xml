@@ -36,13 +36,16 @@
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/00046135.pgm</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file in PBM, PGM or PPM format</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.pgm</Default>
                         </input>
                         <input name="format">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
+                            <CliMapping>format</CliMapping>
+                            <Documentation>OCR output format</Documentation>
+                            <Default>XML</Default>
                             <Restriction>
                                 <Value>ISO8859_1</Value>
                                 <Value>TeX</Value>
@@ -51,16 +54,13 @@
                                 <Value>UTF8</Value>
                                 <Value>ASCII</Value>
                             </Restriction>
-                            <Default>XML</Default>
-                            <CliMapping>format</CliMapping>
-                            <Documentation>OCR output format</Documentation>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>output</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
                             <Extension>xml</Extension>
                         </output>

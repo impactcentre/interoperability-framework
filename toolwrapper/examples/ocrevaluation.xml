@@ -43,6 +43,9 @@
                         <input name="encoding">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
+                            <CliMapping>encoding</CliMapping>
+                            <Documentation>File encoding of the OCR result</Documentation>
+                            <Default>u8</Default>
                             <Restriction>
                                 <Value>a</Value>
                                 <Value>ab</Value>
@@ -52,31 +55,27 @@
                                 <Value>u8</Value>
                                 <Value>u16</Value>
                             </Restriction>
-                            <Default>u8</Default>
-                            <CliMapping>encoding</CliMapping>
-                            <Documentation>File encoding of the OCR result</Documentation>
                         </input>
                         <input name="stopwordlist">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/stopwords.txt</Default>
                             <CliMapping>stopwordlist</CliMapping>
-                            <Documentation>URL reference to list with stop words to disregard in evaluation
-                            </Documentation>
+                            <Documentation>URL reference to list with stop words to disregard in evaluation</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/stopwords.txt</Default>
                         </input>
                         <input name="groundtruth">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/groundtruth.txt</Default>
                             <CliMapping>groundtruth</CliMapping>
                             <Documentation>URL reference to ground truth text file</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/groundtruth.txt</Default>
                         </input>
                         <input name="ocr">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/ocr.txt</Default>
                             <CliMapping>ocr</CliMapping>
                             <Documentation>URL reference to OCR result text file</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/ocr.txt</Default>
                         </input>
                         <input name="evaluationId">
                             <Datatype>xsd:string</Datatype>
@@ -89,22 +88,22 @@
                     <outputs>
                         <output name="charresult">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>charresult</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>charresult</CliMapping>
                             <Documentation>URL reference to character evaluation output file</Documentation>
                             <Extension>txt</Extension>
                         </output>
                         <output name="wordresult">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>wordresult</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>wordresult</CliMapping>
                             <Documentation>URL reference to word evaluation output file</Documentation>
                             <Extension>txt</Extension>
                         </output>
                         <output name="xmlreport">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>xmlreport</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>xmlreport</CliMapping>
                             <Documentation>URL reference to report xml output file</Documentation>
                             <Extension>xml</Extension>
                         </output>

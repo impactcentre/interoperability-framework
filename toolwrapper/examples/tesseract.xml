@@ -39,6 +39,10 @@
                         </input>
                         <input name="langmod">
                             <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>langmod</CliMapping>
+                            <Documentation>Language module used by Tesseract</Documentation>
+                            <Default>deu-frak</Default>
                             <Restriction>
                                 <Value>afr</Value>
                                 <Value>ara</Value>
@@ -107,10 +111,6 @@
                                 <Value>ukr</Value>
                                 <Value>vie</Value>
                             </Restriction>
-                            <Required>true</Required>
-                            <CliMapping>langmod</CliMapping>
-                            <Documentation>Language module used by Tesseract</Documentation>
-                            <Default>deu-frak</Default>
                         </input>
                     </inputs>
                     <outputs>

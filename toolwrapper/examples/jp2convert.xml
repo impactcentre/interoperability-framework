@@ -32,6 +32,9 @@
                         <input name="format">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
+                            <CliMapping>format</CliMapping>
+                            <Documentation>Output image file format</Documentation>
+                            <Default>TIF</Default>
                             <Restriction>
                                 <Value>BMP</Value>
                                 <Value>TIF</Value>
@@ -42,23 +45,20 @@
                                 <Value>PNM</Value>
                                 <Value>PGX</Value>
                             </Restriction>
-                            <Default>TIF</Default>
-                            <CliMapping>format</CliMapping>
-                            <Documentation>Output image file format</Documentation>
                         </input>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/image.jp2</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to JPEG2000 image file</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/image.jp2</Default>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>output</CliMapping>
                             <Documentation>URL reference to output image file</Documentation>
                             <Extension>tif</Extension>
                         </output>

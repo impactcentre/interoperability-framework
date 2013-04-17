@@ -51,23 +51,23 @@
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/00046135.pnm</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file in PBM, PGM or PPM format</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.pnm</Default>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>output</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
                             <Extension>txt</Extension>
                         </output>
                         <output name="result">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>result</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>result</CliMapping>
                             <Documentation>URL reference to result file</Documentation>
                             <Extension>orf</Extension>
                         </output>

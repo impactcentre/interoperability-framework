@@ -41,32 +41,35 @@
                             <Datatype>xsd:int</Datatype>
                             <Required>true</Required>
                             <CliMapping>depth</CliMapping>
+                            <Documentation>Color depth of output image</Documentation>
+                            <Default>8</Default>
                             <Restriction>
                                 <Value>1</Value>
                                 <Value>8</Value>
                                 <Value>16</Value>
                                 <Value>24</Value>
                             </Restriction>
-                            <Default>8</Default>
-                            <Documentation>Color depth of output image</Documentation>
                         </input>
                         <input name="quality">
                             <Datatype>xsd:int</Datatype>
                             <Required>true</Required>
-                            <Default>100</Default>
                             <CliMapping>quality</CliMapping>
                             <Documentation>Image compression quality: integer between 1 - 100</Documentation>
+                            <Default>100</Default>
                         </input>
                         <input name="numcolors">
                             <Datatype>xsd:int</Datatype>
                             <Required>true</Required>
-                            <Default>256</Default>
                             <CliMapping>numcolors</CliMapping>
                             <Documentation>Number of colors of output image</Documentation>
+                            <Default>256</Default>
                         </input>
                         <input name="colorspace">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
+                            <CliMapping>colorspace</CliMapping>
+                            <Documentation>Color space of output image</Documentation>
+                            <Default>Gray</Default>
                             <Restriction>
                                 <Value>CMY</Value>
                                 <Value>CMYK</Value>
@@ -91,13 +94,13 @@
                                 <Value>YPbPr</Value>
                                 <Value>YUV</Value>
                             </Restriction>
-                            <Default>Gray</Default>
-                            <CliMapping>colorspace</CliMapping>
-                            <Documentation>Color space of output image</Documentation>
                         </input>
                         <input name="compress">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
+                            <CliMapping>compress</CliMapping>
+                            <Documentation>Compression used for output image</Documentation>
+                            <Default>None</Default>
                             <Restriction>
                                 <Value>None</Value>
                                 <Value>Fax</Value>
@@ -107,23 +110,20 @@
                                 <Value>RLE</Value>
                                 <Value>Zip</Value>
                             </Restriction>
-                            <Default>None</Default>
-                            <CliMapping>compress</CliMapping>
-                            <Documentation>Compression used for output image</Documentation>
                         </input>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/00046135.tif</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.tif</Default>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>output</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
                             <Extension>tif</Extension>
                         </output>

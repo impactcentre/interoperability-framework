@@ -40,6 +40,10 @@
                         </input>
                         <input name="language">
                             <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>language</CliMapping>
+                            <Documentation>Language used in recognition process</Documentation>
+                            <Default>German</Default>
                             <Restriction>
 				                <Value>Bulgarian</Value>
                                 <Value>Catalan</Value>
@@ -77,13 +81,13 @@
                                 <Value>Turkish</Value>
                                 <Value>Ukrainian</Value>
                             </Restriction>
-                            <Required>true</Required>
-                            <CliMapping>language</CliMapping>
-                            <Documentation>Language used in recognition process</Documentation>
-                            <Default>German</Default>
                         </input>
 			            <input name="format">
                             <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>format</CliMapping>
+                            <Documentation>Output file format</Documentation>
+                            <Default>txt</Default>
                             <Restriction>
                                 <Value>txt</Value>
                                 <Value>rtf</Value>
@@ -94,10 +98,6 @@
 				                <Value>pdfTextAndImages</Value>
 				                <Value>xml</Value>
                             </Restriction>
-                            <Required>true</Required>
-                            <CliMapping>format</CliMapping>
-                            <Documentation>Output file format</Documentation>
-                            <Default>txt</Default>
                         </input>
                     </inputs>
                     <outputs>

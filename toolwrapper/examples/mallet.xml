@@ -35,30 +35,30 @@
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/tutorial.mallet</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/tutorial.mallet</Default>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="outstate">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>outstate</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>outstate</CliMapping>
                             <Documentation>URL reference to topic model output</Documentation>
                             <Extension>gz</Extension>
                         </output>
 			<output name="outkeys">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>outkeys</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>outkeys</CliMapping>
                             <Documentation>URL reference to topic keys output</Documentation>
                             <Extension>txt</Extension>
                         </output>
 			<output name="outtopics">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>outtopics</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>outtopics</CliMapping>
                             <Documentation>URL reference to topic composition output</Documentation>
                             <Extension>txt</Extension>
                         </output>

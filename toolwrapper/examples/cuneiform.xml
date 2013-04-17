@@ -39,13 +39,16 @@
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/00046135.bw.tif</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input image file</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.bw.tif</Default>
                         </input>
                         <input name="format">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
+                            <CliMapping>format</CliMapping>
+                            <Documentation>OCR output format</Documentation>
+                            <Default>text</Default>
                             <Restriction>
                                 <Value>html</Value>
                                 <Value>hocr</Value>
@@ -54,13 +57,13 @@
                                 <Value>smarttext</Value>
                                 <Value>text</Value>
                             </Restriction>
-                            <Default>text</Default>
-                            <CliMapping>format</CliMapping>
-                            <Documentation>OCR output format</Documentation>
                         </input>
                         <input name="language">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
+                            <CliMapping>language</CliMapping>
+                            <Documentation>Language model used in recognition</Documentation>
+                            <Default>ger</Default>
                             <Restriction>
                                 <Value>bul</Value>
                                 <Value>cze</Value>
@@ -87,16 +90,13 @@
                                 <Value>tur</Value>
                                 <Value>ukr</Value>
                             </Restriction>
-                            <Default>ger</Default>
-                            <CliMapping>language</CliMapping>
-                            <Documentation>Language model used in recognition</Documentation>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>output</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
                             <Extension>txt</Extension>
                         </output>

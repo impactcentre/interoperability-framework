@@ -62,17 +62,21 @@
                     <inputs>
                         <input name="filter">
                             <Datatype>xsd:string</Datatype>
-                            <Restriction>
-                                <Value>type</Value>
-                                <Value>id</Value>
-                            </Restriction>
                             <Required>true</Required>
                             <CliMapping>filter</CliMapping>
                             <Documentation>Type of extraction</Documentation>
                             <Default>type</Default>
+                            <Restriction>
+                                <Value>type</Value>
+                                <Value>id</Value>
+                            </Restriction>
                         </input>
                         <input name="filterVal">
                             <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>filter_value</CliMapping>
+                            <Documentation>Type of content to be extracted</Documentation>
+                            <Default>text</Default>
                             <Restriction>
                                 <Value>text</Value>
                                 <Value>textline</Value>
@@ -90,10 +94,6 @@
                                 <Value>unknown</Value>
                                 <Value>border</Value>
                             </Restriction>
-                            <Required>true</Required>
-                            <CliMapping>filter_value</CliMapping>
-                            <Documentation>Type of content to be extracted</Documentation>
-                            <Default>text</Default>
                         </input>
                         <input name="inputXml">
                             <Datatype>xsd:anyURI</Datatype>
@@ -104,15 +104,15 @@
                         </input>
                         <input name="options">
                             <Datatype>xsd:string</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>options</CliMapping>
+                            <Documentation>Optional process parameters</Documentation>
+                            <Default>t</Default>
                             <Restriction>
                                 <Value>x</Value>
                                 <Value>b</Value>
                                 <Value>t</Value>
                             </Restriction>
-                            <Required>false</Required>
-                            <CliMapping>options</CliMapping>
-                            <Documentation>Optional process parameters</Documentation>
-                            <Default>t</Default>
                         </input>
                         <input name="params">
                             <Datatype>xsd:anyURI</Datatype>

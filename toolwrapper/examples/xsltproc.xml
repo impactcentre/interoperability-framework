@@ -32,23 +32,23 @@
                         <input name="stylesheet">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/abbyy2tei.xsl</Default>
                             <CliMapping>stylesheet</CliMapping>
                             <Documentation>URL reference to XSL stylesheet</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/abbyy2tei.xsl</Default>
                         </input>
                         <input name="document">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/abbyy10.xml</Default>
                             <CliMapping>document</CliMapping>
                             <Documentation>URL reference to XML document</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/abbyy10.xml</Default>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>output</CliMapping>
                             <Documentation>URL reference to transformed XML document</Documentation>
                             <Extension>xml</Extension>
                         </output>

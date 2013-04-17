@@ -32,23 +32,23 @@
                         <input name="filter">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
-                            <Default>http://localhost:8080/impact/testfiles/filter.xml</Default>
                             <CliMapping>filter</CliMapping>
                             <Documentation>Replacement rules for special characters</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/filter.xml</Default>
                         </input>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/pc-00046135.xml</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to PAGE XML file</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/pc-00046135.xml</Default>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>output</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
                             <Extension>xml</Extension>
                         </output>

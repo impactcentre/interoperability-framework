@@ -37,6 +37,9 @@
                         <input name="langcs">
                             <Datatype>xsd:string</Datatype>
                             <Required>true</Required>
+                            <CliMapping>langcs</CliMapping>
+                            <Documentation>Comma separated list of internal dictionaries to be used during recognition</Documentation>
+                            <Default>German,OldGerman</Default>
                             <Restriction multiple="true">
                                 <Value>Bulgarian</Value>
                                 <Value>Catalan</Value>
@@ -74,33 +77,33 @@
                                 <Value>Turkish</Value>
                                 <Value>Ukrainian</Value>
                             </Restriction>
-                            <Default>German,OldGerman</Default>
-                            <CliMapping>langcs</CliMapping>
-                            <Documentation>Comma separated list of internal dictionaries to be used during recognition
-                            </Documentation>
                         </input>
                         <input name="texttype">
                             <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>texttype</CliMapping>
+                            <Documentation>Font type of the document</Documentation>
+                            <Default>Gothic</Default>
                             <Restriction>
                                 <Value>Normal</Value>
                                 <Value>Gothic</Value>
                                 <Value>Typewriter</Value>
                                 <Value>ToBeDetected</Value>
                             </Restriction>
-                            <Required>true</Required>
-                            <Default>Gothic</Default>
-                            <CliMapping>texttype</CliMapping>
-                            <Documentation>Font type of the document</Documentation>
                         </input>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://localhost:8080/impact/testfiles/00046135.tif</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.tif</Default>
                         </input>
                         <input name="export">
                             <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>export</CliMapping>
+                            <Documentation>Export format</Documentation>
+                            <Default>XML</Default>
                             <Restriction>
                                 <Value>XML</Value>
                                 <Value>RTF</Value>
@@ -108,17 +111,13 @@
                                 <Value>HTML</Value>
                                 <Value>ALTO</Value>
                             </Restriction>
-                            <Required>true</Required>
-                            <Default>XML</Default>
-                            <CliMapping>export</CliMapping>
-                            <Documentation>Export format</Documentation>
                         </input>
                     </inputs>
                     <outputs>
                         <output name="output">
                             <Datatype>xsd:anyURI</Datatype>
-                            <CliMapping>output</CliMapping>
                             <Required>false</Required>
+                            <CliMapping>output</CliMapping>
                             <Documentation>URL reference to OCR result file</Documentation>
                             <Extension>xml</Extension>
                         </output>

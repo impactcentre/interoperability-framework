@@ -40,15 +40,15 @@
                         </input>
                         <input name="pagesplit">
                             <Datatype>xsd:boolean</Datatype>
-                            <Restriction>
-                                <Value>true</Value>
-                                <Value>false</Value>
-                            </Restriction>
                             <Required>true</Required>
                             <CliMapping>pagesplit</CliMapping>
                             <Documentation>Indicates if a page should be split or not (if an image represents two book pages)
                             </Documentation>
                             <Default>true</Default>
+                            <Restriction>
+                                <Value>true</Value>
+                                <Value>false</Value>
+                            </Restriction>
                         </input>
                     </inputs>
                     <outputs>
