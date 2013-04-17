@@ -23,20 +23,20 @@
                     segmenter-1-1-395.exe <segm> <method> <binimg> <inputxml> <outxml> [<opts>] [<paramfile>]
 
                     Where:
-                    <segm> one of:
-                        line - text line segmentation
-                        word - word segmentation
-                    <method> one of:
-                        component - A technique based on connected component aggregation
-                        profile   - A profile-based technique which uses profile minima & maxima to detect text lines / words
-                        hybrid    - Hybrid approach using component aggregation and projection. Note: Line segmentation only
-                        density   - Profile-based approach using pixel density. Note: Word segmentation only
-                    <binimg> Filename of the 1-bit (binary) TIFF image to be segmented
-                    <inputxml> Filename of an XML file containing a region-level or word segmentation layout
-                    <outxml> Filename to which an XML file containing the resulting segmentation should be written
-                    <opts> A combination of the following options - Note: Don't use spaces between options:
-                        r - Removes the text lines or words from the document before the segmentation
-                        p - For parameter file usage (hybrid/line or density/word only).
+                    <segm>      one of:
+                                line - text line segmentation
+                                word - word segmentation
+                    <method>    one of:
+                                component - A technique based on connected component aggregation
+                                profile   - A profile-based technique which uses profile minima & maxima to detect text lines / words
+                                hybrid    - Hybrid approach using component aggregation and projection. Note: Line segmentation only
+                                density   - Profile-based approach using pixel density. Note: Word segmentation only
+                    <binimg>    Filename of the 1-bit (binary) TIFF image to be segmented
+                    <inputxml>  Filename of an XML file containing a region-level or word segmentation layout
+                    <outxml>    Filename to which an XML file containing the resulting segmentation should be written
+                    <opts>      A combination of the following options - Note: Don't use spaces between options:
+                                r - Removes the text lines or words from the document before the segmentation
+                                p - For parameter file usage (hybrid/line or density/word only).
                     <paramfile> Full path to *.ini file containing a parameter set for the hybrid line segmenter or the density word segmenter. Only regarded if option 'p' is set.
                     -->
                     <command>segmenter-1-1-395.exe ${segm} ${method} ${binimg} ${inputxml} ${outxml} ${opts} ${paramfile}</command>
@@ -46,14 +46,14 @@
                             <Required>true</Required>
                             <CliMapping>binimg</CliMapping>
                             <Documentation>Filename of the 1-bit (binary) TIFF image to be segmented</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.bw.tif</Default>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.bw.tif</Default>
                         </input>
                         <input name="segXmlFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>inputxml</CliMapping>
                             <Documentation>Filename of a PAGE XML file containing a region-level or word segmentation layout</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/lines.xml</Default>
+                            <Default>http://localhost:8080/impact/testfiles/lines.xml</Default>
                         </input>
                         <input name="segmenter">
                             <Datatype>xsd:string</Datatype>
@@ -96,7 +96,7 @@
                             <Required>false</Required>
                             <CliMapping>paramfile</CliMapping>
                             <Documentation>Full path to *.ini file containing a parameter set for the hybrid line segmenter or the density word segmenter - Note: Only regarded if option 'p' is set</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/params.ini</Default>
+                            <Default>http://localhost:8080/impact/testfiles/params.ini</Default>
                         </input>
                     </inputs>
                     <outputs>

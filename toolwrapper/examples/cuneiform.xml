@@ -39,7 +39,7 @@
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.bw.tif</Default>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.bw.tif</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input image file</Documentation>
                         </input>

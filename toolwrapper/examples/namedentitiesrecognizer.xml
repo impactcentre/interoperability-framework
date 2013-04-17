@@ -46,7 +46,7 @@
                             <Required>true</Required>
                             <CliMapping>infile</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/ocr_NL.txt</Default>
+                            <Default>http://localhost:8080/impact/testfiles/ocr_NL.txt</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -79,7 +79,7 @@
                 <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
+	        Full path to the directory where the tool has been installed.
             THE PATH MUST NOT CONTAIN WHITESPACES!
             If you want to use backslashes (\) then you must repeat them twice,
             e.g. c:\\foo\\bar

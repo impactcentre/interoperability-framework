@@ -59,7 +59,7 @@
                         <input name="stopwordlist">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/stopwords.txt</Default>
+                            <Default>http://localhost:8080/impact/testfiles/stopwords.txt</Default>
                             <CliMapping>stopwordlist</CliMapping>
                             <Documentation>URL reference to list with stop words to disregard in evaluation
                             </Documentation>
@@ -67,14 +67,14 @@
                         <input name="groundtruth">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/groundtruth.txt</Default>
+                            <Default>http://localhost:8080/impact/testfiles/groundtruth.txt</Default>
                             <CliMapping>groundtruth</CliMapping>
                             <Documentation>URL reference to ground truth text file</Documentation>
                         </input>
                         <input name="ocr">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/ocr.txt</Default>
+                            <Default>http://localhost:8080/impact/testfiles/ocr.txt</Default>
                             <CliMapping>ocr</CliMapping>
                             <Documentation>URL reference to OCR result text file</Documentation>
                         </input>
@@ -130,13 +130,13 @@
                 <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice,
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes,
-	    e.g. c:/foo/bar
-	    -->
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
             <toolsbasedir>C:\\OCREVAL\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>

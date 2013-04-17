@@ -40,6 +40,7 @@
                         <input name="depth">
                             <Datatype>xsd:int</Datatype>
                             <Required>true</Required>
+                            <CliMapping>depth</CliMapping>
                             <Restriction>
                                 <Value>1</Value>
                                 <Value>8</Value>
@@ -47,7 +48,6 @@
                                 <Value>24</Value>
                             </Restriction>
                             <Default>8</Default>
-                            <CliMapping>depth</CliMapping>
                             <Documentation>Color depth of output image</Documentation>
                         </input>
                         <input name="quality">
@@ -114,7 +114,7 @@
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.tif</Default>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.tif</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file</Documentation>
                         </input>

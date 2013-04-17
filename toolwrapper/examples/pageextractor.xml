@@ -100,7 +100,7 @@
                             <Required>true</Required>
                             <CliMapping>input_xml</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
+                            <Default>http://localhost:8080/impact/testfiles/pc-00046135.xml</Default>
                         </input>
                         <input name="options">
                             <Datatype>xsd:string</Datatype>
@@ -119,7 +119,7 @@
                             <Required>false</Required>
                             <CliMapping>params</CliMapping>
                             <Documentation>URL reference to optional parameter file</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/paramx.ini</Default>
+                            <Default>http://localhost:8080/impact/testfiles/paramx.ini</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -152,13 +152,13 @@
                 <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice,
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes,
-	    e.g. c:/foo/bar
-	    -->
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
             <toolsbasedir>C:\\PAGEXTRACT\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>

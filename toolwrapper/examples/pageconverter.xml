@@ -32,14 +32,14 @@
                         <input name="filter">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/filter.xml</Default>
+                            <Default>http://localhost:8080/impact/testfiles/filter.xml</Default>
                             <CliMapping>filter</CliMapping>
                             <Documentation>Replacement rules for special characters</Documentation>
                         </input>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
+                            <Default>http://localhost:8080/impact/testfiles/pc-00046135.xml</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to PAGE XML file</Documentation>
                         </input>

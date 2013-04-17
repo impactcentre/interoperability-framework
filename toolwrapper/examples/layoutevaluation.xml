@@ -50,7 +50,7 @@
                             <CliMapping>groundTruthXmlFileUrl</CliMapping>
                             <Documentation>URL to the ground-truth document layout XML file (in PAGE format)
                             </Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/pc-00046135.xml</Default>
+                            <Default>http://localhost:8080/impact/testfiles/pc-00046135.xml</Default>
                         </input>
                         <input name="segXmlFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
@@ -59,14 +59,14 @@
                             <Documentation>URL to the document layout XML file to be evaluated (segmentation result) (in
                                 PAGE format)
                             </Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/words.xml</Default>
+                            <Default>http://localhost:8080/impact/testfiles/words.xml</Default>
                         </input>
                         <input name="bwImageFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>bwImageFileUrl</CliMapping>
                             <Documentation>URL to the document black-and-white image (.tif)</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.bw.tif</Default>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.bw.tif</Default>
                         </input>
                         <input name="profileEvxFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
@@ -75,7 +75,7 @@
                             <Documentation>Full path to the .evx file containing the evaluation profile (weights and
                                 settings)
                             </Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/profile.evx</Default>
+                            <Default>http://localhost:8080/impact/testfiles/profile.evx</Default>
                         </input>
                         <input name="opts">
                             <Datatype>xsd:string</Datatype>

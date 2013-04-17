@@ -31,7 +31,7 @@
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.tif</Default>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.tif</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file in TIF format</Documentation>
                         </input>
@@ -66,13 +66,13 @@
                 <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice,
-	    e.g. c:\\foo\\bar
-	    or you can use just slashes,
-	    e.g. c:/foo/bar
-	    -->
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
             <toolsbasedir>C:\\GPPBIN\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>

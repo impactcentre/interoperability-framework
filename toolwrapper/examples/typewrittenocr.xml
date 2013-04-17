@@ -29,9 +29,9 @@
                     <inputxml>          Filename of an XML file containing a region and line segmentation
                     <outputxml>         Filename to which an XML file containing the resulting analysis should be written
                     [classifierweights] A comma seperated list (without spaces) of the weight to give each classifier.
-                    			Currently there are two classifiers available: Template matching and Feature analysis
-                    			So to weight them equally, for example, input: 1,1
-                    [paramfile] 	Parameter file. Set to "-1" if not used
+                    			        Currently there are two classifiers available: Template matching and Feature analysis
+                    			        So to weight them equally, for example, input: 1,1
+                    [paramfile] 	    Parameter file. Set to "-1" if not used
                     -->
                     <command>TypewrittenOCR-0-2-145.exe ${bwimage} ${grayimage} ${colorimage} ${inputxml} ${outputxml} ${weights}</command>
                     <inputs>
@@ -40,7 +40,7 @@
                             <Required>true</Required>
                             <CliMapping>bwimage</CliMapping>
                             <Documentation>URL reference to bitonal image file</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/00046135.bw.tif</Default>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.bw.tif</Default>
                         </input>
                         <input name="grayimage">
                             <Datatype>xsd:anyURI</Datatype>
@@ -61,7 +61,7 @@
                             <Required>true</Required>
                             <CliMapping>inputxml</CliMapping>
                             <Documentation>URL reference to input xml file</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/lines.xml</Default>
+                            <Default>http://localhost:8080/impact/testfiles/lines.xml</Default>
                         </input>
                         <input name="weights">
                             <Datatype>xsd:string</Datatype>

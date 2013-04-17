@@ -57,7 +57,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/demo.zip</Default>
+                            <Default>http://localhost:8080/impact/testfiles/testfiles/demo.zip</Default>
                         </input>
                     </inputs>
                     <outputs>

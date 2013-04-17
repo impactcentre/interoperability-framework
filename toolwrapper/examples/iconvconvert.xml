@@ -2390,7 +2390,7 @@
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/ocr_iso-8859-1.txt</Default>
+                            <Default>http://localhost:8080/impact/testfiles/ocr_iso-8859-1.txt</Default>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
                         </input>

@@ -36,7 +36,7 @@
                             <Required>true</Required>
                             <CliMapping>infile</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/double_page.tif</Default>
+                            <Default>http://localhost:8080/impact/testfiles/double_page.tif</Default>
                         </input>
                         <input name="pagesplit">
                             <Datatype>xsd:boolean</Datatype>
@@ -88,13 +88,13 @@
                 <path>manager</path>
             </manager>
             <!--
-	    Full path to the directory where the tool has been installed.
-	    THE PATH MUST NOT CONTAIN WHITESPACES!
-	    If you want to use backslashes (\) then you must repeat them twice,
-	    e.g. c:\\foo\\bar
- 	    or you can use just slashes,
-	    e.g. c:/foo/bar
-	    -->
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
             <toolsbasedir>C:\\BORDREM\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>

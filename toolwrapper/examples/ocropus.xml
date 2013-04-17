@@ -36,7 +36,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://kbdemo.dnsalias.org/testfiles/image.png</Default>
+                            <Default>http://localhost:8080/impact/testfiles/image.png</Default>
                         </input>
                     </inputs>
                     <outputs>
