@@ -1,0 +1,317 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:admin="http://ns.taverna.org.uk/2010/xml/server/admin/" xmlns:feed="http://ns.taverna.org.uk/2010/xml/server/feed/" xmlns:port="http://ns.taverna.org.uk/2010/port/" xmlns:tns="http://ns.taverna.org.uk/2010/xml/server/rest/" xmlns:ts="http://ns.taverna.org.uk/2010/xml/server/" xmlns:ts-rest="http://ns.taverna.org.uk/2010/xml/server/rest/" xmlns:ts-soap="http://ns.taverna.org.uk/2010/xml/server/soap/" xmlns:xlink="http://www.w3.org/1999/xlink" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ns.taverna.org.uk/2010/xml/server/rest/">
+  <xs:import namespace="http://ns.taverna.org.uk/2010/xml/server/"/>
+  <xs:import namespace="http://www.w3.org/1999/xlink"/>
+  <xs:element name="credential" type="ts-rest:Credential"/>
+  <xs:element name="credentials" type="ts-rest:credentialList"/>
+  <xs:element name="directoryContents" type="ts-rest:DirectoryContents"/>
+  <xs:element name="enabledNotificationFabrics">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="notifier" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="filesystemOperation" type="ts-rest:FilesystemCreationOperation"/>
+  <xs:element name="listenerDefinition" type="ts-rest:ListenerDefinition"/>
+  <xs:element name="listenerDescription" type="ts-rest:ListenerDescription"/>
+  <xs:element name="listeners">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ts:VersionedElement">
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="listener" type="ts-rest:ListenerDescription"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mkdir" type="ts-rest:MakeDirectory"/>
+  <xs:element name="permissionUpdate" type="ts-rest:permissionDescription"/>
+  <xs:element name="permissionsDescriptor" type="ts-rest:permissionsDescription"/>
+  <xs:element name="permittedListeners">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="type" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="permittedWorkflows">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="workflow" type="ts:Workflow"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="policyDescription">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ts:VersionedElement">
+          <xs:sequence>
+            <xs:element minOccurs="0" name="runLimit" type="ts:Location"/>
+            <xs:element minOccurs="0" name="permittedWorkflows" type="ts:Location"/>
+            <xs:element minOccurs="0" name="permittedListenerTypes" type="ts:Location"/>
+            <xs:element minOccurs="0" name="enabledNotificationFabrics" type="ts:Location"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="properties">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ts:VersionedElement">
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="property" type="ts-rest:PropertyDescription"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="runDescription">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ts:VersionedElement">
+          <xs:sequence>
+            <xs:element minOccurs="0" name="expiry">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute ref="xlink:href"/>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="creationWorkflow" type="ts:Location"/>
+            <xs:element minOccurs="0" name="createTime" type="ts:Location"/>
+            <xs:element minOccurs="0" name="startTime" type="ts:Location"/>
+            <xs:element minOccurs="0" name="finishTime" type="ts:Location"/>
+            <xs:element minOccurs="0" name="status" type="ts:Location"/>
+            <xs:element minOccurs="0" name="workingDirectory" type="ts:Location"/>
+            <xs:element minOccurs="0" name="inputs" type="ts:Location"/>
+            <xs:element minOccurs="0" name="output" type="ts:Location"/>
+            <xs:element minOccurs="0" name="securityContext" type="ts:Location"/>
+            <xs:element minOccurs="0" name="listeners">
+              <xs:complexType>
+                <xs:complexContent>
+                  <xs:extension base="ts:Location">
+                    <xs:sequence>
+                      <xs:element maxOccurs="unbounded" minOccurs="0" name="listener" nillable="true" type="ts:Location"/>
+                    </xs:sequence>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute ref="ts-rest:owner"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="runInput" type="ts-rest:InputDescription"/>
+  <xs:element name="runInputs" type="ts-rest:TavernaRunInputs"/>
+  <xs:element name="runList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="run" type="ts:TavernaRun"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="securityDescriptor" type="ts-rest:SecurityDescriptor"/>
+  <xs:element name="serverDescription">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ts:VersionedElement">
+          <xs:sequence>
+            <xs:element minOccurs="0" name="runs" type="ts:Location"/>
+            <xs:element minOccurs="0" name="policy" type="ts:Location"/>
+            <xs:element minOccurs="0" name="feed" type="ts:Location"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="trustedIdentities" type="ts-rest:trustList"/>
+  <xs:element name="upload" type="ts-rest:UploadFile"/>
+  <xs:element name="userPermission" type="ts-rest:linkedPermissionDescription"/>
+  <xs:complexType name="permissionsDescription">
+    <xs:complexContent>
+      <xs:extension base="ts:VersionedElement">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="permission" type="ts-rest:linkedPermissionDescription"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="linkedPermissionDescription">
+    <xs:complexContent>
+      <xs:extension base="ts:Location">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userName" type="xs:string"/>
+          <xs:element minOccurs="0" name="permission" type="ts:Permission"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FilesystemCreationOperation">
+    <xs:simpleContent>
+      <xs:extension base="xs:base64Binary">
+        <xs:attribute ref="ts-rest:name"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MakeDirectory">
+    <xs:simpleContent>
+      <xs:extension base="ts-rest:FilesystemCreationOperation"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="UploadFile">
+    <xs:simpleContent>
+      <xs:extension base="ts-rest:FilesystemCreationOperation"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="TavernaRunInputs">
+    <xs:complexContent>
+      <xs:extension base="ts:VersionedElement">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="expected" type="ts:Location"/>
+          <xs:element minOccurs="0" name="baclava" type="ts:Location"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="input" nillable="true" type="ts:Location"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="InputDescription">
+    <xs:complexContent>
+      <xs:extension base="ts:VersionedElement">
+        <xs:sequence>
+          <xs:choice minOccurs="0">
+            <xs:element name="file">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="ts-rest:InputContents"/>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="reference">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="ts-rest:InputContents"/>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="value">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="ts-rest:InputContents"/>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute ref="ts-rest:name"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="InputContents">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:complexType final="extension restriction" name="credentialList">
+    <xs:complexContent>
+      <xs:extension base="ts:VersionedElement">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="ts-rest:credential"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType final="extension restriction" name="Credential">
+    <xs:choice>
+      <xs:element ref="ts:keypair"/>
+      <xs:element ref="ts:userpass"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ListenerDescription">
+    <xs:complexContent>
+      <xs:extension base="ts:VersionedElement">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="configuration" type="ts:Location"/>
+          <xs:element minOccurs="0" name="properties">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="property" type="ts-rest:PropertyDescription"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute ref="xlink:href"/>
+        <xs:attribute ref="ts-rest:name"/>
+        <xs:attribute ref="ts-rest:type"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PropertyDescription">
+    <xs:complexContent>
+      <xs:extension base="ts:Location">
+        <xs:sequence/>
+        <xs:attribute ref="ts-rest:name"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ListenerDefinition">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute ref="ts-rest:type"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DirectoryContents">
+    <xs:sequence>
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="ts:dir"/>
+        <xs:element ref="ts:file"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="permissionDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userName" type="xs:string"/>
+      <xs:element minOccurs="0" name="permission" type="ts:Permission"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType final="extension restriction" name="SecurityDescriptor">
+    <xs:complexContent>
+      <xs:extension base="ts:VersionedElement">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="owner" type="xs:string"/>
+          <xs:element minOccurs="0" name="permissions" type="ts:Location"/>
+          <xs:element minOccurs="0" name="credentials" type="ts-rest:CredentialCollection"/>
+          <xs:element minOccurs="0" name="trusts" type="ts-rest:TrustCollection"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType final="extension restriction" name="CredentialCollection">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" ref="ts-rest:credential"/>
+    </xs:sequence>
+    <xs:attribute ref="xlink:href"/>
+  </xs:complexType>
+  <xs:complexType final="extension restriction" name="TrustCollection">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="trust" type="ts:TrustDescriptor"/>
+    </xs:sequence>
+    <xs:attribute ref="xlink:href"/>
+  </xs:complexType>
+  <xs:complexType final="extension restriction" name="trustList">
+    <xs:complexContent>
+      <xs:extension base="ts:VersionedElement">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="trust" type="ts:TrustDescriptor"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:attribute name="name" type="xs:string"/>
+  <xs:attribute name="owner" type="xs:string"/>
+  <xs:attribute name="type" type="xs:string"/>
+</xs:schema>

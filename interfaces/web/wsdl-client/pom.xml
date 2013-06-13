@@ -255,6 +255,22 @@
 			<id>eviwarePluginRepository</id>
 			<url>http://www.eviware.com/repository/maven2/</url>
 		</repository>
+
+		<repository>
+			<id>apache-repo</id>
+			<name>Maven Central Repository</name>
+			<url>
+                scpexe://people.apache.org/www/people.apache.org/repo/m2-ibiblio-rsync-repository
+            </url>
+		</repository>
+		<repository>
+			<id>apache-repo</id>
+			<name>Maven Central Repository</name>
+			<url>
+			http://repo1.maven.org/maven2
+            </url>
+		</repository>
+
 	</repositories>
 
 	<build>

@@ -42,6 +42,7 @@ import eu.impact_project.wsclient.generic.SoapService;
  */
 public class SOAPinputs extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	final Logger logger = LoggerFactory.getLogger(SOAPinputs.class);
 
 	public SOAPinputs() {
@@ -69,7 +70,6 @@ public class SOAPinputs extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		
 		SoapService service = null;
 		if(session.getAttribute("serviceObject") != null) {
 			service = (SoapService)session.getAttribute("serviceObject");

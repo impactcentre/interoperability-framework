@@ -1,0 +1,101 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:admin="http://ns.taverna.org.uk/2010/xml/server/admin/" xmlns:feed="http://ns.taverna.org.uk/2010/xml/server/feed/" xmlns:tns="http://ns.taverna.org.uk/2010/xml/server/" xmlns:ts="http://ns.taverna.org.uk/2010/xml/server/" xmlns:ts-rest="http://ns.taverna.org.uk/2010/xml/server/rest/" xmlns:ts-soap="http://ns.taverna.org.uk/2010/xml/server/soap/" xmlns:xlink="http://www.w3.org/1999/xlink" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ns.taverna.org.uk/2010/xml/server/">
+  <xs:import namespace="http://www.w3.org/1999/xlink"/>
+  <xs:element name="dir" type="ts:DirectoryReference"/>
+  <xs:element name="file" type="ts:FileReference"/>
+  <xs:element name="keypair" type="ts:KeyPairCredential"/>
+  <xs:element name="runReference" type="ts:TavernaRun"/>
+  <xs:element name="trustedIdentity" type="ts:TrustDescriptor"/>
+  <xs:element name="userpass" type="ts:PasswordCredential"/>
+  <xs:element name="workflow" type="ts:Workflow"/>
+  <xs:complexType abstract="true" name="VersionedElement">
+    <xs:sequence/>
+    <xs:attribute ref="ts:serverVersion"/>
+    <xs:attribute ref="ts:serverRevision"/>
+    <xs:attribute ref="ts:serverBuildTimestamp"/>
+  </xs:complexType>
+  <xs:complexType name="Location">
+    <xs:sequence/>
+    <xs:attribute ref="xlink:href"/>
+  </xs:complexType>
+  <xs:complexType name="Workflow">
+    <xs:sequence>
+      <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TavernaRun">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute ref="xlink:href"/>
+        <xs:attribute ref="ts:serverVersion"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DirectoryEntry">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute ref="xlink:href"/>
+        <xs:attribute ref="ts:name"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DirectoryReference">
+    <xs:simpleContent>
+      <xs:extension base="ts:DirectoryEntry"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="FileReference">
+    <xs:simpleContent>
+      <xs:extension base="ts:DirectoryEntry"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="KeyPairCredential">
+    <xs:complexContent>
+      <xs:extension base="ts:CredentialDescriptor">
+        <xs:sequence>
+          <xs:element name="credentialName" type="xs:string"/>
+          <xs:element minOccurs="0" name="credentialFile" type="xs:string"/>
+          <xs:element minOccurs="0" name="fileType" type="xs:string"/>
+          <xs:element minOccurs="0" name="unlockPassword" type="xs:string"/>
+          <xs:element minOccurs="0" name="credentialBytes" type="xs:base64Binary"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType abstract="true" name="CredentialDescriptor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="serviceURI" type="xs:anyURI"/>
+    </xs:sequence>
+    <xs:attribute ref="xlink:href"/>
+  </xs:complexType>
+  <xs:complexType name="PasswordCredential">
+    <xs:complexContent>
+      <xs:extension base="ts:CredentialDescriptor">
+        <xs:sequence>
+          <xs:element name="username" type="xs:string"/>
+          <xs:element name="password" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType final="extension restriction" name="TrustDescriptor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="certificateFile" type="xs:string"/>
+      <xs:element minOccurs="0" name="fileType" type="xs:string"/>
+      <xs:element minOccurs="0" name="certificateBytes" type="xs:base64Binary"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="serverName" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute ref="xlink:href"/>
+  </xs:complexType>
+  <xs:simpleType name="Permission">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="none"/>
+      <xs:enumeration value="read"/>
+      <xs:enumeration value="update"/>
+      <xs:enumeration value="destroy"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="name" type="xs:string"/>
+  <xs:attribute name="serverBuildTimestamp" type="xs:string"/>
+  <xs:attribute name="serverRevision" type="xs:string"/>
+  <xs:attribute name="serverVersion" type="xs:string"/>
+</xs:schema>

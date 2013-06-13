@@ -71,6 +71,9 @@ import eu.impact_project.wsclient.generic.SoapService;
  */
 public class SOAPresults extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String user="";
+	private String pass="";
+	private String hash="";
 	final Logger logger = LoggerFactory.getLogger(SOAPresults.class);
 
 	public SOAPresults() {
@@ -96,7 +99,9 @@ public class SOAPresults extends HttpServlet {
 
 		OutputStream outStream = null;
 		BufferedInputStream bis = null;
-
+		user = request.getParameter("user");
+		pass = request.getParameter("pass");
+		
 		try {
 
 			HttpSession session = request.getSession(true);
@@ -177,8 +182,9 @@ public class SOAPresults extends HttpServlet {
 
 			}
 						
-			List<SoapOutput> outs = operation.execute();
-			String soapResponse = operation.getResponse();			
+			List<SoapOutput> outs = operation.execute(user,pass);
+			String soapResponse = operation.getResponse();
+
 			
 			
 			String htmlResponse = useXslt(soapResponse, "/SoapToHtml.xsl");

@@ -29,6 +29,7 @@
 		<module>interfaces/web/time-utils</module>
 		<module>interfaces/web/wsdl-client</module>
 		<module>interfaces/taverna/t2-rest</module>
+		<module>interfaces/taverna/t2-server-jar</module>
 		<module>interfaces/taverna/t2-webdav</module>
 		<module>interfaces/taverna/T2-Client/workflow-client</module>
 		<module>interfaces/taverna/T2-Client/metrics-toolkit</module>

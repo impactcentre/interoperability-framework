@@ -29,7 +29,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,13 +43,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.xmlbeans.impl.util.Base64;
-
-import net.sf.taverna.t2.service.webservice.resource.DataResource;
 import net.sf.taverna.t2.service.webservice.resource.DataValue;
-import net.sf.taverna.t2.service.webservice.resource.JobResource;
-import net.sf.taverna.t2.service.webservice.rest.TavernaRESTClient;
+
+import org.apache.commons.validator.UrlValidator;
+import org.apache.xmlbeans.impl.util.Base64;
+import org.xml.sax.SAXException;
+
+
+import uk.org.taverna.server.client.*;
+import uk.org.taverna.server.client.connection.HttpBasicCredentials;
+import uk.org.taverna.server.client.connection.UserCredentials;
+
+import uk.org.taverna.server.client.InputPort;
+import uk.org.taverna.server.client.OutputPort;
+import uk.org.taverna.server.client.PortListValue;
+import uk.org.taverna.server.client.PortDataValue;
+import uk.org.taverna.server.client.Run;
+import uk.org.taverna.server.client.RunStatus;
+import uk.org.taverna.server.client.Server;
+import uk.org.taverna.server.client.connection.HttpBasicCredentials;
+import uk.org.taverna.server.client.connection.UserCredentials;
+import uk.org.taverna.server.client.connection.params.ConnectionParams;
 
 /**
  * Executes the chosen workflow by uploading it to taverna server
@@ -56,6 +73,7 @@ import net.sf.taverna.t2.service.webservice.rest.TavernaRESTClient;
 
 public class WorkflowRunner extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	static Server tavernaRESTClient;
 
 	public WorkflowRunner() {
 		super();
@@ -74,205 +92,242 @@ public class WorkflowRunner extends HttpServlet {
 	/**
 	 * Executes the chosen workflow by uploading it to taverna server
 	 */
+	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		// extract all the html form parameters from the request,
+		// including files (files are encoded to base64)
+		Map<String, String> htmlFormItems = Helper.parseRequest(request);
+		// will contain outputs from all ports of all workflows
+		List<List<WorkflowOutputPort>> allOutputs = new ArrayList<List<WorkflowOutputPort>>();
+		HttpSession session = request.getSession(true);
+		ArrayList<Workflow> workflows = (ArrayList<Workflow>) session.getAttribute("workflows");
+		
 		try {
-
-			// extract all the html form parameters from the request,
-			// including files (files are encoded to base64)
-			Map<String, String> htmlFormItems = Helper.parseRequest(request);
-
-			HttpSession session = request.getSession(true);
-
-			ArrayList<Workflow> workflows = (ArrayList<Workflow>) session
-					.getAttribute("workflows");
-
-			// connect to server
-			TavernaRESTClient tavernaRESTClient = new TavernaRESTClient();
-			tavernaRESTClient
-					.setBaseURL("http://localhost:9080/tavernaserver/rest");
-
-			Long jobID = 0L;
-
-			// job ids will be used later to retrieve the outputs
-			List<Long> jobIDs = new ArrayList<Long>();
-
-			int j = 0;
-			// put all the workflows and their inputs onto the server and
-			// execute the corresponding jobs
-			for (Workflow currentWorkflow : workflows) {
-
-				// will contain all the inputs for the current workflow
-				Map<String, DataValue> inputData = new HashMap<String, DataValue>();
-
-				// convert input values from html form to taverna-specific
-				// objects
-				for (WorkflowInput currentInput : currentWorkflow.getInputs()) {
-
-					String currentName = currentInput.getName();
-					String currentNamePrefixed = "workflow" + j + currentName;
-					int currentDepth = currentInput.getDepth();
-
-					// get the current input value
-					String currentValue = htmlFormItems
-							.get(currentNamePrefixed);
-
-					// if the inputs are just simple values
-					if (currentDepth == 0) {
-						// put the value into taverna-specific map
-						inputData.put(currentName, new DataValue(currentValue));
-
-						// if the inputs are a list of values
-					} else if (currentDepth > 0) {
-						// then the values must be nested in a list
-						List<DataValue> valueList = new ArrayList<DataValue>();
-
-						// add the current value
-						valueList.add(new DataValue(currentValue));
-
-						// add all the additional values
-						int i = 0;
-						// the values in the html form are stored in format
-						// name+index
-						while (htmlFormItems.get(currentNamePrefixed + i) != null
-								&& !((String) htmlFormItems
-										.get(currentNamePrefixed + i))
-										.equals("")) {
-							String additionalValue = htmlFormItems
-									.get(currentNamePrefixed + i);
-							valueList.add(new DataValue(additionalValue));
-							i++;
-						}
-						// store the list in the map
-						inputData.put(currentName, new DataValue(valueList));
-					}
-				}
-				// upload the inputs to taverna server
-				Long inputID = tavernaRESTClient.addData(new DataResource(
-						inputData));
-
-				// upload the workflow to server
-				String workflowAsString = currentWorkflow.getStringVersion();
-				Long workflowID = tavernaRESTClient
-						.addWorkflow(workflowAsString);
-
-				// create a job on server, which is automatically executed
-				jobID = tavernaRESTClient.addJob(workflowID, inputID);
-				// Long jobID = tavernaRESTClient.addJob(workflowID, null);
-
-				jobIDs.add(jobID);
-
-				System.err.println("-----------job id : " + jobID);
-
-				j++;
-			}
-
-			// wait until all jobs are done
-			long startTime = System.currentTimeMillis();
+			String address = null;
 			long duration = 0;
-			for (Long currentJobID : jobIDs) {
-
-				while (!tavernaRESTClient.getJobStatus(currentJobID).equals(
-						"COMPLETE")) {
-					duration = System.currentTimeMillis() - startTime;
-					System.out.println("Waiting for job [" + currentJobID
-							+ "] to complete (" + (duration / 1000f) + ")");
-					Thread.sleep(1000);
-				}
-			}
-
-			// System.out.println(outputData);
-			// tavernaRESTClient.deleteWorkflow(workflowID);
-			// tavernaRESTClient.deleteJob(jobID);
-			// tavernaRESTClient.deleteData(inputID);
-			// tavernaRESTClient.deleteData(outputID);
-
-			// process the outputs
-
-			// will contain outputs from all ports of all workflows
-			List<List<WorkflowOutputPort>> allOutputs = new ArrayList<List<WorkflowOutputPort>>();
-
-			int workflowIndex = 0;
-			for (Long currentJobID : jobIDs) {
-
-				// get the outputs of the current job
-				JobResource job = tavernaRESTClient.getJob(currentJobID);
-				Long outputID = job.getOutputs();
-				DataResource outputData = tavernaRESTClient.getData(outputID);
-
-				// will contain outputs from all ports of the current workflow
-				List<WorkflowOutputPort> workflowOutputPorts = new ArrayList<WorkflowOutputPort>();
-
-				// taverna-specific result map
-				Map<String, DataValue> resultMap = outputData.getDataMap();
-
-				// go through the result map and create own objects which will
-				// contain the results
-				for (String key : resultMap.keySet()) {
-
-					// will contain the output/outputs from one port of the
-					// current workflow and the name of the port
-					WorkflowOutputPort workflowPort = new WorkflowOutputPort(
-							key);
-
-					// taverna data value
-					DataValue result = resultMap.get(key);
-
-					// will contain the output/outputs from one port of the
-					// current workflow
-					List<WorkflowOutput> portOutputs = new ArrayList<WorkflowOutput>();
-
-					// if the result is a nested list
-					if (result.getValue() == null && result.getList() != null) {
-						// then find the actual results recursively
-						// files will be stored on the server
-						transferOutputValues(workflowIndex, key, result
-								.getList(), portOutputs);
-
-					} else if (result.getErrorValue() != null) {
-						System.out.println(result.getErrorValue());
+			long startTime = System.currentTimeMillis();
+            address = "http://localhost:9080/tavernaserver";
+            URI serverURI = new URI(address);
+            // connect to server
+            Server tavernaRESTClient = new Server(serverURI);
+				
+			if (tavernaRESTClient != null)
+			{
+				Run runID = null;
+				boolean urlFault = false;
+				List<String> invalidUrls = new ArrayList<String>();
+				List<Run> runIDs = new ArrayList<Run>();
+				UserCredentials user = null;
+				String cred = "taverna:taverna";
+				
+				user = new HttpBasicCredentials(cred);
+				int j = 0;
+				// put all the workflows and their inputs onto the server and
+				// execute the corresponding jobs
+				for (Workflow currentWorkflow : workflows) {
+					// upload the workflow to server
+					String workflowAsString = currentWorkflow.getStringVersion();
+					byte[] currentWorkflowBytes = workflowAsString.getBytes();
+					String userForm = htmlFormItems.get("user");
+					String passForm = htmlFormItems.get("pass");
+					
+					runID = tavernaRESTClient.createRun(currentWorkflowBytes, user);
+										
+					int cont = 0;
+					for (Wsdl currentWsdl : currentWorkflow.getWsdls()) {
+						currentWsdl.setUser(userForm);
+						currentWsdl.setPass(passForm);
 						
-						// if the result is just a value
-					} else {
-						// then create an output object and add it to the
-						// outputs list
-						String outputString = (String) result.getValue();
-						WorkflowOutput output = processOutput(workflowIndex,
-								outputString, key, 0);
-						portOutputs.add(output);
+						System.out.print("\n Runner USER : " +  currentWsdl.getUser() + "\n");
+						System.out.print("\n Runner USER : " +  currentWsdl.getPass() + "\n");
+						
+						System.out.print("\n WSDL : " +  currentWsdl.getUrl() + "\n");
+						// Set credentials for each web service
+						//if ((currentWsdl.getUser() != null) && (currentWsdl.getPass() != null))
+							//	if ((currentWsdl.getUser().length() >0) && (currentWsdl.getPass().length() >0))
+								//	runID.setServiceCredential(new URI(currentWsdl.getUrl()), currentWsdl.getUser(), currentWsdl.getPass());
+						cont++;
+					}
+					
+					String inputsText = "";
+					for (String currentInput : htmlFormItems.keySet()) {
+						inputsText += htmlFormItems.get(currentInput) + " ";
+					}
+					System.out.print("INPUT del formulario: " + inputsText );
+					
+					currentWorkflow.setUrls(inputsText);
+					//currentWorkflow.setUrls(workflowAsString);
+					for (String currentUrl : currentWorkflow.getUrls()) {
+					      if (!currentWorkflow.testUrl(currentUrl))
+					      {
+					    	  urlFault = true;
+					    	  if (!invalidUrls.contains(currentUrl))
+					    		  invalidUrls.add(currentUrl);
+					    	  System.out.println("Url not avaliable: " + currentUrl);
+					      }
+					      //else System.out.println("Url OK: " + currentUrl);
+					}
+					
+					if (!urlFault)
+					{
+						// will contain all the inputs for the current workflow
+						Map<String, DataValue> inputData = new HashMap<String, DataValue>();
+						
+						for (WorkflowInput currentInput : currentWorkflow.getInputs()) {
+	
+							String currentName = currentInput.getName();
+							String currentNamePrefixed = "workflow" + j + currentName;
+							int currentDepth = currentInput.getDepth();
+	
+							// get the current input value
+							String currentValue = htmlFormItems.get(currentNamePrefixed);
+	
+							// if the inputs are just simple values
+							if (currentDepth == 0) {
+								// put the value into taverna-specific map
+								inputData.put(currentName, new DataValue(currentValue));
+	
+								// if the inputs are a list of values
+							} else if (currentDepth > 0) {
+								// then the values must be nested in a list
+								List<DataValue> valueList = new ArrayList<DataValue>();
+	
+								// add the current value
+								valueList.add(new DataValue(currentValue));
+	
+								// add all the additional values
+								int i = 0;
+								// the values in the html form are stored in format name+index
+								while (htmlFormItems.get(currentNamePrefixed + i) != null
+										&& !((String) htmlFormItems
+												.get(currentNamePrefixed + i))
+												.equals("")) {
+									String additionalValue = htmlFormItems
+											.get(currentNamePrefixed + i);
+									valueList.add(new DataValue(additionalValue));
+									i++;
+								}
+								// store the list in the map
+								inputData.put(currentName, new DataValue(valueList));
+							}
+						}
+	
+						Map<String, InputPort> inputPorts = runID.getInputPorts();
+						
+						// convert input values from html form to taverna-specific objects
+						for (Map.Entry<String, DataValue> inputWorkflow : inputData.entrySet())
+						{
+							runID.getInputPort(inputWorkflow.getKey()).setValue(inputWorkflow.getValue().toString());
+							//System.out.println("INPUT: " +  inputWorkflow.getValue().toString());
+						}
+						
+						runID.start();
+						//System.out.println("Run URL: "+ runID.getURI() );
+						runIDs.add(runID);
+						//System.err.print("Run UUID: "+ runID.getIdentifier() + " STATUS:" + runID.getStatus() );
+						
+						j++;
+					}
+			
+					// wait until all jobs are done
+					for (Run currentRunID : runIDs) 
+					{
+						while (currentRunID.isRunning()) 
+						{
+							try {
+								duration = System.currentTimeMillis() - startTime;
+								System.out.println("Waiting for job [" + currentRunID.getIdentifier()
+										+ "] to complete (" + (duration / 1000f) + ")" + " STATUS:" + runID.getStatus());
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								System.out.println("NO ESPERO");
+							}
+						}
 					}
 
-					// add the outputs list to the port object
-					workflowPort.setOutputs(portOutputs);
-
-					// add the port object to the ports list
-					workflowOutputPorts.add(workflowPort);
+					// process the outputs
+					int workflowIndex = 0;
+					for (Run currentRunID : runIDs) {
+						// will contain outputs from all ports of the current workflow
+						List<WorkflowOutputPort> workflowOutputPorts = new ArrayList<WorkflowOutputPort>();
+	
+						if (currentRunID.isFinished())
+						{
+							System.out.println("Propietario: " + currentRunID.isOwner());
+							// get the outputs of the current job
+							if (currentRunID.isOwner())
+							{
+								System.out.println("ESTADO SALIDA: " + currentRunID.getExitCode());
+								Map<String, OutputPort> outputPorts = null;
+								if (currentRunID.getOutputPorts() != null)
+										outputPorts = currentRunID.getOutputPorts();
+								for (Map.Entry<String, OutputPort> outputPort : outputPorts.entrySet())
+								{
+									WorkflowOutputPort workflowOutPortCurrent = new WorkflowOutputPort();
+		
+									if (outputPort != null)
+									{
+										if (outputPort.getValue().getDepth() == 0)
+										{
+											workflowOutPortCurrent.setOutput(outputPort.getValue(),false);
+											workflowOutputPorts.add(workflowOutPortCurrent);
+										}
+										else
+										{
+											System.out.println("outputName : " + outputPort.getKey());
+											workflowOutPortCurrent.setOutput(outputPort.getValue(), currentRunID, outputPort.getKey(), outputPort.getValue().getDepth());
+											workflowOutputPorts.add(workflowOutPortCurrent);
+										}
+									}
+								}
+								currentRunID.delete();
+							}
+						}
+						//else System.out.println("[" + currentRunID.getIdentifier() + "] Todavia no ha acabado. SKIP");
+					
+						allOutputs.add(workflowOutputPorts);
+						workflowIndex++;
+						
+					}
+				}		
+				//if (allOutputs.isEmpty())
+				if (urlFault)
+				{
+					String error = "";
+					for (String url:invalidUrls)
+						error += url + "<br>";
+					System.out.println("ERRORES: " + error);
+					session.setAttribute("errors", "<em style=\"color:red\">Resources not avaliable:</em> <br>" + error);
 				}
-
-				// add the ports list of the current workflow to the outer
-				// outputs list
-				allOutputs.add(workflowOutputPorts);
-
-				workflowIndex++;
+				else
+				{
+					session.setAttribute("errors", "");
+				}
+				
+				session.setAttribute("allOutputs", allOutputs);
+				request.setAttribute("round2", "round2");
+		
+				duration = System.currentTimeMillis() - startTime;
+				System.out.println("Jobs took " + (duration / 1000f) + " seconds");
+		
+				// get back to JSP
+				RequestDispatcher rd = getServletContext()
+						.getRequestDispatcher("/");
+				rd.forward(request, response);
 			}
-
-			session.setAttribute("allOutputs", allOutputs);
-			request.setAttribute("round2", "round2");
-
-			duration = System.currentTimeMillis() - startTime;
-			System.out.println("Jobs took " + (duration / 1000f) + " seconds");
-
-			// get back to JSP
-			RequestDispatcher rd = getServletContext()
-					.getRequestDispatcher("/");
-			rd.forward(request, response);
-
-		} catch (InterruptedException e) {
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+			
 	}
 
 	/**
@@ -281,43 +336,22 @@ public class WorkflowRunner extends HttpServlet {
 	 * 
 	 */
 
-	private void transferOutputValues(int workflowIndex, String portName,
-			List<DataValue> resultList, List<WorkflowOutput> outputs) {
+    private void transferOutputValues(int workflowIndex, String portName,
+    		PortDataValue result, List<WorkflowOutput> outputs) {
+            //PortValue result, List<WorkflowOutput> outputs) {
 
-		// go through all taverna data items
-		for (DataValue resultItem : resultList) {
-			// if the current item contains a list of values
-			if (resultItem.getValue() == null && resultItem.getList() != null) {
-				// process the list recursively
-				transferOutputValues(workflowIndex, portName, resultItem
-						.getList(), outputs);
-				// if the item contains a value
-			} else {
-				String currentValue = (String) resultItem.getValue();
-				String currentErrorValue = null;
-				if (resultItem.getErrorValue() != null) {
-					currentErrorValue = (String) resultItem.getErrorValue()
-							.getMessage();
-				}
-				if (currentValue != null) {
-					// create an output object
-					WorkflowOutput wfOut = processOutput(workflowIndex,
-							currentValue, portName, outputs.size());
-					// add the object to the outputs
-					outputs.add(wfOut);
-				} else if (currentErrorValue != null) {
-					WorkflowOutput wfOut = processOutput(workflowIndex,
-							"ERROR MESSAGE :  " + currentErrorValue, portName,
-							outputs.size());
-					// add the object to the outputs
-					outputs.add(wfOut);
+    // go through all taverna data items
+            // if the current item contains a list of values
+            if (result != null) 
+            {
+                    String currentValue = (String) result.getDataAsString();
+                    // create an output object
+                    WorkflowOutput wfOut = processOutput(workflowIndex,currentValue, portName, outputs.size());
+                    // add the object to the outputs
+                    outputs.add(wfOut);
+            }
+}
 
-				}
-
-			}
-		}
-
-	}
 
 	/**
 	 * Creates an output object. Strings that "look like" base64 will be decoded

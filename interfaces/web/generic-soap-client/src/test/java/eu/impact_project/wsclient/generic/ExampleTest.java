@@ -76,7 +76,7 @@ public class ExampleTest {
 		sayHi.getInput("text").setValue("Santa Clause");
 		
 		// get the results
-		List<SoapOutput> outs = sayHi.execute();
+		List<SoapOutput> outs = sayHi.execute("admin","admin");
 		String outName = outs.get(0).getName();
 		String outValue = outs.get(0).getValue();
 		System.out.println("Output: ");

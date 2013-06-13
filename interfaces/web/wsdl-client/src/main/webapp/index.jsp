@@ -59,6 +59,11 @@ props.load(stream);
 stream.close();
 
 String loadDefault = props.getProperty("loadDefaultWebService");
+boolean separatedURLServices = Boolean.parseBoolean(props.getProperty("separatedURLServices"));
+String method = "post";
+
+if (separatedURLServices)
+	method = "get";
 
 String defaultWsdl = props.getProperty("defaultWsdl");
 
@@ -80,7 +85,7 @@ if (loadDefault.equals("true")) {
 } else {
 %>
 
-<a href="http://www.impact-project.eu/taa/dp/" target="_top">Demonstrator Platform</a>
+<a href="http://www.digitisation.eu/tools/interoperability-framework/demonstrator-platform/" target="_top">Demonstrator Platform</a>
 <hr/>
 <br/>
 <h1>Web Service Client</h1>
@@ -98,7 +103,7 @@ if (loadDefault.equals("true")) {
 
 	ServiceProvider sp;
 
-	 String servicesXml = props.getProperty("servicesXml");
+	String servicesXml = props.getProperty("servicesXml");
 	logger.info("Creating service list from XML");
 	URL serviceListUrl = new URL(servicesXml);
 
@@ -111,7 +116,7 @@ if (loadDefault.equals("true")) {
 		
 		logger.debug("Got service " + s.getIdentifier());
 		out.print("<form name=\"myForm" + s.getIdentifier()
-				+ "\" action=\"WSDLinfo\" method=\"post\">");
+				+ "\" action=\"WSDLinfo\" method=\""+ method + "\">");
 		out.print("<input type=\"hidden\" name=\"wsName\" value=\""
 				+ s.getTitle() + "\">");
 		out.print("<input type=\"hidden\" name=\"wsId\" value=\""

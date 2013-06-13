@@ -21,7 +21,13 @@
 
 package eu.impact_project.iif.t2.client;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import uk.org.taverna.server.client.AbstractPortValue;
+import uk.org.taverna.server.client.OutputPort;
+import uk.org.taverna.server.client.PortListValue;
+import uk.org.taverna.server.client.Run;
 
 /**
  * Bundles several Taverna workflow outputs
@@ -57,5 +63,53 @@ public class WorkflowOutputPort {
 	public void setOutputs(List<WorkflowOutput> outputs) {
 		this.outputs = outputs;
 	}
+	
+	public void setOutput(WorkflowOutput output) {
+		this.outputs.add(output);
+	}
+	
+	public void setOutput(String name, String url, String output) {
+		if (output != null)
+		{
+			WorkflowOutput translate = new WorkflowOutput();
+			
+			this.name = name;
+			translate.setUrl(url);
+			translate.setValue(output);
+			this.outputs.add(translate);
+		}
+		
+	}
+	
+	public void setOutput(OutputPort output,boolean binary) {
+		WorkflowOutput translate = new WorkflowOutput();
+		String outputAsString = output.getDataAsString();
+		String data = new String(outputAsString);
+		
+		this.name = output.getName();
+		translate.setValue(data);
+		translate.setUrl(output.getValue().toString());
+		translate.setBinary(binary);
+		
+		if (outputs == null)
+			outputs = new ArrayList<WorkflowOutput>();
+		
+		this.outputs.add(translate);
 
+	}
+
+	public void setOutput(OutputPort output, Run run, String name, int depth) {
+		WorkflowOutput translate = new WorkflowOutput();
+		
+		PortListValue listPorts = (PortListValue) output.getValue();
+		
+		for (List<AbstractPortValue> port : listPorts)
+		{
+			//OutputPort currentOutput = OutputPort.newOutputPort(run, name, depth, port);
+			OutputPort currentOutput = new OutputPort(run, name, depth, (AbstractPortValue) port);
+			setOutput(currentOutput,true);
+		}
+
+	}
+	
 }

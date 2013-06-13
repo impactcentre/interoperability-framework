@@ -18,7 +18,11 @@
 	</parent>
 
 	<dependencies>
-
+		<dependency>
+			<groupId>uk.org.taverna</groupId>
+			<artifactId>taverna-server-client</artifactId>
+			<version>0.9.0</version>
+		</dependency>
 		<dependency>
 			<groupId>eu.impact_project.iif.t2</groupId>
 			<artifactId>workflow-lib</artifactId>

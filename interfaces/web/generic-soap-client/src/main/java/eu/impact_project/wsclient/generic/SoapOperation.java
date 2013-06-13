@@ -143,13 +143,23 @@ public class SoapOperation {
 	 * @return Received outputs
 	 * @throws IOException
 	 */
-	public List<SoapOutput> execute() throws IOException {
+	public List<SoapOutput> execute(String user, String pass) throws IOException {
 		try {
 			String request = getRequest();
 
 			// prepare the request
 			WsdlRequest wsdlRequest = operation.addNewRequest("req");
 			wsdlRequest.setRequestContent(request);
+			
+			
+			if ((user!=null && pass!=null) && (user!="" && pass!=""))
+			{
+				// Add WSSecurity parameters
+				wsdlRequest.setWssPasswordType("PasswordText");
+				wsdlRequest.setUsername(user);
+				wsdlRequest.setPassword(pass);
+				wsdlRequest.setWssTimeToLive("10000");
+			}
 
 			// send the request
 			WsdlSubmit submit = (WsdlSubmit) wsdlRequest.submit(

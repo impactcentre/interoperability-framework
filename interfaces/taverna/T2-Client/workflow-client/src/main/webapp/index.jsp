@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
+<%@page import="java.io.InputStream"%>
+<%@page import="java.io.File"%>
+<%@page import="java.net.URL"%>
+<%@page import="java.util.Properties"%>
 <%@page import="eu.impact_project.iif.t2.client.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,6 +12,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="http://www.impact-project.eu/fileadmin/css/iframe.css" media="screen" />
 
+<%
+String folder = application.getRealPath("/");
+if(!folder.endsWith("/")) {	
+	folder = folder + "/";
+}
+
+Properties props = new Properties();
+InputStream stream = new URL("file:" + folder + "config.properties").openStream();
+
+props.load(stream);
+stream.close();
+
+String loadDefault = props.getProperty("loadDefaultWebService");
+String serviceUser = props.getProperty("serviceUser");
+String servicePass = props.getProperty("servicePassword");
+String myexperimentUser = props.getProperty("myexperimentUser");
+String myexperimentPass = props.getProperty("myexperimentPass");
+
+boolean demoMode = Boolean.parseBoolean(props.getProperty("demoMode"));
+
+boolean printExamples = true;
+if (session.getAttribute("printExamples") != null) {
+	printExamples = (Boolean) session.getAttribute("printExamples");
+}
+%>
 
 <script type="text/javascript">
 
@@ -69,8 +98,13 @@ function showDetails(){
 
 	detailsWindow.focus();
 }
-
-
+<% if (demoMode == false) {%>
+function loginMyExperiment () 
+{
+	var frm = document.getElementById("uploadWorkflows");
+	frm.submit();
+}
+<%}%>
 
 </script>
 
@@ -79,7 +113,7 @@ function showDetails(){
 <body>
 <div class="csc-header csc-header-n1">
 
-<a href="http://www.impact-project.eu/taa/dp/" target="_top">Demonstrator Platform</a>
+<a href="http://www.digitisation.eu/tools/interoperability-framework/demonstrator-platform/" target="_top">Demonstrator Platform</a>
 <hr/>
 <br/>
 
@@ -87,12 +121,7 @@ function showDetails(){
 </div>
 Caution: Only execute workflows with strings as inputs and outputs (i.e. no binary files).
 <br>
- For 
-MyExperiment workflows, see 
-the <a href="tests.txt" target="_blank">test list</a>. 
 <br></br>
-Workflows containing services that 
-require authentication cannot be executed by the current version of Taverna Server (0.2.1).
 <hr></hr>
 <p></p><br></br>
 
@@ -101,6 +130,10 @@ require authentication cannot be executed by the current version of Taverna Serv
 
 <tr>
 
+<%
+if (demoMode == false)
+{
+%>
 <td valign="top">
 <form action="WorkflowParser" method="post" enctype="multipart/form-data">
 Please upload your workflow file:<br></br><br></br>
@@ -112,43 +145,48 @@ Please upload your workflow file:<br></br><br></br>
 	<br><br>
 -->	
 
-	<%
-	boolean printExamples = true;
-	if (session.getAttribute("printExamples") != null) {
-		printExamples = (Boolean) session.getAttribute("printExamples");
-	}
-	%>
-
 	<input type="checkbox" name="printExamples" <%if(printExamples){ %>checked="checked"<%} %>>Show input values, if available<br><br>
 	<input type="submit" value="Show input fields"></input>
 
-
 </form>
 </td>
+<%
+}
+%>
+
 
 <td valign="top" style="padding-left: 40px">
+<h1>My Experiment</h1>
+<% if (demoMode == true) {%>
+<form action="WorkflowUploader" method="post" name="uploadWorkflows" id="uploadWorkflows">
+	<input name="myexp_user" type="hidden" value="<%=myexperimentUser%>">
+	<input name="myexp_password" type="hidden" value="<%=myexperimentPass%>">
+</form>
+<% } else {%>
 <form action="WorkflowUploader" method="post" name="uploadWorkflows">
 Or login to MyExperiment and choose a workflow:
 <br><br>
-	<table>
-	<tr>
-	
-	<td>
-	User:<br>
-	<input name="myexp_user" type="text" size="10">
-	</td>
-	<td>
-	Password:<br>
-	<input name="myexp_password" type="password" size="10">
-	</td>
-	
-	<td valign="bottom">
-	<input type="submit" value="Login">
-	</td>
-	
-	</tr>
-	</table>
+        <table>
+        <tr>
+
+        <td>
+        User:<br>
+        <input name="myexp_user" type="text" size="10">
+        </td>
+        <td>
+        Password:<br>
+        <input name="myexp_password" type="password" size="10">
+        </td>
+
+        <td valign="bottom">
+        <input type="submit" value="Login">
+        </td>
+
+        </tr>
+        </table>
 </form>
+<br>
+<% } %>
 <br>
 
 <%if (request.getAttribute("login_error") != null) {%>
@@ -188,6 +226,7 @@ Or login to MyExperiment and choose a workflow:
 		List<WorkflowInfo> wfInfos = allWfInfos.get(selectedGroupName);
 		if (wfInfos != null && wfInfos.size() > 0) {
 %>
+
 <form action="WorkflowParser" method="post" enctype="multipart/form-data">
 	Workflow: 
 	<select name="MyExpWorkflow0" id="MyExpWorkflow0" style="width: 20em">
@@ -229,8 +268,15 @@ Or login to MyExperiment and choose a workflow:
 			<div>There are no workflows in this group</div>
 			<%
 		}
-	} // else if (session.getAttribute("logged_in")... %>
-
+	} // else if (session.getAttribute("logged_in")... 
+	else
+	{
+		if (demoMode == true) {%>
+		<script>
+			loginMyExperiment();
+		</script>
+	<%  }
+	}%>
 </td>
 
 
@@ -257,6 +303,7 @@ Or login to MyExperiment and choose a workflow:
 		ArrayList<Workflow> workflows = (ArrayList<Workflow>) session.getAttribute("workflows");
 		int i = 0;
 		for (Workflow currentWorkflow : workflows) {
+			boolean error = false;
 %>
 			<b>Workflow</b>
 <%
@@ -287,11 +334,30 @@ Or login to MyExperiment and choose a workflow:
 			}
 			i++;
 			out.print("<br><br>");
+			if(request.getAttribute("round2") == null) 
+			{
+				
+				%>
+				<input type="hidden" name="user" id="user" value="<%=serviceUser%>">
+				<input type="hidden" name="pass" id="pass" value="<%=servicePass%>">
+				<%
+				currentWorkflow.setWsdls(currentWorkflow.getStringVersion());
+				for (Wsdl wsdl:currentWorkflow.getWsdls())
+				{
+					if (!currentWorkflow.testUrl(wsdl.getUrl()))//Comprueba disponibilidad de wsdl
+					{
+						out.print("<em>" + wsdl.getUrl() + "</em> <em style=\"color:red\">Not avaliable</em><br>");
+						error = true;
+					}
+				}
+			}
+			if (error == false)
+			{%>
+				<input type="submit" value="Execute workflow"></input>
+				</form><br></br>
+		  <%}
 		} // for (Workflow ...)
 %>
-		<br>
-		<input type="submit" value="Execute workflow"></input>
-		</form><br></br>
 		<hr></hr>
 <%
 		} // if (wf != null ...) else
@@ -299,6 +365,10 @@ Or login to MyExperiment and choose a workflow:
 
 	if(request.getAttribute("round2") != null) {
 		List<List<WorkflowOutputPort>> allOutputs = (List<List<WorkflowOutputPort>>) session.getAttribute("allOutputs");
+		String errors = session.getAttribute("errors").toString();
+		
+		if (errors != "")
+			out.print(errors);
 		
 		int i = 1;
 		// go through all workflows

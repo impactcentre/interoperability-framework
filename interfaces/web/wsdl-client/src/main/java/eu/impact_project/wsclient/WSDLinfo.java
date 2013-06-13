@@ -91,6 +91,43 @@ public class WSDLinfo extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		HttpSession session = request.getSession(true);
+
+		String wsdlURL = null;
+		if (request.getParameter("wsId") != null) {
+			wsdlURL = request.getParameter("wsId");
+		} else {
+			// get WSDL file
+			wsdlURL = request.getParameter("wsdlURL");
+			logger.trace("Importing WSDL from URL " + wsdlURL);
+		}
+
+		// pass the WS name to interface.jsp
+		String wsName = null;
+		if (request.getParameter("wsName") != null) {
+			wsName = request.getParameter("wsName");
+			session.setAttribute("wsName", wsName);
+		}
+		
+		logger.info("URL WSDL: " + wsdlURL);
+		SoapService serviceObject = new SoapService(wsdlURL);
+		
+		
+
+		// transfer values to JSP through session and request
+		request.setAttribute("round1", "round1");
+		//session.setAttribute("endpointURL", endpointURL);
+		session.setAttribute("wsdlURL", wsdlURL);
+		//session.setAttribute("wsdlInterface", wsdlInterface);
+		session.setAttribute("serviceObject", serviceObject);
+		//session.setAttribute("soapOperations", soapOperations);
+		logger.info("WSDL STRING: " + serviceObject.toString());
+
+		// get back to JSP
+		RequestDispatcher rd = getServletContext().getRequestDispatcher(
+				"/interface.jsp");
+		rd.forward(request, response);
+
 	}
 
 	/**
@@ -120,7 +157,7 @@ public class WSDLinfo extends HttpServlet {
 				session.setAttribute("wsName", wsName);
 			}
 			
-			
+			logger.info("URL WSDL: " + wsdlURL);
 			SoapService serviceObject = new SoapService(wsdlURL);
 			
 			

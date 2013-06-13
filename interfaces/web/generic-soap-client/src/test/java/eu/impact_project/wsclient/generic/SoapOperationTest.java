@@ -81,7 +81,7 @@ public class SoapOperationTest {
 
 	@Test
 	public void execute() throws IOException {
-		List<SoapOutput> outputs = operation.execute();
+		List<SoapOutput> outputs = operation.execute("admin","admin");
 		SoapOutput out = outputs.get(0);
 		assertTrue(out.getName().equals("return"));
 		assertTrue(out.getValue().equals("Hello Bernhard"));

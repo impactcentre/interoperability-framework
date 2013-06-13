@@ -36,7 +36,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="http://www.impact-project.eu/fileadmin/css/iframe.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="js/index.js" type="text/javascript"></script>
 <title>IMPACT Web Service Client</title>
 <script language="JavaScript">
 function getUrl(id) {
@@ -82,6 +84,10 @@ String defaultButton = props.getProperty("defaultButton");
 String defaultResultMessage = props.getProperty("defaultResultMessage");
 boolean supportFileUpload = Boolean.parseBoolean(props.getProperty("supportFileUpload"));
 boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResultFilesOnly"));
+boolean editableInputs = Boolean.parseBoolean(props.getProperty("editableInputs"));
+boolean security = Boolean.parseBoolean(props.getProperty("security"));
+String user = props.getProperty("user");
+String pass = props.getProperty("pass");
 
 SoapService serviceObject = null;
 if(session.getAttribute("serviceObject") != null) {
@@ -89,7 +95,8 @@ if(session.getAttribute("serviceObject") != null) {
 }
 
 %>
-<body <%if(loadDefault && request.getAttribute("round2") == null && request.getAttribute("round3") == null){ %>onload="document.forms['defaultForm'].submit()"<%} %>>
+<body <%if(loadDefault && request.getAttribute("round2") == null && request.getAttribute("round3") == null)
+{ %>onload="document.forms['defaultForm'].submit()"<%} %>>
 
 
 
@@ -108,16 +115,8 @@ if(session.getAttribute("serviceObject") != null) {
 
 <%if (!loadDefault) { %>
 
-<a href="http://www.impact-project.eu/taa/dp/" target="_top">Demonstrator Platform</a>
-<hr/>
-<br/>
+<!-- a href="http://www.digitisation.eu/tools/browse/interoperability-framework/demonstrator-platform/" target="_top">Demonstrator Platform</a-->
 
-
-<a href="index.jsp">&lt;- Back to Selection</a>
-
-
-<br>
-<br>
 <%
 
 
@@ -128,13 +127,14 @@ if(session.getAttribute("serviceObject") != null) {
 			|| request.getAttribute("round2") != null
 			|| request.getAttribute("round3") != null) {
 		
-		out.print("<h3>" + session.getAttribute("wsName") + "</h3>");
+		out.print("<h1>" + session.getAttribute("wsName") + "</h1>");
 		out.print("<br>");
+		out.print("<span class=\"btn1\">");
+		out.print("<a id=\"back\" href=\"http://www.digitisation.eu/tools/browse/interoperability-framework/demonstrator-platform/ \" ONCLICK=\"window.parent.location='http://www.digitisation.eu/tools/interoperability-framework/demonstrator-platform/'\">");
+		out.print("<span>Back to Selection</span>");
+		out.print("</a></span>");
 
-		out.print(serviceObject.getDocumentation());
-
-		out.print("<hr>");
-		out.print("<br>");
+		out.print("<p>" + serviceObject.getDocumentation() + "</p>");
 
 		SoapOperation currentOperation = null;
 		if (session.getAttribute("currentOperation") != null) {
@@ -142,8 +142,11 @@ if(session.getAttribute("serviceObject") != null) {
 					.getAttribute("currentOperation");
 		}
 %>
-<form action="SOAPinputs" method="post">Available Operations: <select
-	name="currentOperation">
+<form action="SOAPinputs" method="post">
+	<span id="availableOps">
+		<label for="currentOperation">Available Operations:</label>
+	</span>
+	<select	name="currentOperation">
 	<%
 		for (SoapOperation op : soapOperations) {
 	%>
@@ -154,11 +157,17 @@ if(session.getAttribute("serviceObject") != null) {
 		}
 	%>
 </select> <br><br>
-<% Boolean displayDefaults = (Boolean) session.getAttribute("displayDefaults"); %>
-<input type="checkbox" name="displayDefaults" <% if (displayDefaults == null || displayDefaults) { %>checked="checked"<%} %>>Display available default values
+<% 
+   Boolean displayDefaults = (Boolean) session.getAttribute("displayDefaults");
+   out.print("<br>");
+   out.print("<br>");
+%>
+<input type="checkbox" name="displayDefaults" id="displayDefaults" <% if (displayDefaults == null || displayDefaults) { %>checked="checked"<%} %>>
+<label for="displayDefaults">
+	Display available default values
+</label>
 <br><br>
-<input type="submit" value="Show Operation Inputs"></form>
-<br>
+<input type="submit" value="Show Operation Inputs" class="link"></form>
 
 <%
 	} // if(request... round1
@@ -185,11 +194,11 @@ if(session.getAttribute("serviceObject") != null) {
 		out.print("<br>");
 		if (!loadDefault) {
 			out.print("<br>");
-		out.print("<b>Operation: " + opName + "</b>");
+		out.print("<p>Operation: " + opName + "</p>");
 		out.print("<br>");
 		out.print(opDocumentation);
 		} else {
-			out.print("<b>" + defaultDescription + "</b>");
+			out.print("<p>" + defaultDescription + "</p>");
 
 		}
 		out.print("<br>");
@@ -198,14 +207,34 @@ if(session.getAttribute("serviceObject") != null) {
 %>
 <form action="SOAPresults" method="post" <% if(supportFileUpload) { %> enctype="multipart/form-data"<%} %>>
 <input type="hidden" name="operationName" value="<%=opName%>"> <br>
+        <table>
+	<% if (security) { %>
 
-		<table>
+        <tr>
+        <td>
+	        User:<br>
+	        <input type="text" name="user" value="">
+        </td>
+        <td>
+        	Password:<br>  <input type="password" name="pass" value="">
+        </td>
+        </tr>
+        <td>
+        <tr>
+        <br/>
+        </td>
+        </tr>
+		</table>
+	<%} else { %>
+		<input type="<% if (!security) {out.print("hidden"); } else {out.print("text");} %>" name="user" value="<%=user%>">
+		<input type="<% if (!security) {out.print("hidden"); } else {out.print("password");} %>" name="pass" value="<%=pass%>">
+	<%} %>
 <%
 
 	for (SoapInput field : currentOperation.getInputs()) {
 		%>
 		<tr>
-		<td valign="top">
+		<td valign="top" class="description">
 		<%
 		out.print(field.getName());
 		if (field.getDocumentation() != null && !field.getDocumentation().equals("")){
@@ -221,20 +250,31 @@ if(session.getAttribute("serviceObject") != null) {
 
 		%>
 		<td valign="top">
+		<label>
 		<%
-
-		if (values != null && values.size() > 0 && !field.isMultiValued()) { 
-		%>
-			<select name="<%= field.getName() %>">
-				<%for (String value : values) { %>
-					<option value="<%=value%>" 
-					<% if (displayDefaults && field.getDefaultValue() != null && value.equals(field.getDefaultValue())) { %> selected="selected" <%} %>>
-					<%=value%>
-					</option>
-				<%} %>
-			</select>
-			<br><br>
-		<%} else if(field.isMultiValued()) { %>
+		if (values != null && values.size() > 0 && !field.isMultiValued()) {
+			if (editableInputs == false) 
+			{%>
+				<select name="<%= field.getName() %>">
+						<option value="<%=field.getDefaultValue()%>">
+						<%=field.getDefaultValue()%>
+						</option>
+				</select>
+		  <%}
+			else
+			{%>
+				<select name="<%= field.getName() %>">
+					<%for (String value : values) { %>
+						<option value="<%=value%>" 
+						<% if (displayDefaults && field.getDefaultValue() != null && value.equals(field.getDefaultValue())) { %> selected="selected" <%} %>>
+						<%=value%>
+						</option>
+					<%} %>
+				</select>
+		  <%}%>
+		</label>
+		<%	
+		} else if(field.isMultiValued()) { %>
 			<select name="<%= field.getName() %>" size="<%= values.size() %>" multiple="multiple">
 				<%for (String value : values) { %>
 					<option value="<%=value%>" 
@@ -243,33 +283,43 @@ if(session.getAttribute("serviceObject") != null) {
 					</option>
 				<%} %>
 			</select>
-			<br><br>
-			
 		<%} else if (field.isBinary() && supportFileUpload == false){ %>
 			<span style="color: red">Support for files is switched off.</span>
-			<br><br>
-			
 		<%} else if (field.isBinary() && supportFileUpload == true){ %>
 			<input 
 				type="file" 
-				name="<%= field.getName() %>"
-				>
-			<br><br>
-
+				name="<%= field.getName() %>">
 		<%} else { %>
 			<span style="white-space: nowrap;">
-			<input
-				type="text" 
-				name="<%= field.getName() %>"
-				id="<%= field.getName() %>"
-				<% if (displayDefaults != null && displayDefaults) { %>value="<%=field.getDefaultValue()%>"<% } %>><% 
-			if(field.getName().toLowerCase().contains("url") || field.getDocumentation().toLowerCase().contains("url")){
+			<%if (editableInputs == false) 
+			  {%>
+			     <input
+					type="hidden"
+					name="<%= field.getName() %>"
+					id="<%= field.getName() %>"
+					<% if (displayDefaults != null && displayDefaults) { %>value="<%=field.getDefaultValue()%>"<% }%>>
+					</br>
+					<a href="<%=field.getDefaultValue()%>"><%=field.getDefaultValue()%></a>
+			  <%} else{%>
+			     <input
+					type="text"
+					name="<%= field.getName() %>"
+					id="<%= field.getName() %>"
+					<% if (displayDefaults != null && displayDefaults) { %>value="<%=field.getDefaultValue()%>"<% }%>>
+			  <%}%>
+		   <%
+			if(field.getName().toLowerCase().contains("url") || field.getDocumentation().toLowerCase().contains("url"))
+			{
 				String id = field.getName();
+				if (editableInputs == true)
+				{
 				%>&nbsp;<span style="color: #7979b2;"
 					onmouseover="setStyle(this)"
 					onmouseout="removeStyle(this)"
 					onclick="getUrl('<%=id%>')">view</span>
-			<%} %>
+			<%}
+			}
+			%>
 			</span>
 			<br><br>
 <%
@@ -283,10 +333,8 @@ if(session.getAttribute("serviceObject") != null) {
 
 %>
 		</table>
- <br>
-<input type="submit" value="<% if(loadDefault) out.print(defaultButton); else out.print("Show Results");%>" /> <br>
-<br>
-
+		<br/>
+<input type="submit" value="<% if(loadDefault) out.print(defaultButton); else out.print("Show Results");%>" class="link" />
 </form>
 
 <%
@@ -302,32 +350,43 @@ if(session.getAttribute("serviceObject") != null) {
 				.getAttribute("currentOperation");
 
 %>
-<hr>
-<br>
 
 <% if(showResultFilesOnly == false) { %>
-<b>Response messages:</b>
-<br>
 <br>
 
 <%
-	for (SoapOutput output : currentOperation.getOutputs()) {
-		out.println("<h3>" + output.getName() + "</h3>");
-		
+	for (SoapOutput output : currentOperation.getOutputs()) 
+	{
+		String name = output.getName();
 		String value = output.getValue();
-		if (value.startsWith("http")) {
-			out.println("<br>");
+		if ((name == "processingUnit") || (name == "returncode") || (name == "Created") ||
+			 (name == "toolProcessingTime") || (name == "success")) 
+		{}
+		else if (((name == "processingLog")) || (name == "log"))
+		{
+			out.println("<h3 id=\"mostrarLog\">" + name + "</h3>");
+			out.println("<div id=\"msgid1Log\">");
+			out.println("<h3 id=\"ocultarLog\">" + name + "</h3>");
+			out.println(value);
+			out.println("</div>");
+		}
+		else if (value.startsWith("http")) {
+			out.println("<h3>" + output.getName() + "</h3>");
 			out.println("<div>");
-			out.println("<a href='" + value + "'>");
+			out.println("<a target=\"_blank\" href='" + value + "'>");
 			out.println(value);
 			out.println("</a>");
 			out.println("</div>");	
-		} else {
-			out.println("<pre>");
-			out.println(value);
-			out.println("</pre>");
 		}
-		out.println("<br>");
+		else if ((name == "time"))
+		{
+			out.println("<h3>" + output.getName() + "</h3>");
+			out.println(value + " ms");			
+		}
+		else {
+			out.println("<h3>" + output.getName() + "</h3>");
+			out.println(value);
+		}
 	}
 }
 %>
@@ -354,10 +413,13 @@ Attached file:
 %>
 
 <%		if(loadDefault == false){  %>
-<br><br>
-<b>Received SOAP message:</b>
+<h3 id="mostrar">Received SOAP message</h3>
 <br>
-<textarea cols="100" rows="40" name="textarea">
+<div id="msgid1">
+	<h3 id="ocultar">Received SOAP message</h3>
+	</br>
+	<textarea cols="100" rows="40" name="textarea">
+</div>
 <%
 out.print(currentOperation.getResponse());
 %>	

@@ -346,11 +346,12 @@ public class WsdlDocument {
 	 * @return
 	 */
 	public String getInputDocumentation(String inputName) {
-		XSElementDecl element = schemaElements.get(inputName);
+	/*	XSElementDecl element = schemaElements.get(inputName);
 
 		XSAnnotation anno = element.getAnnotation();
 		if (anno != null)
 			return anno.getAnnotation().toString();
+		*/
 		return "";
 	}
 

@@ -52,13 +52,17 @@ Deployment Guide
 
 *Preparing the dependent libraries
 
-	The application needs some classes from the Taverna Server which are currently not available
-	through a central Maven repository. That's why they must be first installed in the local 
-	repository. The project containing the POM file is "t2-rest".
+	- t2-rest
+		The application needs some classes from the Taverna Server which are currently not available
+		through a central Maven repository. That's why they must be first installed in the local 
+		repository. The project containing the POM file is "t2-rest".
 	
-	In the downloaded directory, execute the Maven command:
+		In the downloaded directory, execute the Maven command:
 	
-		* mvn install
+			* mvn install
+	- t2-server-jar
+		mvn clean install package
+		cp t2-server-jar/target/t2-server-client-0.9.0.jar T2-Client/lib/
 	
 	
 *Building the application

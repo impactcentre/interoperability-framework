@@ -34,11 +34,39 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>net.sf.taverna.t2</groupId>
+			<artifactId>taverna-server-rest-api</artifactId>
+			<version>0.2.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>net.sf.taverna.t2</groupId>
+					<artifactId>taverna-server</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>uk.org.taverna</groupId>
+			<artifactId>taverna-server-client</artifactId>
+			<version>0.9.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/t2-server-client-0.9.0.jar</systemPath>			
+		</dependency>
+		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>1.4</version>
 		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.6.2</version>
+		</dependency>
 
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-bundle-jaxrs</artifactId>
+			<version>2.1.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.jdom</groupId>
 			<artifactId>jaxen-jdom</artifactId>
@@ -49,7 +77,16 @@
 			<artifactId>jaxen</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>oro</groupId>
+			<artifactId>oro</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.4.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.jdom</groupId>
 			<artifactId>jdom</artifactId>
@@ -81,32 +118,20 @@
 			<artifactId>commons-httpclient</artifactId>
 			<version>3.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.0</version>
+			<version>4.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
-			<version>4.0.1</version>
+			<version>4.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>
-			<version>4.0</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.taverna.t2</groupId>
-			<artifactId>taverna-server-rest-api</artifactId>
-			<version>0.2.0</version>
-			<exclusions>
-				<exclusion>
-					<groupId>net.sf.taverna.t2</groupId>
-					<artifactId>taverna-server</artifactId>
-				</exclusion>
-			</exclusions>
+			<version>4.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -114,7 +139,6 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>

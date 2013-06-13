@@ -47,6 +47,8 @@ import org.jdom.JDOMException;
 import org.jdom.Namespace;
 import org.jdom.input.SAXBuilder;
 import org.jdom.xpath.XPath;
+//import net.sf.taverna.t2.activities.wsdl.security.*;
+import uk.org.taverna.server.client.*;
 
 /**
  * Analyzes the uploaded workflow files for input names and input depths
@@ -294,6 +296,9 @@ public class WorkflowParser extends HttpServlet {
 		// 0.2.x
 		workflowString = workflowString.replaceAll(
 				"<localworkerName>[^<]*</localworkerName>", "");
+		
+		//workflowString = workflowString.replaceAll(
+			//	"<securityProfile>[^<]*</securityProfile>", "");
 
 		Workflow workflow = new Workflow(workflowString);
 

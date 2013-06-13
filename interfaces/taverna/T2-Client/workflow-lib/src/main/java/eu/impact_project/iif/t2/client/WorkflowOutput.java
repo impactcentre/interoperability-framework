@@ -21,6 +21,8 @@
 
 package eu.impact_project.iif.t2.client;
 
+import uk.org.taverna.server.client.OutputPort;
+
 /**
  * Bean representing an output of a Taverna workflow
  * 
@@ -45,6 +47,14 @@ public class WorkflowOutput {
 		this.value = value;
 	}
 
+	public void setValue(OutputPort value) {
+		if (value != null)
+		{
+			this.url = value.getReference().toString();
+			this.value = value.getData(0).toString();
+		}
+	}
+	
 	public boolean isBinary() {
 		return binary;
 	}
