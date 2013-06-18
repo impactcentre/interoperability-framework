@@ -108,7 +108,7 @@ public class WorkflowRunner extends HttpServlet {
 			String address = null;
 			long duration = 0;
 			long startTime = System.currentTimeMillis();
-            address = "http://localhost:9080/tavernaserver";
+            address = "https://taverna.taverna@localhost:8443/taverna-server";
             URI serverURI = new URI(address);
             // connect to server
             Server tavernaRESTClient = new Server(serverURI);
