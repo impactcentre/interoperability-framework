@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Web frontend for the metrics toolkit that offers the functionality to execute two OCR evaluation workflows whose results can be compared to each other.</description>
 	<scm>
-		<url>https://develop.sub.uni-goettingen.de/repos/impact/bird/T2-Client/trunk/metrics-toolkit</url>
+		<url>https://github.com/impactcentre/interoperability-framework/tree/master/interfaces/taverna/T2-Client/metrics-toolkit</url>
 	</scm>
 
 	<parent>

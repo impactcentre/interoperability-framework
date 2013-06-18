@@ -10,12 +10,12 @@
 		workflow.</description>
 	<url>http://www.impact-project.eu/</url>
 	<organization>
-		<name>SUB Goettingen</name>
-		<url>http://www.sub.uni-goettingen.de/</url>
+		<name>IMPACT Centre of Competence</name>
+		<url>http://www.digitisation.eu/</url>
 	</organization>
 	<inceptionYear>2009</inceptionYear>
 	<scm>
-		<url>https://develop.sub.uni-goettingen.de/repos/impact/bird/T2-Client</url>
+		<url>https://github.com/impactcentre/interoperability-framework/tree/master/interfaces/taverna/T2-Client</url>
 	</scm>
 
 	<modules>
@@ -61,7 +61,6 @@
 			<artifactId>wsdl4j</artifactId>
 			<version>1.6.2</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-bundle-jaxrs</artifactId>
@@ -167,8 +166,7 @@
 		<repository>
 			<id>archiva.snapshots.http</id>
 			<name>Archiva Managed Snapshot Repository</name>
-			<url>http://repository.bibforge.org/archiva/repository/snapshots
-			</url>
+			<url>http://repository.bibforge.org/archiva/repository/snapshots</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -185,8 +183,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.0.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<fork>true</fork>
 					<showDeprecation>true</showDeprecation>
 					<showWarnings>true</showWarnings>

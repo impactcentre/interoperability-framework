@@ -7,10 +7,9 @@
 	<packaging>war</packaging>
 	<name>WS-Client</name>
 	<description>Generic client that can be used to test an arbitrary SOAP Web Service</description>
-	<url>http://www.impact-project.eu/</url>
 	<organization>
-		<name>SUB Goettingen</name>
-		<url>http://www.sub.uni-goettingen.de/</url>
+		<name>IMPACT Centre of Competence</name>
+		<url>http://www.digitisation.eu/</url>
 	</organization>
 	<inceptionYear>2009</inceptionYear>
 	<dependencies>
@@ -20,7 +19,6 @@
 			<artifactId>generic-soap-client</artifactId>
 			<version>0.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -46,7 +44,6 @@
 			<artifactId>soap-xmlbeans</artifactId>
 			<version>1.2</version>
 		</dependency>
-
 		<dependency>
 			<groupId>eviware</groupId>
 			<artifactId>policy-xmlbeans</artifactId>
@@ -125,7 +122,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<dependency>
 			<groupId>xalan</groupId>
 			<artifactId>serializer</artifactId>
@@ -137,7 +133,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.xerces</groupId>
 			<artifactId>xml-apis</artifactId>
@@ -153,7 +148,6 @@
 			<artifactId>wsdl4j</artifactId>
 			<version>1.6.2-fixed</version>
 		</dependency>
-
 		<dependency>
 			<groupId>wss4j</groupId>
 			<artifactId>wss4j</artifactId>
@@ -169,7 +163,6 @@
 			<artifactId>opensaml</artifactId>
 			<version>1.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>xmlbeans</groupId>
 			<artifactId>xmlpublic</artifactId>
@@ -190,7 +183,6 @@
 			<artifactId>not-yet-commons-ssl</artifactId>
 			<version>0.3.11</version>
 		</dependency>
-
 		<dependency>
 			<groupId>xmlbeans</groupId>
 			<artifactId>xbean</artifactId>
@@ -211,7 +203,6 @@
 			<artifactId>netcomponents</artifactId>
 			<version>1.3.8a</version>
 		</dependency>
-
 		<dependency>
 			<groupId>eviware</groupId>
 			<artifactId>wadl-xmlbeans</artifactId>
@@ -255,22 +246,6 @@
 			<id>eviwarePluginRepository</id>
 			<url>http://www.eviware.com/repository/maven2/</url>
 		</repository>
-
-		<repository>
-			<id>apache-repo</id>
-			<name>Maven Central Repository</name>
-			<url>
-                scpexe://people.apache.org/www/people.apache.org/repo/m2-ibiblio-rsync-repository
-            </url>
-		</repository>
-		<repository>
-			<id>apache-repo</id>
-			<name>Maven Central Repository</name>
-			<url>
-			http://repo1.maven.org/maven2
-            </url>
-		</repository>
-
 	</repositories>
 
 	<build>
@@ -300,8 +275,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.0.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<fork>true</fork>
 					<showDeprecation>true</showDeprecation>
 					<showWarnings>true</showWarnings>
