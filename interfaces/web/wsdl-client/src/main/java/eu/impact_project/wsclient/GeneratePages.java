@@ -124,7 +124,7 @@ public class GeneratePages extends HttpServlet {
 			nombreFic = nombreFic.substring(nombreFic.lastIndexOf("/"));
 			nombreFic = nombreFic.substring(nombreFic.lastIndexOf("/")+1,nombreFic.lastIndexOf("?"));
 			nombreFic = nombreFic+".jsp";
-			path = request.getRealPath("/");
+			path = request.getSession().getServletContext().getRealPath("/");
 			in = new FileInputStream(path + "interface.jsp");
 			out =new FileOutputStream(path+nombreFic);
 			

@@ -47,7 +47,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import net.sf.taverna.t2.service.webservice.resource.DataValue;
 
-import org.apache.commons.validator.UrlValidator;
+import org.apache.commons.validator.routines.UrlValidator;
 import org.apache.xmlbeans.impl.util.Base64;
 import org.xml.sax.SAXException;
 

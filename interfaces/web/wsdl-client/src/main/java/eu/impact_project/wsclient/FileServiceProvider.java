@@ -83,7 +83,7 @@ public class FileServiceProvider implements ServiceProvider {
 			return;
 		}
 
-		this.configUrl = file.toURL();
+		this.configUrl = file.toURI().toURL();
 		loadConfig();
 
 	}
@@ -202,8 +202,7 @@ public class FileServiceProvider implements ServiceProvider {
 					.toURI().toURL();
 		} else if (new File(baseDir + "./WEB-INF/classes/services.xml")
 				.exists()) {
-			configUrl = new File("./WEB-INF/classes/services.xml").toURI()
-					.toURL();
+			configUrl = new File("./WEB-INF/classes/services.xml").toURI().toURL();
 		} else if (new File(WSDLinfo.configLocation).exists()) {
 			configUrl = new File(WSDLinfo.configLocation).toURI().toURL();
 		}
