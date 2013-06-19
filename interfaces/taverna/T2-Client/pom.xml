@@ -48,8 +48,6 @@
 			<groupId>uk.org.taverna</groupId>
 			<artifactId>taverna-server-client</artifactId>
 			<version>0.9.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/t2-server-client-0.9.0.jar</systemPath>			
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
