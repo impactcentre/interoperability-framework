@@ -20,6 +20,7 @@
     </repositories>
     <properties>
         <taverna.version>${project.version}</taverna.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
         <dependency>
@@ -35,7 +36,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>truezip-maven-plugin</artifactId>
-		<version>1.0</version>
+		        <version>1.0</version>
                 <executions>
                     <execution>
                         <id>copy-out-files</id>
