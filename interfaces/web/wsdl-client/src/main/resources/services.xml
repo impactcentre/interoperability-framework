@@ -2,7 +2,7 @@
 <services>
 	
 	<service id="1">
-		<title>WSSecurity border Removal</title>
+		<title>WSSecurity Border Removal</title>
 		<url>http://impact.dlsi.ua.es/services/secureBorderRemoval?wsdl</url>
 		<description>Perform image enhancement by automatically detecting and removing black borders as well as noise regions from scanned document image files. <![CDATA[<a href="http://www.impact-project.eu/taa/tech/imgenh/bm/" target="_top">Learn more</a>]]></description>
 	</service>

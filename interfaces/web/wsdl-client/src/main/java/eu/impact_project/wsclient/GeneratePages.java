@@ -110,9 +110,9 @@ public class GeneratePages extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 			HttpSession session = request.getSession(true);
-			String nombreFic = null;
+			String fileName = null;
 			String path = null;
-			FileWriter fichero = null;			
+			FileWriter file = null;
 			File f;
 			PrintWriter pw = null;
 			InputStream in = null;
@@ -120,16 +120,16 @@ public class GeneratePages extends HttpServlet {
 			byte[] buf = new byte[1024];
 			int len;
 			 
-			nombreFic = request.getParameter("wsId");
-			nombreFic = nombreFic.substring(nombreFic.lastIndexOf("/"));
-			nombreFic = nombreFic.substring(nombreFic.lastIndexOf("/")+1,nombreFic.lastIndexOf("?"));
-			nombreFic = nombreFic+".jsp";
+			fileName = request.getParameter("wsId");
+			fileName = fileName.substring(fileName.lastIndexOf("/"));
+			fileName = fileName.substring(fileName.lastIndexOf("/")+1,fileName.lastIndexOf("?"));
+			fileName = fileName+".jsp";
 			path = request.getSession().getServletContext().getRealPath("/");
 			in = new FileInputStream(path + "interface.jsp");
-			out =new FileOutputStream(path+nombreFic);
+			out =new FileOutputStream(path+fileName);
 			
-			System.out.println("Este es el fichero origen: " + path + "interface.jsp");
-			System.out.println("Este es el fichero destino: " + path + nombreFic);
+			System.out.println("This is the input file: " + path + "interface.jsp");
+			System.out.println("This is the output file: " + path + fileName);
 
 			while ((len = in.read(buf)) > 0) 
 			{
@@ -147,7 +147,7 @@ public class GeneratePages extends HttpServlet {
 			
 			// get back to JSP
 			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/"+nombreFic);
+					"/"+fileName);
 			rd.forward(request, response);
 
 	}

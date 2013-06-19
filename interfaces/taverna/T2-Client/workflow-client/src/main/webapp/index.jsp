@@ -344,7 +344,7 @@ Or login to MyExperiment and choose a workflow:
 				currentWorkflow.setWsdls(currentWorkflow.getStringVersion());
 				for (Wsdl wsdl:currentWorkflow.getWsdls())
 				{
-					if (!currentWorkflow.testUrl(wsdl.getUrl()))//Comprueba disponibilidad de wsdl
+					if (!currentWorkflow.testUrl(wsdl.getUrl())) // Check availability of wsdl
 					{
 						out.print("<em>" + wsdl.getUrl() + "</em> <em style=\"color:red\">Not avaliable</em><br>");
 						error = true;
