@@ -37,9 +37,8 @@ public class EncryptDecrypt {
 		} catch (javax.crypto.BadPaddingException e) {
 		} catch (IllegalBlockSizeException e) {
 		} catch (UnsupportedEncodingException e) {
-		} catch (java.io.IOException e) {
 		}
-		return null;
+        return null;
 	}
 
 	public String decrypt(String str) {
