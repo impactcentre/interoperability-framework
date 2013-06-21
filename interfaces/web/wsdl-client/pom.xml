@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>eu.impact_project</groupId>
+	<groupId>eu.impact_project.iif.ws</groupId>
 	<artifactId>WS-Client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -15,7 +15,7 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>eu.impact_project</groupId>
+			<groupId>eu.impact_project.iif.ws</groupId>
 			<artifactId>generic-soap-client</artifactId>
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
