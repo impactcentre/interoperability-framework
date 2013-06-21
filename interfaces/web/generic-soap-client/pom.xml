@@ -14,12 +14,12 @@
 		<dependency>
 			<groupId>eviware</groupId>
 			<artifactId>soapui</artifactId>
-			<version>3.6</version>
+			<version>3.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>eviware</groupId>
 			<artifactId>soapui-xmlbeans</artifactId>
-			<version>3.6</version>
+			<version>3.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>eviware</groupId>
@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.8</version>
+			<version>1.2.12</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-httpclient</groupId>
