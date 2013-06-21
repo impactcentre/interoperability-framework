@@ -1,8 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>eu.impact_project.iif.t2</groupId>
-	<artifactId>workflow-lib</artifactId>
+    <artifactId>workflow-lib</artifactId>
 	<packaging>jar</packaging>
 	<name>workflow-lib</name>
 	<version>0.0.1-SNAPSHOT</version>
@@ -16,6 +15,7 @@
 		<artifactId>T2-Client</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+
 	<dependencies>
 		<dependency>
 			<groupId>uk.org.taverna</groupId>

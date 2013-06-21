@@ -91,7 +91,6 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-
          <xs:complexType name="InOut">
               <xs:sequence>
                  <xs:element ref="Datatype"/>
@@ -101,7 +100,6 @@
               </xs:sequence>
               <xs:attribute name="name" type="xs:string" use="required"/>
            </xs:complexType>
-
           <xs:complexType name="Input">
             <xs:complexContent>
              <xs:extension base="InOut">
@@ -112,7 +110,6 @@
              </xs:extension>
             </xs:complexContent>
           </xs:complexType>
-
           <xs:complexType name="Output">
             <xs:complexContent>
              <xs:extension base="InOut">
@@ -125,9 +122,8 @@
              </xs:extension>
             </xs:complexContent>
           </xs:complexType>
-
-          <xs:element name="input" type="Input"/>
-          <xs:element name="output" type="Output"/>
+    <xs:element name="input" type="Input"/>
+    <xs:element name="output" type="Output"/>
 
 <!--	<xs:element name="input">
 		<xs:complexType>
@@ -141,21 +137,22 @@
 			</xs:sequence>
 			<xs:attribute name="name" type="xs:string" use="required"/>
 		</xs:complexType>
-	</xs:element>
-	<xs:element name="output">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="Datatype"/>
-				<xs:element ref="CliMapping"/>
-				<xs:element ref="Required"/>
-				<xs:element ref="Documentation"/>
-				<xs:element name="PrefixFromInput" type="xs:string" minOccurs="0"/>
-				<xs:element name="Extension" type="xs:string"/>
-                                <xs:element name="AutoExtension" type="xs:boolean" default="false" minOccurs="0"/>
-			</xs:sequence>
-			<xs:attribute name="name" type="xs:string" use="required"/>
-		</xs:complexType>
-	</xs:element>-->
+        </xs:element>
+        <xs:element name="output">
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element ref="Datatype"/>
+                    <xs:element ref="CliMapping"/>
+                    <xs:element ref="Required"/>
+                    <xs:element ref="Documentation"/>
+                    <xs:element name="PrefixFromInput" type="xs:string" minOccurs="0"/>
+                    <xs:element name="Extension" type="xs:string"/>
+                    <xs:element name="AutoExtension" type="xs:boolean" default="false" minOccurs="0"/>
+                </xs:sequence>
+                <xs:attribute name="name" type="xs:string" use="required"/>
+            </xs:complexType>
+        </xs:element>-->
+
 	<xs:element name="operations">
 		<xs:complexType>
 			<xs:sequence>
