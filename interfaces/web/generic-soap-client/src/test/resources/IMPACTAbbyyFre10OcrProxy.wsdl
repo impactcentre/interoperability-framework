@@ -1,195 +1,187 @@
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://iif.impact-project.eu/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://iif.impact-project.eu/">
-    <wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="UTOverTransport">
-        <wsp:ExactlyOne>
-            <wsp:All>
-                <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-                    <wsp:Policy>
-                        <sp:TransportToken>
-                            <wsp:Policy>
-                                <sp:HttpsToken RequireClientCertificate="false" />
-                            </wsp:Policy>
-                        </sp:TransportToken>
-                        <sp:AlgorithmSuite>
-                            <wsp:Policy>
-                                <sp:Basic256 />
-                            </wsp:Policy>
-                        </sp:AlgorithmSuite>
-                        <sp:Layout>
-                            <wsp:Policy>
-                                <sp:Lax />
-                            </wsp:Policy>
-                        </sp:Layout>
-                        <sp:IncludeTimestamp />
-                    </wsp:Policy>
-                </sp:TransportBinding>
-                <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-                    <wsp:Policy>
-                        <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient" />
-                    </wsp:Policy>
-                </sp:SignedSupportingTokens>
-            </wsp:All>
-        </wsp:ExactlyOne>
-    </wsp:Policy>
-    <wsdl:types>
-        <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://iif.impact-project.eu/">
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="http://iif.impact-project.eu/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://iif.impact-project.eu/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+<wsdl:documentation>
+        IMPACT Abbyy Fine Reader 10 Service. This service provides the basic
+        functionality of the Abbyy Fine Reader 10 text recogntion engine for
+        applying OCR to an image file.
+    </wsdl:documentation>
+  <types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://iif.impact-project.eu/">
+
+            <!--  http://www.w3.org/2005/05/xmlmime -->
+            <!--<xsd:import namespace="http://www.w3.org/2005/05/xmlmime"
+				schemaLocation="xmime.xsd" />-->
             <xsd:simpleType name="recognitionLanguage">
                 <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="Bulgarian" />
-                    <xsd:enumeration value="Catalan" />
-                    <xsd:enumeration value="Czech" />
-                    <xsd:enumeration value="Danish" />
-                    <xsd:enumeration value="Dutch" />
-                    <xsd:enumeration value="English" />
-                    <xsd:enumeration value="Finnish" />
-                    <xsd:enumeration value="French" />
-                    <xsd:enumeration value="German" />
-                    <xsd:enumeration value="Greek" />
-                    <xsd:enumeration value="Hungarian" />
-                    <xsd:enumeration value="Irish" />
-                    <xsd:enumeration value="Italian" />
-                    <xsd:enumeration value="Latin" />
-                    <xsd:enumeration value="Macedonian" />
-                    <xsd:enumeration value="OldEnglish" />
-                    <xsd:enumeration value="OldFrench" />
-                    <xsd:enumeration value="OldGerman" />
-                    <xsd:enumeration value="OldItalian" />
-                    <xsd:enumeration value="OldSpanish" />
-                    <xsd:enumeration value="Polish" />
-                    <xsd:enumeration value="PortugueseStandard" />
-                    <xsd:enumeration value="Romanian" />
-                    <xsd:enumeration value="Russian" />
-                    <xsd:enumeration value="SerbianCyrillic" />
-                    <xsd:enumeration value="SerbianLatin" />
-                    <xsd:enumeration value="Slovenian" />
-                    <xsd:enumeration value="Slovak" />
-                    <xsd:enumeration value="Spanish" />
+                    <xsd:enumeration value="Bulgarian"/>
+                    <xsd:enumeration value="Catalan"/>
+                    <xsd:enumeration value="Czech"/>
+                    <xsd:enumeration value="Danish"/>
+                    <xsd:enumeration value="Dutch"/>
+                    <xsd:enumeration value="English"/>
+                    <xsd:enumeration value="Finnish"/>
+                    <xsd:enumeration value="French"/>
+                    <xsd:enumeration value="German"/>
+                    <xsd:enumeration value="Greek"/>
+                    <xsd:enumeration value="Hungarian"/>
+                    <xsd:enumeration value="Irish"/>
+                    <xsd:enumeration value="Italian"/>
+                    <xsd:enumeration value="Macedonian"/>
+                    <xsd:enumeration value="OldEnglish"/>
+                    <xsd:enumeration value="OldFrench"/>
+                    <xsd:enumeration value="OldGerman"/>
+                    <xsd:enumeration value="OldItalian"/>
+                    <xsd:enumeration value="OldSpanish"/>
+                    <xsd:enumeration value="Polish"/>
+                    <xsd:enumeration value="PortugueseStandard"/>
+                    <xsd:enumeration value="Romanian"/>
+                    <xsd:enumeration value="Russian"/>
+                    <xsd:enumeration value="SerbianCyrillic"/>
+                    <xsd:enumeration value="SerbianLatin"/>
+                    <xsd:enumeration value="Slovenian"/>
+                    <xsd:enumeration value="Slovak"/>
+                    <xsd:enumeration value="Spanish"/>
                 </xsd:restriction>
             </xsd:simpleType>
             <xsd:complexType name="RecognitionLanguages">
                 <xsd:sequence>
-                    <xsd:element default="German" maxOccurs="unbounded" minOccurs="0" name="recognitionLanguage" type="tns:recognitionLanguage" />
+                    <xsd:element default="German" maxOccurs="unbounded" minOccurs="0" name="recognitionLanguage" type="tns:recognitionLanguage"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:simpleType name="outputFormatType">
                 <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="Text" />
-                    <xsd:enumeration value="XML" />
-                    <xsd:enumeration value="ALTO" />
-                    <xsd:enumeration value="HTML" />
-                    <xsd:enumeration value="RTF" />
+                    <xsd:enumeration value="Text"/>
+                    <xsd:enumeration value="XML"/>
+                    <xsd:enumeration value="ALTO"/>
+                    <xsd:enumeration value="HTML"/>
+                    <xsd:enumeration value="RTF"/>
                 </xsd:restriction>
             </xsd:simpleType>
             <xsd:simpleType name="inputTextType">
                 <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="Normal" />
-                    <xsd:enumeration value="Typewriter" />
-                    <xsd:enumeration value="Gothic" />
-                    <xsd:enumeration value="ToBeDetected" />
+                    <xsd:enumeration value="Normal"/>
+                    <xsd:enumeration value="Typewriter"/>
+                    <xsd:enumeration value="Gothic"/>
+                    <xsd:enumeration value="ToBeDetected"/>
                 </xsd:restriction>
             </xsd:simpleType>
+            <!--<xsd:complexType name="RequestType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="inputTextType"
+						type="tns:inputTextType" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="outputFormat"
+						type="tns:outputFormatType" />
+                    <xsd:element  minOccurs="0" maxOccurs="1" name="languages"
+						type="tns:RecognitionLanguages" />
+                    <xsd:element use="required" minOccurs="1" maxOccurs="1" name="base64Binary"
+						type="xmime:base64Binary" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="Base64BinaryRequest" type="tns:RequestType" />
+            <xsd:complexType name="ResponseType">
+                <xsd:sequence>
+                    <xsd:element use="required" minOccurs="1" maxOccurs="1" name="success" type="xsd:boolean" />
+                    <xsd:element use="required" minOccurs="1" maxOccurs="1" name="returncode" type="xsd:int" />
+                    <xsd:element use="required" minOccurs="1" maxOccurs="1" name="message" type="xsd:string" />
+                    <xsd:element use="required" minOccurs="1" maxOccurs="1" name="toolProcessingTime" type="xsd:int" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="base64Binary" type="xmime:base64Binary" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="Base64BinaryResponse" type="tns:ResponseType" />-->
+
             <xsd:complexType name="ByUrlRequestType">
                 <xsd:sequence>
-                    <xsd:element default="Gothic" minOccurs="0" name="inputTextType" type="tns:inputTextType" />
-                    <xsd:element default="Text" minOccurs="0" name="outputFormat" type="tns:outputFormatType" />
-                    <xsd:element minOccurs="0" name="languages" type="tns:RecognitionLanguages" />
-                    <xsd:element default="http://kbdemo.dnsalias.org/testfiles/00046135.bw.tif" name="inputUrl" type="xsd:anyURI" />
+                    <xsd:element default="Gothic" maxOccurs="1" minOccurs="0" name="inputTextType" type="tns:inputTextType"/>
+                    <xsd:element default="Text" maxOccurs="1" minOccurs="0" name="outputFormat" type="tns:outputFormatType"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="languages" type="tns:RecognitionLanguages"/>
+                    <xsd:element default="http://fue.onb.ac.at/impact/testdata/00000868_p.tif" maxOccurs="1" minOccurs="1" name="inputUrl" type="xsd:anyURI" use="required"/>
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:element name="ByUrlRequest" type="tns:ByUrlRequestType" />
+            <xsd:element name="ByUrlRequest" type="tns:ByUrlRequestType"/>
+
             <xsd:complexType name="ByUrlResponseType">
                 <xsd:sequence>
-                    <xsd:element name="success" type="xsd:boolean" />
-                    <xsd:element name="returncode" type="xsd:int" />
-                    <xsd:element name="message" type="xsd:string" />
-                    <xsd:element name="toolProcessingTime" type="xsd:int" />
-                    <xsd:element name="processingLog" type="xsd:string" />
-                    <xsd:element name="processingUnit" type="xsd:string" />
-                    <xsd:element minOccurs="0" name="outputUrl" type="xsd:anyURI" />
+                    <xsd:element maxOccurs="1" minOccurs="1" name="success" type="xsd:boolean" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="returncode" type="xsd:int" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="toolProcessingTime" type="xsd:int" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="processingLog" type="xsd:string" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="processingUnit" type="xsd:string" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="outputUrl" type="xsd:anyURI"/>
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:element name="ByUrlResponse" type="tns:ByUrlResponseType" />
+            <xsd:element name="ByUrlResponse" type="tns:ByUrlResponseType"/>
+
             <xsd:complexType name="WrongArgumentFaultType">
                 <xsd:sequence>
-                    <xsd:element minOccurs="0" name="argument" type="xsd:string" />
+                    <xsd:element maxOccurs="1" minOccurs="0" name="argument" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:element name="WrongArgumentFault" type="tns:WrongArgumentFaultType" />
+            <xsd:element name="WrongArgumentFault" type="tns:WrongArgumentFaultType"/>
+
         </xsd:schema>
-    </wsdl:types>
-    <wsdl:message name="ByUrlRequest">
-        <wsdl:part name="part1" element="tns:ByUrlRequest" />
-    </wsdl:message>
-    <wsdl:message name="ByUrlResponse">
-        <wsdl:part name="part1" element="tns:ByUrlResponse" />
-    </wsdl:message>
-    <wsdl:message name="WrongArgumentException">
-        <wsdl:part name="fault" element="tns:WrongArgumentFault" />
-    </wsdl:message>
-    <wsdl:portType name="secureIMPACTAbbyyFre10OcrPortType">
-        <wsdl:operation name="ocrImageFileByUrl">
-            <wsdl:documentation>Apply text recognition to image file (sending/receiving data by URL)</wsdl:documentation>
-            <wsdl:input message="tns:ByUrlRequest" wsaw:Action="ocrImageFileByUrl">
-                <wsdl:documentation>inputTextType: Normal/Typewriter/Gothic/ToBeDetected; outputFormatType: Text/XML/HTML/RTF; inputUrl: URL reference to image file</wsdl:documentation>
-            </wsdl:input>
-            <wsdl:output message="tns:ByUrlResponse" wsaw:Action="//schemas.xmlsoap.org/wsdl/IMPACTAbbyyOcrServicePortType/ByUrlResponse">
-                <wsdl:documentation>success: Success/failure of service execution; returncode: 0 in case of success, greater 0 indicates an error; message: Process result message; toolProcessingTime: Tool processing time in milliseconds; processingUnit: URI of the processing unit (identifier of machine and environment); processingLog: Complete processing log; outputUrl: URL reference to the result file (TXT, XML, or RTF depending on input parameter outputFormat)</wsdl:documentation>
-            </wsdl:output>
-            <wsdl:fault message="tns:WrongArgumentException" name="WrongArgumentException" wsaw:Action="http://iif.impact-project.eu/IMPACTServicePortType/ocrImageFileByUrl/Fault/WrongArgumentException" />
-        </wsdl:operation>
-    </wsdl:portType>
-    <wsdl:binding name="secureIMPACTAbbyyFre10OcrSoap11Binding" type="tns:secureIMPACTAbbyyFre10OcrPortType">
-        <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#UTOverTransport" />
-        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
-        <wsdl:operation name="ocrImageFileByUrl">
-            <soap:operation soapAction="ocrImageFileByUrl" style="document" />
-            <wsdl:input>
-                <soap:body use="literal" />
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal" />
-            </wsdl:output>
-            <wsdl:fault name="WrongArgumentException">
-                <soap:fault use="literal" name="WrongArgumentException" />
-            </wsdl:fault>
-        </wsdl:operation>
-    </wsdl:binding>
-    <wsdl:binding name="secureIMPACTAbbyyFre10OcrSoap12Binding" type="tns:secureIMPACTAbbyyFre10OcrPortType">
-        <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#UTOverTransport" />
-        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
-        <wsdl:operation name="ocrImageFileByUrl">
-            <soap12:operation soapAction="ocrImageFileByUrl" style="document" />
-            <wsdl:input>
-                <soap12:body use="literal" />
-            </wsdl:input>
-            <wsdl:output>
-                <soap12:body use="literal" />
-            </wsdl:output>
-            <wsdl:fault name="WrongArgumentException">
-                <soap12:fault use="literal" name="WrongArgumentException" />
-            </wsdl:fault>
-        </wsdl:operation>
-    </wsdl:binding>
-    <wsdl:binding name="secureIMPACTAbbyyFre10OcrHttpBinding" type="tns:secureIMPACTAbbyyFre10OcrPortType">
-        <http:binding verb="POST" />
-        <wsdl:operation name="ocrImageFileByUrl">
-            <http:operation location="ocrImageFileByUrl" />
-            <wsdl:input>
-                <mime:content type="text/xml" part="parameters" />
-            </wsdl:input>
-            <wsdl:output>
-                <mime:content type="text/xml" part="parameters" />
-            </wsdl:output>
-        </wsdl:operation>
-    </wsdl:binding>
-    <wsdl:service name="secureIMPACTAbbyyFre10Ocr">
-        <wsdl:port name="secureIMPACTAbbyyFre10OcrHttpsSoap11Endpoint" binding="tns:secureIMPACTAbbyyFre10OcrSoap11Binding">
-            <soap:address location="https://impact.dlsi.ua.es/services/secureIMPACTAbbyyFre10Ocr.secureIMPACTAbbyyFre10OcrHttpsSoap11Endpoint" />
-        </wsdl:port>
-        <wsdl:port name="secureIMPACTAbbyyFre10OcrHttpsSoap12Endpoint" binding="tns:secureIMPACTAbbyyFre10OcrSoap12Binding">
-            <soap12:address location="https://impact.dlsi.ua.es/services/secureIMPACTAbbyyFre10Ocr.secureIMPACTAbbyyFre10OcrHttpsSoap12Endpoint" />
-        </wsdl:port>
-        <wsdl:port name="secureIMPACTAbbyyFre10OcrHttpsEndpoint" binding="tns:secureIMPACTAbbyyFre10OcrHttpBinding">
-            <http:address location="https://impact.dlsi.ua.es/services/secureIMPACTAbbyyFre10Ocr.secureIMPACTAbbyyFre10OcrHttpsEndpoint" />
-        </wsdl:port>
-    </wsdl:service>
-</wsdl:definitions>
+  </types>
+  <message name="ByUrlRequest">
+    <part name="part1" element="tns:ByUrlRequest">
+    </part>
+  </message>
+  <message name="ByUrlResponse">
+    <part name="part1" element="tns:ByUrlResponse">
+    </part>
+  </message>
+  <message name="WrongArgumentFaultMessage">
+    <part name="fault" element="tns:WrongArgumentFault">
+    </part>
+  </message>
+  <portType name="IMPACTServicePortType">
+    <operation name="ocrImageFileByUrl">
+<wsdl:documentation>Apply text recognition to image file (sending/receiving data by URL)</wsdl:documentation>
+      <input message="tns:ByUrlRequest" wsaw:Action="ocrImageFileByUrl">
+<wsdl:documentation>inputTextType: Normal/Typewriter/Gothic/ToBeDetected; outputFormatType: Text/XML/HTML/RTF; inputUrl: URL reference to image file</wsdl:documentation>
+    </input>
+      <output message="tns:ByUrlResponse" wsaw:Action="http://schemas.xmlsoap.org/wsdl/IMPACTAbbyyOcrServicePortType/ByUrlResponse">
+<wsdl:documentation>success: Success/failure of service execution; returncode: 0 in case of success, greater 0 indicates an error; message: Process result message; toolProcessingTime: Tool processing time in milliseconds; processingUnit: URI of the processing unit (identifier of machine and environment); processingLog: Complete processing log; outputUrl: URL reference to the result file (TXT, XML, or RTF depending on input parameter outputFormat)</wsdl:documentation>
+    </output>
+      <fault name="WrongArgumentException" message="tns:WrongArgumentFaultMessage">
+    </fault>
+    </operation>
+  </portType>
+  <binding name="IMPACTServiceSOAP11Binding" type="tns:IMPACTServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="ocrImageFileByUrl">
+      <soap:operation soapAction="ocrImageFileByUrl" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="WrongArgumentException">
+        <soap:fault name="WrongArgumentException" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <binding name="IMPACTServiceSOAP12Binding" type="tns:IMPACTServicePortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="ocrImageFileByUrl">
+      <soap12:operation soapAction="ocrImageFileByUrl" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+      <fault name="WrongArgumentException">
+        <soap:fault name="WrongArgumentException" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="IMPACTAbbyyFre10OcrService">
+    <port name="IMPACTServiceSOAP11port_http" binding="tns:IMPACTServiceSOAP11Binding">
+      <soap:address location="https://localhost/synapse/IMPACTAbbyyFre10OcrProxy"/>
+    </port>
+    <port name="IMPACTServiceSOAP12port_http" binding="tns:IMPACTServiceSOAP12Binding">
+      <soap12:address location="https://loclhost/IMPACTAbbyyFre10OcrProxy"/>
+    </port>
+  </service>
+</definitions>

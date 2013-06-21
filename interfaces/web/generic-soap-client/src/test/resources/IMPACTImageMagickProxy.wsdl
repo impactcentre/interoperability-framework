@@ -1,231 +1,238 @@
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://iif.impact-project.eu/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://iif.impact-project.eu/">
-    <wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="UTOverTransport">
-        <wsp:ExactlyOne>
-            <wsp:All>
-                <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-                    <wsp:Policy>
-                        <sp:TransportToken>
-                            <wsp:Policy>
-                                <sp:HttpsToken RequireClientCertificate="false" />
-                            </wsp:Policy>
-                        </sp:TransportToken>
-                        <sp:AlgorithmSuite>
-                            <wsp:Policy>
-                                <sp:Basic256 />
-                            </wsp:Policy>
-                        </sp:AlgorithmSuite>
-                        <sp:Layout>
-                            <wsp:Policy>
-                                <sp:Lax />
-                            </wsp:Policy>
-                        </sp:Layout>
-                        <sp:IncludeTimestamp />
-                    </wsp:Policy>
-                </sp:TransportBinding>
-                <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-                    <wsp:Policy>
-                        <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient" />
-                    </wsp:Policy>
-                </sp:SignedSupportingTokens>
-            </wsp:All>
-        </wsp:ExactlyOne>
-    </wsp:Policy>
-    <wsdl:types>
-        <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://iif.impact-project.eu/">
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="http://iif.impact-project.eu/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://iif.impact-project.eu/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+<wsdl:documentation>
+        IMPACT Image Magick Service.
+		Image property extraction and conversion using ImageMagick
+    </wsdl:documentation>
+  <types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://iif.impact-project.eu/">
+
+           <!--<xsd:attribute name="contentType">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="3"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="expectedContentTypes" type="xsd:string"/>
+                <xsd:complexType name="base64Binary">
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:base64Binary">
+                            <xsd:attribute ref="tns:contentType"/>
+
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+                <xsd:complexType name="hexBinary">
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:hexBinary">
+                            <xsd:attribute ref="tns:contentType"/>
+                        </xsd:extension>
+                    </xsd:simpleContent>
+            </xsd:complexType>-->
+
             <xsd:simpleType name="fileFormatType">
                 <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="tiff" />
-                    <xsd:enumeration value="jpeg" />
-                    <xsd:enumeration value="png" />
-                    <xsd:enumeration value="gif" />
-                    <xsd:enumeration value="ps" />
-                    <xsd:enumeration value="eps" />
+                    <xsd:enumeration value="tiff"/>
+                    <xsd:enumeration value="jpeg"/>
+                    <xsd:enumeration value="png"/>
+                    <xsd:enumeration value="gif"/>
+                    <xsd:enumeration value="ps"/>
+                    <xsd:enumeration value="eps"/>
                 </xsd:restriction>
             </xsd:simpleType>
             <xsd:simpleType name="compressionType">
                 <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="None" />
-                    <xsd:enumeration value="Fax" />
-                    <xsd:enumeration value="Group4" />
-                    <xsd:enumeration value="JPEG" />
-                    <xsd:enumeration value="LZW" />
-                    <xsd:enumeration value="RLE" />
-                    <xsd:enumeration value="Zip" />
+                    <xsd:enumeration value="None"/>
+                    <xsd:enumeration value="Fax"/>
+                    <xsd:enumeration value="Group4"/>
+                    <xsd:enumeration value="JPEG"/>
+                    <xsd:enumeration value="LZW"/>
+                    <xsd:enumeration value="RLE"/>
+                    <xsd:enumeration value="Zip"/>
                 </xsd:restriction>
             </xsd:simpleType>
             <xsd:simpleType name="colorspaceType">
                 <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="CMY" />
-                    <xsd:enumeration value="CMYK" />
-                    <xsd:enumeration value="Gray" />
-                    <xsd:enumeration value="HSB" />
-                    <xsd:enumeration value="HSL" />
-                    <xsd:enumeration value="HWB" />
-                    <xsd:enumeration value="Lab" />
-                    <xsd:enumeration value="Log" />
-                    <xsd:enumeration value="OHTA" />
-                    <xsd:enumeration value="Rec601Luma" />
-                    <xsd:enumeration value="Rec601YCbCr" />
-                    <xsd:enumeration value="Rec709Luma" />
-                    <xsd:enumeration value="Rec709YCbCr" />
-                    <xsd:enumeration value="RGB" />
-                    <xsd:enumeration value="sRGB" />
-                    <xsd:enumeration value="Transparent" />
-                    <xsd:enumeration value="XYZ" />
-                    <xsd:enumeration value="YCbCr" />
-                    <xsd:enumeration value="YCC" />
-                    <xsd:enumeration value="YIQ" />
-                    <xsd:enumeration value="YPbPr" />
-                    <xsd:enumeration value="YUV" />
+                    <xsd:enumeration value="CMY"/>
+                    <xsd:enumeration value="CMYK"/>
+                    <xsd:enumeration value="Gray"/>
+                    <xsd:enumeration value="HSB"/>
+                    <xsd:enumeration value="HSL"/>
+                    <xsd:enumeration value="HWB"/>
+                    <xsd:enumeration value="Lab"/>
+                    <xsd:enumeration value="Log"/>
+                    <xsd:enumeration value="OHTA"/>
+                    <xsd:enumeration value="Rec601Luma"/>
+                    <xsd:enumeration value="Rec601YCbCr"/>
+                    <xsd:enumeration value="Rec709Luma"/>
+                    <xsd:enumeration value="Rec709YCbCr"/>
+                    <xsd:enumeration value="RGB"/>
+                    <xsd:enumeration value="sRGB"/>
+                    <xsd:enumeration value="Transparent"/>
+                    <xsd:enumeration value="XYZ"/>
+                    <xsd:enumeration value="YCbCr"/>
+                    <xsd:enumeration value="YCC"/>
+                    <xsd:enumeration value="YIQ"/>
+                    <xsd:enumeration value="YPbPr"/>
+                    <xsd:enumeration value="YUV"/>
                 </xsd:restriction>
             </xsd:simpleType>
             <xsd:simpleType name="depthType">
                 <xsd:restriction base="xsd:int">
-                    <xsd:minInclusive value="1" />
-                    <xsd:maxInclusive value="16" />
+                    <xsd:minInclusive value="1"/>
+                    <xsd:maxInclusive value="16"/>
                 </xsd:restriction>
             </xsd:simpleType>
             <xsd:simpleType name="qualityType">
                 <xsd:restriction base="xsd:int">
-                    <xsd:minInclusive value="1" />
-                    <xsd:maxInclusive value="100" />
+                    <xsd:minInclusive value="1"/>
+                    <xsd:maxInclusive value="100"/>
                 </xsd:restriction>
             </xsd:simpleType>
+            <!--<xsd:complexType name="SimpleRequestType">
+                <xsd:sequence>
+                    <xsd:element use="required" minOccurs="1" maxOccurs="1" name="base64Binary"	type="tns:base64Binary" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="SimpleBase64BinaryRequest" type="tns:SimpleRequestType" />
+            <xsd:complexType name="RequestType">
+                <xsd:sequence>
+                    <xsd:element use="required" minOccurs="1" maxOccurs="1" name="base64Binary"	type="tns:base64Binary" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="targetFormat" type="tns:fileFormatType" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="compression" type="tns:compressionType" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="colorspace" type="tns:colorspaceType" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="numcolors" type="xsd:int" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="depth" type="tns:depthType" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="quality" type="tns:qualityType" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="Base64BinaryRequest" type="tns:RequestType" />
+            <xsd:complexType name="ResponseType">
+                <xsd:sequence>
+                    <xsd:element use="required" minOccurs="1" maxOccurs="1" name="success" type="xsd:boolean" />
+                    <xsd:element use="required" minOccurs="1" maxOccurs="1" name="returncode" type="xsd:int" />
+                    <xsd:element use="required" minOccurs="1" maxOccurs="1" name="message" type="xsd:string" />
+                    <xsd:element use="required" minOccurs="1" maxOccurs="1" name="toolProcessingTime" type="xsd:int" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="base64Binary" type="tns:base64Binary" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="Base64BinaryResponse" type="tns:ResponseType" />-->
+
             <xsd:complexType name="ByUrlRequestType">
                 <xsd:sequence>
-                    <xsd:element default="http://fue.onb.ac.at/impact/testdata/19080603_0020.png" name="inputUrl" type="xsd:anyURI" />
-                    <xsd:element default="tiff" minOccurs="0" name="targetFormat" type="tns:fileFormatType" />
-                    <xsd:element default="None" minOccurs="0" name="compression" type="tns:compressionType" />
-                    <xsd:element default="Gray" minOccurs="0" name="colorspace" type="tns:colorspaceType" />
-                    <xsd:element default="256" minOccurs="0" name="numcolors" type="xsd:int" />
-                    <xsd:element default="8" minOccurs="0" name="depth" type="tns:depthType" />
-                    <xsd:element default="100" minOccurs="0" name="quality" type="tns:qualityType" />
+                    <xsd:element default="http://fue.onb.ac.at/impact/testdata/19080603_0020.png" maxOccurs="1" minOccurs="1" name="inputUrl" type="xsd:anyURI" use="required"/>
+                    <xsd:element default="tiff" maxOccurs="1" minOccurs="0" name="targetFormat" type="tns:fileFormatType"/>
+                    <xsd:element default="None" maxOccurs="1" minOccurs="0" name="compression" type="tns:compressionType"/>
+                    <xsd:element default="Gray" maxOccurs="1" minOccurs="0" name="colorspace" type="tns:colorspaceType"/>
+                    <xsd:element default="256" maxOccurs="1" minOccurs="0" name="numcolors" type="xsd:int"/>
+                    <xsd:element default="8" maxOccurs="1" minOccurs="0" name="depth" type="tns:depthType"/>
+                    <xsd:element default="100" maxOccurs="1" minOccurs="0" name="quality" type="tns:qualityType"/>
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:element name="ByUrlRequest" type="tns:ByUrlRequestType" />
+            <xsd:element name="ByUrlRequest" type="tns:ByUrlRequestType"/>
             <xsd:complexType name="SimpleByUrlRequestType">
                 <xsd:sequence>
-                    <xsd:element name="inputUrl" type="xsd:anyURI" />
+                    <xsd:element maxOccurs="1" minOccurs="1" name="inputUrl" type="xsd:anyURI" use="required"/>
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:element name="SimpleByUrlRequest" type="tns:SimpleByUrlRequestType" />
+            <xsd:element name="SimpleByUrlRequest" type="tns:SimpleByUrlRequestType"/>
+
             <xsd:complexType name="ByUrlResponseType">
                 <xsd:sequence>
-                    <xsd:element name="success" type="xsd:boolean" />
-                    <xsd:element name="returncode" type="xsd:int" />
-                    <xsd:element name="message" type="xsd:string" />
-                    <xsd:element name="toolProcessingTime" type="xsd:int" />
-                    <xsd:element name="processingUnit" type="xsd:string" />
-                    <xsd:element name="processingLog" type="xsd:string" />
-                    <xsd:element minOccurs="0" name="outputUrl" type="xsd:anyURI" />
+                    <xsd:element maxOccurs="1" minOccurs="1" name="success" type="xsd:boolean" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="returncode" type="xsd:int" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="toolProcessingTime" type="xsd:int" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="processingUnit" type="xsd:string" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="processingLog" type="xsd:string" use="required"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="outputUrl" type="xsd:anyURI"/>
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:element name="ByUrlResponse" type="tns:ByUrlResponseType" />
+            <xsd:element name="ByUrlResponse" type="tns:ByUrlResponseType"/>
+
         </xsd:schema>
-    </wsdl:types>
-    <wsdl:message name="SimpleByUrlRequest">
-        <wsdl:part name="part1" element="tns:SimpleByUrlRequest" />
-    </wsdl:message>
-    <wsdl:message name="ByUrlResponse">
-        <wsdl:part name="part1" element="tns:ByUrlResponse" />
-    </wsdl:message>
-    <wsdl:message name="ByUrlRequest">
-        <wsdl:part name="part1" element="tns:ByUrlRequest" />
-    </wsdl:message>
-    <wsdl:portType name="secureIMPACTImageMagickPortType">
-        <wsdl:operation name="convertTiffToBitonalByUrl">
-            <wsdl:documentation>Convert TIFF image to bitonal TIFF image (sending/receiving data by URL)</wsdl:documentation>
-            <wsdl:input message="tns:SimpleByUrlRequest" wsaw:Action="convertTiffToBitonalByUrl">
-                <wsdl:documentation>inputUrl: URL reference to input image</wsdl:documentation>
-            </wsdl:input>
-            <wsdl:output message="tns:ByUrlResponse" wsaw:Action="//schemas.xmlsoap.org/wsdl/IMPACTImageMagickServicePortType/ByUrlResponse">
-                <wsdl:documentation>success: Success/failure of service execution; returncode: 0 in case of success, greater 0 indicates an error; message: Process result message; toolProcessingTime: Tool processing time in milliseconds; processingUnit: URI of the processing unit (identifier of machine and environment); processingLog: Complete processing log; outputUrl: URL reference to OCR result plain text file</wsdl:documentation>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="convertByUrl">
-            <wsdl:documentation>Convert image (sending/receiving data by URL)</wsdl:documentation>
-            <wsdl:input message="tns:ByUrlRequest" wsaw:Action="convertByUrl">
-                <wsdl:documentation>inputUrl: URL reference to input image; compression: One of None, Fax, Group4, JPEG, LZW, RLE, Zip; colorspace: One of CMY, CMYK, Gray, HSB, HSL, HWB, Lab, Log, OHTA, Rec601Luma, Rec601YCbCr, Rec709Luma, Rec709YCbCr, RGB, sRGB, Transparent, XYZ, YCbCr, YCC, YIQ, YPbPr, YUV; numcolors: Number of colors; depth: Bit depth from 1 to 16; quality: Compression quality (only JPEG, LZW) from 1 to 100</wsdl:documentation>
-            </wsdl:input>
-            <wsdl:output message="tns:ByUrlResponse" wsaw:Action="//schemas.xmlsoap.org/wsdl/IMPACTImageMagickServicePortType/ByUrlResponse">
-                <wsdl:documentation>success: Success/failure of service execution; returncode: 0 in case of success, greater 0 indicates an error; message: Process result message; toolProcessingTime: Tool processing time in milliseconds; processingUnit: URI of the processing unit (identifier of machine and environment); processingLog: Complete processing log; outputUrl: URL reference to OCR result plain text file</wsdl:documentation>
-            </wsdl:output>
-        </wsdl:operation>
-    </wsdl:portType>
-    <wsdl:binding name="secureIMPACTImageMagickSoap11Binding" type="tns:secureIMPACTImageMagickPortType">
-        <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#UTOverTransport" />
-        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
-        <wsdl:operation name="convertTiffToBitonalByUrl">
-            <soap:operation soapAction="convertTiffToBitonalByUrl" style="document" />
-            <wsdl:input>
-                <soap:body use="literal" />
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal" />
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="convertByUrl">
-            <soap:operation soapAction="convertByUrl" style="document" />
-            <wsdl:input>
-                <soap:body use="literal" />
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal" />
-            </wsdl:output>
-        </wsdl:operation>
-    </wsdl:binding>
-    <wsdl:binding name="secureIMPACTImageMagickSoap12Binding" type="tns:secureIMPACTImageMagickPortType">
-        <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#UTOverTransport" />
-        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
-        <wsdl:operation name="convertTiffToBitonalByUrl">
-            <soap12:operation soapAction="convertTiffToBitonalByUrl" style="document" />
-            <wsdl:input>
-                <soap12:body use="literal" />
-            </wsdl:input>
-            <wsdl:output>
-                <soap12:body use="literal" />
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="convertByUrl">
-            <soap12:operation soapAction="convertByUrl" style="document" />
-            <wsdl:input>
-                <soap12:body use="literal" />
-            </wsdl:input>
-            <wsdl:output>
-                <soap12:body use="literal" />
-            </wsdl:output>
-        </wsdl:operation>
-    </wsdl:binding>
-    <wsdl:binding name="secureIMPACTImageMagickHttpBinding" type="tns:secureIMPACTImageMagickPortType">
-        <http:binding verb="POST" />
-        <wsdl:operation name="convertTiffToBitonalByUrl">
-            <http:operation location="convertTiffToBitonalByUrl" />
-            <wsdl:input>
-                <mime:content type="text/xml" part="parameters" />
-            </wsdl:input>
-            <wsdl:output>
-                <mime:content type="text/xml" part="parameters" />
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="convertByUrl">
-            <http:operation location="convertByUrl" />
-            <wsdl:input>
-                <mime:content type="text/xml" part="parameters" />
-            </wsdl:input>
-            <wsdl:output>
-                <mime:content type="text/xml" part="parameters" />
-            </wsdl:output>
-        </wsdl:operation>
-    </wsdl:binding>
-    <wsdl:service name="secureIMPACTImageMagick">
-        <wsdl:port name="secureIMPACTImageMagickHttpsSoap11Endpoint" binding="tns:secureIMPACTImageMagickSoap11Binding">
-            <soap:address location="https://impact.dlsi.ua.es/services/secureIMPACTImageMagick.secureIMPACTImageMagickHttpsSoap11Endpoint" />
-        </wsdl:port>
-        <wsdl:port name="secureIMPACTImageMagickHttpsSoap12Endpoint" binding="tns:secureIMPACTImageMagickSoap12Binding">
-            <soap12:address location="https://impact.dlsi.ua.es/services/secureIMPACTImageMagick.secureIMPACTImageMagickHttpsSoap12Endpoint" />
-        </wsdl:port>
-        <wsdl:port name="secureIMPACTImageMagickHttpsEndpoint" binding="tns:secureIMPACTImageMagickHttpBinding">
-            <http:address location="https://impact.dlsi.ua.es/services/secureIMPACTImageMagick.secureIMPACTImageMagickHttpsEndpoint" />
-        </wsdl:port>
-    </wsdl:service>
-</wsdl:definitions>
+  </types>
+  <message name="ByUrlRequest">
+    <part name="part1" element="tns:ByUrlRequest">
+    </part>
+  </message>
+  <message name="ByUrlResponse">
+    <part name="part1" element="tns:ByUrlResponse">
+    </part>
+  </message>
+  <message name="SimpleByUrlRequest">
+    <part name="part1" element="tns:SimpleByUrlRequest">
+    </part>
+  </message>
+  <portType name="IMPACTServicePortType">
+    <operation name="convertTiffToBitonalByUrl">
+<wsdl:documentation>Convert TIFF image to bitonal TIFF image (sending/receiving data by URL)</wsdl:documentation>
+      <input message="tns:SimpleByUrlRequest" wsaw:Action="convertTiffToBitonalByUrl">
+<wsdl:documentation>inputUrl: URL reference to input image</wsdl:documentation>
+    </input>
+      <output message="tns:ByUrlResponse" wsaw:Action="http://schemas.xmlsoap.org/wsdl/IMPACTImageMagickServicePortType/ByUrlResponse">
+<wsdl:documentation>success: Success/failure of service execution; returncode: 0 in case of success, greater 0 indicates an error; message: Process result message; toolProcessingTime: Tool processing time in milliseconds; processingUnit: URI of the processing unit (identifier of machine and environment); processingLog: Complete processing log; outputUrl: URL reference to OCR result plain text file</wsdl:documentation>
+    </output>
+    </operation>
+    <operation name="convertByUrl">
+<wsdl:documentation>Convert image (sending/receiving data by URL)</wsdl:documentation>
+      <input message="tns:ByUrlRequest" wsaw:Action="convertByUrl">
+<wsdl:documentation>inputUrl: URL reference to input image; compression: One of None, Fax, Group4, JPEG, LZW, RLE, Zip; colorspace: One of CMY, CMYK, Gray, HSB, HSL, HWB, Lab, Log, OHTA, Rec601Luma, Rec601YCbCr, Rec709Luma, Rec709YCbCr, RGB, sRGB, Transparent, XYZ, YCbCr, YCC, YIQ, YPbPr, YUV; numcolors: Number of colors; depth: Bit depth from 1 to 16; quality: Compression quality (only JPEG, LZW) from 1 to 100</wsdl:documentation>
+    </input>
+      <output message="tns:ByUrlResponse" wsaw:Action="http://schemas.xmlsoap.org/wsdl/IMPACTImageMagickServicePortType/ByUrlResponse">
+<wsdl:documentation>success: Success/failure of service execution; returncode: 0 in case of success, greater 0 indicates an error; message: Process result message; toolProcessingTime: Tool processing time in milliseconds; processingUnit: URI of the processing unit (identifier of machine and environment); processingLog: Complete processing log; outputUrl: URL reference to OCR result plain text file</wsdl:documentation>
+    </output>
+    </operation>
+  </portType>
+  <binding name="IMPACTServiceSOAP11Binding" type="tns:IMPACTServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="convertTiffToBitonalByUrl">
+      <soap:operation soapAction="convertTiffToBitonalByUrl" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="convertByUrl">
+      <soap:operation soapAction="convertByUrl" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="IMPACTServiceSOAP12Binding" type="tns:IMPACTServicePortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="convertTiffToBitonalByUrl">
+      <soap12:operation soapAction="convertTiffToBitonalByUrl" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="convertByUrl">
+      <soap12:operation soapAction="convertByUrl" style="document"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IMPACTImageMagickService">
+    <port name="IMPACTServiceSOAP11port_http" binding="tns:IMPACTServiceSOAP11Binding">
+      <soap:address location="https://localhost/synapse/IMPACTImageMagickProxy"/>
+    </port>
+    <port name="IMPACTServiceSOAP12port_http" binding="tns:IMPACTServiceSOAP12Binding">
+      <soap12:address location="https://localhost/synapse/IMPACTImageMagickProxy"/>
+    </port>
+  </service>
+</definitions>
