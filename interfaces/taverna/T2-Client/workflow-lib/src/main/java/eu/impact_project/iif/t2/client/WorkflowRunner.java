@@ -155,19 +155,19 @@ public class WorkflowRunner extends HttpServlet {
 					for (String currentInput : htmlFormItems.keySet()) {
 						inputsText += htmlFormItems.get(currentInput) + " ";
 					}
-					System.out.print("INPUT del formulario: " + inputsText );
+					System.out.print("Input form: " + inputsText );
 					
 					currentWorkflow.setUrls(inputsText);
-					//currentWorkflow.setUrls(workflowAsString);
+					// currentWorkflow.setUrls(workflowAsString);
 					for (String currentUrl : currentWorkflow.getUrls()) {
 					      if (!currentWorkflow.testUrl(currentUrl))
 					      {
 					    	  urlFault = true;
 					    	  if (!invalidUrls.contains(currentUrl))
 					    		  invalidUrls.add(currentUrl);
-					    	  System.out.println("Url not avaliable: " + currentUrl);
+					    	  System.out.println("Url not available: " + currentUrl);
 					      }
-					      //else System.out.println("Url OK: " + currentUrl);
+					      // else System.out.println("Url OK: " + currentUrl);
 					}
 					
 					if (!urlFault)
@@ -232,9 +232,9 @@ public class WorkflowRunner extends HttpServlet {
 					}
 			
 					// wait until all jobs are done
-					for (Run currentRunID : runIDs) 
+					for (Run currentRunID : runIDs)
 					{
-						while (currentRunID.isRunning()) 
+						while (currentRunID.isRunning())
 						{
 							try {
 								duration = System.currentTimeMillis() - startTime;
@@ -242,7 +242,7 @@ public class WorkflowRunner extends HttpServlet {
 										+ "] to complete (" + (duration / 1000f) + ")" + " STATUS:" + runID.getStatus());
 								Thread.sleep(1000);
 							} catch (InterruptedException e) {
-								System.out.println("NO ESPERO");
+								System.out.println("HOPELESS");
 							}
 						}
 					}
@@ -255,11 +255,11 @@ public class WorkflowRunner extends HttpServlet {
 	
 						if (currentRunID.isFinished())
 						{
-							System.out.println("Propietario: " + currentRunID.isOwner());
+							System.out.println("Owner: " + currentRunID.isOwner());
 							// get the outputs of the current job
 							if (currentRunID.isOwner())
 							{
-								System.out.println("ESTADO SALIDA: " + currentRunID.getExitCode());
+								System.out.println("Output state: " + currentRunID.getExitCode());
 								Map<String, OutputPort> outputPorts = null;
 								if (currentRunID.getOutputPorts() != null)
 										outputPorts = currentRunID.getOutputPorts();
@@ -285,7 +285,7 @@ public class WorkflowRunner extends HttpServlet {
 								currentRunID.delete();
 							}
 						}
-						//else System.out.println("[" + currentRunID.getIdentifier() + "] Todavia no ha acabado. SKIP");
+						// else System.out.println("[" + currentRunID.getIdentifier() + "] Still not finished. SKIP");
 					
 						allOutputs.add(workflowOutputPorts);
 						workflowIndex++;
@@ -298,8 +298,8 @@ public class WorkflowRunner extends HttpServlet {
 					String error = "";
 					for (String url:invalidUrls)
 						error += url + "<br>";
-					System.out.println("ERRORES: " + error);
-					session.setAttribute("errors", "<em style=\"color:red\">Resources not avaliable:</em> <br>" + error);
+					System.out.println("ERRORS: " + error);
+					session.setAttribute("errors", "<em style=\"color:red\">Resources not available:</em> <br>" + error);
 				}
 				else
 				{
