@@ -6,13 +6,16 @@ import javax.swing.*;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import org.apache.commons.codec.binary.Base64;
 
 public class EncryptDecrypt {
-	Cipher ecipher;
-	Cipher dcipher;
+	private Cipher ecipher;
+	private Cipher dcipher;
+    private Base64 base64codec;
 
 	EncryptDecrypt(SecretKey key) {
 		try {
+            base64codec = new Base64();
 			ecipher = Cipher.getInstance("DES");
 			dcipher = Cipher.getInstance("DES");
 			ecipher.init(Cipher.ENCRYPT_MODE, key);
@@ -33,7 +36,7 @@ public class EncryptDecrypt {
 			byte[] enc = ecipher.doFinal(utf8);
 
 			// Encode bytes to base64 to get a string
-			return new sun.misc.BASE64Encoder().encode(enc);
+			return base64codec.encodeToString(enc);
 		} catch (javax.crypto.BadPaddingException e) {
 		} catch (IllegalBlockSizeException e) {
 		} catch (UnsupportedEncodingException e) {
@@ -44,7 +47,7 @@ public class EncryptDecrypt {
 	public String decrypt(String str) {
 		try {
 			// Decode base64 to get bytes
-			byte[] dec = new sun.misc.BASE64Decoder().decodeBuffer(str);
+			byte[] dec = base64codec.decode(str);
 
 			// Decrypt
 			byte[] utf8 = dcipher.doFinal(dec);
@@ -54,9 +57,8 @@ public class EncryptDecrypt {
 		} catch (javax.crypto.BadPaddingException e) {
 		} catch (IllegalBlockSizeException e) {
 		} catch (UnsupportedEncodingException e) {
-		} catch (java.io.IOException e) {
 		}
-		return null;
+        return null;
 	}
 
 	public static void main(String[] args) {
