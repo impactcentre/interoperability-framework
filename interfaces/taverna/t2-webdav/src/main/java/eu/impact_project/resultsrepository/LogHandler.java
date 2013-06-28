@@ -141,11 +141,11 @@ public class LogHandler {
 		new URL(url);
 
 		// http://domain.org/dir/<servicename>_<portname>_something.<fileextension>
-		String regexNormal = "http.+/([^_]+)_([^_]+)_[^_]+\\.([^\\.]+)$";
+		String regexNormal = "http.+/([^_]+)/[^_]+\\.([^\\.]+)$";
 
 		// http://domain.org/dir/<servicename>_<portname>_<evalId>_something.<fileextension>
 		// evaluation IDs can contain underscores
-		String regexWithEvalId = "http.+/([^_]+)_([^_]+)_(.+)_[^_]+\\.([^\\.]+)$";
+		String regexWithEvalId = "http.+/([^_]+)/(.+)_[^_]+\\.([^\\.]+)$";
 
 		UrlParts parts = new UrlParts();
 		if (url.matches(regexNormal)) {
@@ -161,9 +161,9 @@ public class LogHandler {
 			matcher.find();
 
 			parts.service = matcher.group(1);
-			parts.port = matcher.group(2);
-			parts.evalId = matcher.group(3);
-			parts.extension = matcher.group(4);
+			//parts.port = matcher.group(2);
+			parts.evalId = matcher.group(2);
+			parts.extension = matcher.group(3);
 
 		} else {
 			throw new MalformedURLException(

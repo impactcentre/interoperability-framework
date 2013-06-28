@@ -15,6 +15,15 @@
                     + "parameter \"${input_variable}Url\"");
             return ${operationname}Result(fac, omNs);
         }
+
+	// Determine the file name by taking the last part of the URL (and strip the extention)
+        String[] bits = inputUrl.toString().split("/");
+        String fileName = bits[bits.length - 1];
+        if(fileName.contains(".")) {
+           bits = fileName.split("\\.");
+           fileName = bits[0];
+        };
+
         String ${input_variable}Ext = StringUtils.getFileExtension(${input_variable}Url.toString());
         if (${input_variable}Ext == null) {
             ${input_variable}Ext = "tmp";

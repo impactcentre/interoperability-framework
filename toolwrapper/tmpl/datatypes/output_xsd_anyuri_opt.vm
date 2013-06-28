@@ -8,12 +8,7 @@
             isCreated${output_variable} = true;
         }
         File ${output_variable}PublicFile =
-                new File(publicHttpAccessDir + ${output_variable}File.getName());
-        if (!new File(publicHttpAccessDir).isDirectory()) {
-            errorlog("The output directory " + publicHttpAccessDir + " does not exist. Check "
-                    + "publicHttpAccessDir parameter in the service configuration");
-            return ${operationname}Result(fac, omNs);
-        }
+                new File(publicOutputFileDir + fileName);
         infolog("Public output file: " + ${output_variable}PublicFile.toString());
         try {
             if(isCreated${output_variable})

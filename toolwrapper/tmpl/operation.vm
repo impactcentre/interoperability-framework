@@ -24,8 +24,66 @@
         // Required for copying output files to a public web server directory
         String publicHttpAccessDir = getValueOfServiceParameter("publicHttpAccessDir");
 
+	// Check if the public web server directory exists
+        if (!new File(publicHttpAccessDir).isDirectory()) {
+            errorlog("The output directory " + publicHttpAccessDir + " does not exist. Check "
+                    + "publicHttpAccessDir parameter in the service configuration");
+            return ${operationname}Result(fac, omNs);
+        }
+
+	// Check if the public output (file)dir exists, otherwise create it
+	String timeStamp = Long.toString(System.currentTimeMillis() / 1000L);
+	String publicOutputFileDir = publicHttpAccessDir + 
+			    "${global_project_prefix}${servicename}Service" + File.separator +
+			    timeStamp + File.separator + 
+			    "outputFile" + File.separator;
+	if (!new File(publicOutputFileDir).isDirectory()) {
+	    File publicOutputDirFile = new File(publicOutputFileDir);
+	    try {
+		if (publicOutputDirFile.mkdirs()) {
+		    infolog("Created directory: " + publicOutputFileDir);
+		} else {
+		    errorlog("Could not create the public (file)output directory " + publicOutputFileDir);
+		    return ${operationname}Result(fac, omNs);
+		}
+	    } catch(Exception e){
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		e.printStackTrace(pw);
+		errorlog(sw.toString());
+		return ${operationname}Result(fac, omNs);
+	    }
+	}
+
+	// Check if the public output (log)dir exists, otherwise create it
+	String publicOutputLogDir = publicHttpAccessDir + 
+			    "${global_project_prefix}${servicename}Service" + File.separator +
+			    timeStamp + File.separator + 
+			    "processLog" + File.separator;
+	if (!new File(publicOutputLogDir).isDirectory()) {
+	    File publicOutputDirLog = new File(publicOutputLogDir);
+	    try {
+		if (publicOutputDirLog.mkdirs()) {
+		    infolog("Created directory: " + publicOutputLogDir);
+		} else {
+		    errorlog("Could not create the public (log)output directory " + publicOutputLogDir);
+		    return ${operationname}Result(fac, omNs);
+		}
+	    } catch(Exception e){
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		e.printStackTrace(pw);
+		errorlog(sw.toString());
+		return ${operationname}Result(fac, omNs);
+	    }
+	}
+
         // Required for providing access to output files in a public web server directory
         String publicHttpAccessUrl = getValueOfServiceParameter("publicHttpAccessUrl");
+	publicHttpAccessUrl = publicHttpAccessUrl + 
+			      "${global_project_prefix}${servicename}Service" + "/" +
+			      timeStamp + "/" +
+			      "outputFile" + "/";
 
         // Command pattern variables key value pairs
         HashMap cliCmdKeyValPairs = new HashMap<String, String>();
