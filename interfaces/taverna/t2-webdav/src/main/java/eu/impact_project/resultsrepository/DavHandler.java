@@ -21,8 +21,9 @@
 package eu.impact_project.resultsrepository;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import java.io.File;
 import java.io.InputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -52,7 +53,8 @@ public class DavHandler {
 	 */
 	private byte[] downloadedFile;
 
-	private final String separator = "/";
+	/** Make seperator os dependant **/
+	private final String separator = File.seperator;
 
 	/** URL to the repository. */
 	private String davUrl;
