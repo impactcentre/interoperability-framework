@@ -90,10 +90,16 @@ public class DavHandler {
 
 		Properties properties = new Properties();
 
-		InputStream is;
-		is = getClass().getResource("/dav.properties").openStream();
-		properties.load(is);
-		is.close();
+		InputStream is = null;
+
+		try {
+			is = getClass().getResource("/dav.properties").openStream();
+			properties.load(is);
+		}
+
+		finally {
+			is.close();
+		}
 
 		String endings = properties.getProperty("fileEndingsToStore");
 		String[] endingsArray = endings.split(",");
@@ -212,11 +218,14 @@ public class DavHandler {
 		putMethod.setRequestEntity(new InputStreamRequestEntity(stream));
 		try {
 			client.executeMethod(putMethod);
-			stream.close();
 			putMethod.releaseConnection();
 
 		} catch (IOException e) {
 			throw new IOException(e);
+		}
+		finally { 
+			stream.close();
+			
 		}
 
 	}
@@ -238,12 +247,17 @@ public class DavHandler {
 
 			client.executeMethod(getMethod);
 			downloadedFile = getMethod.getResponseBody();
-			InputStream stream = new ByteArrayInputStream(downloadedFile);
+			InputStream stream = null;
 
-			putMethod.setRequestEntity(new InputStreamRequestEntity(stream));
-			client.executeMethod(putMethod);
+			try {
+				stream = new ByteArrayInputStream(downloadedFile);
 
-			stream.close();
+				putMethod.setRequestEntity(new InputStreamRequestEntity(stream));
+				client.executeMethod(putMethod);
+			}
+			finally {
+	 			stream.close();
+			}
 			getMethod.releaseConnection();
 			putMethod.releaseConnection();
 

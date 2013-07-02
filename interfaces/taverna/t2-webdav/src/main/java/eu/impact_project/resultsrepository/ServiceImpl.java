@@ -238,15 +238,15 @@ public class ServiceImpl implements Service {
 
 	private long getCurrentTimestamp() {
 		long stamp = 0l;
+		InputStream is = null;
 		try {
 			Properties properties = new Properties();
 			URL url = getClass().getResource("/report.properties");
 			if (url == null)
 				throw new IOException(
 						"Property file for report generation not found.");
-			InputStream is = url.openStream();
+			is = url.openStream();
 			properties.load(is);
-			is.close();
 
 			URL stampUrl = new URL(properties.getProperty("timestampUrl"));
 
@@ -256,7 +256,13 @@ public class ServiceImpl implements Service {
 		} catch (IOException e) {
 			error("Could not compute the workflow execution time. ", e);
 		}
-
+		finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				error("Could not compute the workflow execution time. ", e);
+			}
+		}
 		return stamp;
 	}
 
