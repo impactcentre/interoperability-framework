@@ -273,6 +273,7 @@ if(session.getAttribute("serviceObject") != null) {
 				</select>
 		  <%}%>
 		</label>
+		<br/>
 		<%	
 		} else if(field.isMultiValued()) { %>
 			<select name="<%= field.getName() %>" size="<%= values.size() %>" multiple="multiple">
@@ -299,7 +300,12 @@ if(session.getAttribute("serviceObject") != null) {
 					id="<%= field.getName() %>"
 					<% if (displayDefaults != null && displayDefaults) { %>value="<%=field.getDefaultValue()%>"<% }%>>
 					</br>
+					<% if (field.getDefaultValue().startsWith("http")) {%>
 					<a href="<%=field.getDefaultValue()%>"><%=field.getDefaultValue()%></a>
+					<%} else {
+						out.print(field.getDefaultValue());
+						out.println();
+						}%>
 			  <%} else{%>
 			     <input
 					type="text"
@@ -322,6 +328,7 @@ if(session.getAttribute("serviceObject") != null) {
 			%>
 			</span>
 			<br><br>
+			</label>
 <%
 		}
 		%>
