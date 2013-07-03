@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="http://www.impact-project.eu/fileadmin/css/iframe.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
 
 <%
 String folder = application.getRealPath("/");
@@ -113,7 +113,7 @@ function loginMyExperiment ()
 <body>
 <div class="csc-header csc-header-n1">
 
-<a href="http://www.digitisation.eu/tools/interoperability-framework/demonstrator-platform/" target="_top">Demonstrator Platform</a>
+<a href="http://www.digitisation.eu/demonstrator-platform/" target="_top">Demonstrator Platform</a>
 <hr/>
 <br/>
 
