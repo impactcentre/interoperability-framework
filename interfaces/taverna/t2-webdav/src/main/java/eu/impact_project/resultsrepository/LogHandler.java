@@ -140,34 +140,23 @@ public class LogHandler {
 		// provoke exception
 		new URL(url);
 
-		// http://domain.org/dir/<servicename>_<portname>_something.<fileextension>
-		String regexNormal = "http.+/([^_]+)/[^_]+\\.([^\\.]+)$";
 
-		// http://domain.org/dir/<servicename>_<portname>_<evalId>_something.<fileextension>
+		// http://domain.org/dir/<servicename>/<evalId>/outputFile/something.<fileextension>
 		// evaluation IDs can contain underscores
-		String regexWithEvalId = "http.+/([^_]+)/(.+)_[^_]+\\.([^\\.]+)$";
+		String regexWithEvalId = "http.+/(.+)/(.+)/outputFile/.+\\.([^\\.]+)$";
 
 		UrlParts parts = new UrlParts();
-		if (url.matches(regexNormal)) {
-			Matcher matcher = Pattern.compile(regexNormal).matcher(url);
-			matcher.find();
-
-			parts.service = matcher.group(1);
-			parts.port = matcher.group(2);
-			parts.extension = matcher.group(3);
-
-		} else if (url.matches(regexWithEvalId)) {
+		if (url.matches(regexWithEvalId)) {
 			Matcher matcher = Pattern.compile(regexWithEvalId).matcher(url);
 			matcher.find();
 
 			parts.service = matcher.group(1);
-			//parts.port = matcher.group(2);
 			parts.evalId = matcher.group(2);
 			parts.extension = matcher.group(3);
 
 		} else {
 			throw new MalformedURLException(
-					"URL does not match the required pattern. Example: http://domain.org/dir/MyService_myPort_tmp.txt");
+					"URL does not match the required pattern. Example: http://domain.org/MyService/timestamp/outputFile/output_tmp.txt");
 		}
 
 		return parts;

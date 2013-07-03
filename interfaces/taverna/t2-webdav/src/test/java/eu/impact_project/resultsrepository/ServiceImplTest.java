@@ -62,8 +62,8 @@ public class ServiceImplTest {
 	@Test
 	public void testStoreData() {
 		ArrayList<String> resultsList = new ArrayList<String>();
-		resultsList.add("http://localhost:9001/IMPACTTesseractV3Service_outputUrl_tmpfile1.tif.out.txt");
-		resultsList.add("http://localhost:9001/IMPACTTesseractV3Service_outputUrl_tmpfile2.tif.out.txt");
+		resultsList.add("http://localhost:9001/IMPACTTesseractV3Service/1234/outputFile/outputUrl_tmpfile1.tif.out.txt");
+		resultsList.add("http://localhost:9001/IMPACTTesseractV3Service/1234/outputFile/outputUrl_tmpfile2.tif.out.txt");
 		String message = executeWithList(resultsList);
 		
 		assertTrue(message.indexOf("Stored results at") >= 0);
@@ -74,7 +74,7 @@ public class ServiceImplTest {
 	@Test
 	public void testStoreDataWordEval() {
 		ArrayList<String> resultsList = new ArrayList<String>();
-		resultsList.add("http://localhost:9001/IMPACTWordEvaluationService_outputFile_6922033601589215833.xml");
+		resultsList.add("http://localhost:9001/IMPACTWordEvaluationService/1234/outputFile/outputFile_6922033601589215833.xml");
 		String message = executeWithList(resultsList);
 		
 		assertTrue(message.indexOf("Stored results at") >= 0);
@@ -162,7 +162,7 @@ public class ServiceImplTest {
 	@Test
 	public void testStoreDataNoOcrAccuracy() throws MalformedURLException, IOException {
 		
-		String noAccuracy = "http://localhost:9001/IMPACTOcrEvalService_xmlReportOutputUrl_IMPACT_tmpfilefromurl821755019209514659.tmp.report.xml";
+		String noAccuracy = "http://localhost:9001/IMPACTOcrEvalService/1234/outputFile/xmlReportOutputUrl_IMPACT_tmpfilefromurl821755019209514659.tmp.report.xml";
 		String message = executeWithString(noAccuracy);
 		
 		assertTrue(message.indexOf("Stored results at") >= 0);

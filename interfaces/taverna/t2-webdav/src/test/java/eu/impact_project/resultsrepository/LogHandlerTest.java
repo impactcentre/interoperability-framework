@@ -122,30 +122,30 @@ public class LogHandlerTest {
 	@Test
 	public void testSplitUrl() throws MalformedURLException {
 		UrlParts parts = LogHandler
-				.splitUrl("http://domain.org/dir/MyService_myport_tmp.txt");
+				.splitUrl("http://domain.org/MyService/1234/outputFile/MyService_myport_tmp.txt");
 		assertEquals("MyService", parts.service);
-		assertEquals("myport", parts.port);
+		assertEquals("", parts.port);
 		assertEquals("txt", parts.extension);
-		assertEquals("", parts.evalId);
+		assertEquals("1234", parts.evalId);
 
 		UrlParts partsEval = LogHandler
-				.splitUrl("http://domain.org/dir/MyService_myport_myEvalId_tmp.txt");
+				.splitUrl("http://domain.org/MyService/myEvalId/outputFile/tmp.txt");
 		assertEquals("MyService", partsEval.service);
 		assertEquals("myEvalId", partsEval.evalId);
 		
 		UrlParts partsEvalWithUnderscores = LogHandler
-				.splitUrl("http://domain.org/dir/MyService_myport_myEvalId_With_Underscores_tmp.txt");
+				.splitUrl("http://domain.org/dir/myEvalId_With_Underscores/outputFile/MyService_myport_myEvalId_With_Underscores_tmp.txt");
 		assertEquals("myEvalId_With_Underscores", partsEvalWithUnderscores.evalId);
 	}
 
 	@Test(expected = MalformedURLException.class)
 	public void testSplitUrlMalformed() throws MalformedURLException {
-		LogHandler.splitUrl("http//domain.org/dir/MyService_myport_tmp.txt");
+		LogHandler.splitUrl("http//domain.org/dir/1234/MyService_myport_tmp.txt");
 	}
 
 	@Test(expected = MalformedURLException.class)
 	public void testSplitUrlBadFormat() throws MalformedURLException {
-		LogHandler.splitUrl("http://domain.org/dir/MyService.txt");
+		LogHandler.splitUrl("http://domain.org/dir123MyService.txt");
 	}
 
 	@Test
