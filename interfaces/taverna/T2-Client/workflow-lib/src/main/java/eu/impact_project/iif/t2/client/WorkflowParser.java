@@ -269,9 +269,9 @@ public class WorkflowParser extends HttpServlet {
 
 		// controls the "show examples" checkbox in the jsp
 		if (htmlFormItems.get("printExamples") != null) {
-			session.setAttribute("printExamples", new Boolean(true));
+			session.setAttribute("printExamples", Boolean.TRUE);
 		} else {
-			session.setAttribute("printExamples", new Boolean(false));
+			session.setAttribute("printExamples", Boolean.FALSE);
 		}
 
 		session.setAttribute("workflows", workflows);

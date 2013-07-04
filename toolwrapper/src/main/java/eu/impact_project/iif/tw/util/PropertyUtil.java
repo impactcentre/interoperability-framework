@@ -67,7 +67,7 @@ public class PropertyUtil {
      * @return the property value
      */
     public String getProp(String key) {
-        String val = (String) properties.getProperty(key);
+        String val = properties.getProperty(key);
         return val;
     }
 }

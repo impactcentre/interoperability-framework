@@ -50,5 +50,5 @@ public enum ResourceLabel {
 	STDOUT, STDERR, EXITCODE,
 
 	// Security context
-	PERMISSIONS, CREDENTIALS, TRUSTS;
+	PERMISSIONS, CREDENTIALS, TRUSTS
 }

@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * @author shsdev https://github.com/shsdev
  * @version 0.3
  */
-public class TestServiceCodeTemplate extends TestCase {
+public class TestServiceCodeTemplate {
 
     private String serviceTmpl = "tmpl/service_test.vm";
     private String operationTmpl = "tmpl/operation_test.vm";

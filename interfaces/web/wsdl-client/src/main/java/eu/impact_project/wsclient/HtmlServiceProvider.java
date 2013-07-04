@@ -153,7 +153,7 @@ public class HtmlServiceProvider implements ServiceProvider {
 		XPathFactory factory = XPathFactory.newInstance();
 		XPath xpath = factory.newXPath();
 
-		if (namespace != NO_NAMESPACE)
+		if (!namespace.equals(NO_NAMESPACE))
 			xpath.setNamespaceContext(new WSDLNamespaceContext());
 
 		XPathExpression expr;

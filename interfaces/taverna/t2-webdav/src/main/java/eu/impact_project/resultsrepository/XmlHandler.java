@@ -46,11 +46,7 @@ public class XmlHandler {
 	 * @return true, if is evaluation
 	 */
 	public static boolean isEvaluation(String xml) {
-		if (xml != null && xml.indexOf("<Character_Evaluation>") >= 0) {
-			return true;
-		} else {
-			return false;
-		}
+        return xml != null && xml.indexOf("<Character_Evaluation>") >= 0;
 	}
 
 	/**
@@ -60,11 +56,7 @@ public class XmlHandler {
 	 * @return true, if is evaluation
 	 */
 	public static boolean isWordEvaluation(String xml) {
-		if (xml != null && xml.indexOf("<nWordsInGT>") >= 0) {
-			return true;
-		} else {
-			return false;
-		}
+        return xml != null && xml.indexOf("<nWordsInGT>") >= 0;
 	}
 
 	/**

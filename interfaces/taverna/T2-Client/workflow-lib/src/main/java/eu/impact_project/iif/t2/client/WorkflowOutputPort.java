@@ -84,7 +84,7 @@ public class WorkflowOutputPort {
 	public void setOutput(OutputPort output,boolean binary) {
 		WorkflowOutput translate = new WorkflowOutput();
 		String outputAsString = output.getDataAsString();
-		String data = new String(outputAsString);
+		String data = outputAsString;
 		
 		this.name = output.getName();
 		translate.setValue(data);

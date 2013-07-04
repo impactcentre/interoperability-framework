@@ -334,9 +334,9 @@ public final class FileUtil {
                     logger.info("Deleted: " + current);
                 }
             }
-            return workFolder.delete() ? true : false;
+            return workFolder.delete();
         }
-        return workFolder.delete() ? true : false;
+        return workFolder.delete();
     }
 
     /**

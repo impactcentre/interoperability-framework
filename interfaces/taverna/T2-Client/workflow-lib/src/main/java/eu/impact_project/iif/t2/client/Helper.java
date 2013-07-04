@@ -85,8 +85,8 @@ public class Helper {
 		return xpath.selectSingleNode(doc);
 	}
 
-	public static List<Element> applyXPathSeveralNodes(InputStream xmlStream,
-			String xpathExpression) throws JDOMException, IOException {
+	public static List applyXPathSeveralNodes(InputStream xmlStream,
+                                              String xpathExpression) throws JDOMException, IOException {
 		SAXBuilder builder = new SAXBuilder();
 		Document doc = builder.build(xmlStream);
 		XPath xpath = XPath.newInstance(xpathExpression);

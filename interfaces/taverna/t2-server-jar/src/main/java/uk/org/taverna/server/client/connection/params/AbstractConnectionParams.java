@@ -90,11 +90,11 @@ public abstract class AbstractConnectionParams implements ConnectionParams {
 
 	@Override
 	public boolean isParameterTrue(String id) {
-		return getBooleanParameter(id, false) == true;
+		return getBooleanParameter(id, false);
 	}
 
 	@Override
 	public boolean isParameterFalse(String id) {
-		return getBooleanParameter(id, false) == false;
+		return !getBooleanParameter(id, false);
 	}
 }

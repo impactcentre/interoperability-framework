@@ -152,7 +152,7 @@ public class SoapOperation {
 			wsdlRequest.setRequestContent(request);
 			
 			
-			if ((user!=null && pass!=null) && (user!="" && pass!=""))
+			if ((user!=null && pass!=null) && (!user.equals("") && !pass.equals("")))
 			{
 				// Add WSSecurity parameters
 				wsdlRequest.setWssPasswordType("PasswordText");

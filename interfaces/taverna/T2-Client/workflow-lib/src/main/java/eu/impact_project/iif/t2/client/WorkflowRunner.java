@@ -201,8 +201,8 @@ public class WorkflowRunner extends HttpServlet {
 								int i = 0;
 								// the values in the html form are stored in format name+index
 								while (htmlFormItems.get(currentNamePrefixed + i) != null
-										&& !((String) htmlFormItems
-												.get(currentNamePrefixed + i))
+										&& !htmlFormItems
+												.get(currentNamePrefixed + i)
 												.equals("")) {
 									String additionalValue = htmlFormItems
 											.get(currentNamePrefixed + i);

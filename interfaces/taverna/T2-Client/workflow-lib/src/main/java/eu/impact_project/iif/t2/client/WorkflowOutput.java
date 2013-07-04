@@ -23,6 +23,8 @@ package eu.impact_project.iif.t2.client;
 
 import uk.org.taverna.server.client.OutputPort;
 
+import java.util.Arrays;
+
 /**
  * Bean representing an output of a Taverna workflow
  * 
@@ -51,7 +53,7 @@ public class WorkflowOutput {
 		if (value != null)
 		{
 			this.url = value.getReference().toString();
-			this.value = value.getData(0).toString();
+			this.value = Arrays.toString(value.getData(0));
 		}
 	}
 	

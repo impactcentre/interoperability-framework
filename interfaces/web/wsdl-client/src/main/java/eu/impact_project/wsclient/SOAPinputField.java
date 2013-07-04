@@ -30,8 +30,9 @@ import java.util.List;
 public class SOAPinputField {
 
 	private List<String> possibleValues;
-	private List<String> multipleSelectValues = new ArrayList<String>();;
-	public List<String> getMultipleSelectValues() {
+	private List<String> multipleSelectValues = new ArrayList<String>();
+
+    public List<String> getMultipleSelectValues() {
 		return multipleSelectValues;
 	}
 	public void addMultipleSelectValue(String value) {

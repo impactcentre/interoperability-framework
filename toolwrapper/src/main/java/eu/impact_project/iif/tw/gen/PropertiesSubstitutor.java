@@ -66,8 +66,8 @@ public class PropertiesSubstitutor extends Substitutor {
         Map<String, String> map = pu.getKeyValuePairs();
         Set<Entry<String, String>> propertySet = map.entrySet();
         for (Entry<String, String> entry : propertySet) {
-            String key = (String) entry.getKey();
-            String val = (String) entry.getValue();
+            String key = entry.getKey();
+            String val = entry.getValue();
             this.putKeyValuePair(key, val);
         }
     }
@@ -91,7 +91,7 @@ public class PropertiesSubstitutor extends Substitutor {
                     + "to derive variables");
         }
         VelocityContext vc = getContext();
-        Object[] keys = (Object[]) vc.getKeys();
+        Object[] keys = vc.getKeys();
         for (Object key : keys) {
             String keyStr = (String)key;
             String val =  (String) vc.get(keyStr);

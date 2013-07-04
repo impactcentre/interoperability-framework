@@ -70,10 +70,10 @@ public abstract class Code {
      * @param context
      */
     public void put(VelocityContext context) {
-        Object[] keys = (Object[]) context.getKeys();
+        Object[] keys = context.getKeys();
         for (Object obj : keys) {
             String key = (String) obj;
-            this.getCtx().put(StringConverterUtil.propToVar(key), (String) context.get(key));
+            this.getCtx().put(StringConverterUtil.propToVar(key), context.get(key));
         }
     }
 
