@@ -13,7 +13,7 @@
 	<parent>
 		<groupId>eu.impact_project.iif.t2</groupId>
 		<artifactId>T2-Client</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.5-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
