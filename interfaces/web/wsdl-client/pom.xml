@@ -17,7 +17,7 @@
 		<dependency>
 			<groupId>eu.impact_project.iif.ws</groupId>
 			<artifactId>generic-soap-client</artifactId>
-			<version>0.1-SNAPSHOT</version>
+			<version>0.5-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
