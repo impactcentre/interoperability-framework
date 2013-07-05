@@ -4,7 +4,7 @@
     <artifactId>workflow-lib</artifactId>
 	<packaging>jar</packaging>
 	<name>workflow-lib</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.5-SNAPSHOT</version>
 	<description>Servlets and other Java classes that are used by the other modules.</description>
 	<scm>
 		<url>https://github.com/impactcentre/interoperability-framework/tree/master/interfaces/taverna/T2-Client/workflow-lib</url>

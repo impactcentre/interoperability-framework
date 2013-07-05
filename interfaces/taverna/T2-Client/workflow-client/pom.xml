@@ -4,7 +4,7 @@
     <artifactId>workflow-client</artifactId>
 	<packaging>war</packaging>
 	<name>workflow-client</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.5-SNAPSHOT</version>
 	<description>Web frontend for uploading and executing Taverna 2 workflows either from the local disk or from the myExperiment online repository.</description>
 	<scm>
 		<url>https://github.com/impactcentre/interoperability-framework/tree/master/interfaces/taverna/T2-Client/workflow-client</url>

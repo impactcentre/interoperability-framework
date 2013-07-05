@@ -5,7 +5,7 @@
 	<artifactId>T2-Client</artifactId>
 	<packaging>pom</packaging>
 	<name>T2-Client</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.5-SNAPSHOT</version>
 	<description>Generic client that can be used to execute a Taverna 2 workflow.</description>
 	<url>http://www.impact-project.eu/</url>
 	<organization>
