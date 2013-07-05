@@ -23,8 +23,8 @@ import eu.impact_project.iif.tw.toolspec.Deployment;
 import eu.impact_project.iif.tw.toolspec.Deployref;
 import java.io.File;
 import javax.xml.parsers.ParserConfigurationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 import eu.impact_project.iif.tw.toolspec.Operation;
 import eu.impact_project.iif.tw.toolspec.Service;
 import eu.impact_project.iif.tw.toolspec.Toolspec;
@@ -50,7 +50,7 @@ import org.xml.sax.SAXException;
  */
 public class ToolspecValidator {
 
-    private static Logger logger = LoggerFactory.getLogger(ToolspecValidator.class.getName());
+    private static Logger logger = Logger.getLogger(ToolspecValidator.class.getName());
     private Configuration ioc;
     private ArrayList<Error> errors;
     private final Toolspec toolspec;

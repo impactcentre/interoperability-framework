@@ -24,8 +24,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.app.VelocityEngine;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 
 /**
  * This class defines a command which can be executed on the command line. The
@@ -64,7 +64,7 @@ public class CommandLineProcess {
 
     public static final int MIN_QUERYTOKEN_LENGTH = 4;
     /* Logger */
-    private static Logger logger = LoggerFactory.getLogger(CommandLineProcess.class.getName());
+    private static Logger logger = Logger.getLogger(CommandLineProcess.class.getName());
     /* Required - Command line interface command pattern */
     private String pattern;
     /* Command list that can be passed to the process builder */

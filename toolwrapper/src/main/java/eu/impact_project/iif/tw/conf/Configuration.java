@@ -16,8 +16,8 @@
 package eu.impact_project.iif.tw.conf;
 
 import java.io.File;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 import eu.impact_project.iif.tw.gen.GeneratorException;
 
 /**
@@ -28,7 +28,7 @@ import eu.impact_project.iif.tw.gen.GeneratorException;
  */
 public class Configuration {
 
-    private static Logger logger = LoggerFactory.getLogger(Configuration.class.getName());
+    private static Logger logger = Logger.getLogger(Configuration.class.getName());
     private String projConf;
     private String xmlConf;
 
@@ -62,6 +62,7 @@ public class Configuration {
      * @throws GeneratorException 
      */
     public void setProjConf(File confFile) throws GeneratorException {
+	BasicConfigurator.configure();
 	// Check args
 	if (confFile == null) throw new IllegalArgumentException("Project configuration file is null.");
         if (confFile.canRead()) {

@@ -30,8 +30,8 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 
 import eu.impact_project.iif.tw.Constants;
 import eu.impact_project.iif.tw.conf.Configuration;
@@ -57,7 +57,7 @@ import eu.impact_project.iif.tw.util.FileUtil;
  */
 public class ToolWrapper {
     // Logger instance
-    private static Logger logger = LoggerFactory.getLogger(ToolWrapper.class
+    private static Logger logger = Logger.getLogger(ToolWrapper.class
 	    .getName());
     private static Configuration ioc = new Configuration(); // and the config
 

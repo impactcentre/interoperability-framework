@@ -18,8 +18,8 @@ package eu.impact_project.iif.tw.gen;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
@@ -31,7 +31,7 @@ import org.apache.velocity.app.VelocityEngine;
  */
 public abstract class Substitutor {
 
-    private static Logger logger = LoggerFactory.getLogger(Substitutor.class.getName());
+    private static Logger logger = Logger.getLogger(Substitutor.class.getName());
     private VelocityContext context;
     protected VelocityEngine ve;
 

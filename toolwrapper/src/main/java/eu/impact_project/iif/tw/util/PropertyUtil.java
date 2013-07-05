@@ -22,8 +22,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import eu.impact_project.iif.tw.gen.GeneratorException;
 
 /**
@@ -33,7 +34,7 @@ import eu.impact_project.iif.tw.gen.GeneratorException;
  */
 public class PropertyUtil {
 
-    private static Logger logger = LoggerFactory.getLogger(PropertyUtil.class.getName());
+    private static Logger logger = Logger.getLogger(PropertyUtil.class.getName());
     private Properties properties;
     private HashMap<String, String> map;
 

@@ -23,8 +23,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 
 /**
  * These are generic file utilities used by the client and service.
@@ -37,7 +37,7 @@ public final class FileUtil {
     /** The Java property for the system temp directory */
     public static final String JAVA_TMP = System.getProperty("java.io.tmpdir");
     private static final String TMP_DIR = "gwg-tmp-store";
-    private static Logger logger = LoggerFactory.getLogger(FileUtil.class.getName());
+    private static Logger logger = Logger.getLogger(FileUtil.class.getName());
 
     /**
      * Empty private constructor avoids instantiation.

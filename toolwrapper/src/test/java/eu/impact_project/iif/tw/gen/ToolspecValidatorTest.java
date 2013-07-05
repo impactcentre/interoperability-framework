@@ -26,8 +26,8 @@ import javax.xml.bind.Unmarshaller;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 
 import eu.impact_project.iif.tw.Constants;
 import eu.impact_project.iif.tw.conf.Configuration;
@@ -41,7 +41,7 @@ public class ToolspecValidatorTest {
 
 	private ArrayList<String> toolspecs;
 
-	private static Logger logger = LoggerFactory
+	private static Logger logger = Logger
 			.getLogger(ToolspecValidatorTest.class.getName());
 
 	/**

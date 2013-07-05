@@ -21,8 +21,8 @@ import java.io.File;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 import eu.impact_project.iif.tw.util.StringConverterUtil;
 import org.apache.velocity.VelocityContext;
 
@@ -33,7 +33,7 @@ import org.apache.velocity.VelocityContext;
  */
 public class PropertiesSubstitutor extends Substitutor {
 
-    private static Logger logger = LoggerFactory.getLogger(PropertiesSubstitutor.class.getName());
+    private static Logger logger = Logger.getLogger(PropertiesSubstitutor.class.getName());
     private PropertyUtil pu;
     private String templateDir;
     private String generateDir;

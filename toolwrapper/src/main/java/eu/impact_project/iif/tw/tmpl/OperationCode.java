@@ -19,8 +19,8 @@ package eu.impact_project.iif.tw.tmpl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 
 /**
  * Operation code that can be evaluated by the Velocity template
@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 public class OperationCode extends Code {
 
     /** Logger */
-    private static Logger logger = LoggerFactory.getLogger(OperationCode.class.getName());
+    private static Logger logger = Logger.getLogger(OperationCode.class.getName());
     
     private int opid;
     private String operationName;

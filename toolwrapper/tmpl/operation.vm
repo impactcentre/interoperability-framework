@@ -78,6 +78,12 @@
 	    }
 	}
 
+	try {
+	        logger.addAppender(new FileAppender(new SimpleLayout(), publicOutputLogDir + "result.log"));
+	} catch (Exception e) {
+	        e.printStackTrace();
+	}
+
         // Required for providing access to output files in a public web server directory
         String publicHttpAccessUrl = getValueOfServiceParameter("publicHttpAccessUrl");
 	publicHttpAccessUrl = publicHttpAccessUrl + 

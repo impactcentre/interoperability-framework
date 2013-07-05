@@ -23,8 +23,8 @@ import java.io.IOException;
 import junit.framework.TestCase;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 
 /**
  * Test class for the template-based service code generator.
@@ -37,7 +37,7 @@ public class TestServiceCodeTemplate {
     private String serviceTmpl = "tmpl/service_test.vm";
     private String operationTmpl = "tmpl/operation_test.vm";
     /** Logger */
-    private static Logger logger = LoggerFactory.getLogger(TestServiceCodeTemplate.class.getName());
+    private static Logger logger = Logger.getLogger(TestServiceCodeTemplate.class.getName());
 
 
     /**

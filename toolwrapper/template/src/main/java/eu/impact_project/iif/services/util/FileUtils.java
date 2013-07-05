@@ -21,8 +21,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 
 /**
  * Some file utilities used by the client and service.
@@ -35,7 +35,7 @@ public final class FileUtils {
     public static final String JAVA_TMP = System.getProperty("java.io.tmpdir");
     private static final String TMP_DIR = "${project_midfix_lc}-tmp-store";
     private static final int BUFF = 32768;
-    private static Logger logger = LoggerFactory.getLogger(FileUtils.class.getName());
+    private static Logger logger = Logger.getLogger(FileUtils.class.getName());
 
     /**
      * Empty private constructor avoids instantiation.

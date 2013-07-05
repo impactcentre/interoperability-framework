@@ -34,9 +34,8 @@ import eu.impact_project.iif.tw.util.StringConverterUtil;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 /**
  *
  * @author shsdev https://github.com/shsdev
@@ -44,7 +43,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ServiceCodeCreator {
 
-    private static Logger logger = LoggerFactory.getLogger(ServiceCodeCreator.class.getName());
+    private static Logger logger = Logger.getLogger(ServiceCodeCreator.class.getName());
     PropertiesSubstitutor st;
     private List<Operation> operations;
     private ServiceCode sc;

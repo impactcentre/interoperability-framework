@@ -32,8 +32,8 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -46,7 +46,7 @@ import org.w3c.dom.NodeList;
  */
 public class WsdlCreator {
 
-    private static Logger logger = LoggerFactory.getLogger(WsdlCreator.class.getName());
+    private static Logger logger = Logger.getLogger(WsdlCreator.class.getName());
     private PropertiesSubstitutor st;
     private String wsdlTargetPath;
     private String wsdlSourcePath;
