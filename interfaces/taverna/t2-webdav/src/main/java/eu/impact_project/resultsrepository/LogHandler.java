@@ -143,7 +143,7 @@ public class LogHandler {
 
 		// http://domain.org/dir/<servicename>/<evalId>/outputFile/something.<fileextension>
 		// evaluation IDs can contain underscores
-		String regexWithEvalId = "http.+/(.+)/(.+)/outputFile/.+\\.([^\\.]+)$";
+		String regexWithEvalId = "http.+/(.+)/(.+)/outputFile/.+\\.(.+)$";
 
 		UrlParts parts = new UrlParts();
 		if (url.matches(regexWithEvalId)) {
