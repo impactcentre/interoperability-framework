@@ -141,9 +141,9 @@ public class LogHandler {
 		new URL(url);
 
 
-		// http://domain.org/dir/<servicename>/<evalId>/outputFile/something.<fileextension>
+		// http://domain.org/dir/<servicename>/<timestamp>/<outport>/something.<fileextension>
 		// evaluation IDs can contain underscores
-		String regexWithEvalId = "http.+/(.+)/(.+)/outputFile/.+\\.(.+)$";
+		String regexWithEvalId = "http.+/(.+)/.+/(.+)/.+\\.(.+)$";
 
 		UrlParts parts = new UrlParts();
 		if (url.matches(regexWithEvalId)) {
@@ -151,12 +151,12 @@ public class LogHandler {
 			matcher.find();
 
 			parts.service = matcher.group(1);
-			parts.evalId = matcher.group(2);
+			parts.port = matcher.group(2);
 			parts.extension = matcher.group(3);
 
 		} else {
 			throw new MalformedURLException(
-					"URL does not match the required pattern. Example: http://domain.org/MyService/timestamp/outputFile/output_tmp.txt");
+					"URL does not match the required pattern. Example: http://domain.org/MyService/timestamp/outputPort/output_tmp.txt");
 		}
 
 		return parts;
