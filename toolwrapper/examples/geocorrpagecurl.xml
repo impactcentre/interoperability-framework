@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
     <id>geocorrpagecurl</id>
     <name>NCSR Geometric Correction Page Curl</name>
-    <homepage>http://www.digitisation.eu/index.php?id=97</homepage>
+    <homepage>http://www.digitisation.eu/tools/browse/image-enhancement/geometric-correction-page-curl/</homepage>
     <version>4</version>
     <installation>
         <os type="linux">

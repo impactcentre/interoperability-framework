@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
     <id>pagextractor</id>
     <name>USAL PAGE Extractor</name>
-    <homepage>http://www.digitisation.eu/tools/evaluation-toolkit/</homepage>
+    <homepage>http://www.primaresearch.org/tools</homepage>
     <version>1-1-21</version>
     <installation>
         <os type="linux">
@@ -94,6 +94,13 @@
                                 <Value>unknown</Value>
                                 <Value>border</Value>
                             </Restriction>
+                        </input>
+                        <input name="inputImg">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input_img</CliMapping>
+                            <Documentation>URL to bitonal image in TIF format</Documentation>
+                            <Default>http://localhost:8080/impact/testfiles/00046135.bw.tif</Default>
                         </input>
                         <input name="inputXml">
                             <Datatype>xsd:anyURI</Datatype>

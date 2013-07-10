@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
     <id>asvtoolbox</id>
     <name>ASV Toolbox</name>
     <homepage>http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/</homepage>
@@ -144,16 +144,16 @@
                     -i word input a word
                     -if file input a wordfile
                     -o output at screen
-                    -of file output in spezified file
+                    -of file output in specified file
                     -l lang choose a language
-                    -rt file load a reduction tree from spezified file
+                    -rt file load a reduction tree from specified file
 
                     following option are only for baseform reduction:
                     -wf worform choose a wordform
 
-                    following options are only for compound noun decompodition:
-                    -ft file load a forward tree from the spezified file
-                    -bt file load a backward tree from the spezified file
+                    following options are only for compound noun decomposition:
+                    -ft file load a forward tree from the specified file
+                    -bt file load a backward tree from the specified file
 
                     Documentation:
                     http://wortschatz.uni-leipzig.de/~cbiemann/software/toolbox/Baseforms%20Tool.htm

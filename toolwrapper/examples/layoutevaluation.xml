@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
     <id>layoutevaluation</id>
     <name>USAL Layout Evaluation</name>
-    <homepage>http://www.digitisation.eu/index.php?id=76</homepage>
+    <homepage>http://www.digitisation.eu/tools/browse/evaluation/evaluation-tool-for-segmentation/</homepage>
     <version>1-2-33</version>
     <installation>
         <os type="linux">
@@ -56,8 +56,7 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>segXmlFileUrl</CliMapping>
-                            <Documentation>URL to the document layout XML file to be evaluated (segmentation result) (in
-                                PAGE format)
+                            <Documentation>URL to the document layout XML file to be evaluated (segmentation result) in PAGE format
                             </Documentation>
                             <Default>http://localhost:8080/impact/testfiles/words.xml</Default>
                         </input>
@@ -72,8 +71,7 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>profileEvxFileUrl</CliMapping>
-                            <Documentation>Full path to the .evx file containing the evaluation profile (weights and
-                                settings)
+                            <Documentation>Full path to the .evx file containing the evaluation profile (weights and settings)
                             </Documentation>
                             <Default>http://localhost:8080/impact/testfiles/profile.evx</Default>
                         </input>

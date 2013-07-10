@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
     <id>typewrittenocr</id>
     <name>USAL Typewritten OCR Prototype</name>
-    <homepage>http://www.digitisation.eu/index.php?id=105</homepage>
+    <homepage>http://www.digitisation.eu/tools/browse/experimental-prototypes/typewritten-ocr/</homepage>
     <version>0-2-145</version>
     <installation>
         <os type="linux">

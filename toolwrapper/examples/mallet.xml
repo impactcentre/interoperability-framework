@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
     <id>mallet</id>
     <name>MAchine Learning for LanguagE Toolkit</name>
     <homepage>http://mallet.cs.umass.edu/</homepage>
@@ -48,14 +48,14 @@
                             <Documentation>URL reference to topic model output</Documentation>
                             <Extension>gz</Extension>
                         </output>
-			<output name="outkeys">
+			            <output name="outkeys">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>outkeys</CliMapping>
                             <Documentation>URL reference to topic keys output</Documentation>
                             <Extension>txt</Extension>
                         </output>
-			<output name="outtopics">
+			            <output name="outtopics">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>outtopics</CliMapping>

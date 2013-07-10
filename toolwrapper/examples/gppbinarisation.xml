@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/src/main/resources/toolspec.xsd">
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
     <id>gppbinarisation</id>
     <name>NCSR GPP Binarisation</name>
-    <homepage>http://dl.acm.org/citation.cfm?id=1221189</homepage>
+    <homepage>http://www.digitisation.eu/tools/browse/image-enhancement/binarisation-and-colour-reduction/ncsr-binarisation/</homepage>
     <version></version>
     <installation>
         <os type="linux">
