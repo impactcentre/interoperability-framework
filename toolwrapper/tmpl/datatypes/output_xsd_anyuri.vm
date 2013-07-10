@@ -5,8 +5,33 @@
             return ${operationname}Result(fac, omNs);
         }
         infolog("Output file of size " + ${output_variable}File.length() + " has been created successfully");
+	
+
+        String ${output_variable}publicOutputFileDir = publicOutputBaseFileDir+
+                            "${output_variable}" + File.separator;
+        if (!new File(${output_variable}publicOutputFileDir).isDirectory()) {
+            File publicOutputDirFile = new File(${output_variable}publicOutputFileDir);
+            try {
+                if (publicOutputDirFile.mkdirs()) {
+                    infolog("Created directory: " + ${output_variable}publicOutputFileDir);
+                } else {
+                    errorlog("Could not create the public (file)output directory " + ${output_variable}publicOutputFileDir);
+                    return ${operationname}Result(fac, omNs);
+                }
+            } catch(Exception e){
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                e.printStackTrace(pw);
+                errorlog(sw.toString());
+                return ${operationname}Result(fac, omNs);
+            }
+        }
+
+
+	String ${output_variable}extension = ${output_variable}File.getName().split("\\.")[1];
+
         File ${output_variable}PublicFile =
-                new File(publicOutputFileDir + fileName);
+                new File(${output_variable}publicOutputFileDir + fileName + "." + ${output_variable}extension);
         infolog("Public output file: " + ${output_variable}PublicFile.toString());
         try {
             org.apache.commons.io.FileUtils.copyFile(${output_variable}File, ${output_variable}PublicFile);
@@ -17,7 +42,7 @@
         }
         URL ${output_variable}FileUrl = null;
         try {
-            ${output_variable}FileUrl = new URL(publicHttpAccessUrl + ${output_variable}PublicFile.getName());
+            ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + fileName + "." + ${output_variable}extension);
         } catch (MalformedURLException ex) {
             errorlog("Malformed URL for binary result resource. Verify"
                     + "publicHttpAccessUrl parameter in the "

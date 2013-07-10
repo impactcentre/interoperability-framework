@@ -33,27 +33,10 @@
 
 	// Check if the public output (file)dir exists, otherwise create it
 	String timeStamp = Long.toString(System.currentTimeMillis() / 1000L);
-	String publicOutputFileDir = publicHttpAccessDir + 
-			    "${global_project_prefix}${servicename}Service" + File.separator +
-			    timeStamp + File.separator + 
-			    "outputFile" + File.separator;
-	if (!new File(publicOutputFileDir).isDirectory()) {
-	    File publicOutputDirFile = new File(publicOutputFileDir);
-	    try {
-		if (publicOutputDirFile.mkdirs()) {
-		    infolog("Created directory: " + publicOutputFileDir);
-		} else {
-		    errorlog("Could not create the public (file)output directory " + publicOutputFileDir);
-		    return ${operationname}Result(fac, omNs);
-		}
-	    } catch(Exception e){
-		StringWriter sw = new StringWriter();
-		PrintWriter pw = new PrintWriter(sw);
-		e.printStackTrace(pw);
-		errorlog(sw.toString());
-		return ${operationname}Result(fac, omNs);
-	    }
-	}
+
+	String publicOutputBaseFileDir = publicHttpAccessDir + 
+					"${global_project_prefix}${servicename}Service" + File.separator +
+					timeStamp + File.separator;
 
 	// Check if the public output (log)dir exists, otherwise create it
 	String publicOutputLogDir = publicHttpAccessDir + 
@@ -88,8 +71,7 @@
         String publicHttpAccessUrl = getValueOfServiceParameter("publicHttpAccessUrl");
 	publicHttpAccessUrl = publicHttpAccessUrl + 
 			      "${global_project_prefix}${servicename}Service" + "/" +
-			      timeStamp + "/" +
-			      "outputFile" + "/";
+			      timeStamp + "/";
 
         // Command pattern variables key value pairs
         HashMap cliCmdKeyValPairs = new HashMap<String, String>();
