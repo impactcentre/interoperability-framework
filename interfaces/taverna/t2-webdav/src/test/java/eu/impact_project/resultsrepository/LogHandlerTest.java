@@ -124,18 +124,18 @@ public class LogHandlerTest {
 		UrlParts parts = LogHandler
 				.splitUrl("http://domain.org/MyService/1234/outputFile/MyService_myport_tmp.txt");
 		assertEquals("MyService", parts.service);
-		assertEquals("", parts.port);
+		assertEquals("outputFile", parts.port);
 		assertEquals("txt", parts.extension);
-		assertEquals("1234", parts.evalId);
+		assertEquals("", parts.evalId);
 
 		UrlParts partsEval = LogHandler
 				.splitUrl("http://domain.org/MyService/myEvalId/outputFile/tmp.txt");
 		assertEquals("MyService", partsEval.service);
-		assertEquals("myEvalId", partsEval.evalId);
+		assertEquals("", partsEval.evalId);
 		
 		UrlParts partsEvalWithUnderscores = LogHandler
 				.splitUrl("http://domain.org/dir/myEvalId_With_Underscores/outputFile/MyService_myport_myEvalId_With_Underscores_tmp.txt");
-		assertEquals("myEvalId_With_Underscores", partsEvalWithUnderscores.evalId);
+		assertEquals("", partsEvalWithUnderscores.evalId);
 	}
 
 	@Test(expected = MalformedURLException.class)
