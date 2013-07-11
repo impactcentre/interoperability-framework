@@ -38,7 +38,7 @@
                             <Required>true</Required>
                             <CliMapping>fromcode</CliMapping>
                             <Documentation>Input file encoding</Documentation>
-                            <Default>ISO-8859-1</Default>
+                            <Default>UTF-8</Default>
                             <Restriction>
                                 <Value>437</Value>
                                 <Value>500</Value>
@@ -1215,7 +1215,7 @@
                             <Required>true</Required>
                             <CliMapping>tocode</CliMapping>
                             <Documentation>Output file encoding</Documentation>
-                            <Default>UTF8</Default>
+                            <Default>ISO_8859-1</Default>
                             <Restriction>
                                 <Value>437</Value>
                                 <Value>500</Value>
@@ -2392,7 +2392,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://localhost:8080/impact/testfiles/ocr_iso-8859-1.txt</Default>
+                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/ocr.txt</Default>
                         </input>
                     </inputs>
                     <outputs>

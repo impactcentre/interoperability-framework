@@ -46,7 +46,7 @@
                             <Required>true</Required>
                             <CliMapping>infile</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://localhost:8080/impact/testfiles/ocr_NL.txt</Default>
+                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/nld.ocr.txt</Default>
                         </input>
                     </inputs>
                     <outputs>

@@ -30,14 +30,14 @@
                     For more documentation on available command line parameters, see
                     http://mallet.cs.umass.edu/topics.php
                     -->
-                    <command>bin\mallet train-topics  --num-topics 20 --optimize-interval 20 --input ${input} --output-state ${outstate} --output-topic-keys ${outkeys} --output-doc-topics ${outtopics}</command>
+                    <command>/bin/mallet train-topics  --num-topics 20 --optimize-interval 20 --input ${input} --output-state ${outstate} --output-topic-keys ${outkeys} --output-doc-topics ${outtopics}</command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://localhost:8080/impact/testfiles/tutorial.mallet</Default>
+                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/tutorial.mallet</Default>
                         </input>
                     </inputs>
                     <outputs>

@@ -39,7 +39,7 @@
                             <Required>true</Required>
                             <CliMapping>langcs</CliMapping>
                             <Documentation>Comma separated list of internal dictionaries to be used during recognition</Documentation>
-                            <Default>German,OldGerman</Default>
+                            <Default>English,OldEnglish</Default>
                             <Restriction multiple="true">
                                 <Value>Bulgarian</Value>
                                 <Value>Catalan</Value>
@@ -83,7 +83,7 @@
                             <Required>true</Required>
                             <CliMapping>texttype</CliMapping>
                             <Documentation>Font type of the document</Documentation>
-                            <Default>Gothic</Default>
+                            <Default>Normal</Default>
                             <Restriction>
                                 <Value>Normal</Value>
                                 <Value>Gothic</Value>
@@ -96,7 +96,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file</Documentation>
-                            <Default>http://localhost:8080/impact/testfiles/00046135.tif</Default>
+                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.tif</Default>
                         </input>
                         <input name="export">
                             <Datatype>xsd:string</Datatype>

@@ -36,7 +36,7 @@
                             <Required>true</Required>
                             <CliMapping>infile</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://localhost:8080/impact/testfiles/0046135.tif</Default>
+                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.tif</Default>
                         </input>
                         <input name="language">
                             <Datatype>xsd:string</Datatype>

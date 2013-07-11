@@ -36,14 +36,13 @@
                             <Required>true</Required>
                             <CliMapping>infile</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://localhost:8080/impact/testfiles/double_page.tif</Default>
+                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.double.bw.tif</Default>
                         </input>
                         <input name="pagesplit">
                             <Datatype>xsd:boolean</Datatype>
                             <Required>true</Required>
                             <CliMapping>pagesplit</CliMapping>
-                            <Documentation>Indicates if a page should be split or not (if an image represents two book pages)
-                            </Documentation>
+                            <Documentation>Indicates if a page should be split or not (if an image represents two book pages)</Documentation>
                             <Default>true</Default>
                             <Restriction>
                                 <Value>true</Value>
