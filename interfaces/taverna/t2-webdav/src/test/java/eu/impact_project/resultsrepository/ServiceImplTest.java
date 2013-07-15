@@ -88,7 +88,7 @@ public class ServiceImplTest {
 		assertFalse(message.indexOf("warnings or errors") >= 0);
 
 		message = executeWithString(getText("http://localhost:9001/log_tesseract.txt"));	
-		assertTrue(message.indexOf("warnings or errors") >= 0);
+		assertFalse(message.indexOf("warnings or errors") >= 0);
 
 	}
 
