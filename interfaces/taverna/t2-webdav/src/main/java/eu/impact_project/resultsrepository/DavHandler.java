@@ -49,8 +49,8 @@ public class DavHandler {
 	 */
 	private byte[] downloadedFile;
 
-	/** Make seperator os dependant **/
-	private final String separator = File.separator;
+//	/** Make separator os dependant **/
+	private final String separator = "/";
 
 	/** URL to the repository. */
 	private String davUrl;
