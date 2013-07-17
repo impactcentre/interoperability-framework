@@ -11,6 +11,8 @@
         MessageContext msgCtx = MessageContext.getCurrentMessageContext();
         msgCtx.setProperty("ConfigContextTimeoutInterval", "300000");
 
+	${evaluationId}
+
         String processingUnit = this.getValueOfServiceParameter("processingUnit");
         if (processingUnit != null && !processingUnit.isEmpty()) {
             infolog("Parameter processingUnit from services.xml: "+processingUnit);

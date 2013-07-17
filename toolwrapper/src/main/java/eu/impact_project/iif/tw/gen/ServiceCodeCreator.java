@@ -89,6 +89,7 @@ public class ServiceCodeCreator {
 
         // Create service operation
         int opn = operation.getOid();
+	boolean evaluationId = false;
         String operationTmpl = st.getProp("project.template.operation");
         OperationCode oc = new OperationCode(operationTmpl, opn);
         String operationName = operation.getName();
@@ -97,15 +98,43 @@ public class ServiceCodeCreator {
         // add main project properties velocity context
         oc.put(st.getContext());
 
-        // generate an input data section in the service code for each input field
         List<Input> inputs = operation.getInputs().getInput();
+
+	// count the number of real inputs, and skip the evaluationId
+	int outputCounter = 0;
         for (Input input : inputs) {
-            addDataSection(operation, oc, input);
+	    if (!input.getName().equals("evaluationId")) {
+		outputCounter = outputCounter + 1;
+	    } else {
+		evaluationId = true;
+		logger.debug("evaluationId used in workflow");
+	    }
         }
+	if (evaluationId) {
+	    oc.put("evaluationId", "infolog(\"Evaluation-ID: \" + evaluationId);");
+	} else {
+	    oc.put("evaluationId", "infolog(\"No evaluation-id\");");
+	}
+
+	int outputMax = outputCounter;
+	outputCounter = 0;
+        // generate an input data section in the service code for each input field
+	// and add the evaluationId to the last element
+        for (Input input : inputs) {
+	    if (!input.getName().equals("evaluationId")) {
+		outputCounter = outputCounter + 1;
+		if (outputCounter == outputMax && evaluationId) {
+                    addDataSection(operation, oc, input, true);
+		} else {
+                    addDataSection(operation, oc, input, false);
+		}
+	    }
+        }
+
         // generate an output data section in the service code for each output field
         List<Output> outputs = operation.getOutputs().getOutput();
         for (Output output : outputs) {
-            addDataSection(operation, oc, output);
+            addDataSection(operation, oc, output, false);
         }
 
         // insert input and output data sections for the operation
@@ -150,7 +179,7 @@ public class ServiceCodeCreator {
      * @throws GeneratorException
      */
     protected void addDataSection(Operation operation, OperationCode oc,
-            InOut inout) throws GeneratorException {
+            InOut inout, boolean evaluationId) throws GeneratorException {
 
         // input or output field?
         IOType iotype = (inout instanceof Input) ? IOType.INPUT : IOType.OUTPUT;
@@ -216,6 +245,10 @@ public class ServiceCodeCreator {
                     String parameter = getOperationParameter(input);
                     oc.addParameter(parameter);
                     String parList = oc.getParametersCsList();
+		    if (evaluationId) {
+			parList = parList + ", String evaluationId";
+
+		    }
                     oc.put("parameters", parList);
                     sectCode.evaluate();
                     oc.appendInputSection(sectCode.getCode());
