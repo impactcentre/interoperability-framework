@@ -89,7 +89,7 @@ public class ServiceCodeCreator {
 
         // Create service operation
         int opn = operation.getOid();
-	boolean evaluationId = false;
+        boolean evaluationId = false;
         String operationTmpl = st.getProp("project.template.operation");
         OperationCode oc = new OperationCode(operationTmpl, opn);
         String operationName = operation.getName();
@@ -101,34 +101,36 @@ public class ServiceCodeCreator {
         List<Input> inputs = operation.getInputs().getInput();
 
 	// count the number of real inputs, and skip the evaluationId
-	int outputCounter = 0;
+        int outputCounter = 0;
         for (Input input : inputs) {
-	    if (!input.getName().equals("evaluationId")) {
-		outputCounter = outputCounter + 1;
-	    } else {
-		evaluationId = true;
-		logger.debug("evaluationId used in workflow");
-	    }
+            if (!input.getName().equals("evaluationId")) {
+                outputCounter = outputCounter + 1;
+            } else {
+                evaluationId = true;
+                logger.debug("evaluationId used in workflow");
+            }
         }
 	if (evaluationId) {
-	    oc.put("evaluationId", "infolog(\"Evaluation-ID: \" + evaluationId);");
-	} else {
-	    oc.put("evaluationId", "infolog(\"No evaluation-id\");");
-	}
+            oc.put("evaluationId", "infolog(\"Evaluation-ID: \" + evaluationId);");
+            oc.put("evaluationIdDir", "evaluationId");
+        } else {
+            oc.put("evaluationId", "infolog(\"No evaluation-id\");");
+            oc.put("evaluationIdDir", "");
+        }
 
-	int outputMax = outputCounter;
-	outputCounter = 0;
+        int outputMax = outputCounter;
+        outputCounter = 0;
         // generate an input data section in the service code for each input field
 	// and add the evaluationId to the last element
         for (Input input : inputs) {
-	    if (!input.getName().equals("evaluationId")) {
-		outputCounter = outputCounter + 1;
-		if (outputCounter == outputMax && evaluationId) {
+            if (!input.getName().equals("evaluationId")) {
+                outputCounter = outputCounter + 1;
+                if (outputCounter == outputMax && evaluationId) {
                     addDataSection(operation, oc, input, true);
-		} else {
+                } else {
                     addDataSection(operation, oc, input, false);
-		}
-	    }
+                }
+            }
         }
 
         // generate an output data section in the service code for each output field
