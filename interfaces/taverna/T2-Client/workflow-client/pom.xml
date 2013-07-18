@@ -9,13 +9,15 @@
 	<scm>
 		<url>https://github.com/impactcentre/interoperability-framework/tree/master/interfaces/taverna/T2-Client/workflow-client</url>
 	</scm>
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>1.7</jdk.version>
+    </properties>
 	<parent>
 		<groupId>eu.impact_project.iif.t2</groupId>
 		<artifactId>T2-Client</artifactId>
 		<version>0.5-SNAPSHOT</version>
 	</parent>
-
 	<dependencies>
 		<dependency>
 			<groupId>eu.impact_project.iif.t2</groupId>
@@ -28,13 +30,7 @@
 			<version>0.9.0</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<finalName>dp</finalName>
 	</build>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
 </project>

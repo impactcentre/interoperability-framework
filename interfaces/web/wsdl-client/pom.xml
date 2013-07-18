@@ -12,8 +12,11 @@
 		<url>http://www.digitisation.eu/</url>
 	</organization>
 	<inceptionYear>2009</inceptionYear>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>1.7</jdk.version>
+    </properties>
 	<dependencies>
-
 		<dependency>
 			<groupId>eu.impact_project.iif.ws</groupId>
 			<artifactId>generic-soap-client</artifactId>
@@ -243,16 +246,13 @@
 			<artifactId>geronimo-javamail_1.4_spec</artifactId>
 			<version>1.7</version>
 		</dependency>
-
 	</dependencies>
-
 	<repositories>
 		<repository>
 			<id>eviwarePluginRepository</id>
 			<url>http://www.eviware.com/repository/maven2/</url>
 		</repository>
 	</repositories>
-
 	<build>
 		<finalName>WS-Client</finalName>
 		<defaultGoal>package</defaultGoal>
@@ -280,8 +280,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
 					<fork>true</fork>
 					<showDeprecation>true</showDeprecation>
 					<showWarnings>true</showWarnings>
@@ -298,7 +298,6 @@
 							<port>8888</port>
 						</connector>
 					</connectors>
-
 				</configuration>
 			</plugin>
 			<plugin>
@@ -315,7 +314,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 	<reporting>
 		<plugins>
 			<plugin>
@@ -344,6 +342,4 @@
 			</plugin>
 		</plugins>
 	</reporting>
-
-
 </project>
