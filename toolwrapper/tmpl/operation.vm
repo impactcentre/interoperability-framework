@@ -38,13 +38,13 @@
 
 	String publicOutputBaseFileDir = publicHttpAccessDir + 
 					"${global_project_prefix}${servicename}Service" + File.separator +
-					${evaluationIdDir}
+					${evaluationIdDir} File.separator +
 					timeStamp + File.separator;
 
 	// Check if the public output (log)dir exists, otherwise create it
 	String publicOutputLogDir = publicHttpAccessDir + 
 			    "${global_project_prefix}${servicename}Service" + File.separator +
-			    ${evaluationIdDir}
+			    ${evaluationIdDir} File.separator +
 			    timeStamp + File.separator + 
 			    "processLog" + File.separator;
 	if (!new File(publicOutputLogDir).isDirectory()) {
@@ -74,7 +74,7 @@
         // Required for providing access to output files in a public web server directory
         String publicHttpAccessUrl = getValueOfServiceParameter("publicHttpAccessUrl");
 	publicHttpAccessUrl = publicHttpAccessUrl + 
-			      "${global_project_prefix}${servicename}Service" + "/" +
+			      "${global_project_prefix}${servicename}Service" + "/" + ${evaluationIdDir} "/" +
 			      timeStamp + "/";
 
         // Command pattern variables key value pairs
