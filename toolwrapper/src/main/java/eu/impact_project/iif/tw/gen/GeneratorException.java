@@ -18,7 +18,7 @@ package eu.impact_project.iif.tw.gen;
 /**
  * GeneratorException
  * @author shsdev https://github.com/shsdev
- * @version 0.3
+ * @version 0.5
  */
 public class GeneratorException extends Exception {
     /**

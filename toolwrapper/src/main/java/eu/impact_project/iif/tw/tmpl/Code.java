@@ -31,7 +31,7 @@ import org.apache.velocity.app.Velocity;
  * source code content.
  * 
  * @author shsdev https://github.com/shsdev
- * @version 0.3
+ * @version 0.5
  */
 public abstract class Code {
 

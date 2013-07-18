@@ -29,7 +29,7 @@ import org.apache.velocity.VelocityContext;
 /**
  * PropertiesSubstitutor
  * @author shsdev https://github.com/shsdev
- * @version 0.3
+ * @version 0.5
  */
 public class PropertiesSubstitutor extends Substitutor {
 

@@ -27,7 +27,7 @@ import org.apache.velocity.app.VelocityEngine;
 /**
  * GenericSubstitutor
  * @author shsdev https://github.com/shsdev
- * @version 0.3
+ * @version 0.5
  */
 public abstract class Substitutor {
 

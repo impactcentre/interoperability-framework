@@ -42,7 +42,7 @@ import org.w3c.dom.NodeList;
 /**
  *
  * @author shsdev https://github.com/shsdev
- * @version 0.3
+ * @version 0.5
  */
 public class WsdlCreator {
 

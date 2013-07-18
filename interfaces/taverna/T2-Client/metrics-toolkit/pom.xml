@@ -4,7 +4,7 @@
     <artifactId>metrics-toolkit</artifactId>
 	<packaging>war</packaging>
 	<name>metrics-toolkit</name>
-	<version>0.5-SNAPSHOT</version>
+	<version>0.5.0</version>
 	<description>Web frontend for the metrics toolkit that offers the functionality to execute two OCR evaluation workflows whose results can be compared to each other.</description>
 	<scm>
 		<url>https://github.com/impactcentre/interoperability-framework/tree/master/interfaces/taverna/T2-Client/metrics-toolkit</url>
@@ -16,7 +16,8 @@
 	<parent>
 		<groupId>eu.impact_project.iif.t2</groupId>
 		<artifactId>T2-Client</artifactId>
-		<version>0.5-SNAPSHOT</version>
+		<version>0.5.0</version>
+        <relativePath>../pom.xml</relativePath>
 	</parent>
 	<dependencies>
 		<dependency>
@@ -27,7 +28,7 @@
 		<dependency>
 			<groupId>eu.impact_project.iif.t2</groupId>
 			<artifactId>workflow-lib</artifactId>
-			<version>0.5-SNAPSHOT</version>
+			<version>0.5.0</version>
 		</dependency>
 	</dependencies>
 	<build>

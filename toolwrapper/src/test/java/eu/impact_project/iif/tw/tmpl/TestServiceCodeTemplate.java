@@ -30,7 +30,7 @@ import org.apache.log4j.BasicConfigurator;
  * Test class for the template-based service code generator.
  * 
  * @author shsdev https://github.com/shsdev
- * @version 0.3
+ * @version 0.5
  */
 public class TestServiceCodeTemplate {
 

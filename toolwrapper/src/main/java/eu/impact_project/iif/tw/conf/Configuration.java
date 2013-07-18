@@ -24,7 +24,7 @@ import eu.impact_project.iif.tw.gen.GeneratorException;
  * Configuration files
 
  * @author shsdev https://github.com/shsdev
- * @version 0.3
+ * @version 0.5
  */
 public class Configuration {
 

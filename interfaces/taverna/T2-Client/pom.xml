@@ -5,7 +5,7 @@
 	<artifactId>T2-Client</artifactId>
 	<packaging>pom</packaging>
 	<name>T2-Client</name>
-	<version>0.5-SNAPSHOT</version>
+	<version>0.5.0</version>
 	<description>Generic client that can be used to execute a Taverna 2 workflow.</description>
 	<organization>
 		<name>IMPACT Centre of Competence</name>

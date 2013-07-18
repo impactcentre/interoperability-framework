@@ -27,7 +27,7 @@ import org.apache.log4j.BasicConfigurator;
  * engine. Evaluation is performed by applying the Velocity context to the
  * source code content.
  * @author shsdev https://github.com/shsdev
- * @version 0.3
+ * @version 0.5
  */
 public class OperationCode extends Code {
 

@@ -30,7 +30,7 @@ import org.apache.log4j.BasicConfigurator;
  * These are generic file utilities used by the client and service.
  * @author Thomas Kraemer
  * @author shsdev https://github.com/shsdev
- * @version 0.3
+ * @version 0.5
  */
 public final class FileUtil {
 
