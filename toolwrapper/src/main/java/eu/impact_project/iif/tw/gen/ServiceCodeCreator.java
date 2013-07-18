@@ -112,7 +112,7 @@ public class ServiceCodeCreator {
         }
 	if (evaluationId) {
             oc.put("evaluationId", "infolog(\"Evaluation-ID: \" + evaluationId);");
-            oc.put("evaluationIdDir", "evaluationId");
+            oc.put("evaluationIdDir", "evaluationId + File.separator +");
         } else {
             oc.put("evaluationId", "infolog(\"No evaluation-id\");");
             oc.put("evaluationIdDir", "");

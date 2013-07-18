@@ -38,13 +38,13 @@
 
 	String publicOutputBaseFileDir = publicHttpAccessDir + 
 					"${global_project_prefix}${servicename}Service" + File.separator +
-					${evaluationIdDir} + File.separator +
+					${evaluationIdDir}
 					timeStamp + File.separator;
 
 	// Check if the public output (log)dir exists, otherwise create it
 	String publicOutputLogDir = publicHttpAccessDir + 
 			    "${global_project_prefix}${servicename}Service" + File.separator +
-			    ${evaluationIdDir} + File.separator +
+			    ${evaluationIdDir}
 			    timeStamp + File.separator + 
 			    "processLog" + File.separator;
 	if (!new File(publicOutputLogDir).isDirectory()) {
