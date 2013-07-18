@@ -134,7 +134,7 @@ public class LogHandlerTest {
 		assertEquals("", partsEval.evalId);
 		
 		UrlParts partsEvalWithUnderscores = LogHandler
-				.splitUrl("http://domain.org/dir/myEvalId_With_Underscores/outputFile/MyService_myport_myEvalId_With_Underscores_tmp.txt");
+				.splitUrl("http://domain.org/dir/MyService/myEvalId_With_Underscores/outputFile/MyService_myport_myEvalId_With_Underscores_tmp.txt");
 		assertEquals("", partsEvalWithUnderscores.evalId);
 	}
 

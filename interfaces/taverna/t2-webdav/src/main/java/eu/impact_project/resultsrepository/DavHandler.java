@@ -174,8 +174,10 @@ public class DavHandler {
 			throws HttpException, IOException {
 		String baseUrl = getFolderHierarchyUrl();
 
-		service = evalId.equals("") ? service : service + "_" + evalId;
 		String serviceUrl = createFolder(baseUrl, service);
+		if (!evalId.equals("")){
+		    serviceUrl = createFolder(serviceUrl, evalId);
+		}
 		String logUrl = createFolder(serviceUrl, "log");
 
 		int i = 1;
@@ -275,16 +277,15 @@ public class DavHandler {
 	 */
 	public void saveFiles(UrlParts urlParts, ToolResults urls)
 			throws HttpException, IOException {
-		String service = urlParts.service;
+		String serviceDir = urlParts.service;
 		String port = urlParts.port;
 		String extension = urlParts.extension;
 		String evaluationId = urlParts.evalId;
 
-		String serviceDir = evaluationId.equals("") ? service : service + "_"
-				+ evaluationId;
-
 		String baseUrl = getFolderHierarchyUrl();
 		String serviceUrl = createFolder(baseUrl, serviceDir);
+		serviceUrl = createFolder(serviceUrl, evaluationId);
+		// serviceUrl = createFolder(serviceUrl, "testing123");
 		String portUrl = createFolder(serviceUrl, port);
 
 		int i = 1;

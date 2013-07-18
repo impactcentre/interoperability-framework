@@ -102,11 +102,11 @@ public class DavHandlerTest {
 		List<String> logs = Arrays.asList(new String[] { "log1", "log2" });
 		dav.saveLogs("myservice", "myevalid", logs);
 		InputStream log1 = new URL(
-				"http://localhost:9002/parent/child/myservice_myevalid/log/00001.log")
+				"http://localhost:9002/parent/child/myservice/myevalid/log/00001.log")
 				.openStream();
 		// just checking
 		new URL(
-				"http://localhost:9002/parent/child/myservice_myevalid/log/00002.log")
+				"http://localhost:9002/parent/child/myservice/myevalid/log/00002.log")
 				.openStream();
 		String log1String = IOUtils.toString(log1);
 		assertEquals("log1", log1String);
