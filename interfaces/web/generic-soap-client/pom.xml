@@ -129,7 +129,7 @@
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
-			<version>7.6.11.v20130520</version>
+			<version>8.1.11.v20130520</version>
 			<scope>test</scope>
 		</dependency>
         <!-- End Tests -->

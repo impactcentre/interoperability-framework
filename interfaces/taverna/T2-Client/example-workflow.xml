@@ -13,7 +13,7 @@
   <annotationAssertions>
     <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
       <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.ExampleValue">
-        <text>http://kbdemo.dnsalias.org/testfiles/00046135.tif</text>
+        <text>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bw.tif</text>
       </annotationBean>
       <date>2012-06-06 09:52:05.310 UTC</date>
       <creators />
