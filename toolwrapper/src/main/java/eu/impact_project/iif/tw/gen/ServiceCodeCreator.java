@@ -134,9 +134,13 @@ public class ServiceCodeCreator {
         }
 
         // generate an output data section in the service code for each output field
+	boolean has_outputstream = false;
         List<Output> outputs = operation.getOutputs().getOutput();
         for (Output output : outputs) {
             addDataSection(operation, oc, output, false);
+	    if (output.getName().equals("outputstream")) {
+		has_outputstream = true;
+	    }
         }
 
         // insert input and output data sections for the operation
@@ -152,6 +156,13 @@ public class ServiceCodeCreator {
         // be defined before the command line process section.
         oc.put("outfileitems", oc.getOutFileItems());
         oc.put("resultelements", oc.getResultElements());
+
+	// outputstream
+	if (has_outputstream) {
+	    oc.put("outputstream", "outputstreamFileName");
+	} else {
+	    oc.put("outputstream", "\"\"");
+	}
 
         // operation id
         oc.put("opid", String.valueOf(opn));

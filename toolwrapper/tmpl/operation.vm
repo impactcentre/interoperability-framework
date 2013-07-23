@@ -90,7 +90,7 @@ ${outfileitem}
 
         // Command execution
         long startMillis = System.currentTimeMillis();
-        process(cliCmdKeyValPairs, ${opid});
+        process(cliCmdKeyValPairs, ${opid}, ${outputstream});
         long timeMillis = System.currentTimeMillis() - startMillis;
         processing_time = (int) timeMillis;
 

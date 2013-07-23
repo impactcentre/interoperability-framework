@@ -78,7 +78,7 @@ public class ${project_midfix} {
      * @param inImgFile Input image file.
      * @throws IOException
      */
-    private boolean process(HashMap<String, String> cliCmdKeyValPairs, int opid) {
+    private boolean process(HashMap<String, String> cliCmdKeyValPairs, int opid, String outputstream) {
 
         // Assigning values to the variables used in the command pattern.
         // If additional variables are required, they must be added in the
@@ -87,7 +87,7 @@ public class ${project_midfix} {
 
         // Command line process
         CommandLineProcess clp =
-                new CommandLineProcess(cliCmdPattern, cliCmdKeyValPairs, false);
+                new CommandLineProcess(cliCmdPattern, cliCmdKeyValPairs, false, outputstream);
         try {
             clp.init();
         } catch (IOException ex) {

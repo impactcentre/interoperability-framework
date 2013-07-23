@@ -15,8 +15,9 @@
  */
 package ${global_package_name}.proc;
 
-import java.io.IOException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,6 +78,7 @@ public class CommandLineProcess {
     private boolean sh;
     private String output;
     private VelocityEngine ve;
+    private String outputstream;
 
     public String getProcessingLog() {
         return processingLog;
@@ -101,7 +103,7 @@ public class CommandLineProcess {
      * @param sh
      *         invoke the shell with the command line as the parameter
      */
-    public CommandLineProcess(String pattern, HashMap paramValuePairs, boolean sh) {
+    public CommandLineProcess(String pattern, HashMap paramValuePairs, boolean sh, String outputstream) {
         this();
         this.sh = sh;
         this.pattern = pattern;
@@ -109,6 +111,7 @@ public class CommandLineProcess {
         this.paramValuePairs = paramValuePairs;
         this.replaceVars();
         this.createCommandList();
+	this.outputstream = outputstream;
     }
 
     public CommandLineProcess(List<String> commands) {
@@ -189,8 +192,20 @@ public class CommandLineProcess {
             }
             String toolMsg = stdWriter.toString();
             if (toolMsg != null && !toolMsg.equals("")) {
-                toolMsg = "Tool message: \n"+ toolMsg;
-            output = toolMsg;
+		if (this.outputstream.equals("")) {
+                    toolMsg = "Tool message: \n"+ toolMsg;
+		} else {
+		    try {
+			FileOutputStream writer = new FileOutputStream(outputstream);
+			byte[] contentOutBytes = toolMsg.getBytes();
+			writer.write(contentOutBytes);
+			writer.close();
+			toolMsg = "Wrote stdout to outputstream " + outputstream;
+		    } catch (Exception e) {
+			toolMsg = toolMsg + "Error while writing stdout to file " + e.getMessage();
+		    }
+		}
+		output = toolMsg;
                 debuglog(toolMsg);
             }
         }
