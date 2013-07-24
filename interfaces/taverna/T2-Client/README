@@ -74,7 +74,7 @@ Deployment Guide
 	
 *Deploying the application
 
-	Maven generates a WAR archive for each frontend module (<<<workflow-client>>> and <<<metrics-toolkit>>>)
+	Maven generates a WAR archive for each frontend module (<<<workflow-client>>> 
 	in the corresponding <<<target>>> directory. In Tomcat, you can deploy 
 	those archives using the Tomcat Manager application. Or, simply copy the archives into the
 	<<<webapp>>> directory of your Tomcat installation and restart Tomcat.

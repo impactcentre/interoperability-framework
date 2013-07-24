@@ -21,7 +21,6 @@
     </properties>
 	<modules>
 		<module>workflow-client</module>
-		<module>metrics-toolkit</module>
 		<module>workflow-lib</module>
 	</modules>
 	<distributionManagement>
