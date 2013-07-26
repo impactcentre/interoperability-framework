@@ -17,7 +17,7 @@
         }
 
 	// Determine the file name by taking the last part of the URL (and strip the extension)
-        bits = inputUrl.toString().split("/");
+        bits = ${input_variable}Url.toString().split("/");
         fileName = bits[bits.length - 1];
         if(fileName.contains(".")) {
            bits = fileName.split("\\.");
