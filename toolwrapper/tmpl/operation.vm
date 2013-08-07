@@ -12,6 +12,9 @@
         MessageContext msgCtx = MessageContext.getCurrentMessageContext();
         msgCtx.setProperty("ConfigContextTimeoutInterval", "300000");
 
+	String bits[];
+	String fileName;
+
 	${evaluationId}
 
         String processingUnit = this.getValueOfServiceParameter("processingUnit");
