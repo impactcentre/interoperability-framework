@@ -29,6 +29,9 @@ import uk.org.taverna.server.client.OutputPort;
 import uk.org.taverna.server.client.PortListValue;
 import uk.org.taverna.server.client.Run;
 
+import java.io.FileOutputStream;
+
+
 /**
  * Bundles several Taverna workflow outputs
  * 
@@ -83,19 +86,26 @@ public class WorkflowOutputPort {
 	
 	public void setOutput(OutputPort output,boolean binary) {
 		WorkflowOutput translate = new WorkflowOutput();
-		String outputAsString = output.getDataAsString();
-		String data = outputAsString;
-		
-		this.name = output.getName();
-		translate.setValue(data);
-		translate.setUrl(output.getValue().toString());
-		translate.setBinary(binary);
-		
-		if (outputs == null)
-			outputs = new ArrayList<WorkflowOutput>();
-		
-		this.outputs.add(translate);
+	        if (!output.getContentType().equals("application/x-list")) {
 
+		    String outputAsString = output.getDataAsString();
+		    String data = outputAsString;
+		    
+		    this.name = output.getName();
+		    translate.setValue(data);
+		    translate.setUrl(output.getValue().toString());
+		    translate.setBinary(binary);
+		    
+		    if (outputs == null)
+			    outputs = new ArrayList<WorkflowOutput>();
+		    
+		    this.outputs.add(translate);
+		} else {
+
+		    // Something must be added here if the content type is a list..
+		    // This currently failes on the output.getDataAsString()
+
+		}
 	}
 
 	public void setOutput(OutputPort output, Run run, String name, int depth) {
