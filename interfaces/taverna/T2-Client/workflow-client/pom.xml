@@ -31,6 +31,12 @@
 			<version>0.9.0</version>
 		</dependency>
 	</dependencies>
+    <repositories>
+        <repository>
+            <id>repo</id>
+            <url>http://kbresearch.dyndns.org/maven/m2-repo/releases</url>
+        </repository>
+    </repositories>
 	<build>
 		<finalName>dp</finalName>
 	</build>
