@@ -168,7 +168,11 @@
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
-		</repository>
+		    </repository>
+		    <repository>
+			<id>repo</id>
+			<url>http://kbresearch.dyndns.org/maven/m2-repo/releases</url>
+		    </repository>
 	</repositories>
 	<build>
 		<plugins>
