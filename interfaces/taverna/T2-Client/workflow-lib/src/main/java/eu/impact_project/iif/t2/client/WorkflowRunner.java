@@ -45,7 +45,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
 
-import net.sf.taverna.t2.service.webservice.resource.DataValue;
+//import net.sf.taverna.t2.service.webservice.resource.DataValue;
 
 import org.apache.commons.validator.routines.UrlValidator;
 import org.apache.xmlbeans.impl.util.Base64;
@@ -109,6 +109,7 @@ public class WorkflowRunner extends HttpServlet {
 			long duration = 0;
 			long startTime = System.currentTimeMillis();
             address = "https://taverna.taverna@localhost:8443/taverna-server";
+            // address = "https://taverna.taverna@kbresearch.dyndns.org:8443/taverna-server";
             URI serverURI = new URI(address);
             // connect to server
             Server tavernaRESTClient = new Server(serverURI);
@@ -173,7 +174,7 @@ public class WorkflowRunner extends HttpServlet {
 					if (!urlFault)
 					{
 						// will contain all the inputs for the current workflow
-						Map<String, DataValue> inputData = new HashMap<String, DataValue>();
+						Map<String, String> inputData = new HashMap<String, String>();
 						
 						for (WorkflowInput currentInput : currentWorkflow.getInputs()) {
 	
@@ -187,15 +188,15 @@ public class WorkflowRunner extends HttpServlet {
 							// if the inputs are just simple values
 							if (currentDepth == 0) {
 								// put the value into taverna-specific map
-								inputData.put(currentName, new DataValue(currentValue));
+								inputData.put(currentName, currentValue);
 	
 								// if the inputs are a list of values
 							} else if (currentDepth > 0) {
+
+								String dataValue = "Lists [\n";
 								// then the values must be nested in a list
-								List<DataValue> valueList = new ArrayList<DataValue>();
-	
 								// add the current value
-								valueList.add(new DataValue(currentValue));
+								dataValue = dataValue + currentValue + "\n";
 	
 								// add all the additional values
 								int i = 0;
@@ -206,21 +207,23 @@ public class WorkflowRunner extends HttpServlet {
 												.equals("")) {
 									String additionalValue = htmlFormItems
 											.get(currentNamePrefixed + i);
-									valueList.add(new DataValue(additionalValue));
+									// valueList.add(new DataValue(additionalValue));
+									dataValue = dataValue + additionalValue + "\n";
 									i++;
 								}
 								// store the list in the map
-								inputData.put(currentName, new DataValue(valueList));
+								dataValue = dataValue + "]\n";
+								inputData.put(currentName, dataValue);
 							}
 						}
 	
 						Map<String, InputPort> inputPorts = runID.getInputPorts();
 						
 						// convert input values from html form to taverna-specific objects
-						for (Map.Entry<String, DataValue> inputWorkflow : inputData.entrySet())
+						for (Map.Entry<String, String> inputWorkflow : inputData.entrySet())
 						{
-							runID.getInputPort(inputWorkflow.getKey()).setValue(inputWorkflow.getValue().toString());
-							//System.out.println("INPUT: " +  inputWorkflow.getValue().toString());
+							runID.getInputPort(inputWorkflow.getKey()).setValue(inputWorkflow.getValue());
+							//System.out.println("INPUT: " +  inputWorkflow.getValue());
 						}
 						
 						runID.start();
