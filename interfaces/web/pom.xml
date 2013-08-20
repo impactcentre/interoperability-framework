@@ -13,7 +13,6 @@
         <jdk.version>1.7</jdk.version>
     </properties>
     <modules>
-        <module>generic-soap-client</module>
         <module>wsdl-client</module>
 	    <module>time-utils</module>
     </modules>
