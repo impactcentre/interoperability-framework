@@ -34,7 +34,7 @@
     <repositories>
         <repository>
             <id>repo</id>
-            <url>http://kbresearch.dyndns.org/maven/m2-repo/releases</url>
+            <url>https://github.com/impactcentre/m2-repo/raw/master/releases</url>
         </repository>
     </repositories>
 	<build>
