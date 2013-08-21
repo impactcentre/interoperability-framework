@@ -86,26 +86,27 @@ public class WorkflowOutputPort {
 	
 	public void setOutput(OutputPort output,boolean binary) {
 		WorkflowOutput translate = new WorkflowOutput();
+		this.name = output.getName();
 	        if (!output.getContentType().equals("application/x-list")) {
-
 		    String outputAsString = output.getDataAsString();
 		    String data = outputAsString;
-		    
-		    this.name = output.getName();
 		    translate.setValue(data);
 		    translate.setUrl(output.getValue().toString());
 		    translate.setBinary(binary);
-		    
-		    if (outputs == null)
-			    outputs = new ArrayList<WorkflowOutput>();
-		    
-		    this.outputs.add(translate);
 		} else {
-
-		    // Something must be added here if the content type is a list..
-		    // This currently failes on the output.getDataAsString()
-
+		    String data = "";
+		    // As suggested by Robert Haines on the taverna-hackers mailinglist.
+		    for (AbstractPortValue p: output.getValue()) {
+			data = data + p.getDataAsString();
+		    }
+		    translate.setValue(data.toString());
+		    translate.setUrl(data.toString());
+		    translate.setBinary(binary);
 		}
+		if (outputs == null)
+			outputs = new ArrayList<WorkflowOutput>();
+		
+		this.outputs.add(translate);
 	}
 
 	public void setOutput(OutputPort output, Run run, String name, int depth) {
