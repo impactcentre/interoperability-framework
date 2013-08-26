@@ -62,6 +62,7 @@ Try the RESTless interface:
 
 and - if everything is setup correctly - you would receive a response like:
 
+```xml
     <ns:simpleCopyResponse xmlns:ns="http://impact-project.eu/iif/services">
        <ns:return>
            <tns:result xmlns:tns="http://impact-project.eu/iif/services">
@@ -90,6 +91,7 @@ and - if everything is setup correctly - you would receive a response like:
            </tns:result>
        </ns:return>
     </ns:simpleCopyResponse>
+```
 
 The service simply has copied the file available at the URL  
    
@@ -110,6 +112,7 @@ to a temporary location and then made it available at a URL
 
 by executing the soap request:
 
+```xml
     <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://impact-project.eu/pc/services">
      <soap:Header/>
       <soap:Body>
@@ -118,9 +121,11 @@ by executing the soap request:
           </ser:Request1>
        </soap:Body>
     </soap:Envelope>
+```
 
 You would then receive a response containing a reference to the copied result file, like:
 
+```xml
     <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
        <soapenv:Body>
           <ns:simpleCopyResponse xmlns:ns="http://impact-project.eu/pc/services">
@@ -150,6 +155,7 @@ You would then receive a response containing a reference to the copied result fi
           </ns:simpleCopyResponse>
        </soapenv:Body>
     </soapenv:Envelope>
+```
 
 **Create a new project**
 
