@@ -1,15 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>eu.impact_project.iif.t2.resultsrepository</groupId>
-	<artifactId>resultsrepository</artifactId>
-	<version>0.5.0</version>
+	<groupId>eu.impact_project.resultsrepository</groupId>
+	<artifactId>resultsrepository-service</artifactId>
+	<version>0.5-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>resultsrepository</name>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jdk.version>1.7</jdk.version>
-    </properties>
+	<name>resultsrepository-service</name>
+
 	<dependencies>
 		<dependency>
 			<groupId>it.could</groupId>
@@ -30,7 +27,7 @@
 		<dependency>
 			<groupId>jaxen</groupId>
 			<artifactId>jaxen</artifactId>
-			<version>1.1.4</version>
+			<version>1.1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -40,12 +37,12 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.5</version>
+			<version>1.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.5</version>
+			<version>1.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-httpclient</groupId>
@@ -76,22 +73,31 @@
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
-			<version>8.1.11.v20130520</version>
+			<version>8.1.7.v20120910</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-servlet</artifactId>
-			<version>8.1.11.v20130520</version>
+			<version>8.1.7.v20120910</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>3.0.7.RELEASE</version>
+		</dependency>
+
+
 	</dependencies>
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>eviwarePluginRepository</id>
 			<url>http://www.eviware.com/repository/maven2/</url>
 		</pluginRepository>
 	</pluginRepositories>
+
 	<profiles>
 		<profile>
 			<id>soapui</id>
@@ -153,18 +159,23 @@
 			</build>
 		</profile>
 	</profiles>
+
 	<build>
-		<finalName>resultsrepository</finalName>
+		<finalName>resultsrepository-service</finalName>
+
 		<plugins>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
+					<source>1.7</source>
+					<target>1.7</target>
+
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
@@ -177,6 +188,7 @@
 					</connectors>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>2.3</version>
@@ -185,6 +197,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
 	</build>
 	<reporting>
 		<plugins>
@@ -214,4 +227,9 @@
 			</plugin>
 		</plugins>
 	</reporting>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
 </project>
