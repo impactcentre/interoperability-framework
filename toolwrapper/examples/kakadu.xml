@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
+    <id>kakadu</id>
+    <name>Kakadu</name>
+    <homepage>http://www.kakadusoftware.com/</homepage>
+    <version>6-4</version>
+    <installation>
+        <os type="linux">
+            Available under most distributions via package management.
+        </os>
+        <os type="windows">
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="Kakadu" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/iif">
+            <description>Services for converting images to JP2 format using Kakadu</description>
+            <operations>
+                <operation oid="1" name="kdu_compress">
+                    <description>Compress image with JP2</description>
+                    <!--
+                    Usage:
+					kdu_compress.exe -i image -o output [opts]
+                    -->
+                    <command>kdu_compress.exe -i ${input} -o ${output}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to image file</Documentation>
+                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.tif</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>jp2</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <toolsbasedir>C:\\Kakadu\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/out</accessdir>
+                <accessurl>http://localhost:8080/impact/out/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>
