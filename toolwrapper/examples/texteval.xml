@@ -6,10 +6,10 @@
     <version>1-0</version>
     <installation>
         <os type="linux">
-            Available under most distributions via package management.
+            Supported through Java.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Supported through Java. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
@@ -160,10 +160,18 @@
                 <password>tomcat</password>
                 <path>manager</path>
             </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
             <toolsbasedir>C:\\TextEval-1.0\\</toolsbasedir>
             <dataexchange>
-                <accessdir>../webapps/ROOT/impact/out</accessdir>
-                <accessurl>http://localhost:8080/impact/out/</accessurl>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
             </dataexchange>
         </deployment>
     </deployments>
