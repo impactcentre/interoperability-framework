@@ -30,7 +30,7 @@
                     For full documentation of exiftool command line parameters, see
                     http://www.sno.phy.queensu.ca/~phil/exiftool/exiftool_pod.html
                     -->
-                    <command>exiftool ${input} -textOut ${output}</command>
+                    <command>exiftool ${input}</command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
@@ -41,7 +41,7 @@
                         </input>
                     </inputs>
                     <outputs>
-                        <output name="output">
+                        <output name="outputstream">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>output</CliMapping>
