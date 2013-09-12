@@ -27,7 +27,7 @@
                     <out> Transformed output PAGE XML file
                     <filter> Filter list with replacement rules for a character or a sequence of characters by another character or sequence
                     -->
-                    <command>PageSchemaConverter-1-1-33.exe ${input} ${output} WOF ${filter}</command>
+                    <command>PageSchemaConverter-1-1-33.exe ${input} - ${output} WOF ${filter}</command>
                     <inputs>
                         <input name="filter">
                             <Datatype>xsd:anyURI</Datatype>
