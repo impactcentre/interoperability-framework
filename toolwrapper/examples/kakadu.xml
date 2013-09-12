@@ -6,18 +6,18 @@
     <version>6-4</version>
     <installation>
         <os type="linux">
-            Available under most distributions via package management.
+            Download the demo executables from http://www.kakadusoftware.com/ and follow the instructions in the enclosed readme.
         </os>
         <os type="windows">
             Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
         </os>
     </installation>
     <services>
-        <service sid="1" name="Kakadu" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/iif">
+        <service sid="1" name="Kakadu" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Services for converting images to JP2 format using Kakadu</description>
             <operations>
                 <operation oid="1" name="kdu_compress">
-                    <description>Compress image with JP2</description>
+                    <description>Compress image with kakadu</description>
                     <!--
                     Usage:
 					kdu_compress.exe -i image -o output [opts]
@@ -61,10 +61,18 @@
                 <password>tomcat</password>
                 <path>manager</path>
             </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
             <toolsbasedir>C:\\Kakadu\\</toolsbasedir>
             <dataexchange>
-                <accessdir>../webapps/ROOT/impact/out</accessdir>
-                <accessurl>http://localhost:8080/impact/out/</accessurl>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
             </dataexchange>
         </deployment>
     </deployments>
