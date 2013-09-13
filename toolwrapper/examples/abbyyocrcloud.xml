@@ -24,9 +24,9 @@
 		    -       Note that you need to have the {ABBYY_APPID} and {ABBYY_PWD} environment variables defined!
 
                     Where:
-                    <input> Input image file
-                    <output> Output file
-                    <language> Language used in recognition
+                    <input>     Input image file
+                    <output>    Output file
+                    <language>  Language used in recognition
 		            <txt|rtf|docx|xlsx|pptx|pdfSearchable|pdfTextAndImages|xml> Output format
                     -->
                     <command>sh cloud_recognize.sh ${input} ${output} -l ${language} -f ${format}</command>

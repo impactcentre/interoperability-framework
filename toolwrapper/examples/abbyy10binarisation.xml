@@ -23,8 +23,8 @@
                     Abbyy10Binarisation.exe -if <in> -of <out>
 
                     Where:
-                    <in> Input image file
-                    <out> Bitonal output image file
+                    <in>    Input image file
+                    <out>   Bitonal output image file
                     -->
                     <command>Abbyy10Binarisation.exe -if ${infile} -of ${outfile}</command>
                     <inputs>

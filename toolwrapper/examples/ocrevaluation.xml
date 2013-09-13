@@ -23,20 +23,20 @@
                     OCREval.exe <encoding> <stopwords> <groundtruth> <ocr> <charresult> <wordresult> <xmlreport>
 
                     Where:
-                    <encoding> Character encoding. One of the following:
-                    a - ASCII
-                    ab - ASCII Bulgarian
-                    ac - ASCII Czech
-                    al - ASCII Slovene
-                    ap - ASCII Polish
-                    u8 - UTF-8
-                    u16 - UTF-16
-                    <stopword> Full path to stop word list in plain text file
-                    <groundtruth> Full path to ground truth in plain text file
-                    <ocr> Full path to OCR result in plain text file
-                    <charresult> Character evaluation statistics report
-                    <wordresult> Word evaluation statistics report
-                    <xmlreport> Combined statistics XML report
+                        <encoding>  Character encoding. One of the following:
+                                    a - ASCII
+                                    ab - ASCII Bulgarian
+                                    ac - ASCII Czech
+                                    al - ASCII Slovene
+                                    ap - ASCII Polish
+                                    u8 - UTF-8
+                                    u16 - UTF-16
+                    <stopword>      Full path to stop word list in plain text file
+                    <groundtruth>   Full path to ground truth in plain text file
+                    <ocr>           Full path to OCR result in plain text file
+                    <charresult>    Character evaluation statistics report
+                    <wordresult>    Word evaluation statistics report
+                    <xmlreport>     Combined statistics XML report
                     -->
                     <command>OCREval.exe ${encoding} ${stopwordlist} ${groundtruth} ${ocr} ${charresult} ${wordresult} ${xmlreport}</command>
                     <inputs>

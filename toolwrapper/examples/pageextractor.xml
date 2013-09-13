@@ -23,40 +23,40 @@
                     Extractor.exe <filter> <filter value> <image> <xml> <output folder> [options] [params]
 
                     Where:
-                    <filter> one of:
-                    <type> - to extract all layout elements of the specified type
-                    <id> - to extract the layout element with the specified ID
-                    <filter value> For filter <type>:
-                    <text> - Text regions. Add a comma separated list of sub-types in brackets to filter by sub-type. E.g.:
-                    <text(paragraph,heading,footnote)>
-                    <textline> - Text lines
-                    <word> - Words
-                    <glyph> - Glyphs
-                    <image> - Image regions
-                    <linedrawing> - Line drawing regions
-                    <graphic> - Graphic regions
-                    <table> - Table regions
-                    <chart> - Chart regions
-                    <separator> - Separator regions
-                    <maths> - Maths regions
-                    <noise> - Noise regions
-                    <frame> - Frame regions
-                    <unknown> - Unknown regions
-                    <border> - Document border
-                    For filter <id>:
-                    The ID of the element to be extracted (region, text line, word or glyph).
-                    <image> The document image file (TIFF format)
-                    <xml> The document layout file (PAGE format)
+                        <filter>    one of:
+                                    <type> - to extract all layout elements of the specified type
+                                    <id> - to extract the layout element with the specified ID
+                    <filter value>  For filter <type>:
+                                        <text> - Text regions. Add a comma separated list of sub-types in brackets to filter by sub-type. E.g.:
+                                        <text(paragraph,heading,footnote)>
+                                        <textline> - Text lines
+                                        <word> - Words
+                                        <glyph> - Glyphs
+                                        <image> - Image regions
+                                        <linedrawing> - Line drawing regions
+                                        <graphic> - Graphic regions
+                                        <table> - Table regions
+                                        <chart> - Chart regions
+                                        <separator> - Separator regions
+                                        <maths> - Maths regions
+                                        <noise> - Noise regions
+                                        <frame> - Frame regions
+                                        <unknown> - Unknown regions
+                                        <border> - Document border
+                                    For filter <id>:
+                                    The ID of the element to be extracted (region, text line, word or glyph).
+                    <image>         The document image file (TIFF format)
+                    <xml>           The document layout file (PAGE format)
                     <output folder> Folder where to store the output files. (Optional: Use <-> for current folder)
-                    [options] Extraction options. A combination of (no spaces):
-                    x - To generate PAGE XML snippets in addition to image snippets.
-                    b - To use bounding boxes for extracting elements. Usually the polygonal outline of an element is used to extract an image snippet. The background is filled with white. Use this option to cut rectangular instead so that no background has to be filled.
-                    t - To export the text content (only on region level). Note: This option disables the image extraction. A placeholder (e.g. '-') may be used for the image file.
-                    [params] Optional parameter file (.ini) for text export (relative paths have to start with .\)
-                    UseOnlyRegionsInReadingOrder (<1> or <0>, default is <0>)
-                    If set to <1> only regions that are part of the logical reading order description are used for exporting the text. Not all text regions are necessary part of the reading order. Page numbers for instance are usually excluded. This option then also excludes these regions from the text output.
-                    InsertExtraLineBreaksAfterRegions (<1> or <0>, default is <1>)
-                    If set to <1> an extra line break is inserted after each text region (the text contents of regions are then separated by empty lines).
+                    [options]       Extraction options. A combination of (no spaces):
+                                    x - To generate PAGE XML snippets in addition to image snippets.
+                                    b - To use bounding boxes for extracting elements. Usually the polygonal outline of an element is used to extract an image snippet. The background is filled with white. Use this option to cut rectangular instead so that no background has to be filled.
+                                    t - To export the text content (only on region level). Note: This option disables the image extraction. A placeholder (e.g. '-') may be used for the image file.
+                    [params]        Optional parameter file (.ini) for text export (relative paths have to start with .\)
+                                    UseOnlyRegionsInReadingOrder (<1> or <0>, default is <0>)
+                                    If set to <1> only regions that are part of the logical reading order description are used for exporting the text. Not all text regions are necessary part of the reading order. Page numbers for instance are usually excluded. This option then also excludes these regions from the text output.
+                                    InsertExtraLineBreaksAfterRegions (<1> or <0>, default is <1>)
+                                    If set to <1> an extra line break is inserted after each text region (the text contents of regions are then separated by empty lines).
                     -->
                     <command>Extractor.exe ${filter} ${filter_value} ${input_img} ${input_xml} ${outdir} ${options} ${params}</command>
                     <inputs>
@@ -130,7 +130,7 @@
                         </input>
                     </inputs>
                     <outputs>
-                        <output name="output">
+                        <output name="outputdir">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>outdir</CliMapping>

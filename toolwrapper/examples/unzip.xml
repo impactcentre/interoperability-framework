@@ -35,20 +35,20 @@
                     -x  exclude files that follow (in xlist)
                     -d  extract files into exdir
                     modifiers:
-                    -n  never overwrite existing files
-                    -q  quiet mode (-qq => quieter)
-                    -o  overwrite files WITHOUT prompting
-                    -a  auto-convert any text files
-                    -j  junk paths (do not make directories)
-                    -aa treat ALL files as text
-                    -U  use escapes for all non-ASCII Unicode
-                    -UU ignore any Unicode fields
-                    -C  match filenames case-insensitively
-                    -L  make (some) names lowercase
-                    -X  restore UID/GID info
-                    -V  retain VMS version numbers
-                    -K  keep setuid/setgid/tacky permissions
-                    -M  pipe through "more" pager
+                        -n  never overwrite existing files
+                        -q  quiet mode (-qq => quieter)
+                        -o  overwrite files WITHOUT prompting
+                        -a  auto-convert any text files
+                        -j  junk paths (do not make directories)
+                        -aa treat ALL files as text
+                        -U  use escapes for all non-ASCII Unicode
+                        -UU ignore any Unicode fields
+                        -C  match filenames case-insensitively
+                        -L  make (some) names lowercase
+                        -X  restore UID/GID info
+                        -V  retain VMS version numbers
+                        -K  keep setuid/setgid/tacky permissions
+                        -M  pipe through "more" pager
                     -->
                     <command>unzip ${input} -d ${outputdir}</command>
                     <inputs>

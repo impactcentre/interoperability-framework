@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
+    <id>imagemagick</id>
+    <name>Imagemagick</name>
+    <homepage>http://www.imagemagick.org/</homepage>
+    <version></version>
+    <installation>
+        <os type="linux">
+            Available under most distributions via package management.
+        </os>
+        <os type="windows">
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="Imagemagick" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for image conversion using imagemagick convert</description>
+            <operations>
+                <operation oid="1" name="convert">
+                    <description>Convert image using imagemagick</description>
+                    <!--
+                    Usage:
+                    convert -depth <depth> -quality <quality> -colors <colors> -colorspace <colorspace> -compress <compress> <input> <output>
+
+                    Where:
+                    <depth> 		Image bit depth
+                    <quality> 		JPEG/MIFF/PNG compression level
+                    <colors> 		Number of colors in the image
+                    <colorspace> 	Set image colorspace
+                    <compress> 		Compression type
+                    <input> 		Input image file
+                    <output> 		Output image file
+
+                    For full documentation of imagemagick command line parameters, see
+                    http://www.imagemagick.org/script/convert.php
+                    -->
+                    <command>convert -depth ${depth} -quality ${quality} -colors ${numcolors} -colorspace ${colorspace} -compress ${compress} ${input} ${output}
+                    </command>
+                    <inputs>
+                        <input name="depth">
+                            <Datatype>xsd:int</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>depth</CliMapping>
+                            <Documentation>Color depth of output image</Documentation>
+                            <Default>8</Default>
+                            <Restriction>
+                                <Value>1</Value>
+                                <Value>8</Value>
+                                <Value>16</Value>
+                                <Value>24</Value>
+                            </Restriction>
+                        </input>
+                        <input name="quality">
+                            <Datatype>xsd:int</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>quality</CliMapping>
+                            <Documentation>Image compression quality: integer between 1 - 100</Documentation>
+                            <Default>100</Default>
+                        </input>
+                        <input name="numcolors">
+                            <Datatype>xsd:int</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>numcolors</CliMapping>
+                            <Documentation>Number of colors of output image</Documentation>
+                            <Default>256</Default>
+                        </input>
+                        <input name="colorspace">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>colorspace</CliMapping>
+                            <Documentation>Color space of output image</Documentation>
+                            <Default>Gray</Default>
+                            <Restriction>
+                                <Value>CMY</Value>
+                                <Value>CMYK</Value>
+                                <Value>Gray</Value>
+                                <Value>HSB</Value>
+                                <Value>HSL</Value>
+                                <Value>HWB</Value>
+                                <Value>Lab</Value>
+                                <Value>Log</Value>
+                                <Value>OHTA</Value>
+                                <Value>Rec601Luma</Value>
+                                <Value>Rec601YCbCr</Value>
+                                <Value>Rec709Luma</Value>
+                                <Value>Rec709YCbCr</Value>
+                                <Value>RGB</Value>
+                                <Value>sRGB</Value>
+                                <Value>Transparent</Value>
+                                <Value>XYZ</Value>
+                                <Value>YCbCr</Value>
+                                <Value>YCC</Value>
+                                <Value>YIQ</Value>
+                                <Value>YPbPr</Value>
+                                <Value>YUV</Value>
+                            </Restriction>
+                        </input>
+                        <input name="compress">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>compress</CliMapping>
+                            <Documentation>Compression used for output image</Documentation>
+                            <Default>None</Default>
+                            <Restriction>
+                                <Value>None</Value>
+                                <Value>Fax</Value>
+                                <Value>Group4</Value>
+                                <Value>JPEG</Value>
+                                <Value>LZW</Value>
+                                <Value>RLE</Value>
+                                <Value>Zip</Value>
+                            </Restriction>
+                        </input>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to image file</Documentation>
+                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.tif</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>tif</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir></toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

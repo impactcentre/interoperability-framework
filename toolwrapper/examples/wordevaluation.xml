@@ -23,9 +23,9 @@
                     java -jar wordevaluation.jar -o <output> <groundtruth> <ocr>
 
                     Where:
-                    <output> Write output file
-                    <groundtruth> Ground truth file in PAGE format
-                    <ocr> OCR result file in PAGE format
+                    <output>        Write output file
+                    <groundtruth>   Ground truth file in PAGE format
+                    <ocr>           OCR result file in PAGE format
                     -->
                     <command>java -jar wordevaluation.jar -o ${output} ${groundtruth} ${ocrresult}</command>
                     <inputs>

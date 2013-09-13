@@ -23,8 +23,8 @@
                     Character_Segmentation_v3.exe <in> <out>
 
                     Where:
-                    <in> Bitonal word image file in TIF format
-                    <out> XML file containing character segmentation hypotheses
+                    <in>    Bitonal word image file in TIF format
+                    <out>   XML file containing character segmentation hypotheses
                     -->
                     <command>Character_Segmentation_v3.exe ${infile} ${outfile}</command>
                     <inputs>

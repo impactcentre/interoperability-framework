@@ -10,6 +10,7 @@
         </os>
         <os type="windows">
             Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            The environment variable MALLET_HOME needs to be defined.
         </os>
     </installation>
     <services>
@@ -20,7 +21,7 @@
                     <description>Topic modelling</description>
                     <!--
                     Usage:
-                    bin\mallet [options] <input> <outputs>
+                    bin\mallet[.bat] [options] <input> <outputs>
 
                     Where:
                     [options] 	optional command line parameters

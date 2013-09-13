@@ -23,9 +23,9 @@
                     Page_Curl_Correction_v4.exe 0|1 <in> <out>
 
                     Where:
-                    0|1  If this parameter is 1 then only coarse rectification is applied otherwise coarse and fine rectification are applied
-                    <in> Input image file in TIF format
-                    <out> Corrected output image file
+                    0|1     If this parameter is 1 then only coarse rectification is applied otherwise coarse and fine rectification are applied
+                    <in>    Input image file in TIF format
+                    <out>   Corrected output image file
                     -->
                     <command>Page_Curl_Correction_v4.exe 0 ${infile} ${outfile}</command>
                     <inputs>

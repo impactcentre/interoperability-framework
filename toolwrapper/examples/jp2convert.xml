@@ -23,9 +23,9 @@
                     j2k_to_image -i <input> -o <output> -OutFor <format>
 
                     Where:
-                    <input> Input file; valid image extensions are J2K, JP2, JPC, JPT
-                    <output> Output file
-                    <format> Output format; currently accepts BMP, TIF, RAW, TGA, PGM, PPM, PNM and PGX
+                    <input>     Input file; valid image extensions are J2K, JP2, JPC, JPT
+                    <output>    Output file
+                    <format>    Output format; currently accepts BMP, TIF, RAW, TGA, PGM, PPM, PNM and PGX
                     -->
                     <command>j2k_to_image -i ${input} -o ${output} -OutFor ${format}</command>
                     <inputs>

@@ -24,22 +24,22 @@
                     layoutevalcmd-1-2-33.exe <ground-truth> <seg> <image> <profile> <output file> [<opts>]
 
                     Where:
-                    <ground-truth> Full path to the ground-truth document layout XML file (in PAGE format)
-                    <seg> Full path to the document layout XML file to be evaluated (segmentation result) (in PAGE format)
-                    <image> Full path to the document black-and-white image (.tif)
-                    <profile> Full path to the .evx file containing the evaluation profile (weights and settings)
-                    <output file> Full path to the evaluation result file (.evx)
-                    <opts> Combination of following characters (optional)
-                    (Note: No spaces between options! E.g.: OW)
-                    'O' - to overwrite existing result files
-                    'P' - print warnings and messages
-                    'V' - to output the evaluation results as comma separated values (CSV)
-                    'H' - to output the column headers for the comma separated values
-                    Structure levels (in none specified, all available will be used)
-                    'B' - evaluate blocks (regions)
-                    'L' - evaluate text lines
-                    'W' - evaluate words
-                    'G' - evaluate glyphs
+                    <ground-truth>  Full path to the ground-truth document layout XML file (in PAGE format)
+                    <seg>           Full path to the document layout XML file to be evaluated (segmentation result) (in PAGE format)
+                    <image>         Full path to the document black-and-white image (.tif)
+                    <profile>       Full path to the .evx file containing the evaluation profile (weights and settings)
+                    <output file>   Full path to the evaluation result file (.evx)
+                    <opts>          Combination of following characters (optional)
+                                    (Note: No spaces between options! E.g.: OW)
+                                    'O' - to overwrite existing result files
+                                    'P' - print warnings and messages
+                                    'V' - to output the evaluation results as comma separated values (CSV)
+                                    'H' - to output the column headers for the comma separated values
+                                    Structure levels (in none specified, all available will be used)
+                                    'B' - evaluate blocks (regions)
+                                    'L' - evaluate text lines
+                                    'W' - evaluate words
+                                    'G' - evaluate glyphs
                     -->
                     <command>layoutevalcmd-1-2-33.exe ${groundTruthXmlFileUrl} ${segXmlFileUrl} ${bwImageFileUrl} ${profileEvxFileUrl} ${outfile} ${opts}
                     </command>

@@ -23,8 +23,8 @@
                     ocropus-recognize-book <input> -o <output>
 
                     Where:
-                    <input> Input image file in PNG format
-                    <output> Output file in hOCR format
+                    <input>     Input image file in PNG format
+                    <output>    Output file in hOCR format
 
                     For documentation ocropus, see
                     http://code.google.com/p/ocropus/

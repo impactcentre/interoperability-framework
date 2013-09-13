@@ -23,9 +23,9 @@
                     exiftool[.exe] <in> -textOut <out>
 
                     Where:
-                    <in> Input image file
-                    -textOut Write output text file
-                    <out> Output text file with extracted meta information
+                    <in>        Input image file
+                    -textOut    Write output text file
+                    <out>       Output text file with extracted meta information
 
                     For full documentation of exiftool command line parameters, see
                     http://www.sno.phy.queensu.ca/~phil/exiftool/exiftool_pod.html

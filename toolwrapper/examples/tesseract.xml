@@ -25,7 +25,7 @@
                     Where:
                     <input> 	Input image file in TIF format
                     <output> 	OCR result file in TXT format
-                    <lang> 	Language model used for recognition
+                    <lang> 	    Language model used for recognition
                     [+hocr] 	Optional: write hOCR output file (with coordinates)
                     -->
                     <command>tesseract ${input} ${output} -l ${langmod}</command>

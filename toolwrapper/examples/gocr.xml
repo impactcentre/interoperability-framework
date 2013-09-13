@@ -23,7 +23,7 @@
                     gocr[049.exe] -m 4 -i <input> -o <output> -f <format>
 
                     Where:
-                    -m 4  	Switch on layout analysis or zoning (development)
+                    -m 4  	    Switch on layout analysis or zoning (development)
                     <input> 	Input image file in PNM format
                     <output> 	Output file
                     <format> 	Output format; either XML (with coordinates), HTML, UTF8, ASCII, ISO8859_1 or TeX

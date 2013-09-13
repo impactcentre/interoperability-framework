@@ -26,10 +26,10 @@
                     <language>		language of the document to be recognized
                     <format> 		output format
                     <dotmatrix> 	optimized for dot matrix prints
-                    <fax> 		optimized for fax prints
+                    <fax> 		    optimized for fax prints
                     <singlecolumn>	turn on/off layout detection and assume single text block
                     <results>		write output to file
-                    <image>		input image to be recognized
+                    <image>		    input image to be recognized
 
                     For full documentation of cuneiform command line parameters, see
                     http://manpages.ubuntu.com/manpages/precise/man1/cuneiform.1.html

@@ -41,7 +41,7 @@
                     -T, - - threshold=<n%>     	threshold for binarization (0-100%)
                     -v, - - verbose            	be verbose
                     -x <file>                	export OCR Results File to <file>
-                    <input>			path to input image file(s)
+                    <input>			            path to input image file(s)
 
                     For full documentation of ocrad command line parameters, see
                     http://www.gnu.org/software/ocrad/manual/ocrad_manual.html

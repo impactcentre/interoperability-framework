@@ -23,10 +23,10 @@
                     iconv -f <fromcode> -t <tocode> <input> -o <output>
 
                     Where:
-                    <fromcode> Read input file encoding
-                    <tocode> Output file encoding
-                    <input> Input file
-                    <output> Write output file
+                    <fromcode>  Read input file encoding
+                    <tocode>    Output file encoding
+                    <input>     Input file
+                    <output>    Write output file
 
                     For full documentation of iconv command line parameters, see
                     http://linux.die.net/man/1/iconv

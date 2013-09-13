@@ -23,8 +23,8 @@
                     gpp.exe <in> <out>
 
                     Where:
-                    <in> Input image file in TIF format
-                    <out> Bitonal output image file
+                    <in>    Input image file in TIF format
+                    <out>   Bitonal output image file
                     -->
                     <command>gpp.exe ${input} ${output}</command>
                     <inputs>
