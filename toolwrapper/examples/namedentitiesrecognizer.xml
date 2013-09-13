@@ -28,7 +28,7 @@
                     <in> Input file format
                     <out> Output file format
                     -->
-                    <command>java -jar ./IMPACTNertV2.3/nert.jar -e -loadClassifier ./IMPACTNertV2.3/models/${modelfile} -testfile ${infile} -in txt -out txt</command>
+                    <command>java -jar ./nert/nert.jar -e -loadClassifier ./nert/data/models/${modelfile} -testfile ${infile} -in txt -out txt</command>
                     <inputs>
                         <input name="modelfile">
                             <Datatype>xsd:string</Datatype>

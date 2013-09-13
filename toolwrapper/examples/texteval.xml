@@ -61,7 +61,7 @@
 						-csv-headers: To output the CSV headers
 						-debug: Show debug output
                     -->
-                    <command>java -jar ./PrimaText.jar -gt-text ${groundtruth} -res-text ${ocr} -gt-enc ${gtenc} -res-enc ${resenc} -method ${method} -stopwords ${stopwords}</command>
+                    <command>java -jar C:\\TextEval-1.0\\PrimaText.jar -gt-text ${groundtruth} -res-text ${ocr} -gt-enc ${gtenc} -res-enc ${resenc} -method ${method} -stopwords ${stopwords}</command>
                     <inputs>
                         <input name="groundtruth">
                             <Datatype>xsd:anyURI</Datatype>
@@ -168,7 +168,7 @@
             or you can use just slashes,
             e.g. c:/foo/bar
             -->
-            <toolsbasedir>C:\\TextEval-1.0\\</toolsbasedir>
+            <toolsbasedir></toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
