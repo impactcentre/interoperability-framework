@@ -60,11 +60,11 @@ import org.bouncycastle.util.encoders.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import eu.impact_project.wsclient.generic.SoapAttachment;
-import eu.impact_project.wsclient.generic.SoapInput;
-import eu.impact_project.wsclient.generic.SoapOperation;
-import eu.impact_project.wsclient.generic.SoapOutput;
-import eu.impact_project.wsclient.generic.SoapService;
+import eu.impact_project.ws.generic.SoapAttachment;
+import eu.impact_project.ws.generic.SoapInput;
+import eu.impact_project.ws.generic.SoapOperation;
+import eu.impact_project.ws.generic.SoapOutput;
+import eu.impact_project.ws.generic.SoapService;
 
 /**
  * Responsible for executing the chosen operation of the web service.

@@ -67,7 +67,7 @@ import com.eviware.soapui.impl.wsdl.WsdlProject;
 import com.eviware.soapui.model.iface.Operation;
 import com.eviware.soapui.support.SoapUIException;
 
-import eu.impact_project.wsclient.generic.SoapService;
+import eu.impact_project.ws.generic.SoapService;
 
 /**
  * Servlet for analyzing a WSDL file

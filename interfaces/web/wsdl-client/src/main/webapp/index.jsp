@@ -23,10 +23,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@page import="eu.impact_project.wsclient.ServiceProvider"%>
-<%@page import="eu.impact_project.wsclient.WSDLinfo"%>
-<%@page import="eu.impact_project.wsclient.ServiceProvider.Service"%>
-<%@page import="eu.impact_project.wsclient.*"%>
+<%@page import="eu.impact_project.ws.ServiceProvider"%>
+<%@page import="eu.impact_project.ws.WSDLinfo"%>
+<%@page import="eu.impact_project.ws.ServiceProvider.Service"%>
+<%@page import="eu.impact_project.ws.*"%>
 
 <%@page import="java.util.*"%>
 <%@page import="java.io.InputStream"%>
