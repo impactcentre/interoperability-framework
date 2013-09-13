@@ -246,23 +246,21 @@
 			<artifactId>geronimo-javamail_1.4_spec</artifactId>
 			<version>1.7</version>
 		</dependency>
-
-                <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-web</artifactId>
-                        <version>3.0.7.RELEASE</version>
-                </dependency>
-
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>3.0.7.RELEASE</version>
+        </dependency>
 	</dependencies>
 	<repositories>
 	    <repository>
-		<id>eviwarePluginRepository</id>
-		<url>http://www.eviware.com/repository/maven2/</url>
+		    <id>eviwarePluginRepository</id>
+		    <url>http://www.soapui.org/repository/maven2/</url>
 	    </repository>
-	    <repository>
-		<id>repo</id>
-		<url>http://kbresearch.dyndns.org/maven/m2-repo/releases</url>
-	    </repository>
+        <repository>
+            <id>impact</id>
+            <url>https://github.com/impactcentre/m2-repo/raw/master/releases</url>
+        </repository>
 	</repositories>
 	<build>
 		<finalName>WS-Client</finalName>
