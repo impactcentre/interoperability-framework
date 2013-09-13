@@ -34,8 +34,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import eu.impact_project.ws.generic.SoapOperation;
-import eu.impact_project.ws.generic.SoapService;
+import eu.impact_project.iif.ws.generic.SoapOperation;
+import eu.impact_project.iif.ws.generic.SoapService;
 
 /**
  * Finds out all the inputs of a given web service operation.
