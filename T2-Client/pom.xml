@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    <artifactId>T2-Client</artifactId>
+	<packaging>war</packaging>
+	<name>T2-Client</name>
+	<version>0.5.0</version>
+	<description>Web frontend for uploading and executing Taverna 2 workflows either from the local disk or from the myExperiment online repository.</description>
+	<scm>
+		<url>https://github.com/impactcentre/interoperability-framework/tree/master/interfaces/taverna/T2-Client/workflow-client</url>
+	</scm>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>1.7</jdk.version>
+    </properties>
+	<parent>
+		<groupId>eu.impact_project</groupId>
+		<artifactId>iif</artifactId>
+		<version>0.5.0</version>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>eu.impact_project.iif.t2</groupId>
+			<artifactId>workflow-lib</artifactId>
+			<version>0.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>uk.org.taverna</groupId>
+			<artifactId>taverna-server-client</artifactId>
+			<version>0.9.0</version>
+		</dependency>
+	</dependencies>
+    <repositories>
+        <repository>
+            <id>repo</id>
+            <url>https://github.com/impactcentre/m2-repo/raw/master/releases</url>
+        </repository>
+    </repositories>
+	<build>
+		<finalName>T2-Client</finalName>
+	</build>
+</project>

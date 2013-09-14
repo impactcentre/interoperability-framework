@@ -27,11 +27,7 @@
 		<jdk.version>1.7</jdk.version>
 	</properties>
 	<modules>
-		<module>toolwrapper</module>
-		<module>interfaces/web/time-utils</module>
-		<module>interfaces/web/wsdl-client</module>
-		<module>interfaces/taverna/t2-webdav</module>
-		<module>interfaces/taverna/T2-Client/workflow-lib</module>
-		<module>interfaces/taverna/T2-Client/workflow-client</module>
+		<module>WS-Client</module>
+		<module>T2-Client</module>
 	</modules>
 </project>
