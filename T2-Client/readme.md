@@ -1,8 +1,8 @@
-Taverna 2 Server Client:
-------------------------
+Taverna 2 Server Client
+-----------------------
 
-The Taverna 2 Server Client can be used to execute workflows created with Taverna 2. After
-the user uploads the workflow to be executed, the application presents the input fields
+The Taverna 2 Server Client can be used to execute workflows created with Taverna 2 Server. 
+After the user uploads the workflow to be executed, the application presents the input fields
 for the workflow. Currently, the program does not recognize if an input value must be 
 a string or a file. This is why the user must click on the "switch" symbol to choose between
 string and file upload. If the input is multi-valued, more input fields can be added by 
