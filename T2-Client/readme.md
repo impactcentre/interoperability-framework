@@ -1,5 +1,5 @@
-What is T2-Client:
-------------------
+Taverna 2 Server Client:
+------------------------
 
 The Taverna 2 Server Client can be used to execute workflows created with Taverna 2. After
 the user uploads the workflow to be executed, the application presents the input fields
