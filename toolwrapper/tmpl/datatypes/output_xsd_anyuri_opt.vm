@@ -28,29 +28,46 @@
             }
         }
 
-
-        String ${output_variable}extension = ${output_variable}File.getName().split("\\.")[1];
-        File ${output_variable}PublicFile =
-                new File(${output_variable}publicOutputFileDir + fileName + "." + ${output_variable}extension);
-        infolog("Public output file: " + ${output_variable}PublicFile.toString());
-        try {
-            if(isCreated${output_variable})
-                org.apache.commons.io.FileUtils.copyFile(${output_variable}File, ${output_variable}PublicFile);
-        } catch (IOException _) {
-            infolog("No outputfile created in the public access directory for '${output_variable}'");
-        }
         URL ${output_variable}FileUrl;
-        try {
-            if(isCreated${output_variable})
-		${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + fileName + "." + ${output_variable}extension);
-            else
-                ${output_variable}FileUrl = new URL("http://null");
-        } catch (MalformedURLException ex) {
-            errorlog("Malformed URL for binary result resource. Verify"
-                    + "publicHttpAccessUrl parameter in the "
-                    + "resources/services.xml. Exception message: "
-                    + ex.getMessage());
-            return ${operationname}Result(fac, omNs);
-        }
-        if(isCreated${output_variable})
-            infolog("Output URL: " + ${output_variable}FileUrl.toString());
+	File ${output_variable}PublicFile;
+
+	if (outputdir.equals("")) {
+	    String ${output_variable}extension = ${output_variable}File.getName().split("\\.")[1];
+	    ${output_variable}PublicFile =
+		    new File(${output_variable}publicOutputFileDir + fileName + "." + ${output_variable}extension);
+	    infolog("Public output file: " + ${output_variable}PublicFile.toString());
+	    try {
+		if(isCreated${output_variable})
+		    org.apache.commons.io.FileUtils.copyFile(${output_variable}File, ${output_variable}PublicFile);
+	    } catch (IOException _) {
+		infolog("No outputfile created in the public access directory for '${output_variable}'");
+	    }
+	    try {
+		if(isCreated${output_variable})
+		    ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + fileName + "." + ${output_variable}extension);
+		else
+		    ${output_variable}FileUrl = new URL("http://null");
+	    } catch (MalformedURLException ex) {
+		errorlog("Malformed URL for binary result resource. Verify"
+			+ "publicHttpAccessUrl parameter in the "
+			+ "resources/services.xml. Exception message: "
+			+ ex.getMessage());
+		return ${operationname}Result(fac, omNs);
+	    }
+	    if(isCreated${output_variable})
+		infolog("Output URL: " + ${output_variable}FileUrl.toString());
+	} else {
+	    ${output_variable}PublicFile =
+		    new File(${output_variable}publicOutputFileDir);
+	    try {
+		org.apache.commons.io.FileUtils.copyDirectory(${output_variable}File, ${output_variable}PublicFile);
+	    } catch (IOException _) {
+		infolog("No outputfile created in the public access directory for '${output_variable}'");
+	    }
+	    try {
+		${output_variable}FileUrl = new URL(publicHttpAccessUrl + "outputdir");
+	    } catch (MalformedURLException ex) {
+		return ${operationname}Result(fac, omNs);
+	    }
+	    infolog("Output URL: " + ${output_variable}FileUrl.toString());
+	}

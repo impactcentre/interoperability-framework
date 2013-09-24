@@ -135,9 +135,19 @@ public class ServiceCodeCreator {
 
         // generate an output data section in the service code for each output field
 	boolean has_outputstream = false;
+	boolean has_outputdir = false;
+
+
+	String tmpdir = System.getProperty("java.io.tmpdir");
+	String outputdirname = Long.toString(System.currentTimeMillis());
+
         List<Output> outputs = operation.getOutputs().getOutput();
         for (Output output : outputs) {
-            addDataSection(operation, oc, output, false);
+	    addDataSection(operation, oc, output, false);
+
+            if (output.getName().equals("outputdir")) {
+                has_outputdir = true;
+            }
 	    if (output.getName().equals("outputstream")) {
 		has_outputstream = true;
 	    }
@@ -156,6 +166,13 @@ public class ServiceCodeCreator {
         // be defined before the command line process section.
         oc.put("outfileitems", oc.getOutFileItems());
         oc.put("resultelements", oc.getResultElements());
+
+	// outputdir
+	if (has_outputdir) {
+	    oc.put("outputdir", tmpdir + File.separator + outputdirname + File.separator);
+	} else {
+	    oc.put("outputdir", "\"\"");
+	}
 
 	// outputstream
 	if (has_outputstream) {

@@ -1,2 +1,9 @@
-        String ${varname}FileName = FileUtils.getTmpFile("${global_project_prefix}${project_midfix}Service_${varname}File_", "${extension}").getAbsolutePath();
+	String ${varname}FileName;
+	
+
+	if (outputdir.equals("")) {
+	     ${varname}FileName = FileUtils.getTmpFile("${global_project_prefix}${project_midfix}Service_${varname}File_", "${extension}").getAbsolutePath();
+	} else {
+	    ${varname}FileName = outputdir;
+	}
         cliCmdKeyValPairs.put("${mapping}", ${varname}FileName);
