@@ -61,7 +61,7 @@
                         </input>
                     </inputs>
                     <outputs>
-                        <output name="output">
+                        <output name="outputdir">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>outputdir</CliMapping>
