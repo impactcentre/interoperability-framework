@@ -25,24 +25,31 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.IOException;
 import java.io.OutputStream;
+
+
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import javax.servlet.GenericServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+
 import javax.xml.parsers.ParserConfigurationException;
 
 //import net.sf.taverna.t2.service.webservice.resource.DataValue;
@@ -108,11 +115,37 @@ public class WorkflowRunner extends HttpServlet {
 			String address = null;
 			long duration = 0;
 			long startTime = System.currentTimeMillis();
-            address = "https://taverna.taverna@localhost:8443/taverna-server";
-            // address = "https://taverna.taverna@kbresearch.dyndns.org:8443/taverna-server";
-            URI serverURI = new URI(address);
-            // connect to server
-            Server tavernaRESTClient = new Server(serverURI);
+		
+
+
+			final String CONFIG_PATH = getServletContext().getRealPath("/")+"config.properties";
+			File config = new File(CONFIG_PATH);
+			Properties config_prop = new Properties();
+			FileInputStream config_file = null;
+
+                        try {
+                  		config_file = new FileInputStream(CONFIG_PATH);
+                  	} catch (java.io.FileNotFoundException e) {
+				e.printStackTrace();
+                  	}
+                  
+                  	try {
+				config_prop.load(config_file);
+			} catch (java.io.IOException e) {
+				e.printStackTrace();
+			}
+
+		
+              
+			
+
+			
+			address = config_prop.getProperty("tavernaServer");
+			// address = "https://taverna.taverna@localhost:8443/taverna-server";
+			// address = "https://taverna.taverna@kbresearch.dyndns.org:8443/taverna-server";
+			URI serverURI = new URI(address);
+			// connect to server
+			Server tavernaRESTClient = new Server(serverURI);
 				
 			if (tavernaRESTClient != null)
 			{
@@ -121,7 +154,10 @@ public class WorkflowRunner extends HttpServlet {
 				List<String> invalidUrls = new ArrayList<String>();
 				List<Run> runIDs = new ArrayList<Run>();
 				UserCredentials user = null;
-				String cred = "taverna:taverna";
+
+
+				// String cred = "taverna:taverna";
+				String cred = config_prop.getProperty("tavernaCred");
 				
 				user = new HttpBasicCredentials(cred);
 				int j = 0;
