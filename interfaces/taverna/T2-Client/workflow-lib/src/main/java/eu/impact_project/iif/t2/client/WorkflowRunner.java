@@ -112,7 +112,6 @@ public class WorkflowRunner extends HttpServlet {
 		ArrayList<Workflow> workflows = (ArrayList<Workflow>) session.getAttribute("workflows");
 		
 		try {
-			String address = null;
 			long duration = 0;
 			long startTime = System.currentTimeMillis();
 		
@@ -140,11 +139,14 @@ public class WorkflowRunner extends HttpServlet {
 			
 
 			
-			address = config_prop.getProperty("tavernaServer");
-			// address = "https://taverna.taverna@localhost:8443/taverna-server";
-			// address = "https://taverna.taverna@kbresearch.dyndns.org:8443/taverna-server";
+			String address = config_prop.getProperty("tavernaServer");
+			String cred = config_prop.getProperty("tavernaCred");
+			// Rewrite adress to form: http://user.password@my.tld
+			// Example https://taverna.taverna@localhost:8443/taverna-server
+			address = address.split("//")[0] + "//" + cred.split(":")[0] + "." + cred.split(":")[1] + "@" + address.split("//")[1];
+
+
 			URI serverURI = new URI(address);
-			// connect to server
 			Server tavernaRESTClient = new Server(serverURI);
 				
 			if (tavernaRESTClient != null)
@@ -157,7 +159,6 @@ public class WorkflowRunner extends HttpServlet {
 
 
 				// String cred = "taverna:taverna";
-				String cred = config_prop.getProperty("tavernaCred");
 				
 				user = new HttpBasicCredentials(cred);
 				int j = 0;
