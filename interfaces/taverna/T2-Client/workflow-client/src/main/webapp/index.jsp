@@ -402,7 +402,7 @@ Or login to MyExperiment and choose a workflow:
 						<a href="<%=output.getValue() %>" target="_blank"><%=output.getValue() %></a>
 <%
 						} else {
-							out.print(output.getValue());
+							out.print(output.getValue().replaceAll("\n", "<br>\n"));
 						}
 						
 
