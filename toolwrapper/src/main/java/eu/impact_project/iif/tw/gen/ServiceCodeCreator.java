@@ -169,7 +169,7 @@ public class ServiceCodeCreator {
 
 	// outputdir
 	if (has_outputdir) {
-	    oc.put("outputdir", tmpdir + File.separator + outputdirname + File.separator);
+	    oc.put("outputdir", "\"" + tmpdir + File.separator + outputdirname + File.separator + "\"");
 	} else {
 	    oc.put("outputdir", "\"\"");
 	}
