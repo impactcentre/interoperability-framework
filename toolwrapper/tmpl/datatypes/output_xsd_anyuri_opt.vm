@@ -42,6 +42,15 @@
 	    } catch (IOException _) {
 		infolog("No outputfile created in the public access directory for '${output_variable}'");
 	    }
+
+
+	    try {
+		${output_variable}File.delete();
+		infolog("Removing temp file " + ${output_variable}File.toString());
+	    } catch (SecurityException _) {
+		infolog("Error while removing file " + ${output_variable}File.toString());
+	    }
+
 	    try {
 		if(isCreated${output_variable})
 		    ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + fileName + "." + ${output_variable}extension);

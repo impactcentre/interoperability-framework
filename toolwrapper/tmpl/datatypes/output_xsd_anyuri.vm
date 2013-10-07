@@ -44,6 +44,14 @@
 			+ "to the public access directory.");
 		return ${operationname}Result(fac, omNs);
 	    }
+
+            try {
+                ${output_variable}File.delete();
+                infolog("Removing temp file " + ${output_variable}File.toString());
+            } catch (SecurityException _) {
+                infolog("Error while removing file " + ${output_variable}File.toString());
+            }
+
 	    try {
 		${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + fileName + "." + ${output_variable}extension);
 	    } catch (MalformedURLException ex) {
