@@ -50,21 +50,6 @@ Deployment Guide
 	Currently, it is not possible to execute workflows that contain web services with authentication
 	using T2-Client.
 
-*Preparing the dependent libraries
-
-	- t2-rest
-		The application needs some classes from the Taverna Server which are currently not available
-		through a central Maven repository. That's why they must be first installed in the local 
-		repository. The project containing the POM file is "t2-rest".
-	
-		In the downloaded directory, execute the Maven command:
-	
-			* mvn install
-	- t2-server-jar
-		mvn clean install package
-		cp t2-server-jar/target/t2-server-client-0.9.0.jar T2-Client/lib/
-	
-	
 *Building the application
 
 	The project is managed using Maven 2. Again, you can use an IDE to build the sources.
@@ -78,3 +63,7 @@ Deployment Guide
 	in the corresponding <<<target>>> directory. In Tomcat, you can deploy 
 	those archives using the Tomcat Manager application. Or, simply copy the archives into the
 	<<<webapp>>> directory of your Tomcat installation and restart Tomcat.
+
+	The application will now extract itself, after extraction a file name <<<config.properties>>>
+	will appear in the deployment-directory. Edit the <<<config.properties>>> file and change the
+	variables tavernaServer and tavernaCred to match your taverna-server setup.
