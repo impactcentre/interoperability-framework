@@ -1,1 +1,19 @@
-Tool specification examples
+Tool specification examples.
+
+All example's are pretty straight forward, however there are two special cases:
+
+- exiftool (outputstream)
+
+In the exiftool example the following is defined:
+  <output name="outputstream">
+
+Giving the output the name 'outputstream' makes it possible to capture the output 
+(from stdout, stderr) of a tool and redirect it to an output file.
+
+- unzip (outputdir)
+
+In the unzip example the followin is defined:
+  <output name="outputdir">
+
+Giving the output name 'outputdir' assumes the tool does not produce one file as output,
+instead it returns a directory as output of the operation.
