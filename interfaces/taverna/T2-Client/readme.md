@@ -1,8 +1,8 @@
 What is T2-Client:
 ------------------
 
-The Taverna 2 Server Client can be used to execute workflows created with Taverna 2. After
-the user uploads the workflow to be executed, the application presents the input fields
+The Taverna 2 Server Client can be used to execute workflows created with Taverna 2 (having the extension .t2flow). 
+After the user uploads the workflow to be executed, the application presents the input fields
 for the workflow. Currently, the program does not recognize if an input value must be 
 a string or a file. This is why the user must click on the "switch" symbol to choose between
 string and file upload. If the input is multi-valued, more input fields can be added by 
@@ -17,7 +17,9 @@ application uses the REST interface of the Taverna Server to send the workflow a
 values to the server, and to read the resulting output values. Finally, the output values are 
 presented as strings or as links to files.
 	
-For a proper execution, T2-Client requires the [Taverna Server](http://www.mygrid.org.uk/dev/taverna-server/download.html "Taverna Server") version 0.2.1 running in an application container (e. g. Apache Tomcat) on localhost:9080/tavernaserver. Currently, an exception is generated if an output of a workflow is a binary file. The workaround for this problem is to encode all output binary files like images into the base64 format with the corresponding local service in Taverna while creating the workflow.
+For a proper execution, T2-Client requires the [Taverna Server](http://dev.mygrid.org.uk/wiki/display/taverna/Taverna+Server+2.4 "Taverna Server") version 2.4 running in an application container (e. g. Apache Tomcat). 
+The URL where the REST API of Taverna Server can be reached as well as the user and group under which Taverna Server is being run needs to be defined in /workflow-client/src/main/webapp/config.properties.
+Currently, an exception is generated if an output of a workflow is a binary file. The workaround for this problem is to encode all output binary files like images into the base64 format with the corresponding local service in Taverna while creating the workflow.
 	
 **Deployment Guide**
 
@@ -45,10 +47,6 @@ Currently, it is not possible to execute workflows that contain web services wit
 using T2-Client.
 
 **Preparing the dependent libraries**
-
-The application needs some classes from the Taverna Server which are currently not available
-through a central Maven repository. That's why they must be first installed in the local 
-repository. The project containing the POM file is *t2-rest*.
 	
 In the downloaded directory, execute the Maven command:
 	
