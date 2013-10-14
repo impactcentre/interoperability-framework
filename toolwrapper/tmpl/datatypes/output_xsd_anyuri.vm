@@ -78,7 +78,7 @@
 		return ${operationname}Result(fac, omNs);
 	    }
             try {
-		infolog("Removing ${output_variable}");
+		infolog("Removing " + ${output_variable}File.tostring());
                 org.apache.commons.io.FileUtils.deleteDirectory(${output_variable}File);
             } catch (IOException _) {
                 infolog("Unable to remove tmp dir " + ${output_variable}File.toString());
