@@ -54,15 +54,6 @@ public class ${project_midfix} {
      */
 
     HashMap mimeTypeExtensions;
-
-    mimeTypeExtensions = new HashMap<String,String>();
-    mimeTypeExtensions.put("text/plain", ".txt");
-    mimeTypeExtensions.put("image/tiff", ".tif");
-    mimeTypeExtensions.put("image/png", ".png");
-    mimeTypeExtensions.put("image/jpeg", ".jpg");
-    mimeTypeExtensions.put("application/xml", ".xml");
-
-
     /**
      * Static logger variable.
      */
@@ -95,6 +86,15 @@ public class ${project_midfix} {
      * @throws IOException
      */
     private boolean process(HashMap<String, String> cliCmdKeyValPairs, int opid, String outputstream) {
+
+	mimeTypeExtensions = new HashMap<String,String>();
+        mimeTypeExtensions.put("text/plain", ".txt");
+        mimeTypeExtensions.put("image/tiff", ".tif");
+        mimeTypeExtensions.put("image/png", ".png");
+        mimeTypeExtensions.put("image/jpeg", ".jpg");
+        mimeTypeExtensions.put("application/xml", ".xml");
+
+
 
         // Assigning values to the variables used in the command pattern.
         // If additional variables are required, they must be added in the
