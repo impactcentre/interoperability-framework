@@ -24,6 +24,7 @@
                         + "parameter \"${input_variable}Url\"");
 		return ${operationname}Result(fac, omNs);
 	    }
+	    input_is_url = false;
         }
 
 	if (input_is_url) {
@@ -49,6 +50,15 @@
                 bits = fileName.split("\\.");
                 fileName = bits[0];
             };
+
+	    // Try to determine the file extention by
+	    // probing the file's content.
+	    String type = Files.probeContentType(path);
+	    if(mimeTypeExtensions.containsKey(type)) {
+		${input_variable}Ext = mimeTypeExtensions.get(type);
+	    } else {
+	        ${input_variable}Ext = "tmp";
+	    }
 	}
 
         try {
