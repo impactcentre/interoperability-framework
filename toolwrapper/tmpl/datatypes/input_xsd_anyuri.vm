@@ -39,8 +39,6 @@
 	        ${input_variable}Ext = "tmp";
             }
 	} else {
-	    // TODO: Determine mime type and generate suffix
-	    // http://www.javacodex.com/Files/Determine-MIME-Type
 	    input_is_url = false;
 
             bits = ${input_variable}FileName.split(File.separator);

@@ -88,11 +88,11 @@ public class ${project_midfix} {
     private boolean process(HashMap<String, String> cliCmdKeyValPairs, int opid, String outputstream) {
 
 	mimeTypeExtensions = new HashMap<String,String>();
-        mimeTypeExtensions.put("text/plain", ".txt");
-        mimeTypeExtensions.put("image/tiff", ".tif");
-        mimeTypeExtensions.put("image/png", ".png");
-        mimeTypeExtensions.put("image/jpeg", ".jpg");
-        mimeTypeExtensions.put("application/xml", ".xml");
+        mimeTypeExtensions.put("text/plain", "txt");
+        mimeTypeExtensions.put("image/tiff", "tif");
+        mimeTypeExtensions.put("image/png", "png");
+        mimeTypeExtensions.put("image/jpeg", "jpg");
+        mimeTypeExtensions.put("application/xml", "xml");
 
 	boolean input_is_url = true;
 
