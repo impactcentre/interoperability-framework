@@ -1,6 +1,5 @@
 
         // Input: ${input_variable}
-	boolean input_is_url = true;
         File ${input_variable}File = null;
         String ${input_variable}Ext = "tmp";
 	String ${input_variable}FileName = "";

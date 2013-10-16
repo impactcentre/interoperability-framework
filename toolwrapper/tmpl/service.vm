@@ -94,7 +94,7 @@ public class ${project_midfix} {
         mimeTypeExtensions.put("image/jpeg", ".jpg");
         mimeTypeExtensions.put("application/xml", ".xml");
 
-
+	boolean input_is_url = true;
 
         // Assigning values to the variables used in the command pattern.
         // If additional variables are required, they must be added in the
