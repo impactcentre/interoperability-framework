@@ -49,6 +49,18 @@ import org.apache.log4j.BasicConfigurator;
  * @version ${global_wrapper_version}
  */
 public class ${project_midfix} {
+    /**
+     * Static mime types / file extentions.
+     */
+
+    HashMap mimeTypeExtensions;
+
+    mimeTypeExtensions = new HashMap<String,String>();
+    mimeTypeExtensions.put("text/plain", ".txt");
+    mimeTypeExtensions.put("image/tiff", ".tif");
+    mimeTypeExtensions.put("image/png", ".png");
+    mimeTypeExtensions.put("image/jpeg", ".jpg");
+    mimeTypeExtensions.put("application/xml", ".xml");
 
 
     /**
