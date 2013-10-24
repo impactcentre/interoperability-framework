@@ -17,6 +17,7 @@
 	String bits[];
 	String fileName;
 	String outputdir = ${outputdir};
+	Path path;
 
 	${evaluationId}
 

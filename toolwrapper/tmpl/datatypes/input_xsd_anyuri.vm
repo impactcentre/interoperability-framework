@@ -17,7 +17,7 @@
         } catch (MalformedURLException ex) {
 	    // If the input is not an URL, it might be a file on the filesystem..
 	    ${input_variable}FileName = ${input_variable};
-	    Path path = Paths.get(${input_variable}FileName);
+	    path = Paths.get(${input_variable}FileName);
 	    if (Files.notExists(path)) {
 		errorlog("\"" + ${input_variable} + "\" is not a valid value for the "
                         + "parameter \"${input_variable}Url\"");
