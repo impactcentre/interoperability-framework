@@ -285,7 +285,7 @@ public class WorkflowParser extends HttpServlet {
 
 	}
 
-	protected Workflow parseWorkflow(String workflowString) {
+	public static Workflow parseWorkflow(String workflowString) {
 
 		// remove single-line java comments from beanshell scripts since they
 		// might

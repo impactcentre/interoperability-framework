@@ -63,3 +63,7 @@ Alternatively, you can execute the following command in the project directory:
 **Deploying the application**
 
 Maven generates a WAR archive for each frontend module (*workflow-client*) in the corresponding 'target' directory. In Tomcat, you can deploy those archives using the Tomcat Manager application. Or, simply copy the archives into the *webapp* directory of your Tomcat installation and restart Tomcat.
+
+**OneRunSupport**
+
+To run a workflow from myExperiment at once, use the following URL: {base_path}/WorkflowDownloader?id={myExperimentID}

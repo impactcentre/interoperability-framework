@@ -42,6 +42,7 @@
     <servlet-name>FilePrinter</servlet-name>
     <url-pattern>/FilePrinter</url-pattern>
   </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>WorkflowUploader</display-name>
@@ -52,6 +53,18 @@
     <servlet-name>WorkflowUploader</servlet-name>
     <url-pattern>/WorkflowUploader</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>WorkflowDownloader</display-name>
+    <servlet-name>WorkflowDownloader</servlet-name>
+    <servlet-class>eu.impact_project.iif.t2.client.WorkflowDownloader</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>WorkflowDownloader</servlet-name>
+    <url-pattern>/WorkflowDownloader</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>InfoGenerator</display-name>

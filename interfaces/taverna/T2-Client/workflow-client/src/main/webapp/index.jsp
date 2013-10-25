@@ -70,6 +70,7 @@ function switchInputField(span) {
 
 	var currentType = field.type;
 	if (currentType == "text") {
+	    field.value = "";
 		field = changeInputType(field, "file");
 	} else {
 		field = changeInputType(field, "text");
