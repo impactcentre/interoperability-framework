@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
+    <id>jpylyzer</id>
+    <name>Jpylyzer</name>
+    <homepage>http://openplanetsfoundation.org/software/jpylyzer</homepage>
+    <version>1-10</version>
+    <installation>
+        <os type="linux">
+            Available under most distributions via package management.
+        </os>
+        <os type="windows">
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="Jpylyzer" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Service for JP2 image validation and properties extraction</description>
+            <operations>
+                <operation oid="1" name="jpylyzer">
+                    <description>Validate JP2 image using Jpyzlyzer</description>
+                    <!--
+                    Usage:
+                    jpylyzer.py [-h] [- -verbose] [- -wrapper] [- -version] [image(s)]
+
+                    Where:
+					-h, - -help : show this help message and exit;
+					-v, - -version : show program's version number and exit;
+					- -verbose : report test results in verbose format;
+					- -wrapper, -w : wrap the output for individual image(s) in 'results' XML element.
+
+                    For full documentation of Jpyzlyzer command line parameters, see
+                    https://github.com/openplanets/jpylyzer
+                    -->
+                    <command>jpylyzer.exe ${input}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to JP2 image file</Documentation>
+                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.jp2</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outputstream">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to output text file</Documentation>
+                            <Extension>xml</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir>C:\\JPYLYZER\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>
