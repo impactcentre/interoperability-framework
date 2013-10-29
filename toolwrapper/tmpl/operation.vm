@@ -17,7 +17,7 @@
 	String bits[];
 	String fileName;
 	String outputdir = ${outputdir};
-	Path path;
+	Path path = null;
 	boolean input_is_url = true;
 
 	${evaluationId}

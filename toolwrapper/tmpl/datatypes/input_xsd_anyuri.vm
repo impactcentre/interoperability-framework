@@ -50,7 +50,12 @@
 
 	    // Try to determine the file extention by
 	    // probing the file's content.
-	    String type = Files.probeContentType(path);
+	    String type = "";
+	    try {
+		type = Files.probeContentType(path);
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
 	    if(mimeTypeExtensions.containsKey(type)) {
 		${input_variable}Ext = (String) mimeTypeExtensions.get(type);
 	    } else {
