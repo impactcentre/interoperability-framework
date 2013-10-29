@@ -18,6 +18,7 @@
 	String fileName;
 	String outputdir = ${outputdir};
 	Path path;
+	boolean input_is_url = true;
 
 	${evaluationId}
 

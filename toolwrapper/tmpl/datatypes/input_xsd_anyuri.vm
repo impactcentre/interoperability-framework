@@ -52,7 +52,7 @@
 	    // probing the file's content.
 	    String type = Files.probeContentType(path);
 	    if(mimeTypeExtensions.containsKey(type)) {
-		${input_variable}Ext = mimeTypeExtensions.get(type);
+		${input_variable}Ext = (String) mimeTypeExtensions.get(type);
 	    } else {
 	        ${input_variable}Ext = "tmp";
 	    }
