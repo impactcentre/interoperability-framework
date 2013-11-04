@@ -123,5 +123,13 @@ public final class FileUtils {
        
         return fOut;
     }
-   
+
+    public static void urlToPath(URL url, File fOut) throws IOException {
+        URLConnection uc = url.openConnection();
+        logger.info("ContentType: " + uc.getContentType());
+        InputStream in = uc.getInputStream();
+        org.apache.commons.io.FileUtils.copyInputStreamToFile(in, fOut);
+        logger.info("File of length " + fOut.length() + " created from URL " + url.toString());
+        in.close();
+    }
 }
