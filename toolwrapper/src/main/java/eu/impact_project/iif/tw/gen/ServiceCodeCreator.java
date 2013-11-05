@@ -90,6 +90,8 @@ public class ServiceCodeCreator {
         // Create service operation
         int opn = operation.getOid();
         boolean evaluationId = false;
+	boolean has_inputdir = false;
+
         String operationTmpl = st.getProp("project.template.operation");
         OperationCode oc = new OperationCode(operationTmpl, opn);
         String operationName = operation.getName();
@@ -102,14 +104,19 @@ public class ServiceCodeCreator {
 
 	// count the number of real inputs, and skip the evaluationId
         int outputCounter = 0;
+
         for (Input input : inputs) {
-            if (!input.getName().equals("evaluationId")) {
+            if (!input.getName().equals("evaluationId") && !input.getName().equals("inputdir")) {
                 outputCounter = outputCounter + 1;
-            } else {
+            } else if (input.getName().equals("evaluationId")) {
                 evaluationId = true;
                 logger.debug("evaluationId used in workflow");
-            }
+            } else if (input.getName().equals("inputdir")) {
+		has_inputdir = true;
+                outputCounter = outputCounter + 1;
+	    }
         }
+
 	if (evaluationId) {
             oc.put("evaluationId", "infolog(\"Evaluation-ID: \" + evaluationId);");
             oc.put("evaluationIdDir", "evaluationId +");
@@ -117,6 +124,14 @@ public class ServiceCodeCreator {
             oc.put("evaluationId", "infolog(\"No evaluation-id\");");
             oc.put("evaluationIdDir", "");
         }
+
+
+	// Handle inputdir
+	if (has_inputdir) {
+	    oc.put("inputdir", "\"inputdir\"");
+	} else {
+	    oc.put("inputdir", "\"\"");
+	}
 
         int outputMax = outputCounter;
         outputCounter = 0;
@@ -169,9 +184,7 @@ public class ServiceCodeCreator {
 
 	// outputdir
 	if (has_outputdir) {
-	    String outputdirstr = tmpdir + File.separator + outputdirname + File.separator;
-	    outputdirstr = outputdirstr.replaceAll("(\\\\+|/+)","/");
-	    oc.put("outputdir", "\"" + outputdirstr + "\"");
+	    oc.put("outputdir", "\"" + tmpdir + File.separator + outputdirname + File.separator + "\"");
 	} else {
 	    oc.put("outputdir", "\"\"");
 	}

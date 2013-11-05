@@ -17,8 +17,14 @@
 	String bits[];
 	String fileName;
 	String outputdir = ${outputdir};
-	Path path = null;
-	boolean input_is_url = true;
+	Path path;
+
+	String inputdir = ${inputdir};
+	Boolean is_inputdir = false;
+
+	if (inputdir == "inputdir") {
+	    is_inputdir = true;
+	}
 
 	${evaluationId}
 
