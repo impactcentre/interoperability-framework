@@ -34,10 +34,14 @@
 	       bits = fileName.split("\\.");
 	       fileName = bits[0];
 	    };
-	    ${input_variable}Ext = StringUtils.getFileExtension(${input_variable}Url.toString());
-            if (${input_variable}Ext == null) {
-	        ${input_variable}Ext = "tmp";
-            }
+	    if (is_inputdir) {
+		${input_variable}Ext = "tmp";
+	    } else {
+		${input_variable}Ext = StringUtils.getFileExtension(${input_variable}Url.toString());
+                if (${input_variable}Ext == null) {
+		        ${input_variable}Ext = "tmp";
+		}
+	    }
 	} else {
 	    input_is_url = false;
 
@@ -50,25 +54,29 @@
 
 	    // Try to determine the file extention by
 	    // probing the file's content.
-	    String type = "";
 	    try {
-		type = Files.probeContentType(path);
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
-	    if(mimeTypeExtensions.containsKey(type)) {
-		${input_variable}Ext = (String) mimeTypeExtensions.get(type);
-	    } else {
-	        ${input_variable}Ext = "tmp";
+    	       type = Files.probeContentType(path);
+	       if(mimeTypeExtensions.containsKey(type)) {
+		    ${input_variable}Ext = (String) mimeTypeExtensions.get(type);
+	       } else {
+		    ${input_variable}Ext = "tmp";
+	       }
+	    } catch(IOException e) {
+		type = "";
 	    }
 	}
 
         try {
 	    if (input_is_url) {
-                ${input_variable}File = FileUtils.urlToFile(${input_variable}Url, ${input_variable}Ext);
+		if (is_inputdir) { 
+		    ${input_variable}File = DownloaderUtils.mirror(${input_variable}Url.toString());
+		} else {
+		    ${input_variable}File = FileUtils.urlToFile(${input_variable}Url, ${input_variable}Ext);
+		}
 	    } else {
 		${input_variable}File = new File(${input_variable}FileName);
 	    }
+
             if (!${input_variable}File.exists()) {
                 errorlog("Input file " + ${input_variable}File.toString() + " is not available");
                 return ${operationname}Result(fac, omNs);
