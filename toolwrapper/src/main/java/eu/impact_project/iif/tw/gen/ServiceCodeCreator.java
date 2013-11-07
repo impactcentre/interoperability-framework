@@ -128,9 +128,9 @@ public class ServiceCodeCreator {
 
 	// Handle inputdir
 	if (has_inputdir) {
-	    oc.put("inputdir", "\"inputdir\"");
+	    oc.put("inputdir", "true");
 	} else {
-	    oc.put("inputdir", "\"\"");
+	    oc.put("inputdir", "false");
 	}
 
         int outputMax = outputCounter;
