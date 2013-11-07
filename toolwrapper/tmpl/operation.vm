@@ -19,14 +19,9 @@
 	String outputdir = ${outputdir};
 	Path path = null;
 
-	String inputdir = ${inputdir};
-	Boolean is_inputdir = false;
+	Boolean is_inputdir = ${is_inputdir};
 	Boolean input_is_url = true;
 	String type;
-
-	if (inputdir == "inputdir") {
-	    is_inputdir = true;
-	}
 
 	${evaluationId}
 
