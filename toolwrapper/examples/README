@@ -15,15 +15,14 @@ Giving the output the name 'outputstream' makes it possible to capture the outpu
 In the unzip example the following is defined:
   <output name="outputdir">
 
-Giving the output name 'outputdir' assumes the tool does not produce one file as output,
-instead it returns a directory as output of the operation.
+Giving the output name 'outputdir' assumes the tool does not produce a file as output,
+but instead it returns a directory as output of the operation.
 
 - ocropus (inputdir)
 
-In the ocropus example the follwoing is defined:
+In the ocropus example the following is defined:
+  <input name="inputdir">
 
- <input name="inputdir">
-
-Defining an inputname as 'inputdir' would result in cloning or mirorring the remote directory,
-and feeding it as an input for the current tool.
+Defining an inputname as 'inputdir' will result in cloning or mirroring the remote directory,
+and then feeding it to the current tool as input.
 
