@@ -3,71 +3,174 @@
     <id>ocropus</id>
     <name>OCRopus</name>
     <homepage>http://code.google.com/p/ocropus/</homepage>
-    <version>0-6</version>
+    <version>0-7</version>
     <installation>
         <os type="linux">
             Available under most distributions via package management.
         </os>
         <os type="windows">
-            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+            Currently not supported. See also: https://code.google.com/r/dustin-ocropy-win32/
         </os>
     </installation>
     <services>
         <service sid="1" name="Ocropus" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
             <description>Services for text recognition using OCRopus</description>
             <operations>
-                <operation oid="1" name="ocropus">
-                    <description>Perform text recognition on PNG image file</description>
-                    <!--
-                    Usage:
-                    ocropus-recognize-book <input> -o <output>
+                <operation oid="1" name="ocropus_nlbin">
+                    <description>Perform non-linear binarization on PNG image file</description>
+		    <!--
 
-                    Where:
-                    <input>     Input image file in PNG format
-                    <output>    Output file in hOCR format
+		    ocropus-wrapper [operation] path_to_input path_to_output
 
-                    For documentation ocropus, see
-                    http://code.google.com/p/ocropus/
+		    Use one of the following operations:
+			either
+			    -bin=nlbin
+			    -bin=sauvola
+			or
+			    -dewarp
+			or
+			    -segmentation
+			or
+			    -hocr (only takes zip file..)
+			Or use any combination of these flags.
+
+
+			./ocropus-wrapper -bin=nlbin ./output.png ./out
                     -->
-                    <command>ocropus-recognize-book ${input} -o ${output}</command>
+                    <command>ocropus-wrapper -bin=nlbin ${input} ${outputdir}</command>
                     <inputs>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
-                            <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.png</Default>
+                            <Documentation>URL reference to input file in PNG format</Documentation>
+			    <Default>http://kbresearch.dyndns.org/testfiles/output.png</Default>
                         </input>
                     </inputs>
                     <outputs>
-                        <output name="output">
+                        <output name="outputdir">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
-                            <CliMapping>output</CliMapping>
-                            <Documentation>URL reference to output file</Documentation>
-                            <Extension>html</Extension>
-                            <AutoExtension>true</AutoExtension>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output directory</Documentation>
                         </output>
                     </outputs>
                 </operation>
+		<operation oid="2" name="ocropus_ldewarp">
+                    <description>Perform dewarping of text lines</description>
+                    <command>ocropus-wrapper -dewarp ${input} ${outputdir}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file in PNG format</Documentation>
+                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bin.png</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outputdir">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output</Documentation>
+                        </output>
+                    </outputs>
+                </operation>
+				<operation oid="3" name="ocropus_gpageseg">
+                    <description>Perform segmentation on bitonal PNG image file</description>
+                    <!--
+			    ocropus-wrapper -segmentation ./out/0001.bin.png ./out
+                    -->
+                    <command>ocropus-wrapper -segmentation ${input} ${outputdir}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file in PNG format</Documentation>
+                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bin.png</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outputdir">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+			</output>
+		    </outputs>
+
+
+                </operation>
+		    <operation oid="4" name="ocropus_rpred">
+		    <description>Perform text recognition on PNG image file(s) and generate hocr file, input file must be directory </description>
+                    <!--
+			ocropus-wrapper -hocr ./out/0001 ./out
+                    -->
+                    <command>ocropus-wrapper -hocr ${input} ${outputdir}</command>
+                    <inputs>
+                        <input name="inputdir">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file in PNG format</Documentation>
+			    <Default>http://kbresearch.dyndns.org/testfiles/ocropus/</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outputdir">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>html</Extension>
+			</output>
+                    </outputs>
+		</operation>
+		<operation oid="5" name="ocropus_all">
+		    <description>Perform all steps on PNG image file and generate hocr file</description>
+                    <!--
+			ocropus-wrapper -hocr ./out/0001 ./out
+                    -->
+                    <command>ocropus-wrapper -all ${input} ${outputdir}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file in PNG format</Documentation>
+			    <Default>http://kbresearch.dyndns.org/testfiles/output.png</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outputdir">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>html</Extension>
+			</output>
+                    </outputs>
+		</operation>
             </operations>
             <deployto>
-                <deployref default="true" ref="local"/>
+                <deployref default="true" ref="public"/>
             </deployto>
         </service>
     </services>
-    <deployments>
-        <deployment id="local">
-            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
-            <host>localhost</host>
+   <deployments>
+        <deployment id="public">
+	    <identifier>http://succeed.kbresearch.nl/</identifier>
+            <host>succeed.kbresearch.nl</host>
             <ports>
-                <port type="http">8080</port>
+                <port type="http">80</port>
                 <port type="https">8043</port>
             </ports>
             <manager>
-                <user>tomcat</user>
-                <password>tomcat</password>
-                <path>manager</path>
+                <user>kb</user>
+                <password>Onderzoek4KB</password>
+                <path>manager/text</path>
             </manager>
             <!--
             Full path to the directory where the tool has been installed.
@@ -79,8 +182,8 @@
             -->
             <toolsbasedir></toolsbasedir>
             <dataexchange>
-                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
-                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+		<accessdir>/var/www/testfiles/</accessdir>
+                <accessurl>http://kbresearch.nl/testfiles/</accessurl>
             </dataexchange>
         </deployment>
     </deployments>

@@ -1,6 +1,6 @@
 Tool specification examples.
 
-All example's are pretty straight forward, however there are two special cases:
+All example's are pretty straight forward, however there are three special cases:
 
 - exiftool (outputstream)
 
@@ -12,8 +12,18 @@ Giving the output the name 'outputstream' makes it possible to capture the outpu
 
 - unzip (outputdir)
 
-In the unzip example the followin is defined:
+In the unzip example the following is defined:
   <output name="outputdir">
 
 Giving the output name 'outputdir' assumes the tool does not produce one file as output,
 instead it returns a directory as output of the operation.
+
+- ocropus (inputdir)
+
+In the ocropus example the follwoing is defined:
+
+ <input name="inputdir">
+
+Defining an inputname as 'inputdir' would result in cloning or mirorring the remote directory,
+and feeding it as an input for the current tool.
+
