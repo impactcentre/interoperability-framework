@@ -80,7 +80,7 @@
 				<operation oid="3" name="ocropus_gpageseg">
                     <description>Perform segmentation on bitonal PNG image file</description>
                     <!--
-			    ocropus-wrapper -segmentation ./out/0001.bin.png ./out
+			        ocropus-wrapper -segmentation ./out/0001.bin.png ./out
                     -->
                     <command>ocropus-wrapper -segmentation ${input} ${outputdir}</command>
                     <inputs>
@@ -98,15 +98,13 @@
                             <Required>false</Required>
                             <CliMapping>outputdir</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
-			</output>
-		    </outputs>
-
-
+			            </output>
+		            </outputs>
                 </operation>
-		    <operation oid="4" name="ocropus_rpred">
-		    <description>Perform text recognition on PNG image file(s) and generate hocr file, input file must be directory </description>
+		        <operation oid="4" name="ocropus_rpred">
+		            <description>Perform text recognition on PNG image file(s) and generate hocr file, input file must be directory </description>
                     <!--
-			ocropus-wrapper -hocr ./out/0001 ./out
+			        ocropus-wrapper -hocr ./out/0001 ./out
                     -->
                     <command>ocropus-wrapper -hocr ${input} ${outputdir}</command>
                     <inputs>
@@ -115,7 +113,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file in PNG format</Documentation>
-			    <Default>http://kbresearch.dyndns.org/testfiles/ocropus/</Default>
+			                <Default>http://kbresearch.dyndns.org/testfiles/ocropus/</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -125,13 +123,13 @@
                             <CliMapping>outputdir</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
                             <Extension>html</Extension>
-			</output>
+			            </output>
                     </outputs>
-		</operation>
-		<operation oid="5" name="ocropus_all">
-		    <description>Perform all steps on PNG image file and generate hocr file</description>
+		        </operation>
+		        <operation oid="5" name="ocropus_all">
+		            <description>Perform all steps on PNG image file and generate hocr file</description>
                     <!--
-			ocropus-wrapper -hocr ./out/0001 ./out
+			        ocropus-wrapper -hocr ./out/0001 ./out
                     -->
                     <command>ocropus-wrapper -all ${input} ${outputdir}</command>
                     <inputs>
@@ -140,7 +138,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file in PNG format</Documentation>
-			    <Default>http://kbresearch.dyndns.org/testfiles/output.png</Default>
+			                <Default>http://kbresearch.dyndns.org/testfiles/output.png</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -150,27 +148,27 @@
                             <CliMapping>outputdir</CliMapping>
                             <Documentation>URL reference to output file</Documentation>
                             <Extension>html</Extension>
-			</output>
+			            </output>
                     </outputs>
-		</operation>
+		        </operation>
             </operations>
             <deployto>
-                <deployref default="true" ref="public"/>
+                <deployref default="true" ref="local"/>
             </deployto>
         </service>
     </services>
    <deployments>
-        <deployment id="public">
-	    <identifier>http://succeed.kbresearch.nl/</identifier>
-            <host>succeed.kbresearch.nl</host>
+        <deployment id="local">
+	    <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
             <ports>
-                <port type="http">80</port>
+                <port type="http">8080</port>
                 <port type="https">8043</port>
             </ports>
             <manager>
-                <user>kb</user>
-                <password>Onderzoek4KB</password>
-                <path>manager/text</path>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
             </manager>
             <!--
             Full path to the directory where the tool has been installed.
@@ -182,8 +180,8 @@
             -->
             <toolsbasedir></toolsbasedir>
             <dataexchange>
-		<accessdir>/var/www/testfiles/</accessdir>
-                <accessurl>http://kbresearch.nl/testfiles/</accessurl>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
             </dataexchange>
         </deployment>
     </deployments>
