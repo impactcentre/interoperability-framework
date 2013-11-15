@@ -147,32 +147,10 @@
 			<id>eviwarePluginRepository</id>
 			<url>http://www.eviware.com/repository/maven2/</url>
 		</repository>
-		<repository>
-			<id>archiva.internal.http</id>
-			<name>Archiva Managed Internal Repository</name>
-			<url>http://repository.bibforge.org/archiva/repository/internal</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>archiva.snapshots.http</id>
-			<name>Archiva Managed Snapshot Repository</name>
-			<url>http://repository.bibforge.org/archiva/repository/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		    </repository>
-		    <repository>
-			    <id>impact</id>
-                <url>http://kbresearch.dyndns.org/m2/releases</url>
-		    </repository>
+	    <repository>
+		    <id>impact</id>
+            <url>http://kbresearch.dyndns.org/m2/releases</url>
+	    </repository>
 	</repositories>
 	<build>
 		<plugins>
