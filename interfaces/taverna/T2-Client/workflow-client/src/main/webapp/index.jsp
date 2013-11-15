@@ -14,7 +14,7 @@
 
 <%
 String folder = application.getRealPath("/");
-if(!folder.endsWith("/")) {	
+if(!folder.endsWith("/")) {
 	folder = folder + "/";
 }
 
@@ -70,7 +70,7 @@ function switchInputField(span) {
 
 	var currentType = field.type;
 	if (currentType == "text") {
-	    field.value = "";
+		field.value = "";
 		field = changeInputType(field, "file");
 	} else {
 		field = changeInputType(field, "text");
@@ -86,21 +86,21 @@ function switchInputField(span) {
 			field = changeInputType(field, "text");
 		}
 	}
-	
+
 }
 
 function showDetails(){
 
 	var selectedWorkflow = document.getElementById("MyExpWorkflow0").value;
 
-	
-	var detailsWindow = window.open("InfoGenerator?id="+selectedWorkflow,"WorkflowDetails", 
+
+	var detailsWindow = window.open("InfoGenerator?id="+selectedWorkflow,"WorkflowDetails",
 			"resizable,width=800,height=700,scrollbars,left=200,top=100");
 
 	detailsWindow.focus();
 }
 <% if (demoMode == false) {%>
-function loginMyExperiment () 
+function loginMyExperiment ()
 {
 	var frm = document.getElementById("uploadWorkflows");
 	frm.submit();
@@ -140,11 +140,11 @@ if (demoMode == false)
 Please upload your workflow file:<br></br><br></br>
 	<input type="file" name="file_workflow0" size="15"></input>
 <br><br>
-<!-- 
+<!--
 	Workflow 2: <input type="file" name="file_workflow1" size="30"></input>
 
 	<br><br>
--->	
+-->
 
 	<input type="checkbox" name="printExamples" <%if(printExamples){ %>checked="checked"<%} %>>Show input values, if available<br><br>
 	<input type="submit" value="Show input fields"></input>
@@ -193,7 +193,7 @@ Or login to MyExperiment and choose a workflow:
 <%if (request.getAttribute("login_error") != null) {%>
 <div style="color: red"><%=request.getAttribute("login_error") %></div>
 
-<%} else if (session.getAttribute("logged_in") != null && session.getAttribute("logged_in").equals("true")) { 
+<%} else if (session.getAttribute("logged_in") != null && session.getAttribute("logged_in").equals("true")) {
 		String selectedGroupName = (String)session.getAttribute("selectedGroupName0");
 		Map<String, List<WorkflowInfo>> allWfInfos = (Map<String, List<WorkflowInfo>>) session.getAttribute("allWfInfos");
 
@@ -220,7 +220,7 @@ Or login to MyExperiment and choose a workflow:
 				<!--input type="submit" value="Choose"-->
 			</form>
 			<%
-			
+
 		}
 
 
@@ -229,27 +229,27 @@ Or login to MyExperiment and choose a workflow:
 %>
 
 <form action="WorkflowParser" method="post" enctype="multipart/form-data">
-	Workflow: 
+	Workflow:
 	<select name="MyExpWorkflow0" id="MyExpWorkflow0" style="width: 20em">
-		<% 
-		
-			
+		<%
+
+
 			for (WorkflowInfo info : wfInfos){
 				%>
-				<option value="<%=info.getWfId() %>" 
+				<option value="<%=info.getWfId() %>"
 				<%if(session.getAttribute("currentWfId0") != null && session.getAttribute("currentWfId0").equals(info.getWfId())) { %> selected="selected" <%} %>>
 				<%=info.getTitle()%>
 				</option>
 				<%
 			}
 		%>
-		
-		
+
+
 	</select>
-	
+
 	<a href="javascript:showDetails()">Details</a>
 	<br><br>
-	
+
 	<%
 //	boolean printExamples2 = true;
 //	if (session.getAttribute("printExamples2") != null) {
@@ -260,8 +260,8 @@ Or login to MyExperiment and choose a workflow:
 	<input type="checkbox" name="printExamples" <%if(printExamples){ %>checked="checked"<%} %>>Show input values, if available<br><br>
 	<input type="submit" value="Show input fields"></input>
 
-	
-	
+
+
 </form>
 <%		} // if (wfInfos != null...
 		else {
@@ -269,7 +269,7 @@ Or login to MyExperiment and choose a workflow:
 			<div>There are no workflows in this group</div>
 			<%
 		}
-	} // else if (session.getAttribute("logged_in")... 
+	} // else if (session.getAttribute("logged_in")...
 	else
 	{
 		if (demoMode == true) {%>
@@ -295,10 +295,10 @@ Or login to MyExperiment and choose a workflow:
 		if(wf != null && (wf.equals("1041") || wf.equals("1298"))) {
 %>
 			<div style="color: red">The execution of this workflow is currently blocked</div>
-			
+
 	<%	} else { %>
-			
-	
+
+
 		<form method="post" action="WorkflowRunner" enctype="multipart/form-data">
 <%
 		ArrayList<Workflow> workflows = (ArrayList<Workflow>) session.getAttribute("workflows");
@@ -317,17 +317,17 @@ Or login to MyExperiment and choose a workflow:
 					int inputDepth = currentInput.getDepth();
 					String inputExample = currentInput.getExampleValue();
 %>
-					<br><%= inputName %>: 
+					<br><%= inputName %>:
 					<span>
 						<img onclick="switchInputField(this.parentNode)" alt="switch input type" src="graphics/switch.gif">
 						<input type="text" size="40" <%if (printExamples) { %>value="<%= inputExample %>"<%} %> name="workflow<%=i + inputName %>">
-					</span> 
+					</span>
 <%
 					if(inputDepth > 0){
 %>
 						<span id="workflow<%=i + inputName %>"></span>
 						<span onclick="addInputField('workflow<%=i + inputName %>')" style="cursor: pointer">+</span>
-<%	
+<%
 					}
 				}
 			} else {
@@ -335,9 +335,9 @@ Or login to MyExperiment and choose a workflow:
 			}
 			i++;
 			out.print("<br><br>");
-			if(request.getAttribute("round2") == null) 
+			if(request.getAttribute("round2") == null)
 			{
-				
+
 				%>
 				<input type="hidden" name="user" id="user" value="<%=serviceUser%>">
 				<input type="hidden" name="pass" id="pass" value="<%=servicePass%>">
@@ -360,6 +360,9 @@ Or login to MyExperiment and choose a workflow:
 		} // for (Workflow ...)
 %>
 		<hr></hr>
+		<br><br>
+		<b>Workflow</b> Outputs
+		<br><br>
 <%
 		} // if (wf != null ...) else
 	} // if ... round1
@@ -367,29 +370,25 @@ Or login to MyExperiment and choose a workflow:
 	if(request.getAttribute("round2") != null) {
 		List<List<WorkflowOutputPort>> allOutputs = (List<List<WorkflowOutputPort>>) session.getAttribute("allOutputs");
 		String errors = session.getAttribute("errors").toString();
-		
+
 		if (errors != "")
 			out.print(errors);
-		
+
 		int i = 1;
 		// go through all workflows
 		for (List<WorkflowOutputPort> currentPorts : allOutputs) {
-%>
-		<br><br>
-		<b>Workflow</b> Outputs
-		<br><br>
-<%
 			// go through all workflow ports
 			for (WorkflowOutputPort port : currentPorts){
 %>
-				<i><%=port.getName() %></i>: 
+				<i><%=port.getName() %></i>:
 <%
 				// go through all outputs of a port
 				int j = 1;
 				for (WorkflowOutput output : port.getOutputs()) {
 					if (output.isBinary()){
+						//<a href="FilePrinter?file=<%=output.getUrl() " target="_blank">file=i .=j </a>
 %>
-						<a href="FilePrinter?file=<%=output.getUrl() %>" target="_blank">file<%=i %>.<%=j %></a>
+						<a href="<%=output.getUrl() %>" target="_blank">file</a>
 <%
 					} else {
 
@@ -398,14 +397,14 @@ Or login to MyExperiment and choose a workflow:
 						String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
 						if (result.matches(regex)) {
-						
-%>							
+
+%>
 						<a href="<%=output.getValue() %>" target="_blank"><%=output.getValue() %></a>
 <%
 						} else {
 							out.print(output.getValue().replaceAll("\n", "<br>\n"));
 						}
-						
+
 
 					}
 					if (output != port.getOutputs().get(port.getOutputs().size()-1))
