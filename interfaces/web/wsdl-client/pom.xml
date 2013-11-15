@@ -259,7 +259,7 @@
 	    </repository>
         <repository>
             <id>impact</id>
-            <url>https://github.com/impactcentre/m2-repo/raw/master/releases</url>
+            <url>http://kbresearch.dyndns.org/m2/releases</url>
         </repository>
 	</repositories>
 	<build>

@@ -170,8 +170,8 @@
 			</snapshots>
 		    </repository>
 		    <repository>
-			    <id>repo</id>
-                <url>https://github.com/impactcentre/m2-repo/raw/master/releases</url>
+			    <id>impact</id>
+                <url>http://kbresearch.dyndns.org/m2/releases</url>
 		    </repository>
 	</repositories>
 	<build>
