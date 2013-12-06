@@ -97,6 +97,7 @@
                  <xs:element ref="Required" minOccurs="0" maxOccurs="1"/>
                  <xs:element ref="CliMapping" minOccurs="0" maxOccurs="1"/>
                  <xs:element ref="Documentation" minOccurs="0" maxOccurs="1"/>
+                 <xs:element ref="OutFileName" minOccurs="0" maxOccurs="1"/>
               </xs:sequence>
               <xs:attribute name="name" type="xs:string" use="required"/>
            </xs:complexType>
@@ -118,7 +119,7 @@
                     <xs:element name="Extension" type="xs:string" minOccurs="0" maxOccurs="1"/>
                     <xs:element name="AutoExtension" type="xs:boolean" default="false" minOccurs="0" maxOccurs="1"/>
                     <xs:element name="OutfileId" type="xs:string" default="false" minOccurs="0" maxOccurs="1"/>
-               </xs:sequence>
+                </xs:sequence>
              </xs:extension>
             </xs:complexContent>
           </xs:complexType>
@@ -246,5 +247,6 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="Datatype" type="xs:string"/>
-	<xs:element name="CliMapping" type="xs:string"/>
+    <xs:element name="CliMapping" type="xs:string"/>
+    <xs:element name="OutFileName" type="xs:string"/>
 </xs:schema>

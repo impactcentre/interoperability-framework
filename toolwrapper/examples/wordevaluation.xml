@@ -58,6 +58,7 @@
                             <CliMapping>output</CliMapping>
                             <Documentation>URL reference to statistics output file</Documentation>
                             <Extension>xml</Extension>
+                            <OutFileName>output.xml</OutFileName>
                         </output>
                     </outputs>
                 </operation>

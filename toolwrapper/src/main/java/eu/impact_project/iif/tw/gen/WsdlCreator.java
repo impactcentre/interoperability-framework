@@ -272,6 +272,7 @@ public class WsdlCreator {
      * @param cliMapping
      * @param required
      * @param documentation
+     * @param OutFilename
      */
     private void createMsgElm(Node reqTypeSeqElm, InOut inout) {
 
@@ -280,6 +281,7 @@ public class WsdlCreator {
         String required = inout.getRequired();
         String documentation = inout.getDocumentation();
         String cliMapping = inout.getCliMapping();
+        String outfilename = inout.getOutFileName();
         String defaultVal = (inout instanceof Input)?((Input)inout).getDefault().getValue():null;
         Restriction restriction = (inout instanceof Input)?((Input)inout).getRestriction():null;
 

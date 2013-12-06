@@ -1,90 +1,93 @@
 
-        // Input: ${input_variable}
-        File ${input_variable}File = null;
-        String ${input_variable}Ext = "tmp";
-	String ${input_variable}FileName = "";
-        URL ${input_variable}Url = null;
+    // Input: ${input_variable}
+    File ${input_variable}File = null;
+    String ${input_variable}Ext = "tmp";
+    String ${input_variable}FileName = "";
+    URL ${input_variable}Url = null;
 
-        try {
-	    // Input is a well-formated URL
-            ${input_variable}Url = new URL(${input_variable});
-            String ${input_variable}UrlStr = ${input_variable}Url.toString();
-            if(!${input_variable}UrlStr.matches(getValueOfServiceParameter("serviceUrlFilter"))) {
-                errorlog("Format of input URL \"" + ${input_variable} + "\" does not comply with security policy");
-                return ${operationname}Result(fac, omNs);
-            }
-            infolog("URL of input file: " + ${input_variable}UrlStr);
-        } catch (MalformedURLException ex) {
-	    // If the input is not an URL, it might be a file on the filesystem..
-	    ${input_variable}FileName = ${input_variable};
-	    path = Paths.get(${input_variable}FileName);
-	    if (Files.notExists(path)) {
-		errorlog("\"" + ${input_variable} + "\" is not a valid value for the "
-                        + "parameter \"${input_variable}Url\"");
-		return ${operationname}Result(fac, omNs);
-	    }
-	    input_is_url = false;
+    try {
+        // Input is a well-formated URL
+        ${input_variable}Url = new URL(${input_variable});
+        String ${input_variable}UrlStr = ${input_variable}Url.toString();
+        if(!${input_variable}UrlStr.matches(getValueOfServiceParameter("serviceUrlFilter"))) {
+            errorlog("Format of input URL \"" + ${input_variable} + "\" does not comply with security policy");
+            return ${operationname}Result(fac, omNs);
         }
+        infolog("URL of input file: " + ${input_variable}UrlStr);
+    } catch (MalformedURLException ex) {
+        // If the input is not an URL, it might be a file on the filesystem..
+        ${input_variable}FileName = ${input_variable};
+        path = Paths.get(${input_variable}FileName);
+        if (Files.notExists(path)) {
+            errorlog("\"" + ${input_variable} + "\" is not a valid value for the "
+                            + "parameter \"${input_variable}Url\"");
+            return ${operationname}Result(fac, omNs);
+        }
+        input_is_url = false;
+    }
 
 	if (input_is_url) {
 	    // Determine the file name by taking the last part of the URL (and strip the extension)
 	    bits = ${input_variable}Url.toString().split("/");
 	    fileName = bits[bits.length - 1];
+
 	    if(fileName.contains(".")) {
 	       bits = fileName.split("\\.");
 	       fileName = bits[0];
 	    };
+
 	    if (is_inputdir) {
-		${input_variable}Ext = "tmp";
+		    ${input_variable}Ext = "tmp";
 	    } else {
-		${input_variable}Ext = StringUtils.getFileExtension(${input_variable}Url.toString());
-                if (${input_variable}Ext == null) {
-		        ${input_variable}Ext = "tmp";
-		}
+            ${input_variable}Ext = StringUtils.getFileExtension(${input_variable}Url.toString());
+            if (${input_variable}Ext == null) {
+                    ${input_variable}Ext = "tmp";
+		    }
 	    }
 	} else {
-	    input_is_url = false;
+        input_is_url = false;
+        bits = ${input_variable}FileName.split(File.separator);
+        fileName = bits[bits.length - 1];
 
-            bits = ${input_variable}FileName.split(File.separator);
-            fileName = bits[bits.length - 1];
-            if (fileName.contains(".")) {
-                bits = fileName.split("\\.");
-                fileName = bits[0];
-            };
+        if (fileName.contains(".")) {
+            bits = fileName.split("\\.");
+            fileName = bits[0];
+        };
 
 	    // Try to determine the file extention by
 	    // probing the file's content.
 	    try {
-    	       type = Files.probeContentType(path);
-	       if(mimeTypeExtensions.containsKey(type)) {
-		    ${input_variable}Ext = (String) mimeTypeExtensions.get(type);
-	       } else {
-		    ${input_variable}Ext = "tmp";
-	       }
+            type = Files.probeContentType(path);
+            if(mimeTypeExtensions.containsKey(type)) {
+		        ${input_variable}Ext = (String) mimeTypeExtensions.get(type);
+            } else {
+		        ${input_variable}Ext = "tmp";
+	        }
 	    } catch(IOException e) {
-		type = "";
+		    type = "";
 	    }
 	}
 
-        try {
-	    if (input_is_url) {
-		if (is_inputdir) { 
-		    ${input_variable}File = DownloaderUtils.mirror(${input_variable}Url.toString());
-		} else {
-		    ${input_variable}File = FileUtils.urlToFile(${input_variable}Url, ${input_variable}Ext);
-		}
-	    } else {
-		${input_variable}File = new File(${input_variable}FileName);
-	    }
-
-            if (!${input_variable}File.exists()) {
-                errorlog("Input file " + ${input_variable}File.toString() + " is not available");
-                return ${operationname}Result(fac, omNs);
+    try {
+        if (input_is_url) {
+            if (is_inputdir) { 
+                ${input_variable}File = DownloaderUtils.mirror(${input_variable}Url.toString());
+            } else {
+                ${input_variable}File = FileUtils.urlToFile(${input_variable}Url, ${input_variable}Ext);
             }
-            infolog("Input file created: " + ${input_variable}File.getAbsolutePath());
-            // Mapping to command line pattern variable
-            ${mapping}
-        } catch(IOException ex) {
-            errorlog("Unable to read from URL \"" + ${input_variable}Url + "\"");
+        } else {
+            ${input_variable}File = new File(${input_variable}FileName);
+        }
+
+        if (!${input_variable}File.exists()) {
+            errorlog("Input file " + ${input_variable}File.toString() + " is not available");
             return ${operationname}Result(fac, omNs);
         }
+        infolog("Input file created: " + ${input_variable}File.getAbsolutePath());
+
+        // Mapping to command line pattern variable
+        ${mapping}
+    } catch(IOException ex) {
+        errorlog("Unable to read from URL \"" + ${input_variable}Url + "\"");
+        return ${operationname}Result(fac, omNs);
+    }

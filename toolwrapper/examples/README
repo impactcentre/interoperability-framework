@@ -23,6 +23,10 @@ but instead it returns a directory as output of the operation.
 In the ocropus example the following is defined:
   <input name="inputdir">
 
-Defining an inputname as 'inputdir' will result in cloning or mirroring the remote directory,
+Defining an inputname as 'inputdir' will result in mirroring the remote directory via http,
 and then feeding it to the current tool as input.
 
+The output filename is determined by the input file name, for example if the input file name
+for a workflow is "example_image.tif", given that the workflow creates xml, the ouput file name
+will be as followed: "example_image.xml". To override this feature, use the <OutFileName> option 
+in the output section as seen in example wordevaluation.xml.

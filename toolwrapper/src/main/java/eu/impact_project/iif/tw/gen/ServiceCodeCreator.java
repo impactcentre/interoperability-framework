@@ -65,7 +65,7 @@ public class ServiceCodeCreator {
 
     /** Prevent default construction */
     @SuppressWarnings("unused")
-	private ServiceCodeCreator() {
+    private ServiceCodeCreator() {
     }
 
     /**
@@ -90,7 +90,7 @@ public class ServiceCodeCreator {
         // Create service operation
         int opn = operation.getOid();
         boolean evaluationId = false;
-	boolean has_inputdir = false;
+        boolean has_inputdir = false;
 
         String operationTmpl = st.getProp("project.template.operation");
         OperationCode oc = new OperationCode(operationTmpl, opn);
@@ -102,7 +102,7 @@ public class ServiceCodeCreator {
 
         List<Input> inputs = operation.getInputs().getInput();
 
-	// count the number of real inputs, and skip the evaluationId
+        // count the number of real inputs, and skip the evaluationId
         int outputCounter = 0;
 
         for (Input input : inputs) {
@@ -112,31 +112,32 @@ public class ServiceCodeCreator {
                 evaluationId = true;
                 logger.debug("evaluationId used in workflow");
             } else if (input.getName().equals("inputdir")) {
-		has_inputdir = true;
+                has_inputdir = true;
                 outputCounter = outputCounter + 1;
-	    }
+            }
         }
 
-	if (evaluationId) {
-            oc.put("evaluationId", "infolog(\"Evaluation-ID: \" + evaluationId);");
-            oc.put("evaluationIdDir", "evaluationId +");
+        if (evaluationId) {
+                oc.put("evaluationId", "infolog(\"Evaluation-ID: \" + evaluationId);");
+                oc.put("evaluationIdDir", "evaluationId +");
+            } else {
+                oc.put("evaluationId", "infolog(\"No evaluation-id\");");
+                oc.put("evaluationIdDir", "");
+            }
+
+
+        // Handle inputdir
+        if (has_inputdir) {
+            oc.put("is_inputdir", "true");
         } else {
-            oc.put("evaluationId", "infolog(\"No evaluation-id\");");
-            oc.put("evaluationIdDir", "");
+            oc.put("is_inputdir", "false");
         }
-
-
-	// Handle inputdir
-	if (has_inputdir) {
-	    oc.put("is_inputdir", "true");
-	} else {
-	    oc.put("is_inputdir", "false");
-	}
 
         int outputMax = outputCounter;
         outputCounter = 0;
+
         // generate an input data section in the service code for each input field
-	// and add the evaluationId to the last element
+        // and add the evaluationId to the last element
         for (Input input : inputs) {
             if (!input.getName().equals("evaluationId")) {
                 outputCounter = outputCounter + 1;
@@ -149,23 +150,22 @@ public class ServiceCodeCreator {
         }
 
         // generate an output data section in the service code for each output field
-	boolean has_outputstream = false;
-	boolean has_outputdir = false;
+        boolean has_outputstream = false;
+        boolean has_outputdir = false;
 
 
-	String tmpdir = System.getProperty("java.io.tmpdir");
-	String outputdirname = Long.toString(System.currentTimeMillis());
+        String tmpdir = System.getProperty("java.io.tmpdir");
+        String outputdirname = Long.toString(System.currentTimeMillis());
 
         List<Output> outputs = operation.getOutputs().getOutput();
         for (Output output : outputs) {
-	    addDataSection(operation, oc, output, false);
-
+            addDataSection(operation, oc, output, false);
             if (output.getName().equals("outputdir")) {
                 has_outputdir = true;
             }
-	    if (output.getName().equals("outputstream")) {
-		has_outputstream = true;
-	    }
+            if (output.getName().equals("outputstream")) {
+                has_outputstream = true;
+            }
         }
 
         // insert input and output data sections for the operation
@@ -182,19 +182,19 @@ public class ServiceCodeCreator {
         oc.put("outfileitems", oc.getOutFileItems());
         oc.put("resultelements", oc.getResultElements());
 
-	// outputdir
-	if (has_outputdir) {
-	    oc.put("outputdir", "\"" + tmpdir + File.separator + outputdirname + File.separator + "\"");
-	} else {
-	    oc.put("outputdir", "\"\"");
-	}
+        // outputdir
+        if (has_outputdir) {
+            oc.put("outputdir", "\"" + tmpdir + File.separator + outputdirname + File.separator + "\"");
+        } else {
+            oc.put("outputdir", "\"\"");
+        }
 
-	// outputstream
-	if (has_outputstream) {
-	    oc.put("outputstream", "outputstreamFileName");
-	} else {
-	    oc.put("outputstream", "\"\"");
-	}
+        // outputstream
+        if (has_outputstream) {
+            oc.put("outputstream", "outputstreamFileName");
+        } else {
+            oc.put("outputstream", "\"\"");
+        }
 
         // operation id
         oc.put("opid", String.valueOf(opn));
@@ -250,11 +250,17 @@ public class ServiceCodeCreator {
             isOutput = true;
         }
         boolean autoExtension = (isOutput && output.isAutoExtension() != null) ? output.isAutoExtension().booleanValue() : false;
+
+        // overrides filename's output
+        String outfilename = (isOutput) ? ((Output) inout).getOutFileName() : null;
+        // filename prefix
         String prefixFromInput = (isOutput) ? ((Output) inout).getPrefixFromInput() : null;
+        // filename extention
         String extension = (isOutput) ? ((Output) inout).getExtension() : null;
 
         boolean isRequired = (required != null && required.equalsIgnoreCase("true"));
         String opid = String.valueOf(operation.getOid());
+
         // code template for the the field depending on data type
         boolean isMultiple = restriction != null && restriction.isMultiple();
         String template = "tmpl/datatypes/" + iotype + "_"
@@ -263,18 +269,26 @@ public class ServiceCodeCreator {
                 + ((dataType.equals("xsd:anyURI") // URL with temporary file
                 && !isRequired) ? "_opt" : "") // optional suffix
                 + ".vm";
-        logger.debug("Using template \"" + template + "\" for node \"" + nodeName
-                + "\" in operation " + opid);
+
+        logger.debug("Using template \"" + template + "\" for node \"" + nodeName + "\" in operation " + opid);
+
         File templateFile = new File(template);
         if (templateFile.canRead()) {
             try {
                 SectionCode sectCode = new SectionCode(template);
                 sectCode.put("opid", opid);
                 sectCode.put("operationname", operation.getName());
-                if (iotype == IOType.INPUT) {
 
+                if (outfilename != null) {
+                    sectCode.put("outfilename", "\"" + outfilename + "\"");
+                } else {
+                    sectCode.put("outfilename", "\"\"");
+                }
+
+                if (iotype == IOType.INPUT) {
                     sectCode.put("input_variable", nodeName);
                     String mapping = null;
+
                     if (cliReplacement == null) {
                         // Simple mapping
                         mapping = getCliMapping(inout);
@@ -286,14 +300,16 @@ public class ServiceCodeCreator {
                         cliReplCode.evaluate();
                         mapping = cliReplCode.getCode();
                     }
+
                     sectCode.put("mapping", mapping);
                     String parameter = getOperationParameter(input);
                     oc.addParameter(parameter);
                     String parList = oc.getParametersCsList();
-		    if (evaluationId) {
-			parList = parList + ", String evaluationId";
 
-		    }
+                    if (evaluationId) {
+                        parList = parList + ", String evaluationId";
+                    }
+
                     oc.put("parameters", parList);
                     sectCode.evaluate();
                     oc.appendInputSection(sectCode.getCode());

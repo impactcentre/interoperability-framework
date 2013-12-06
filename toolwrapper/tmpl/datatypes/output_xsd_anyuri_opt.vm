@@ -1,88 +1,110 @@
-        // Output: ${output_variable}
-        File ${output_variable}File = new File(${output_variable}FileName${autoextension});
-        boolean isCreated${output_variable} = false;
-        if (!${output_variable}File.exists() || ${output_variable}File.length() == 0) {
-            infolog("The expected output file " + ${output_variable}File.getName() + " is empty or has not been created");
-        } else {
-            infolog("Output file of size " + ${output_variable}File.length() + " has been created successfully");
-            isCreated${output_variable} = true;
-        }
+    // Output: ${output_variable}
+    File ${output_variable}File = new File(${output_variable}FileName${autoextension});
+    boolean isCreated${output_variable} = false;
 
-        String ${output_variable}publicOutputFileDir = publicOutputBaseFileDir +
-                            "${output_variable}" + File.separator;
-        if (!new File(${output_variable}publicOutputFileDir).isDirectory()) {
-            File publicOutputDirFile = new File(${output_variable}publicOutputFileDir);
-            try {
-                if (publicOutputDirFile.mkdirs()) {
-                    infolog("Created directory: " + ${output_variable}publicOutputFileDir);
-                } else {
-                    errorlog("Could not create the public (file)output directory " + ${output_variable}publicOutputFileDir);
-                    return ${operationname}Result(fac, omNs);
-                }
-            } catch(Exception e){
-                StringWriter sw = new StringWriter();
-                PrintWriter pw = new PrintWriter(sw);
-                e.printStackTrace(pw);
-                errorlog(sw.toString());
+    if (!${output_variable}File.exists() || ${output_variable}File.length() == 0) {
+        infolog("The expected output file " + ${output_variable}File.getName() + " is empty or has not been created");
+    } else {
+        infolog("Output file of size " + ${output_variable}File.length() + " has been created successfully");
+        isCreated${output_variable} = true;
+    }
+
+    // path to the public output directory
+    String ${output_variable}publicOutputFileDir = publicOutputBaseFileDir + "${output_variable}" + File.separator;
+
+    if (!new File(${output_variable}publicOutputFileDir).isDirectory()) {
+        File publicOutputDirFile = new File(${output_variable}publicOutputFileDir);
+        try {
+            if (publicOutputDirFile.mkdirs()) {
+                infolog("Created directory: " + ${output_variable}publicOutputFileDir);
+            } else {
+                errorlog("Could not create the public (file)output directory " + ${output_variable}publicOutputFileDir);
                 return ${operationname}Result(fac, omNs);
             }
+        } catch(Exception e) {
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+
+            e.printStackTrace(pw);
+            errorlog(sw.toString());
+
+            return ${operationname}Result(fac, omNs);
+        }
+    }
+
+    // url pointer to the public output url
+    // this url will end up as the result url
+    URL ${output_variable}FileUrl = null;
+
+    // file pointer to the new file created
+    File ${output_variable}PublicFile;
+
+    // this will override the default filename
+    String ${output_variable}OutFileName = ${outfilename};
+
+    if (outputdir.equals("")) {
+        String ${output_variable}extension = ${output_variable}File.getName().split("\\.")[1];
+
+        if (${output_variable}OutFileName.equals("")) {
+            ${output_variable}PublicFile = new File(${output_variable}publicOutputFileDir + fileName + "." + ${output_variable}extension);
+        } else {
+            ${output_variable}PublicFile = new File(${output_variable}publicOutputFileDir + ${output_variable}OutFileName);
+        }
+        infolog("Public output file: " + ${output_variable}PublicFile.toString());
+        try {
+            if (isCreated${output_variable}) {
+                org.apache.commons.io.FileUtils.copyFile(${output_variable}File, ${output_variable}PublicFile);
+            }
+        } catch (IOException _) {
+            infolog("No outputfile created in the public access directory for '${output_variable}'");
         }
 
-        URL ${output_variable}FileUrl;
-	File ${output_variable}PublicFile;
+        try {
+            ${output_variable}File.delete();
+            infolog("Removing temp file " + ${output_variable}File.toString());
+        } catch (SecurityException _) {
+            infolog("Error while removing file " + ${output_variable}File.toString());
+        }
 
-	if (outputdir.equals("")) {
-	    String ${output_variable}extension = ${output_variable}File.getName().split("\\.")[1];
-	    ${output_variable}PublicFile =
-		    new File(${output_variable}publicOutputFileDir + fileName + "." + ${output_variable}extension);
-	    infolog("Public output file: " + ${output_variable}PublicFile.toString());
-	    try {
-		if(isCreated${output_variable})
-		    org.apache.commons.io.FileUtils.copyFile(${output_variable}File, ${output_variable}PublicFile);
-	    } catch (IOException _) {
-		infolog("No outputfile created in the public access directory for '${output_variable}'");
-	    }
+        try {
+            if (isCreated${output_variable}) {
+                ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + fileName + "." + ${output_variable}extension);
+            } else {
+                ${output_variable}FileUrl = new URL("http://null");
+            }
+        } catch (MalformedURLException ex) {
+            errorlog("Malformed URL for binary result resource. Verify"
+                + "publicHttpAccessUrl parameter in the "
+                + "resources/services.xml. Exception message: "
+                + ex.getMessage());
+            return ${operationname}Result(fac, omNs);
+        }
 
+        if (isCreated${output_variable}) {
+            infolog("Output URL: " + ${output_variable}FileUrl.toString());
+        }
 
-	    try {
-		${output_variable}File.delete();
-		infolog("Removing temp file " + ${output_variable}File.toString());
-	    } catch (SecurityException _) {
-		infolog("Error while removing file " + ${output_variable}File.toString());
-	    }
+    } else {
+        ${output_variable}PublicFile = new File(${output_variable}publicOutputFileDir);
 
-	    try {
-		if(isCreated${output_variable})
-		    ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + fileName + "." + ${output_variable}extension);
-		else
-		    ${output_variable}FileUrl = new URL("http://null");
-	    } catch (MalformedURLException ex) {
-		errorlog("Malformed URL for binary result resource. Verify"
-			+ "publicHttpAccessUrl parameter in the "
-			+ "resources/services.xml. Exception message: "
-			+ ex.getMessage());
-		return ${operationname}Result(fac, omNs);
-	    }
-	    if(isCreated${output_variable})
-		infolog("Output URL: " + ${output_variable}FileUrl.toString());
-	} else {
-	    ${output_variable}PublicFile =
-		    new File(${output_variable}publicOutputFileDir);
-	    try {
-		org.apache.commons.io.FileUtils.copyDirectory(${output_variable}File, ${output_variable}PublicFile);
-	    } catch (IOException _) {
-		infolog("No outputfile created in the public access directory for '${output_variable}'");
-	    }
-	    try {
-		infolog("Removing " + ${output_variable}File.toString());
-		org.apache.commons.io.FileUtils.deleteDirectory(${output_variable}File);
-	    } catch (IOException _) {
-		infolog("Unable to remove tmp dir " + ${output_variable}File.toString());
-	    }
-	    try {
-		${output_variable}FileUrl = new URL(publicHttpAccessUrl + "outputdir");
-	    } catch (MalformedURLException ex) {
-		return ${operationname}Result(fac, omNs);
-	    }
-	    infolog("Output URL: " + ${output_variable}FileUrl.toString());
-	}
+        try {
+            org.apache.commons.io.FileUtils.copyDirectory(${output_variable}File, ${output_variable}PublicFile);
+        } catch (IOException _) {
+            infolog("No outputfile created in the public access directory for '${output_variable}'");
+        }
+
+        try {
+            infolog("Removing " + ${output_variable}File.toString());
+            org.apache.commons.io.FileUtils.deleteDirectory(${output_variable}File);
+        } catch (IOException _) {
+            infolog("Unable to remove tmp dir " + ${output_variable}File.toString());
+        }
+
+        try {
+            ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "outputdir");
+        } catch (MalformedURLException ex) {
+            return ${operationname}Result(fac, omNs);
+        }
+
+        infolog("Output URL: " + ${output_variable}FileUrl.toString());
+    }
