@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.impact_project.iif.ws</groupId>
 	<artifactId>WS-Client</artifactId>
-	<version>0.5.0</version>
+	<version>0.6.0</version>
 	<packaging>war</packaging>
 	<name>WS-Client</name>
 	<description>Generic client that can be used to test an arbitrary SOAP Web Service</description>
@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>eu.impact_project.iif.ws</groupId>
 			<artifactId>generic-soap-client</artifactId>
-			<version>0.5.0</version>
+			<version>0.6.0</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>

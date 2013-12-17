@@ -15,8 +15,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.7</jdk.version>
-		<org.apache.axis2.version>1.5.4</org.apache.axis2.version>
-		<ch.qos.logback.version>0.9.28</ch.qos.logback.version>
+		<org.apache.axis2.version>1.5.6</org.apache.axis2.version>
+		<ch.qos.logback.version>0.9.30</ch.qos.logback.version>
 	</properties>
 	<build>
 		<plugins>
@@ -60,7 +60,9 @@
 					<scanTargets>
 						<scanTarget>src/main</scanTarget>
 					</scanTargets>
-				</configuration>
+                    <stopKey/>
+                    <stopPort/>
+                </configuration>
 			</plugin>
 
 			<plugin>
