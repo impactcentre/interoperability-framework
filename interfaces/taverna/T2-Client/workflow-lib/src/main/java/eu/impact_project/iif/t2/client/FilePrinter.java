@@ -25,15 +25,15 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 
 /**
  * Redirects a temporarily stored file to the response object. In effect, the
@@ -45,7 +45,6 @@ public class FilePrinter extends HttpServlet {
 
 	public FilePrinter() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public void init(ServletConfig config) throws ServletException {
@@ -58,16 +57,17 @@ public class FilePrinter extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 		String fileName = "";
+
 		try {
 			fileName = request.getParameter("file");
 		} catch (Exception e) {
-			// TODO: handle exception
+            e.printStackTrace();
 		}
 
 		if (fileName != null && !fileName.equals("")) {
-			String tmpDir = ((File) getServletContext().getAttribute(
-					"javax.servlet.context.tempdir")).getAbsolutePath();
+			String tmpDir = ((File) getServletContext().getAttribute("javax.servlet.context.tempdir")).getAbsolutePath();
 			File file = new File(tmpDir + "/" + fileName);
 			InputStream inStream = new FileInputStream(file);
 			OutputStream outStream = response.getOutputStream();
@@ -77,21 +77,17 @@ public class FilePrinter extends HttpServlet {
 			int bufSize = 1024 * 8;
 			byte[] bytes = new byte[bufSize];
 			int count = bis.read(bytes);
+
 			while (count != -1 && count <= bufSize) {
 				outStream.write(bytes, 0, count);
 				count = bis.read(bytes);
 			}
-			if (count != -1) {
-				outStream.write(bytes, 0, count);
-			}
+			if (count != -1) outStream.write(bytes, 0, count);
 			outStream.close();
-
 		}
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
-
 }

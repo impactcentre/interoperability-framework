@@ -5,7 +5,8 @@ What is T2-Client
 	for the workflow. Currently, the program does not recognize if an input value must be 
 	a string or a file. This is why the user must click on the "switch" symbol to choose between
 	string and file upload. If the input is multi-valued, more input fields can be added by 
-	clicking on the plus sign.
+	clicking on the plus sign. If the input of the workflow is a list of depth 1, the workflow
+    will be run multiple times, until the supplied list is empty.
 	
 	In addition to uploading a workflow from a local disk, the user can login to 
 	{{{http://www.myexperiment.org/}myExperiment}}. After that, a workflow belonging to the user
@@ -17,9 +18,9 @@ What is T2-Client
 	presented as strings or as links to files.
 	
 	For a proper execution, T2-Client requires the 
-	{{{http://www.mygrid.org.uk/dev/taverna-server/download.html}Taverna Server}} version 0.2.1
+	{{{http://www.taverna.org.uk/download/server/}Taverna Server}} version 2.4
 	running in an application container (e. g. Apache Tomcat) on
-	localhost:9080/tavernaserver. Currently, an exception is generated 
+	localhost:8080/taverna-server. Currently, an exception is generated
 	if an output of a workflow is a binary file. The workaround for this problem is to encode all output
 	binary files like images into the base64 format with the corresponding local service in Taverna while 
 	creating the workflow.

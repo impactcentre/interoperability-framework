@@ -23,13 +23,13 @@ package eu.impact_project.iif.t2.client;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 
 /**
  * Sets the currently selected myExperiment groups
@@ -41,7 +41,6 @@ public class GroupSelector extends HttpServlet {
 
 	public GroupSelector() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public void init(ServletConfig config) throws ServletException {
@@ -50,7 +49,6 @@ public class GroupSelector extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -60,8 +58,8 @@ public class GroupSelector extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 
-
 		int i = 0;
+
 		while (request.getParameter("MyExpGroup" + i) != null
 				|| request.getAttribute("MyExpGroup" + i) != null) {
 			
@@ -86,13 +84,10 @@ public class GroupSelector extends HttpServlet {
 				workflowUrl = workflowAttrib;
 			}
 			session.setAttribute("currentWfId" + i, workflowUrl);
-
-			
 			i++;
 		}
 
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/");
 		rd.forward(request, response);
-
 	}
 }

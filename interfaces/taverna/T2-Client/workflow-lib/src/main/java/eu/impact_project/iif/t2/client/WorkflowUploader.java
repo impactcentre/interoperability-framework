@@ -18,12 +18,12 @@
 	limitations under the License.
 
 */
-
 package eu.impact_project.iif.t2.client;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -32,24 +32,25 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 
+import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.UsernamePasswordCredentials;
-import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.UsernamePasswordCredentials;
+
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
-import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import org.jdom.JDOMException;
 import org.jdom.xpath.XPath;
 
 /**
@@ -59,7 +60,6 @@ import org.jdom.xpath.XPath;
 public class WorkflowUploader extends HttpServlet {
 	protected String redirect = "/";
 
-	
 	static final Comparator<WorkflowInfo> TITLE_ORDER = new Comparator<WorkflowInfo>() {
 		public int compare(WorkflowInfo w1, WorkflowInfo w2) {
 			return w1.getTitle().compareToIgnoreCase(w2.getTitle());
@@ -68,7 +68,6 @@ public class WorkflowUploader extends HttpServlet {
 
 	public WorkflowUploader() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public void init(ServletConfig config) throws ServletException {
@@ -77,7 +76,6 @@ public class WorkflowUploader extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -104,8 +102,7 @@ public class WorkflowUploader extends HttpServlet {
 			// session.setAttribute("selectedGroupName", null);
 
 			// the client will be used to query myexperiment's REST api
-			HttpClient client = Helper.createAuthenticatingClient(
-					"www.myexperiment.org", user, password);
+			HttpClient client = Helper.createAuthenticatingClient("www.myexperiment.org", user, password);
 
 			// GET method for retrieving the xml with the userID
 			GetMethod get = new GetMethod(urlStringWhoami);
@@ -125,8 +122,7 @@ public class WorkflowUploader extends HttpServlet {
 					// userID does not need to be extracted,
 					// the uri can be used directly to query the api for infos
 					// about the user
-					Attribute attr = (Attribute) Helper.applyXPathSingleNode(
-							xmlResponse, "//user/@uri");
+					Attribute attr = (Attribute) Helper.applyXPathSingleNode(xmlResponse, "//user/@uri");
 					String userUri = attr.getValue();
 
 					// GET method to retrieve all groups of the user
@@ -134,8 +130,7 @@ public class WorkflowUploader extends HttpServlet {
 					client.executeMethod(get);
 					xmlResponse = get.getResponseBodyAsStream();
 					// get all groups from received xml
-					List<Element> groupElements = Helper
-							.applyXPathSeveralNodes(xmlResponse, "//group");
+					List<Element> groupElements = Helper.applyXPathSeveralNodes(xmlResponse, "//group");
 
 					// will be used in the jsp to construct selection lists
 					Map<String, List<WorkflowInfo>> allWfInfos = new LinkedHashMap<String, List<WorkflowInfo>>();
@@ -151,10 +146,8 @@ public class WorkflowUploader extends HttpServlet {
 
 						// set the default selection
 						if (isFirstGroup || groupName.startsWith("IMPACT")) {
-							session.setAttribute("selectedGroupName0",
-									groupName);
-							session.setAttribute("selectedGroupName1",
-									groupName);
+							session.setAttribute("selectedGroupName0", groupName);
+							session.setAttribute("selectedGroupName1", groupName);
 							isFirstGroup = false;
 						}
 
@@ -184,56 +177,41 @@ public class WorkflowUploader extends HttpServlet {
 						// the select will show this under the other groups
 						allWfInfos.put("Own workflows", wfInfosUser);
 					}
-
 					session.setAttribute("allWfInfos", allWfInfos);
 					session.setAttribute("currentTab0", "remote");
 					session.setAttribute("currentTab1", "remote");
-
 				} else {
 					session.setAttribute("logged_in", "false");
 					request.setAttribute("login_error", "Login error");
-					
 					session.setAttribute("currentTab0", "local");
 					session.setAttribute("currentTab1", "local");
-
 				}
-
 			} catch (HttpException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (JDOMException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
 				// release any connection resources used by the method
 				get.releaseConnection();
 			}
-
 		}
-
-		RequestDispatcher rd = getServletContext().getRequestDispatcher(
-				redirect);
+		RequestDispatcher rd = getServletContext().getRequestDispatcher(redirect);
 		rd.forward(request, response);
-
 	}
 
 	private List<WorkflowInfo> createWfInfos(InputStream xmlResponse) {
-
 		try {
 			List<WorkflowInfo> wfInfos = new ArrayList<WorkflowInfo>();
 
-			List<Element> workflowElements = Helper.applyXPathSeveralNodes(
-					xmlResponse, "//workflow");
+			List<Element> workflowElements = Helper.applyXPathSeveralNodes(xmlResponse, "//workflow");
 
 			for (Element wf : workflowElements) {
 				String wfId = wf.getAttributeValue("resource").substring(38);
 				String wfTitle = wf.getTextTrim();
 				WorkflowInfo wfInfo = new WorkflowInfo(wfId);
 				wfInfo.setTitle(wfTitle);
-
 				wfInfos.add(wfInfo);
 			}
 			Collections.sort(wfInfos, TITLE_ORDER);
@@ -247,7 +225,6 @@ public class WorkflowUploader extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return null;
 	}
 }

@@ -22,8 +22,8 @@
 package eu.impact_project.iif.t2.client;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -31,20 +31,21 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
-import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.xmlbeans.impl.util.Base64;
+
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
-import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import org.jdom.JDOMException;
 import org.jdom.xpath.XPath;
 
 /**
@@ -52,7 +53,8 @@ import org.jdom.xpath.XPath;
  * 
  * @author dennis
  * 
- */
+*/
+
 public class Helper {
 
 	/**
@@ -133,15 +135,13 @@ public class Helper {
 					// uploaded workflow file
 				} else if (item.getFieldName().startsWith("file_workflow")) {
 
-					htmlFormItems.put(item.getFieldName(), new String(item
-							.get()));
+					htmlFormItems.put(item.getFieldName(), new String(item.get()));
 
 					// uploaded file
 				} else {
 
 					// encode the uploaded file to base64
-					String currentAttachment = new String(Base64.encode(item
-							.get()));
+					String currentAttachment = new String(Base64.encode(item.get()));
 
 					// put the encoded attachment into the map
 					htmlFormItems.put(item.getFieldName(), currentAttachment);
@@ -149,7 +149,6 @@ public class Helper {
 			}
 
 		} catch (FileUploadException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return htmlFormItems;

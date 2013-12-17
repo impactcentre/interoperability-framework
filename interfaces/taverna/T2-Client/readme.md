@@ -1,4 +1,4 @@
-What is T2-Client:
+What is T2-Client: [![Build Status](https://secure.travis-ci.org/impactcentre/iif-taverna2-client.png?branch=master)](http://travis-ci.org/impactcentre/iif-taverna2-client)
 ------------------
 
 The Taverna 2 Server Client can be used to execute workflows created with Taverna 2 (having the extension .t2flow). 
@@ -6,7 +6,8 @@ After the user uploads the workflow to be executed, the application presents the
 for the workflow. Currently, the program does not recognize if an input value must be 
 a string or a file. This is why the user must click on the "switch" symbol to choose between
 string and file upload. If the input is multi-valued, more input fields can be added by 
-clicking on the plus sign.
+clicking on the plus sign. If the input of the workflow is a list of depth 1, the workflow
+will be run multiple times, until the supplied list is empty.
 	
 In addition to uploading a workflow from a local disk, the user can login to 
 [myExperiment](http://www.myexperiment.org/ "myExperiment"). After that, a workflow belonging to the user
@@ -66,4 +67,4 @@ Maven generates a WAR archive for each frontend module (*workflow-client*) in th
 
 **OneRunSupport**
 
-To run a workflow from myExperiment at once, use the following URL: {base_path}/WorkflowDownloader?id={myExperimentID}
+To run a workflow from myExperiment at once, use the following URL: /WorkflowDownloader?id=3418

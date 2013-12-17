@@ -22,25 +22,26 @@
 package eu.impact_project.iif.t2.client;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
+import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.UsernamePasswordCredentials;
+
 import org.jdom.Document;
 import org.jdom.Element;
-import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import org.jdom.JDOMException;
 
 /**
  * Gets information about a workflow.
@@ -50,7 +51,6 @@ public class InfoGenerator extends HttpServlet {
 
 	public InfoGenerator() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public void init(ServletConfig config) throws ServletException {
@@ -64,12 +64,8 @@ public class InfoGenerator extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(true);
-
 		String wfId = request.getParameter("id");
-
-
-		String urlString = "http://www.myexperiment.org/workflow.xml?id="
-				+ wfId;
+		String urlString = "http://www.myexperiment.org/workflow.xml?id=" + wfId;
 
 		String user = (String) session.getAttribute("user");
 		String password = (String) session.getAttribute("password");
@@ -103,22 +99,15 @@ public class InfoGenerator extends HttpServlet {
 			session.setAttribute("wfDetails", details);
 			
 		} catch (JDOMException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		RequestDispatcher rd = getServletContext().getRequestDispatcher(
-				"/info.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/info.jsp");
 		rd.forward(request, response);
-
 	}
 
-	/**
-	 * 
-	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
 	}
 
 }

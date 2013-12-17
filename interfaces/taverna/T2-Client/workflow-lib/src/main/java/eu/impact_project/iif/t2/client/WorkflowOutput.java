@@ -50,8 +50,7 @@ public class WorkflowOutput {
 	}
 
 	public void setValue(OutputPort value) {
-		if (value != null)
-		{
+		if (value != null) {
 			this.url = value.getReference().toString();
 			this.value = Arrays.toString(value.getData(0));
 		}

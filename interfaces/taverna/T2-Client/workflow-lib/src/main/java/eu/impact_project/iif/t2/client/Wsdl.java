@@ -20,33 +20,27 @@ public class Wsdl {
 		this.pass = pass;
 	}
 	
-	public void setUrl(String url)
-	{
+	public void setUrl(String url) {
 		this.url = url;
 	}
 	
-	public void setUser(String user)
-	{
+	public void setUser(String user) {
 		this.user = user;
 	}
 	
-	public void setPass(String pass)
-	{
+	public void setPass(String pass) {
 		this.pass = pass;
 	}
 	
-	public String getUrl()
-	{
+	public String getUrl() {
 		return this.url;
 	}
 	
-	public String getUser()
-	{
+	public String getUser() {
 		return this.user;
 	}
 	
-	public String getPass()
-	{
+	public String getPass() {
 		return this.pass;
 	}
 	
