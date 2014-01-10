@@ -85,7 +85,11 @@
         }
 
     } else {
-        ${output_variable}PublicFile = new File(${output_variable}publicOutputFileDir);
+        if (${output_variable}OutFileName.equals("")) {
+                ${output_variable}PublicFile = new File(${output_variable}publicOutputFileDir);
+        } else {
+                ${output_variable}PublicFile = new File(${output_variable}publicOutputFileDir + ${output_variable}OutFileName);
+        }
 
         try {
             org.apache.commons.io.FileUtils.copyDirectory(${output_variable}File, ${output_variable}PublicFile);
