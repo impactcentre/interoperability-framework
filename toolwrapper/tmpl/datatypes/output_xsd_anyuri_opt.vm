@@ -68,7 +68,11 @@
 
         try {
             if (isCreated${output_variable}) {
-                ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + fileName + "." + ${output_variable}extension);
+                if (${output_variable}OutFileName.equals("")) {
+                    ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + fileName + "." + ${output_variable}extension);
+                } else {
+                    ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + ${output_variable}OutFileName);
+                }
             } else {
                 ${output_variable}FileUrl = new URL("http://null");
             }

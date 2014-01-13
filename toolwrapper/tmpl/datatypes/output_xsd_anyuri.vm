@@ -45,7 +45,7 @@
     if (outputdir.equals("")) {
         String ${output_variable}extension = ${output_variable}File.getName().split("\\.")[1];
 
-        if (${output_variable}PublicFile.equals("")) {
+        if (${output_variable}OutFileName.equals("")) {
             ${output_variable}PublicFile =
                 new File(${output_variable}publicOutputFileDir + fileName + "." + ${output_variable}extension);
         } else {
@@ -71,7 +71,11 @@
         }
 
         try {
-            ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + fileName + "." + ${output_variable}extension);
+            if (${output_variable}OutFileName.equals("")) {
+                ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + fileName + "." + ${output_variable}extension);
+            } else {
+                ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "${output_variable}" + "/" + ${output_variable}OutFileName);
+            }
         } catch (MalformedURLException ex) {
             errorlog("Malformed URL for binary result resource. Verify"
                 + "publicHttpAccessUrl parameter in the "
