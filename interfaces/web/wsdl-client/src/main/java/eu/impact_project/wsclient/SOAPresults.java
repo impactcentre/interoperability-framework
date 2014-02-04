@@ -101,7 +101,6 @@ public class SOAPresults extends HttpServlet {
 		BufferedInputStream bis = null;
 		user = request.getParameter("user");
 		pass = request.getParameter("pass");
-		
 		try {
 
 			HttpSession session = request.getSession(true);
@@ -127,6 +126,8 @@ public class SOAPresults extends HttpServlet {
 			String defaultFilePrefix = props.getProperty("defaultFilePrefix");
 
 			SoapService serviceObject = (SoapService) session.getAttribute("serviceObject");
+			session.setMaxInactiveInterval(300000);
+			session.setAttribute("SO_TIMEOUT", 300000);
 			SoapOperation operation = null;
 			if (supportFileUpload) {
 				
@@ -181,6 +182,7 @@ public class SOAPresults extends HttpServlet {
 				}
 
 			}
+			
 						
 			List<SoapOutput> outs = operation.execute(user,pass);
 			String soapResponse = operation.getResponse();

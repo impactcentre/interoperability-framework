@@ -66,6 +66,7 @@ import com.eviware.soapui.impl.wsdl.WsdlOperation;
 import com.eviware.soapui.impl.wsdl.WsdlProject;
 import com.eviware.soapui.model.iface.Operation;
 import com.eviware.soapui.support.SoapUIException;
+import com.eviware.soapui.support.*;
 
 import eu.impact_project.iif.ws.generic.SoapService;
 
