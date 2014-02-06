@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>eu.impact_project.iif.ws</groupId>
 			<artifactId>generic-soap-client</artifactId>
-			<version>0.6.0</version>
+			<version>0.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
