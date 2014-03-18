@@ -17,17 +17,15 @@
 package eu.impact_project.iif.tw.gen;
 
 import eu.impact_project.iif.tw.tmpl.GenericCode;
-import eu.impact_project.iif.tw.toolspec.Dataexchange;
-import eu.impact_project.iif.tw.toolspec.Deployment;
-import eu.impact_project.iif.tw.toolspec.Deployref;
-import eu.impact_project.iif.tw.toolspec.Manager;
-import eu.impact_project.iif.tw.toolspec.Operation;
-import eu.impact_project.iif.tw.toolspec.Port;
-import eu.impact_project.iif.tw.toolspec.Service;
+import eu.impact_project.iif.tw.toolspec.*;
 import eu.impact_project.iif.tw.util.FileUtil;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.List;
+import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -35,18 +33,14 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
 
 /**
  *
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.6
  */
 public class DeploymentCreator {
 
