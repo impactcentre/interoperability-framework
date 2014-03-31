@@ -53,7 +53,7 @@ import eu.impact_project.iif.tw.util.FileUtil;
  * soap/rest web service.
  *
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public class ToolWrapper {
     // Logger instance

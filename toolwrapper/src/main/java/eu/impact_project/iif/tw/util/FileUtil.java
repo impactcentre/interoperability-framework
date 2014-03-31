@@ -18,19 +18,15 @@
 
 package eu.impact_project.iif.tw.util;
 
-import java.io.Closeable;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
+
+import java.io.*;
 
 /**
  * These are generic file utilities used by the client and service.
  * @author Thomas Kraemer
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public final class FileUtil {
 

@@ -15,16 +15,17 @@
  */
 package eu.impact_project.iif.tw.conf;
 
-import java.io.File;
-import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
 import eu.impact_project.iif.tw.gen.GeneratorException;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
+import java.io.File;
 
 /**
  * Configuration files
 
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public class Configuration {
 

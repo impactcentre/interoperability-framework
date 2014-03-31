@@ -16,18 +16,18 @@
  */
 package eu.impact_project.iif.tw.tmpl;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * Operation code that can be evaluated by the Velocity template
  * engine. Evaluation is performed by applying the Velocity context to the
  * source code content.
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public class OperationCode extends Code {
 

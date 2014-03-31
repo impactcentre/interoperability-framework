@@ -16,21 +16,18 @@
  */
 package eu.impact_project.iif.tw.tmpl;
 
+import org.apache.log4j.Logger;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import junit.framework.TestCase;
-
-import org.junit.Test;
-import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * Test class for the template-based service code generator.
  * 
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public class TestServiceCodeTemplate {
 

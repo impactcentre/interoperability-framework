@@ -17,20 +17,19 @@
 
 package eu.impact_project.iif.tw.util;
 
+import eu.impact_project.iif.tw.gen.GeneratorException;
+import org.apache.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
-
-import eu.impact_project.iif.tw.gen.GeneratorException;
 
 /**
  * PropertyUtils
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public class PropertyUtil {
 

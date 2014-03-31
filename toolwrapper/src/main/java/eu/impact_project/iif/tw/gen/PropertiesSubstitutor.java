@@ -15,21 +15,21 @@
  */
 package eu.impact_project.iif.tw.gen;
 
-import eu.impact_project.iif.tw.util.PropertyUtil;
 import eu.impact_project.iif.tw.util.FileUtil;
+import eu.impact_project.iif.tw.util.PropertyUtil;
+import eu.impact_project.iif.tw.util.StringConverterUtil;
+import org.apache.log4j.Logger;
+import org.apache.velocity.VelocityContext;
+
 import java.io.File;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
-import eu.impact_project.iif.tw.util.StringConverterUtil;
-import org.apache.velocity.VelocityContext;
 
 /**
  * PropertiesSubstitutor
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public class PropertiesSubstitutor extends Substitutor {
 

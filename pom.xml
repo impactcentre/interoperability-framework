@@ -4,7 +4,7 @@
 	<groupId>eu.impact_project</groupId>
 	<artifactId>iif</artifactId>
 	<name>IMPACT Interoperability Framework</name>
-	<version>0.6.0</version>
+	<version>0.7.0</version>
 	<packaging>pom</packaging>
 	<description>Web Service Framework for Command Line Applications</description>
 	<url>http://www.digitisation.eu/tools/browse/interoperability-framework/</url>

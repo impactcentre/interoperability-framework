@@ -6,7 +6,7 @@
     public OMElement ${operationname}(${parameters}) {
 
         infolog("========= PROCESSING REQUEST =========");
-	infolog("Using toolwrapper version 0.5.0");
+	infolog("Using toolwrapper version 0.7.0");
         infolog("Using service: ${global_project_prefix}${servicename}Service");
 
 	infolog("Using outputdir: " + ${outputdir} );

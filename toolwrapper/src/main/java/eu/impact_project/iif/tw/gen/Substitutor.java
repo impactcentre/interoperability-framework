@@ -15,19 +15,19 @@
  */
 package eu.impact_project.iif.tw.gen;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.StringWriter;
+
 /**
  * GenericSubstitutor
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public abstract class Substitutor {
 

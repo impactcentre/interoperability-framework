@@ -19,7 +19,7 @@ package eu.impact_project.iif.tw.gen;
 /**
  * Tool
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public class ServiceDef {
 

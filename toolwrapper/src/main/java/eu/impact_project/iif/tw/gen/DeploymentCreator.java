@@ -46,7 +46,7 @@ import org.w3c.dom.NodeList;
 /**
  *
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public class DeploymentCreator {
 

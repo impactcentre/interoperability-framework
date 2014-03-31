@@ -24,7 +24,7 @@ import java.io.IOException;
  * engine. Evaluation is performed by applying the Velocity context to the
  * source code content.
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public class ServiceXmlOp extends Code {
 

@@ -1,4 +1,4 @@
-Tool Wrapper v0.5
+Tool Wrapper v0.7
 -----------------
  
 **About**
@@ -22,7 +22,7 @@ is recommended. Also make sure the JAVA_HOME environment variable is defined.
 
 2) If the build is successful (it should be), then run the toolwrapper jar you've just built
 
-    java -jar ./target/toolwrapper-0.5.0-jar-with-dependencies.jar
+    java -jar ./target/toolwrapper-0.7.0-jar-with-dependencies.jar
 
 This will generate an example project generated/simplecopy10. This service is
 a an example wrapper project for the linux copy command "cp" or the COPY

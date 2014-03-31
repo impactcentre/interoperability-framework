@@ -18,7 +18,7 @@ package eu.impact_project.iif.tw.gen.types;
 /**
  * Message Type
  * @author shsdev https://github.com/shsdev
- * @version 0.5
+ * @version 0.7
  */
 public enum MsgType {
 	/** Enum for a request message */

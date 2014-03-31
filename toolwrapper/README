@@ -1,4 +1,4 @@
-Tool Wrapper v0.5
+Tool Wrapper v0.7
 =================
  
 About
@@ -24,7 +24,7 @@ is recommended. Also make sure the JAVA_HOME environment variable is defined.
 
 2) If the build is successful (it should be), then run the toolwrapper jar you've just built
 
-        java -jar ./target/toolwrapper-0.5.0-jar-with-dependencies.jar
+        java -jar ./target/toolwrapper-0.7.0-jar-with-dependencies.jar
 
    This will generate an example project generated/simplecopy10. This service is
    a an example wrapper project for the linux copy command "cp" or the COPY
@@ -72,21 +72,21 @@ is recommended. Also make sure the JAVA_HOME environment variable is defined.
                <tns:returncode>0</tns:returncode>
                <tns:time>115</tns:time>
                <tns:log>========= PROCESSING REQUEST =========.
-Using service: IMPACTSimpleCopy10Service.
-Parameter processingUnit from services.xml: http://localhost:8080/impact/instances/tomcat1.
-URL of input file: http://localhost:8080/impactservices/impact-simplecopy10-service/test.txt.
-Input file created: /tmp/simplecopy10-tmp-store/fromurl7101255115685982047.txt.
-Pattern (before substitution): /bin/cp ${input} ${output}.
-input substitution variable value: /tmp/simplecopy10-tmp-store/fromurl7101255115685982047.txt.
-output substitution variable value: /tmp/simplecopy10-tmp-store/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
-Command (after substitution): /bin/cp /tmp/simplecopy10-tmp-store/fromurl7101255115685982047.txt /tmp/simplecopy10-tmp-store/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
-Assigned exit code: 0.
-Process finished successfully with code 0.
-Output file of size 21 has been created successfully.
-Public output file: src/main/webapp/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
-Output URL: http://localhost:8080/impact/tmp/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
-Process finished successfully after 115 milliseconds..
-Service request has been processed successfully.
+                Using service: IMPACTSimpleCopy10Service.
+                Parameter processingUnit from services.xml: http://localhost:8080/impact/instances/tomcat1.
+                URL of input file: http://localhost:8080/impactservices/impact-simplecopy10-service/test.txt.
+                Input file created: /tmp/simplecopy10-tmp-store/fromurl7101255115685982047.txt.
+                Pattern (before substitution): /bin/cp ${input} ${output}.
+                input substitution variable value: /tmp/simplecopy10-tmp-store/fromurl7101255115685982047.txt.
+                output substitution variable value: /tmp/simplecopy10-tmp-store/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
+                Command (after substitution): /bin/cp /tmp/simplecopy10-tmp-store/fromurl7101255115685982047.txt /tmp/simplecopy10-tmp-store/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
+                Assigned exit code: 0.
+                Process finished successfully with code 0.
+                Output file of size 21 has been created successfully.
+                Public output file: src/main/webapp/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
+                Output URL: http://localhost:8080/impact/tmp/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt.
+                Process finished successfully after 115 milliseconds..
+                Service request has been processed successfully.
                </tns:log>
                <tns:message>Service request has been processed successfully</tns:message>
                <tns:output>http://localhost:8080/impact/tmp/test.txt_IMPACTSimpleCopy10Service_outputFile_6391763547702641327.txt</tns:output>
