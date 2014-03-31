@@ -20,15 +20,6 @@
 
 package eu.impact_project.resultsrepository;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.InputStream;
-import java.io.IOException;
-import java.net.URL;
-import java.util.*;
-
-import javax.net.ssl.SSLHandshakeException;
-
 import org.apache.commons.httpclient.Credentials;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -37,6 +28,13 @@ import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.InputStreamRequestEntity;
 import org.apache.commons.httpclient.methods.PutMethod;
+
+import javax.net.ssl.SSLHandshakeException;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.*;
 
 /**
  * Is responsible for all operations on the Webdav repository.
@@ -204,7 +202,7 @@ public class DavHandler {
 	/**
 	 * Saves a stream into a file in the repository.
 	 * 
-	 * @param text
+	 * @param stream
 	 *            Stream to be stored.
 	 * @param url
 	 *            URL to the file that will be created.
