@@ -65,7 +65,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file in PNG format</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bin.png</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bin.png</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -89,7 +89,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file in PNG format</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bin.png</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bin.png</Default>
                         </input>
                     </inputs>
                     <outputs>

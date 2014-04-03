@@ -35,14 +35,14 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file in PNG format</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.png</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.png</Default>
                         </input>
                         <input name="traindata">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>traindata</CliMapping>
                             <Documentation>URL reference to classifier in XML format</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/classifier.xml</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/classifier.xml</Default>
                         </input>
                     </inputs>
                     <outputs>

@@ -34,14 +34,14 @@
                             <Required>true</Required>
                             <CliMapping>stylesheet</CliMapping>
                             <Documentation>URL reference to XSL stylesheet</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/stylesheet.xsl</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/stylesheet.xsl</Default>
                         </input>
                         <input name="document">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>document</CliMapping>
                             <Documentation>URL reference to XML document</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/document.xml</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/document.xml</Default>
                         </input>
                     </inputs>
                     <outputs>

@@ -2392,7 +2392,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/ocr.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/ocr.txt</Default>
                         </input>
                     </inputs>
                     <outputs>

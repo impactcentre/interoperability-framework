@@ -37,7 +37,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.tif</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.tif</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -52,22 +52,22 @@
                 </operation>
             </operations>
             <deployto>
-                <deployref default="true" ref="local"/>
+                <deployref default="true" ref="public"/>
             </deployto>
         </service>
     </services>
     <deployments>
-        <deployment id="local">
-            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
-            <host>localhost</host>
+        <deployment id="public">
+            <identifier>http://succeed.kbresearch.nl:80/</identifier>
+            <host>succeed.kbresearch.nl</host>
             <ports>
-                <port type="http">8080</port>
+                <port type="http">80</port>
                 <port type="https">8043</port>
             </ports>
             <manager>
-                <user>tomcat</user>
-                <password>tomcat</password>
-                <path>manager</path>
+                <user>kb</user>
+                <password>Onderzoek4KB</password>
+                <path>manager/text</path>
             </manager>
             <!--
             Full path to the directory where the tool has been installed.
@@ -77,10 +77,10 @@
             or you can use just slashes,
             e.g. c:/foo/bar
             -->
-            <toolsbasedir>C:\\EXIFTOOL\\</toolsbasedir>
+            <toolsbasedir></toolsbasedir>
             <dataexchange>
-                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
-                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+                <accessdir>/var/www/testfiles/</accessdir>
+                <accessurl>http://kbresearch.nl/testfiles/</accessurl>
             </dataexchange>
         </deployment>
     </deployments>

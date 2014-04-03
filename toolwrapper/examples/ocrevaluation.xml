@@ -61,21 +61,21 @@
                             <Required>true</Required>
                             <CliMapping>stopwordlist</CliMapping>
                             <Documentation>URL reference to list with stop words to disregard in evaluation</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/stopwords.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/stopwords.txt</Default>
                         </input>
                         <input name="groundtruth">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>groundtruth</CliMapping>
                             <Documentation>URL reference to ground truth text file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.txt</Default>
                         </input>
                         <input name="ocr">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>ocr</CliMapping>
                             <Documentation>URL reference to OCR result text file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/ocr.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/ocr.txt</Default>
                         </input>
                         <input name="evaluationId">
                             <Datatype>xsd:string</Datatype>

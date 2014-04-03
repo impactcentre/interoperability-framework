@@ -33,7 +33,7 @@
                             <Required>true</Required>
                             <CliMapping>infile</CliMapping>
                             <Documentation>URL reference to input image file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.tif</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.tif</Default>
                         </input>
                     </inputs>
                     <outputs>

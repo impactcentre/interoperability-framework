@@ -40,7 +40,7 @@
                             <Required>true</Required>
                             <CliMapping>bwimage</CliMapping>
                             <Documentation>URL reference to bitonal image file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.typewriter.bw.tif</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.typewriter.bw.tif</Default>
                         </input>
                         <input name="grayimage">
                             <Datatype>xsd:anyURI</Datatype>
@@ -61,7 +61,7 @@
                             <Required>true</Required>
                             <CliMapping>inputxml</CliMapping>
                             <Documentation>URL reference to input xml file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/lines.xml</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/lines.xml</Default>
                         </input>
                         <input name="weights">
                             <Datatype>xsd:string</Datatype>

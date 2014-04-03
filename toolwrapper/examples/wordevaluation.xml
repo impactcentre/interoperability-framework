@@ -34,14 +34,14 @@
                             <Required>true</Required>
                             <CliMapping>groundtruth</CliMapping>
                             <Documentation>URL reference to ground truth file in PAGE format</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.xml</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.xml</Default>
                         </input>
                         <input name="ocrresult">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>ocrresult</CliMapping>
                             <Documentation>URL reference to OCR result file in PAGE format</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/ocr.xml</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/ocr.xml</Default>
                         </input>
                         <input name="evaluationId">
                             <Datatype>xsd:string</Datatype>

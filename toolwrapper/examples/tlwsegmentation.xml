@@ -46,14 +46,14 @@
                             <Required>true</Required>
                             <CliMapping>binimg</CliMapping>
                             <Documentation>Filename of the 1-bit (binary) TIFF image to be segmented</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bw.tif</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bw.tif</Default>
                         </input>
                         <input name="segXmlFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>inputxml</CliMapping>
                             <Documentation>Filename of a PAGE XML file containing a region-level or word segmentation layout</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/lines.xml</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/lines.xml</Default>
                         </input>
                         <input name="segmenter">
                             <Datatype>xsd:string</Datatype>
@@ -96,7 +96,7 @@
                             <Required>false</Required>
                             <CliMapping>paramfile</CliMapping>
                             <Documentation>Full path to *.ini file containing a parameter set for the hybrid line segmenter or the density word segmenter - Note: Only regarded if option 'p' is set</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/params.ini</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/params.ini</Default>
                         </input>
                     </inputs>
                     <outputs>

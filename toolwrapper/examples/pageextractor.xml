@@ -100,14 +100,14 @@
                             <Required>true</Required>
                             <CliMapping>input_img</CliMapping>
                             <Documentation>URL to bitonal image in TIF format</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bw.tif</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bw.tif</Default>
                         </input>
                         <input name="inputXml">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>input_xml</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.xml</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.xml</Default>
                         </input>
                         <input name="options">
                             <Datatype>xsd:string</Datatype>
@@ -126,7 +126,7 @@
                             <Required>false</Required>
                             <CliMapping>params</CliMapping>
                             <Documentation>URL reference to optional parameter file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/paramx.ini</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/paramx.ini</Default>
                         </input>
                     </inputs>
                     <outputs>

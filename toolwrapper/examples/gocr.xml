@@ -38,7 +38,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to image file in PBM, PGM or PPM format</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.pgm</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.pgm</Default>
                         </input>
                         <input name="format">
                             <Datatype>xsd:string</Datatype>

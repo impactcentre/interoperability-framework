@@ -51,7 +51,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to JPEG2000 image file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.jp2</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.jp2</Default>
                         </input>
                     </inputs>
                     <outputs>

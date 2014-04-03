@@ -29,7 +29,7 @@
 					- -wrapper, -w : wrap the output for individual image(s) in 'results' XML element.
 
                     For full documentation of Jpyzlyzer command line parameters, see
-                    https://github.com/openplanets/jpylyzer
+                    http://github.com/openplanets/jpylyzer
                     -->
                     <command>jpylyzer.exe ${input}</command>
                     <inputs>
@@ -38,7 +38,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to JP2 image file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.jp2</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.jp2</Default>
                         </input>
                     </inputs>
                     <outputs>

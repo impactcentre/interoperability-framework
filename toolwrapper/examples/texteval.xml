@@ -68,14 +68,14 @@
                             <Required>true</Required>
                             <CliMapping>groundtruth</CliMapping>
                             <Documentation>URL reference to ground truth text file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.txt</Default>
                         </input>
                         <input name="ocr">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>ocr</CliMapping>
                             <Documentation>URL reference to OCR text file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/ocr.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/ocr.txt</Default>
                         </input>
 						<input name="gtenc">
 							<Datatype>xsd:string</Datatype>

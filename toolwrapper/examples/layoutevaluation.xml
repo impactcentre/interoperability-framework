@@ -50,7 +50,7 @@
                             <CliMapping>groundTruthXmlFileUrl</CliMapping>
                             <Documentation>URL to the ground-truth document layout XML file (in PAGE format)
                             </Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.xml</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.xml</Default>
                         </input>
                         <input name="segXmlFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
@@ -65,7 +65,7 @@
                             <Required>true</Required>
                             <CliMapping>bwImageFileUrl</CliMapping>
                             <Documentation>URL to the document black-and-white image (.tif)</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bw.tif</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bw.tif</Default>
                         </input>
                         <input name="profileEvxFileUrl">
                             <Datatype>xsd:anyURI</Datatype>
@@ -73,7 +73,7 @@
                             <CliMapping>profileEvxFileUrl</CliMapping>
                             <Documentation>Full path to the .evx file containing the evaluation profile (weights and settings)
                             </Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/profile.evx</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/profile.evx</Default>
                         </input>
                         <input name="opts">
                             <Datatype>xsd:string</Datatype>

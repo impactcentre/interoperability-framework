@@ -53,7 +53,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/7lang_nodes.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/7lang_nodes.txt</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -110,7 +110,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/wordlist_de.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/wordlist_de.txt</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -165,7 +165,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/word_de.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/word_de.txt</Default>
                         </input>
 			            <input name="language">
 			                <Datatype>xsd:string</Datatype>
@@ -235,7 +235,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/de-BaseRulesV.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/de-BaseRulesV.txt</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -278,7 +278,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/text_deutsch.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/text_deutsch.txt</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -318,7 +318,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to config file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/Pendel_localhost.cfg</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/Pendel_localhost.cfg</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -362,14 +362,14 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/Namerec.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/Namerec.txt</Default>
                         </input>
 			            <input name="config">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>config</CliMapping>
                             <Documentation>URL reference to config file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/NameRec_noWriteback.cfg</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/NameRec_noWriteback.cfg</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -408,7 +408,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/jLanI_text.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/jLanI_text.txt</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -476,7 +476,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/text_englisch.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/text_englisch.txt</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -606,7 +606,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/wortschatz.uni-leipzig.de_asv.htm</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/wortschatz.uni-leipzig.de_asv.htm</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -649,7 +649,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/training.txt</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/training.txt</Default>
                         </input>
                     </inputs>
                     <outputs>

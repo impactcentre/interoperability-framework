@@ -34,14 +34,14 @@
                             <Required>false</Required>
                             <CliMapping>filter</CliMapping>
                             <Documentation>Replacement rules for special characters</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/filter.xml</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/filter.xml</Default>
                         </input>
                         <input name="input">
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to PAGE XML file</Documentation>
-                            <Default>https://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.xml</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.xml</Default>
                         </input>
                     </inputs>
                     <outputs>
