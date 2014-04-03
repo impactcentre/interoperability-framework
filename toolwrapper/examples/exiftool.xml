@@ -52,22 +52,22 @@
                 </operation>
             </operations>
             <deployto>
-                <deployref default="true" ref="public"/>
+                <deployref default="true" ref="local"/>
             </deployto>
         </service>
     </services>
     <deployments>
-        <deployment id="public">
-            <identifier>http://succeed.kbresearch.nl:80/</identifier>
-            <host>succeed.kbresearch.nl</host>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
             <ports>
-                <port type="http">80</port>
+                <port type="http">8080</port>
                 <port type="https">8043</port>
             </ports>
             <manager>
-                <user>kb</user>
-                <password>Onderzoek4KB</password>
-                <path>manager/text</path>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
             </manager>
             <!--
             Full path to the directory where the tool has been installed.
@@ -79,8 +79,8 @@
             -->
             <toolsbasedir></toolsbasedir>
             <dataexchange>
-                <accessdir>/var/www/testfiles/</accessdir>
-                <accessurl>http://kbresearch.nl/testfiles/</accessurl>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
             </dataexchange>
         </deployment>
     </deployments>

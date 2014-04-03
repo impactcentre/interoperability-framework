@@ -36,7 +36,7 @@
                             <Required>true</Required>
                             <CliMapping>infile</CliMapping>
                             <Documentation>URL reference to input file</Documentation>
-                            <Default>http://.com/impactcentre/iif-testfiles/raw/master/testfiles/image.double.bw.tif</Default>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.double.bw.tif</Default>
                         </input>
                         <input name="pagesplit">
                             <Datatype>xsd:boolean</Datatype>
@@ -94,7 +94,7 @@
             or you can use just slashes,
             e.g. c:/foo/bar
             -->
-            <toolsbasedir>C:\\BORDREM\\</toolsbasedir>
+            <toolsbasedir>C:\\EXIFTOOL\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
