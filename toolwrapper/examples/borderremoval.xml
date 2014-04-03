@@ -94,7 +94,7 @@
             or you can use just slashes,
             e.g. c:/foo/bar
             -->
-            <toolsbasedir>C:\\EXIFTOOL\\</toolsbasedir>
+            <toolsbasedir>C:\\BORDREM\\</toolsbasedir>
             <dataexchange>
                 <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
                 <accessurl>http://localhost:8080/impact/tmp/</accessurl>
