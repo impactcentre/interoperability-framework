@@ -18,24 +18,24 @@
             <operations>
                 <operation oid="1" name="ocropus_nlbin">
                     <description>Perform non-linear binarization on PNG image file</description>
-		    <!--
+				    <!--
 
-		    ocropus-wrapper [operation] path_to_input path_to_output
+				    ocropus-wrapper [operation] path_to_input path_to_output
 
-		    Use one of the following operations:
-			either
-			    -bin=nlbin
-			    -bin=sauvola
-			or
-			    -dewarp
-			or
-			    -segmentation
-			or
-			    -hocr (only takes zip file..)
-			Or use any combination of these flags.
+				    Use one of the following operations:
+					either
+					    -bin=nlbin
+					    -bin=sauvola
+					or
+					    -dewarp
+					or
+					    -segmentation
+					or
+					    -hocr (only takes zip file..)
+					Or use any combination of these flags.
 
 
-			./ocropus-wrapper -bin=nlbin ./output.png ./out
+					./ocropus-wrapper -bin=nlbin ./output.png ./out
                     -->
                     <command>ocropus-wrapper -bin=nlbin ${input} ${outputdir}</command>
                     <inputs>
@@ -44,7 +44,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file in PNG format</Documentation>
-			    <Default>http://kbresearch.dyndns.org/testfiles/output.png</Default>
+			    			<Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.png</Default>
                         </input>
                     </inputs>
                     <outputs>
@@ -56,7 +56,7 @@
                         </output>
                     </outputs>
                 </operation>
-		<operation oid="2" name="ocropus_ldewarp">
+				<operation oid="2" name="ocropus_ldewarp">
                     <description>Perform dewarping of text lines</description>
                     <command>ocropus-wrapper -dewarp ${input} ${outputdir}</command>
                     <inputs>
@@ -73,7 +73,7 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>outputdir</CliMapping>
-                            <Documentation>URL reference to output</Documentation>
+                            <Documentation>URL reference to output directory</Documentation>
                         </output>
                     </outputs>
                 </operation>
@@ -88,7 +88,7 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
-                            <Documentation>URL reference to input file in PNG format</Documentation>
+                            <Documentation>URL reference to bitonal input file in PNG format</Documentation>
                             <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bin.png</Default>
                         </input>
                     </inputs>
@@ -97,7 +97,7 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>false</Required>
                             <CliMapping>outputdir</CliMapping>
-                            <Documentation>URL reference to output file</Documentation>
+                            <Documentation>URL reference to output directory</Documentation>
 			            </output>
 		            </outputs>
                 </operation>
@@ -112,7 +112,7 @@
                             <Datatype>xsd:anyURI</Datatype>
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
-                            <Documentation>URL reference to input file in PNG format</Documentation>
+                            <Documentation>URL reference to input directory</Documentation>
 			                <Default>http://kbresearch.dyndns.org/testfiles/ocropus/</Default>
                         </input>
                     </inputs>
@@ -138,7 +138,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input file in PNG format</Documentation>
-			                <Default>http://kbresearch.dyndns.org/testfiles/output.png</Default>
+			                <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.png</Default>
                         </input>
                     </inputs>
                     <outputs>
