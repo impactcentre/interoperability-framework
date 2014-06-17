@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.impact_project.iif.t2</groupId>
-	<artifactId>T2-Client</artifactId>
+	<artifactId>client</artifactId>
 	<packaging>pom</packaging>
 	<name>T2-Client</name>
 	<version>0.7.0</version>
@@ -34,22 +34,6 @@
 		</site>
 	</distributionManagement>
 	<dependencies>
-	     <dependency>
-                       <groupId>net.sf.taverna.t2</groupId>
-                       <artifactId>taverna-server-rest-api</artifactId>
-                       <version>0.2.0</version>
-                       <exclusions>
-                               <exclusion>
-                                       <groupId>net.sf.taverna.t2</groupId>
-                                       <artifactId>taverna-server</artifactId>
-                               </exclusion>
-                       </exclusions>
-               </dependency>
-               <dependency>
-                       <groupId>uk.org.taverna</groupId>
-                       <artifactId>taverna-server-client</artifactId>
-                       <version>0.9.0</version>
-               </dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -152,13 +136,7 @@
 		</repository>
 		<repository>
 			<id>impact</id>
-            <url>http://kbresearch.dyndns.org/m2/releases</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+            <url>http://dl.bintray.com/impactocr/maven/</url>
 		</repository>
 	</repositories>
 	<build>

@@ -259,7 +259,7 @@
 	    </repository>
         <repository>
             <id>impact</id>
-            <url>http://kbresearch.dyndns.org/m2/releases</url>
+            <url>http://dl.bintray.com/impactocr/maven/</url>
         </repository>
 	</repositories>
 	<build>

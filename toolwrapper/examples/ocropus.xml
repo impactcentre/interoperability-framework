@@ -113,7 +113,7 @@
                             <Required>true</Required>
                             <CliMapping>input</CliMapping>
                             <Documentation>URL reference to input directory</Documentation>
-			                <Default>http://kbresearch.dyndns.org/testfiles/ocropus/</Default>
+			                <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.png</Default>
                         </input>
                     </inputs>
                     <outputs>

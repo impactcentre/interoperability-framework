@@ -31,7 +31,7 @@
 		<module>interfaces/web/time-utils</module>
 		<module>interfaces/web/wsdl-client</module>
 		<module>interfaces/taverna/t2-webdav</module>
-		<module>interfaces/taverna/T2-Client/workflow-lib</module>
-		<module>interfaces/taverna/T2-Client/workflow-client</module>
+		<module>interfaces/taverna/client/workflow-lib</module>
+		<module>interfaces/taverna/client/workflow-client</module>
 	</modules>
 </project>

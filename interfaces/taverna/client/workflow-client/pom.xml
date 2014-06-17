@@ -15,7 +15,7 @@
     </properties>
 	<parent>
 		<groupId>eu.impact_project.iif.t2</groupId>
-		<artifactId>T2-Client</artifactId>
+		<artifactId>client</artifactId>
 		<version>0.7.0</version>
         <relativePath>../pom.xml</relativePath>
 	</parent>
@@ -34,7 +34,11 @@
     <repositories>
         <repository>
             <id>impact</id>
-            <url>http://kbresearch.dyndns.org/m2/releases</url>
+            <url>http://dl.bintray.com/impactocr/maven/</url>
+        </repository>
+        <repository>
+            <id>impact_dev</id>
+            <url>https://github.com/impactcentre/m2-repo/raw/master/releases</url>
         </repository>
     </repositories>
 	<build>
