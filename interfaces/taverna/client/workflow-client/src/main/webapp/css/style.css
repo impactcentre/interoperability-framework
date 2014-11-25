@@ -1,0 +1,140 @@
+body  {
+        color: #000000;
+        font: 10px/13px  Verdana, Arial, Helvetica, sans-serif;
+        background-color: #fafafa;
+        text-align: left;
+        margin: 8px;
+        padding:0em;
+}
+
+td {
+	padding-top:1em;
+}
+
+.description
+{
+	min-width: 31em;
+}
+
+a {
+        color: #7979b2;
+        text-decoration: none;
+}
+a:hover {
+        color: #000000;
+        text-decoration: underline;
+}
+
+H1, H2, H3, H4, H5  {
+        color: #7f7f7f;
+        font: 11px/13px, Arial, Helvetica, sans-serif;
+        font-style:normal;
+        font-weight:bold;
+}
+
+H1
+{
+	font-size: 12px; 
+	padding-bottom:1em;
+}
+
+H2 
+{
+	margin:0;
+	padding-bottom:1em;
+	font: 11px/13px, Arial, Helvetica, sans-serif;
+}
+
+h3
+{
+	padding-top:0em;
+	color: #545456;
+}
+
+/*Links como botones*/
+
+#back span
+{
+	background: url('images/arrow.gif');
+	background-repeat: no-repeat;
+	background-position: 0;
+	padding-left:1.2em;
+}
+
+.btn1 a { 
+	width: 230px; 
+	padding: 5px 10px 5px 5px; 
+	font-family: Arial; 
+	font-size: 13px; 
+	text-decoration: none; color: #ffffff; 
+	text-shadow: -1px -1px 2px #618926; 
+	background: -moz-linear-gradient(#4C501E, #4C501E 35%, #4C501E);
+	background-color: #525721;
+	border: 1px solid #618926; 
+	border-radius: 3px; -moz-border-radius: 3px; 
+	-webkit-border-radius: 3px;
+}
+
+.btn1 a:hover { 
+	text-shadow: -1px -1px 2px #465f97; 
+	background: -moz-linear-gradient(#729ca8, #729ca8 75%, #729ca8); 
+	background-color: #7499a9; 
+}
+
+label,div,tr
+{ 
+	margin:0;
+	font-size: 11px;
+	max-width: 31em;
+}
+
+p
+{
+	padding-top:0em;
+	padding-bottom:2px;
+	font-size: 12px;
+	font-weight:bold;
+	color: #525156;
+}
+
+#availableOps
+{
+        color: #7f7f7f;
+        font-size: 16px; 
+       	font-weight:bold;
+       	margin: 0 ;
+}
+
+form input[type="submit"]{
+
+    background: none;
+    font-size: 16px; 
+    border: none;
+    color: #4c501e;
+    cursor: pointer;
+    font-weight:bold;
+    margin: 0 ;
+}
+
+.link:hover, #mostrar, #mostrarLog{
+    text-decoration: underline;
+}
+
+select {
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    color:#1C1C1C;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+​

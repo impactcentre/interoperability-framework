@@ -1,0 +1,39 @@
+Deployment Guide
+
+	To install the application locally, you have to get the source files, build them and deploy 
+	the resulting archive on a Java application server. This guide explains how to retrieve the
+	sources using <<<svn>>> utility, how to build the sources using Maven 2, and how to deploy
+	the application in Tomcat 6. It is assumed that those tools are installed on your system.
+	
+*Building the application
+
+	The project is managed using Maven 2. Again, you can use an IDE to build the sources.
+	Alternatively, you can execute the following command in the project directory:
+	
+	* mvn package
+	
+*Deploying the application
+
+	Maven generates a WAR archive in the <<<target>>> directory. In Tomcat, you can deploy 
+	this archive using the Tomcat Manager application. Or, simply copy the archive into the
+	<<<webapp>>> directory of your Tomcat installation and restart Tomcat.
+	
+	If you want to run the application as a Dynamic Web Project in a Tomcat instance inside 
+	Eclipse 3.5, follow these steps (the m2eclipse plug-in must be installed):
+	
+		* checkout the project into the workspace
+		
+		* right-click on pom.xml and choose Run As -> Maven build...
+		
+		* enter the following settings:
+		
+			* Goals: eclipse:eclipse
+			
+			* one Parameter with name "wtpversion" and value "2.0"
+			
+		* click on Run
+		
+		* refresh the project with F5
+		
+	Now you should be able to add the project to your Tomcat Server configuration.
+	

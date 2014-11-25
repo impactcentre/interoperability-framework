@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
+    <id>pageconverter</id>
+    <name>USAL PAGE Converter</name>
+    <homepage>http://www.primaresearch.org/tools</homepage>
+    <version>1-1-33</version>
+    <installation>
+        <os type="linux">
+            Not currently supported.
+        </os>
+        <os type="windows">
+            Requires installation of the USAL PAGE Schema Converter. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="PAGEConverter" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Service for converting PAGE XML files according to replacement rules</description>
+            <operations>
+                <operation oid="1" name="pageconverter">
+                    <description>Apply text filter to XML</description>
+                    <!--
+                    Usage:
+                    PageSchemaConverter-1-1-33.exe <in> <out> wof <filter>
+
+                    Where:
+                    <in>        Input PAGE XML file
+                    <out>       Transformed output PAGE XML file
+                    <filter>    Filter list with replacement rules for a character or a sequence of characters by another character or sequence
+                    -->
+                    <command>PageSchemaConverter-1-1-33.exe ${input} - ${output} WOF ${filter}</command>
+                    <inputs>
+                        <input name="filter">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>filter</CliMapping>
+                            <Documentation>Replacement rules for special characters</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/filter.xml</Default>
+                        </input>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to PAGE XML file</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.xml</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>xml</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir>C:\\PAGECONV\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

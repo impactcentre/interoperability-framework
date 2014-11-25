@@ -1,0 +1,6 @@
+<project name="workflow-client">
+	<body>
+		<menu ref="parent"/>
+		<menu ref="reports"/>
+	</body>
+</project> 

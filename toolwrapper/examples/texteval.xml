@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
+    <id>texteval</id>
+    <name>USAL Text Evaluation</name>
+    <homepage>http://www.primaresearch.org/tools.php</homepage>
+    <version>1-0</version>
+    <installation>
+        <os type="linux">
+            Supported through Java.
+        </os>
+        <os type="windows">
+            Supported through Java. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="TextEval" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for OCR evaluation</description>
+            <operations>
+                <operation oid="1" name="texteval">
+                    <description>Perform OCR evaluation on the basis of text files</description>
+                    <!--
+                    Usage:
+					java -jar PrimaText.jar
+
+					Usage:
+					  ... -arg1 value1 [-arg2 value2 ...] [-option1 -option2]
+
+					 Where:
+						arg:        Name of argument
+						value:      Value of argument
+						option:     Command line option
+
+					 Arguments:
+						-gt-text    <filePath>: Ground truth text file (required)
+						-res-text   <filePath>: Result text file (required)
+
+						-gt-enc <enc>:  Encoding of ground truth text file (optional)
+						-res-enc <enc>: Encoding of result text file (optional)
+					    Encoding <enc>: UTF-8, UTF-16, UTF-16BE, UTF-16LE, US-ASCII, ISO-8859-1
+
+						-method <m1[,m2,...]>: Evaluation method(s) (required)
+						    Supported methods <m>:
+								BagOfWords
+								CharacterAccuracy
+								WordAccuracy
+
+						-stopwords <lang>: Stop words to use (optional for BagOfWords method)
+															  and WordAccuracy method)
+							Supported values for <lang>:
+								EN - English default stop words
+								DE - German default stop words
+
+						-toLower <locale>: Transforms the input texts to lower case (optional)
+							Supported <locale>:
+								DEFAULT, CHINESE, ENGLISH, FRENCH, GERMAN, ITALIAN, JAPANESE,
+								KOREAN, TAIWAN
+
+					 Options:
+						-csv-addinp: Adds the filenames of the input texts as the first two columns
+									 to the CSV output.
+						-csv-headers: To output the CSV headers
+						-debug: Show debug output
+                    -->
+                    <command>java -jar C:\\TextEval-1.0\\PrimaText.jar -gt-text ${groundtruth} -res-text ${ocr} -gt-enc ${gtenc} -res-enc ${resenc} -method ${method} -stopwords ${stopwords}</command>
+                    <inputs>
+                        <input name="groundtruth">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>groundtruth</CliMapping>
+                            <Documentation>URL reference to ground truth text file</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.txt</Default>
+                        </input>
+                        <input name="ocr">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>ocr</CliMapping>
+                            <Documentation>URL reference to OCR text file</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/ocr.txt</Default>
+                        </input>
+						<input name="gtenc">
+							<Datatype>xsd:string</Datatype>
+							<Required>true</Required>
+							<CliMapping>gtenc</CliMapping>
+							<Documentation>Encoding of ground truth text file</Documentation>
+							<Default>UTF-8</Default>
+							<Restriction>
+								<Value>UTF-8</Value>
+								<Value>UTF-16</Value>
+								<Value>UTF-16BE</Value>
+								<Value>UTF-16LE</Value>
+								<Value>US-ASCII</Value>
+								<Value>ISO-8859-1</Value>
+							</Restriction>
+						</input>
+						<input name="resenc">
+							<Datatype>xsd:string</Datatype>
+							<Required>true</Required>
+							<CliMapping>resenc</CliMapping>
+							<Documentation>Encoding of ground truth text file</Documentation>
+							<Default>UTF-8</Default>
+							<Restriction>
+								<Value>UTF-8</Value>
+								<Value>UTF-16</Value>
+								<Value>UTF-16BE</Value>
+								<Value>UTF-16LE</Value>
+								<Value>US-ASCII</Value>
+								<Value>ISO-8859-1</Value>
+							</Restriction>
+						</input>
+						<input name="method">
+						    <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>method</CliMapping>
+                            <Documentation>Evaluation method</Documentation>
+							<Default>BagOfWords</Default>
+							<Restriction>
+								<Value>BagOfWords</Value>
+								<Value>CharacterAccuracy</Value>
+								<Value>WordAccuracy</Value>
+							</Restriction>
+						</input>
+						<input name="stopwords">
+						    <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>stopwords</CliMapping>
+                            <Documentation>Stopwords list</Documentation>
+							<Default>EN</Default>
+							<Restriction>
+								<Value>EN</Value>
+								<Value>DE</Value>
+							</Restriction>
+						</input>
+                    </inputs>
+                    <outputs>
+                        <output name="outputstream">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>txt</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir></toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

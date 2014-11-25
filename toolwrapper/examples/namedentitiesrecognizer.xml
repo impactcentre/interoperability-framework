@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
+    <id>namedentitiesrecognizer</id>
+    <name>INL Named Entities Recognition Tool</name>
+    <homepage>http://www.digitisation.eu/tools/browse/toolbox-for-lexicon-building/named-entities-recognition-tool-nert/</homepage>
+    <version>2-3</version>
+    <installation>
+        <os type="linux">
+            Fully supported through Java.
+        </os>
+        <os type="windows">
+            Fully supported through Java.
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="NamedEntitiesRecognizer" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>The service can retrieve named entities (persons, locations and organizations) from a text file. It uses a supervised learning technique, which means it has to be trained with a manually tagged trainfile before it is applied to other text.</description>
+            <operations>
+                <operation oid="1" name="recognizeNE">
+                    <description>Retrieve named entities (persons, locations and organizations) from a text file</description>
+                    <!--
+                    Usage:
+                    java -jar nert.jar -e -loadClassifier <model> -testfile <testfile> -in <in> -out <out>
+
+                    Where:
+                    <model>     Trained model for the text
+                    <testfile>  Input file to be analysed
+                    <in>        Input file format
+                    <out>       Output file format
+                    -->
+                    <command>java -jar ./nert/nert.jar -e -loadClassifier ./nert/data/models/${modelfile} -testfile ${infile} -in txt -out txt</command>
+                    <inputs>
+                        <input name="modelfile">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>modelfile</CliMapping>
+                            <Documentation>URL reference to text file</Documentation>
+                            <Default>dpo35_minpp56-65_ocr.ser.gz</Default>
+                            <Restriction>
+                                <Value>dpo35_minpp56-65_ocr.ser.gz</Value>
+                                <Value>sg20_min19291930_ocr.ser.gz</Value>
+                            </Restriction>
+                        </input>
+                        <input name="infile">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>infile</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/nld.ocr.txt</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outfile">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outfile</CliMapping>
+                            <Documentation>URL reference to annotated output text file</Documentation>
+                            <Extension>xml</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+	        Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir></toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

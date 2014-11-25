@@ -1,0 +1,18 @@
+<serviceGroup>
+  <service name="SimpleCopy10" targetNamespace="http://impact-project.eu/iif/services">
+    <description>SimpleCopy 10 Service</description>
+    <schema schemaNamespace="http://impact-project.eu/iif/services" />
+    <parameter name="ServiceClass" locked="false">eu.impact_project.iif.services.SimpleCopy10</parameter>
+
+    <operation name="simpleCopy">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+    </operation>
+    <parameter name="cliCommand1"><![CDATA[./CMD.exe /C COPY ${input} ${output}]]></parameter>
+
+
+    <parameter name="processingUnit">http://localhost:8080/impact/instances/tomcat1</parameter>
+    <parameter name="publicHttpAccessDir">src/main/webapp/</parameter>
+    <parameter name="publicHttpAccessUrl">http://localhost:8080/impactservices/impact-simplecopy10-service/</parameter>
+    <parameter name="serviceUrlFilter">^(https?)://.*</parameter>
+  </service>
+</serviceGroup>

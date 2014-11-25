@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
+    <id>ocrevaluation</id>
+    <name>NCSR OCR Evaluation</name>
+    <homepage>http://www.digitisation.eu/tools/browse/evaluation/evaluation-tool-for-ocr/</homepage>
+    <version>6</version>
+    <installation>
+        <os type="linux">
+            Not currently supported.
+        </os>
+        <os type="windows">
+            Requires installation of the NCSR OCR Evaluation Toolkit. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="OCREvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Service for evaluating OCR accuracy vs ground truth using plain text files</description>
+            <operations>
+                <operation oid="1" name="evalOcr">
+                    <description>Evaluate OCR word and character accuracy</description>
+                    <!--
+                    Usage:
+                    OCREval.exe <encoding> <stopwords> <groundtruth> <ocr> <charresult> <wordresult> <xmlreport>
+
+                    Where:
+                        <encoding>  Character encoding. One of the following:
+                                    a - ASCII
+                                    ab - ASCII Bulgarian
+                                    ac - ASCII Czech
+                                    al - ASCII Slovene
+                                    ap - ASCII Polish
+                                    u8 - UTF-8
+                                    u16 - UTF-16
+                    <stopword>      Full path to stop word list in plain text file
+                    <groundtruth>   Full path to ground truth in plain text file
+                    <ocr>           Full path to OCR result in plain text file
+                    <charresult>    Character evaluation statistics report
+                    <wordresult>    Word evaluation statistics report
+                    <xmlreport>     Combined statistics XML report
+                    -->
+                    <command>OCREval.exe ${encoding} ${stopwordlist} ${groundtruth} ${ocr} ${charresult} ${wordresult} ${xmlreport}</command>
+                    <inputs>
+                        <input name="encoding">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>encoding</CliMapping>
+                            <Documentation>File encoding of the OCR result</Documentation>
+                            <Default>u8</Default>
+                            <Restriction>
+                                <Value>a</Value>
+                                <Value>ab</Value>
+                                <Value>ac</Value>
+                                <Value>al</Value>
+                                <Value>ap</Value>
+                                <Value>u8</Value>
+                                <Value>u16</Value>
+                            </Restriction>
+                        </input>
+                        <input name="stopwordlist">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>stopwordlist</CliMapping>
+                            <Documentation>URL reference to list with stop words to disregard in evaluation</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/stopwords.txt</Default>
+                        </input>
+                        <input name="groundtruth">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>groundtruth</CliMapping>
+                            <Documentation>URL reference to ground truth text file</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/groundtruth.txt</Default>
+                        </input>
+                        <input name="ocr">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>ocr</CliMapping>
+                            <Documentation>URL reference to OCR result text file</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/ocr.txt</Default>
+                        </input>
+                        <input name="evaluationId">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>false</Required>
+                            <CliMapping></CliMapping>
+                            <Documentation>Evaluation ID</Documentation>
+                            <Default>Default_Evaluation_ID</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="charresult">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>charresult</CliMapping>
+                            <Documentation>URL reference to character evaluation output file</Documentation>
+                            <Extension>txt</Extension>
+                        </output>
+                        <output name="wordresult">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>wordresult</CliMapping>
+                            <Documentation>URL reference to word evaluation output file</Documentation>
+                            <Extension>txt</Extension>
+                        </output>
+                        <output name="xmlreport">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>xmlreport</CliMapping>
+                            <Documentation>URL reference to report xml output file</Documentation>
+                            <Extension>xml</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir>C:\\OCREVAL\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
+    <id>cuneiform</id>
+    <name>Cuneiform</name>
+    <homepage>http://en.openocr.org/</homepage>
+    <version>1-1-0</version>
+    <installation>
+        <os type="linux">
+            Available under most distributions via package management.
+        </os>
+        <os type="windows">
+            Binaries for Windows are available from the project homepage. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="Cuneiform" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for text recognition using cuneiform</description>
+            <operations>
+                <operation oid="1" name="cuneiform">
+                    <description>Perform text recognition using cuneiform</description>
+                    <!--
+                    Usage:
+                    Usage: cuneiform[.exe] [-l <language> -f <format> - - <dotmatrix> - - <fax> - - <singlecolumn> -o <result>] <image>
+
+                    Where:
+                    <language>		language of the document to be recognized
+                    <format> 		output format
+                    <dotmatrix> 	optimized for dot matrix prints
+                    <fax> 		    optimized for fax prints
+                    <singlecolumn>	turn on/off layout detection and assume single text block
+                    <results>		write output to file
+                    <image>		    input image to be recognized
+
+                    For full documentation of cuneiform command line parameters, see
+                    http://manpages.ubuntu.com/manpages/precise/man1/cuneiform.1.html
+                    -->
+                    <command>cuneiform -f ${format} -l ${language} -o ${output} ${input}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input image file</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.bw.tif</Default>
+                        </input>
+                        <input name="format">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>format</CliMapping>
+                            <Documentation>OCR output format</Documentation>
+                            <Default>text</Default>
+                            <Restriction>
+                                <Value>html</Value>
+                                <Value>hocr</Value>
+                                <Value>native</Value>
+                                <Value>rtf</Value>
+                                <Value>smarttext</Value>
+                                <Value>text</Value>
+                            </Restriction>
+                        </input>
+                        <input name="language">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>language</CliMapping>
+                            <Documentation>Language model used in recognition</Documentation>
+                            <Default>ger</Default>
+                            <Restriction>
+                                <Value>bul</Value>
+                                <Value>cze</Value>
+                                <Value>dan</Value>
+                                <Value>dut</Value>
+                                <Value>eng</Value>
+                                <Value>est</Value>
+                                <Value>fra</Value>
+                                <Value>ger</Value>
+                                <Value>hrv</Value>
+                                <Value>hun</Value>
+                                <Value>ita</Value>
+                                <Value>lav</Value>
+                                <Value>lit</Value>
+                                <Value>pol</Value>
+                                <Value>por</Value>
+                                <Value>rum</Value>
+                                <Value>rus</Value>
+                                <Value>ruseng</Value>
+                                <Value>slv</Value>
+                                <Value>spa</Value>
+                                <Value>srp</Value>
+                                <Value>swe</Value>
+                                <Value>tur</Value>
+                                <Value>ukr</Value>
+                            </Restriction>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>txt</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir>C:\\CUNEIFORM\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

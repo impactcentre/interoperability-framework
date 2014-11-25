@@ -1,0 +1,17 @@
+What is WS-Client
+
+	The Web Service Client can be used to test operations of a SOAP Web Service.
+	It analyzes the WSDL file of the Web Service and presents the operations and 
+	the respective input fields to the user. Depending on the type of an input,
+	the user is presented either a simple text input field, or a file upload field.
+	The inserted values are sent to the Web Service and the resulting SOAP message
+	is displayed. If there are any attached files (for example a converted image) in
+	the returned message, those files can be downloaded via generated links.
+	
+WS-Client for IMPACT
+
+	WS-Client is developed mainly to test the Web Services that wrap software tools
+	implemented in the context of the IMPACT project. On the start page, a list of
+	already functioning tools is displayed. This list is read from an XML configuration file.
+	Nevertheless, it is possible to test an arbitrary Web Service by entering a URL
+	to a WSDL file into the respective input field.

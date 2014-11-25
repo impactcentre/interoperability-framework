@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
+    <id>typewrittenocr</id>
+    <name>USAL Typewritten OCR Prototype</name>
+    <homepage>http://www.digitisation.eu/tools/browse/experimental-prototypes/typewritten-ocr/</homepage>
+    <version>0-2-145</version>
+    <installation>
+        <os type="linux">
+            Not currently supported.
+        </os>
+        <os type="windows">
+            Requires installation of the USAL Typewritten OCR Prototype. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="TypewrittenOcrPrototype" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Service for OCR prototype developed specifically for typewritten documents</description>
+            <operations>
+                <operation oid="1" name="tocr">
+                    <description>Run OCR on typewritten document image file in TIF format</description>
+                    <!--
+                    Usage:
+                    TypewrittenOCR-0-2-145.exe <binaryimage> <greyscaleimage> <colourimage> <inputxml> <outputxml> [classifierweights] [paramfile]
+
+                    Where:
+                    <binaryimage>       Filename of the binary image to be analysed (required)
+                    <greyscaleimage>    Filename of the greyscale image to be analysed (optional-set to -1 if not using)
+                    <colourimage>       Filename of the colour image to be analysed (optional-set to -1 if not using)
+                    <inputxml>          Filename of an XML file containing a region and line segmentation
+                    <outputxml>         Filename to which an XML file containing the resulting analysis should be written
+                    [classifierweights] A comma seperated list (without spaces) of the weight to give each classifier.
+                    			        Currently there are two classifiers available: Template matching and Feature analysis
+                    			        So to weight them equally, for example, input: 1,1
+                    [paramfile] 	    Parameter file. Set to "-1" if not used
+                    -->
+                    <command>TypewrittenOCR-0-2-145.exe ${bwimage} ${grayimage} ${colorimage} ${inputxml} ${outputxml} ${weights}</command>
+                    <inputs>
+                        <input name="bwimage">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>bwimage</CliMapping>
+                            <Documentation>URL reference to bitonal image file</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.typewriter.bw.tif</Default>
+                        </input>
+                        <input name="grayimage">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>grayimage</CliMapping>
+                            <Documentation>URL reference to grayscale image file</Documentation>
+                            <Default clireplacement="-1">http://null</Default>
+                        </input>
+                        <input name="colorimage">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>colorimage</CliMapping>
+                            <Documentation>URL reference to color image file</Documentation>
+                            <Default clireplacement="-1">http://null</Default>
+                        </input>
+                        <input name="inputxml">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>inputxml</CliMapping>
+                            <Documentation>URL reference to input xml file</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/lines.xml</Default>
+                        </input>
+                        <input name="weights">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>weights</CliMapping>
+                            <Documentation>Weights for parameters</Documentation>
+                            <Default>1,1</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outputxml">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>outputxml</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>xml</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir>C:\\TOCR\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

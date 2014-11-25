@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src/main/resources/toolspec.xsd">
+    <id>copy</id>
+    <name>Copy</name>
+    <homepage>http://en.wikipedia.org/wiki/Cp_%28Unix%29</homepage>
+    <version>1.0</version>
+    <installation>
+        <os type="linux">
+            Available by default.
+        </os>
+        <os type="windows">
+            Use "CMD.exe /C COPY" instead of "/bin/cp" in the commands defined below.
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="Simple Copy" type="migrate" servicepackage="eu.impact_project.iif.services" contextpathprefix="/impactservices">
+            <description>Service for copying files</description>
+            <operations>
+                <operation oid="1" name="simpleCopy">
+                    <description>Copies a file</description>
+                    <command>CMD.exe /C COPY ${input} ${output}</command>
+                    <inputs>
+                        <input name="inputUrl">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input file</Documentation>
+                            <Default>http://localhost:8080/test.txt</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <PrefixFromInput>input</PrefixFromInput>
+                            <Extension>txt</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>user</user>
+                <password>user</password>
+		        <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir>./</toolsbasedir>
+            <dataexchange>
+                <accessdir>src/main/webapp/</accessdir>
+                <accessurl>http://localhost:8080/impactservices/impact-simplecopy10-service/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

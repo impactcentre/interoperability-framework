@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
+    <id>unpaper</id>
+    <name>unpaper</name>
+    <homepage>http://unpaper.berlios.de/</homepage>
+    <version>0-3</version>
+    <installation>
+        <os type="linux">
+            Available under most distributions via package management.
+        </os>
+        <os type="windows">
+            Not currently supported.
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="Unpaper" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Services for document image enhancement using unpaper</description>
+            <operations>
+                <operation oid="1" name="unpaper">
+                    <description>Perform document image enhancement using unpaper</description>
+                    <!--
+                    Usage:
+                    unpaper -o [options] <input> <output>
+
+                    Where:
+                    [options] 	Optional command line parameters
+                    <input> 	Output file encoding
+                    <output> 	Input file
+
+                    For full documentation of unpaper command line parameters, see
+                    http://unpaper.berlios.de/#options
+                    -->
+                    <command>unpaper ${input} ${output}</command>
+                    <inputs>
+                        <input name="input">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to image file in PBM, PGM or PPM format</Documentation>
+                            <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.pgm</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>pnm</Extension>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir></toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

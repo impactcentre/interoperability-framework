@@ -1,0 +1,35 @@
+========= PROCESSING REQUEST (by URL) =========.
+Using service: IMPACTOcrEvalService.
+Evaluation-ID: Tesseract3.
+Parameter processingUnit from services.xml: https://localhost/impact/kb-w/tomcat1/.
+URL of ground truth input file: http://localhost/out-l/IMPACTOcrXmlTransformationAndExtractionAltoService_outputUrl_alto2textresult7258304875402515252.txt.
+URL of OCR result input file: http://localhost/impact/tmp/IMPACTTesseractV3Service_outputUrl_tmpfilefromurl3202368292933717162.tmp.tif.out.txt.
+Wrote file D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp of size 1438.
+Wrote ground truth file D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl5118328516854269253.tmp of size 1557.
+Wrote stop word list file D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl6369537815303778461.tmp of size 609.
+OCR Evaluation Version.
+Parameter CLICommand from services.xml: D:\iif\tools\ocrEval-v4\OCREval.exe #ENCODING# #STOPWORDLISTFILENAME# #GROUNDTRUTHFILENAME# #RESULTFILENAME# #CHARLEVEVALFILENAME# #WORDLEVEVALFILENAME# #XMLREPORTFILENAME#.
+Parameter workingDirectory from services.xml: D:\iif\tools\ocrEval-v4\.
+Pattern (before substitution): D:\iif\tools\ocrEval-v4\OCREval.exe #ENCODING# #STOPWORDLISTFILENAME# #GROUNDTRUTHFILENAME# #RESULTFILENAME# #CHARLEVEVALFILENAME# #WORDLEVEVALFILENAME# #XMLREPORTFILENAME#.
+ENCODING substitution variable value: u8.
+STOPWORDLISTFILENAME substitution variable value: D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl6369537815303778461.tmp.
+CHARLEVEVALFILENAME substitution variable value: D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp.charlevresult.txt.
+XMLREPORTFILENAME substitution variable value: D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp.report.xml.
+RESULTFILENAME substitution variable value: D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl5118328516854269253.tmp.
+WORDLEVEVALFILENAME substitution variable value: D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp.wordlevresult.txt.
+GROUNDTRUTHFILENAME substitution variable value: D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp.
+Command (after substitution): D:\iif\tools\ocrEval-v4\OCREval.exe u8 D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl6369537815303778461.tmp D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl5118328516854269253.tmp D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp.charlevresult.txt D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp.wordlevresult.txt D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp.report.xml.
+Assigned exit code: 0.
+Process finished successfully with code 0.
+Parameter publicHttpAccessDir from services.xml: D:\iif\tomcat\apache-tomcat-6.0.26\webapps\ROOT\impact\out-w\.
+Parameter publicHttpAccessUrl from services.xml: http://localhost/impact/out-w/.
+Copying temporary char level output file: D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp.charlevresult.txt to public output file D:\iif\tomcat\apache-tomcat-6.0.26\webapps\ROOT\impact\out-w\IMPACTOcrEvalService_charLevEvalOutputUrl_tmpfilefromurl3426034968434706595.tmp.charlevresult.txt.
+Char level report..
+Output char level result URL: http://localhost/impact/out-w/IMPACTOcrEvalService_charLevEvalOutputUrl_tmpfilefromurl3426034968434706595.tmp.charlevresult.txt.
+Word level report..
+Copying temporary word level output file: D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp.wordlevresult.txt to public output file D:\iif\tomcat\apache-tomcat-6.0.26\webapps\ROOT\impact\out-w\IMPACTOcrEvalService_wordLevEvalOutputUrl_tmpfilefromurl3426034968434706595.tmp.wordlevresult.txt.
+Output word level result URL: http://localhost/impact/out-w/IMPACTOcrEvalService_wordLevEvalOutputUrl_tmpfilefromurl3426034968434706595.tmp.wordlevresult.txt.
+XML report..
+Copying D:\iif\tomcat\apache-tomcat-6.0.26\temp\impact-tmp-store\tmpfilefromurl3426034968434706595.tmp.report.xml to D:\iif\tomcat\apache-tomcat-6.0.26\webapps\ROOT\impact\out-w\IMPACTOcrEvalService_xmlReportOutputUrl_Tesseract3_tmpfilefromurl3426034968434706595.tmp.report.xml.
+XML report result URL: http://localhost/impact/out-w/IMPACTOcrEvalService_xmlReportOutputUrl_Tesseract3_tmpfilefromurl3426034968434706595.tmp.report.xml.
+Process finished successfully after 1215 milliseconds..
