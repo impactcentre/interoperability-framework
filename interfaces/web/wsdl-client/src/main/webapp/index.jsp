@@ -36,13 +36,7 @@
 
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-<title>IMPACT Web Service Client</title>
-</head>
-<body onload="document.forms['defaultForm'].submit()">
+
 
 <% 
 
@@ -67,16 +61,29 @@ if (separatedURLServices)
 
 String defaultWsdl = props.getProperty("defaultWsdl");
 
+String userCrypt = request.getParameter("user");
+String passCrypt = request.getParameter("pass");
 
+String style = props.getProperty("styleSheet");
 
+%>
 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=style%>" media="screen" />
+<title>IMPACT Web Service Client</title>
+</head>
+<body onload="document.forms['defaultForm'].submit()">
+
+<%
 if (loadDefault.equals("true")) {
 %>
 
 <form name="defaultForm" action="WSDLinfo" method="post">
 <input type="hidden" name="wsName" value="user_defined">
 
-<input type="hidden" name="wsdlURL" value="<%= defaultWsdl %>">
+<input type="hidden" name="wsdlURL" value="<%=defaultWsdl%>">
 
 </form>
 
@@ -117,6 +124,12 @@ if (loadDefault.equals("true")) {
 		logger.debug("Got service " + s.getIdentifier());
 		out.print("<form name=\"myForm" + s.getIdentifier()
 				+ "\" action=\"WSDLinfo\" method=\""+ method + "\">");
+                
+                out.print("<input type=\"hidden\" name=\"user\" value=\""
+				+ userCrypt!=null?userCrypt:"" + "\">");
+                out.print("<input type=\"hidden\" name=\"pass\" value=\""
+				+ passCrypt!=null?passCrypt:"" + "\">");
+                                
 		out.print("<input type=\"hidden\" name=\"wsName\" value=\""
 				+ s.getTitle() + "\">");
 		out.print("<input type=\"hidden\" name=\"wsId\" value=\""
@@ -132,7 +145,6 @@ if (loadDefault.equals("true")) {
 	}catch(RuntimeException e) {
 		out.print("IMPACT services list could not be loaded");
 	}
-
 %>
 
 <br>
@@ -141,8 +153,11 @@ if (loadDefault.equals("true")) {
 
 <form action="WSDLinfo" method="post">
 <input type="hidden" name="wsName" value="user_defined">
+<input type="hidden" name="user" value="<%=userCrypt!=null?userCrypt:""%>">
+<input type="hidden" name="pass" value="<%=passCrypt!=null?passCrypt:""%>">
 
 <h4>Other</h4>
+
 <input type="text" size="70" name="wsdlURL" value="<%if (session.getAttribute("wsdlURL") != null)
 				out.print(session.getAttribute("wsdlURL"));%>">
 <br>

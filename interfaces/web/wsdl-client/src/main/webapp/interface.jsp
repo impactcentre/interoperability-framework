@@ -33,34 +33,6 @@
 <%@page import="java.util.Properties"%>
 <%@page import="java.io.InputStream"%>
 <%@page import="java.net.URL"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
-<script src="js/index.js" type="text/javascript"></script>
-<title>IMPACT Web Service Client</title>
-<script language="JavaScript">
-function getUrl(id) {
-	
-	var url = document.getElementById(id).value;
-	var detailsWindow = window.open(url,"", "resizable,width=800,height=700,scrollbars,left=200,top=100");
-
-	detailsWindow.focus();
-
-}
-
-function setStyle(element) {
-	element.style.textDecoration = "underline";
-	element.style.cursor = "pointer";
-}
-function removeStyle(element) {
-	element.style.textDecoration = "none";
-	element.style.cursor = "default";
-}
-
-</script>
-</head>
 <% 
 
 
@@ -86,8 +58,20 @@ boolean supportFileUpload = Boolean.parseBoolean(props.getProperty("supportFileU
 boolean showResultFilesOnly = Boolean.parseBoolean(props.getProperty("showResultFilesOnly"));
 boolean editableInputs = Boolean.parseBoolean(props.getProperty("editableInputs"));
 boolean security = Boolean.parseBoolean(props.getProperty("security"));
+/*
 String user = props.getProperty("user");
 String pass = props.getProperty("pass");
+*/
+
+//Ahora los cojo de la sesion
+String user = (String) session.getAttribute("wsUser");
+String pass = (String) session.getAttribute("wsPass");
+
+String style = props.getProperty("styleSheet");
+
+//filtro null
+user = user!=null?user:"";
+pass = pass!=null?pass:"";
 
 SoapService serviceObject = null;
 if(session.getAttribute("serviceObject") != null) {
@@ -95,6 +79,34 @@ if(session.getAttribute("serviceObject") != null) {
 }
 
 %>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=style%>" media="screen" />
+<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="js/index.js" type="text/javascript"></script>
+<title>IMPACT Web Service Client</title>
+<script language="JavaScript">
+function getUrl(id) {
+	
+	var url = document.getElementById(id).value;
+	var detailsWindow = window.open(url,"", "resizable,width=800,height=700,scrollbars,left=200,top=100");
+
+	detailsWindow.focus();
+
+}
+
+function setStyle(element) {
+	element.style.textDecoration = "underline";
+	element.style.cursor = "pointer";
+}
+function removeStyle(element) {
+	element.style.textDecoration = "none";
+	element.style.cursor = "default";
+}
+
+</script>
+</head>
 <body <%if(loadDefault && request.getAttribute("round2") == null && request.getAttribute("round3") == null)
 { %>onload="document.forms['defaultForm'].submit()"<%} %>>
 
@@ -129,10 +141,10 @@ if(session.getAttribute("serviceObject") != null) {
 		
 		out.print("<h1>" + session.getAttribute("wsName") + "</h1>");
 		out.print("<br>");
-		out.print("<span class=\"btn1\">");
-		out.print("<a id=\"back\" href=\"http://www.digitisation.eu/tools/browse/interoperability-framework/demonstrator-platform/ \" ONCLICK=\"window.parent.location='http://www.digitisation.eu/tools/interoperability-framework/demonstrator-platform/'\">");
-		out.print("<span>Back to Selection</span>");
-		out.print("</a></span>");
+		//out.print("<span class=\"btn1\">");
+		//out.print("<a id=\"back\" href=\"http://www.digitisation.eu/tools/browse/interoperability-framework/demonstrator-platform/ \" ONCLICK=\"window.parent.location='http://www.digitisation.eu/tools/interoperability-framework/demonstrator-platform/'\">");
+		//out.print("<span>Back to Selection</span>");
+		//out.print("</a></span>");
 
 		out.print("<p>" + serviceObject.getDocumentation() + "</p>");
 
@@ -213,10 +225,10 @@ if(session.getAttribute("serviceObject") != null) {
         <tr>
         <td>
 	        User:<br>
-	        <input type="text" name="user" value="">
+	        <input type="text" name="user" value="<%=user%>">
         </td>
         <td>
-        	Password:<br>  <input type="password" name="pass" value="">
+        	Password:<br>  <input type="password" name="pass" value="<%=pass%>">
         </td>
         </tr>
         <td>

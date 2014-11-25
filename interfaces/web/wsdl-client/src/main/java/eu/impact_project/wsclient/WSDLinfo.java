@@ -110,6 +110,30 @@ public class WSDLinfo extends HttpServlet {
 			session.setAttribute("wsName", wsName);
 		}
 		
+                //pasar user y pass decodificados por sesion
+                
+                String key = "1234567891234567";                
+                
+                String wsUser = "";
+                if(request.getParameter("user") != null)
+                {
+                    if(request.getParameter("user") != "")
+                    {
+                        wsUser = Security.decrypt(request.getParameter("user"),key);
+                        session.setAttribute("wsUser", wsUser);
+                    }
+                }
+                
+                String wsPass = "";
+                if(request.getParameter("pass") != null)
+                {
+                    if(request.getParameter("pass") != "")
+                    {
+                        wsPass = Security.decrypt(request.getParameter("pass"),key);
+                        session.setAttribute("wsPass", wsPass);
+                    }
+                }
+                
 		logger.info("URL WSDL: " + wsdlURL);
 		SoapService serviceObject = new SoapService(wsdlURL);
 		
@@ -158,6 +182,31 @@ public class WSDLinfo extends HttpServlet {
 				session.setAttribute("wsName", wsName);
 			}
 			
+                        //pasar user y pass decodificados por sesion
+                
+                        String key = "1234567891234567";                
+
+                        String wsUser = "";
+                        if(request.getParameter("user")!=null)
+                        {
+                            if(request.getParameter("user") != "")
+                            {
+                                wsUser = Security.decrypt(request.getParameter("user"),key);
+                                session.setAttribute("wsUser", wsUser);
+                            }
+                        }
+
+                        String wsPass = "";
+                        if(request.getParameter("pass")!=null)
+                        {
+                            if(request.getParameter("pass") != "")
+                            {
+                                wsPass = Security.decrypt(request.getParameter("pass"),key);
+                                session.setAttribute("wsPass", wsPass);
+                            }
+                        }
+                        
+                        
 			logger.info("URL WSDL: " + wsdlURL);
 			SoapService serviceObject = new SoapService(wsdlURL);
 			
