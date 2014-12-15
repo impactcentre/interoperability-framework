@@ -91,12 +91,7 @@ public class ToolWrapper {
 	OptionBuilder.withDescription(TOOLSPEC_OPT_DESC);
 	OPTIONS.addOption(OptionBuilder.create(TOOLSPEC_FLG));
     }
-
-    /**
-     * Default constructor
-     */
-    public ToolWrapper() {
-    }
+    
 
     /**
      * Main method of the command line application
@@ -134,12 +129,12 @@ public class ToolWrapper {
 	    ioc.setXmlConf(toolspecFile);
 	    ioc.setProjConf(propertiesFile);
 
-	} catch (ParseException excep) {
+	} catch (Exception excep) {
 	    // Problem parsing the command line args, just print the message and help
 	    logger.error("Problem parsing command line arguments.", excep);
 	    HelpFormatter formatter = new HelpFormatter();
 	    formatter.printHelp(Constants.PROJECT_NAME, OPTIONS, true);
-	    System.exit(1);
+            throw new GeneratorException("Problem parsing command line arguments");	    
 	}
 
 	if (!ioc.hasConfig()) {

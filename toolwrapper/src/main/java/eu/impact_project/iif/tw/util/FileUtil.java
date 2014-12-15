@@ -63,9 +63,9 @@ public final class FileUtil {
         String nameToUse = name == null ? "tmp" : name;
         File input = null;
         try {
-            File folder = new File(JAVA_TMP, FileUtil.TMP_DIR);
+            File folder = new File(JAVA_TMP, FileUtil.TMP_DIR);            
             if (!folder.exists()) {
-                boolean mkdirs = folder.mkdirs();
+                boolean mkdirs = FileUtil.mkdir(folder);
                 checkCreation(folder, mkdirs);
             }
             input = File.createTempFile(nameToUse, suffixToUse, folder);

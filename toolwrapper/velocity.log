@@ -1,482 +1,174 @@
-2014-11-19 13:00:51,008 - Null reference [template 'substitution', line 7, column 201] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:00:51,008 - Null reference [template 'substitution', line 7, column 223] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:00:51,008 - Null reference [template 'substitution', line 8, column 39] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:00:51,008 - Null reference [template 'substitution', line 8, column 61] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:00:51,008 - Null reference [template 'substitution', line 8, column 197] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:00:51,008 - Null reference [template 'substitution', line 8, column 219] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:00:51,266 - Null reference [template 'substitution', line 122, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:00:51,267 - Null reference [template 'substitution', line 122, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:00:51,267 - Null reference [template 'substitution', line 125, column 46] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:00:51,267 - Null reference [template 'substitution', line 125, column 68] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:00:51,268 - Null reference [template 'substitution', line 128, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:00:51,269 - Null reference [template 'substitution', line 128, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:00:51,430 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 4, column 50] : $cli_cmd_ cannot be resolved.
-2014-11-19 13:00:51,490 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 11, column 38] : ${tomcat_public_procunitid} cannot be resolved.
-2014-11-19 13:00:51,490 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 12, column 43] : ${tomcat_public_http_access_dir} cannot be resolved.
-2014-11-19 13:00:51,490 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 13, column 43] : ${tomcat_public_http_access_url} cannot be resolved.
-2014-11-19 13:00:51,512 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 60] : ${input} cannot be resolved.
-2014-11-19 13:00:51,512 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 69] : ${output} cannot be resolved.
-2014-11-19 13:15:35,887 - Log4JLogChute initialized using file 'velocity.log'
-2014-11-19 13:15:35,887 - Initializing Velocity, Calling init()...
-2014-11-19 13:15:35,887 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2014-11-19 13:15:35,897 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2014-11-19 13:15:35,897 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2014-11-19 13:15:35,897 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2014-11-19 13:15:35,897 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-19 13:15:35,897 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-19 13:15:35,907 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2014-11-19 13:15:35,907 - Do unicode file recognition:  false
-2014-11-19 13:15:35,907 - FileResourceLoader : adding path '.'
-2014-11-19 13:15:35,932 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2014-11-19 13:15:35,938 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2014-11-19 13:15:35,939 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2014-11-19 13:15:35,939 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2014-11-19 13:15:35,939 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2014-11-19 13:15:35,939 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2014-11-19 13:15:35,939 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2014-11-19 13:15:35,949 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2014-11-19 13:15:35,949 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2014-11-19 13:15:35,949 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2014-11-19 13:15:36,031 - Created '20' parsers.
-2014-11-19 13:15:36,041 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2014-11-19 13:15:36,041 - Velocimacro : Default library not found.
-2014-11-19 13:15:36,041 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2014-11-19 13:15:36,041 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2014-11-19 13:15:36,041 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2014-11-19 13:15:36,041 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2014-11-19 13:15:36,061 - Null reference [template 'substitution', line 28, column 49] : ${jdk.version} cannot be resolved.
-2014-11-19 13:15:36,061 - Null reference [template 'substitution', line 29, column 49] : ${jdk.version} cannot be resolved.
-2014-11-19 13:15:36,061 - Null reference [template 'substitution', line 36, column 42] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-19 13:15:36,061 - Null reference [template 'substitution', line 46, column 60] : ${project.build.outputDirectory} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 80, column 73] : ${project.build.directory} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 92, column 46] : ${tomcat.manager.url} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 93, column 51] : ${tomcat.user} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 94, column 51] : ${tomcat.password} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 95, column 50] : ${project.build.directory} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 95, column 77] : ${project.build.finalName} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 95, column 104] : ${war.suffix} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 106, column 58] : ${project.build.directory} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 106, column 85] : ${project.build.finalName} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 135, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 141, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-19 13:15:36,071 - Null reference [template 'substitution', line 147, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-19 13:15:36,091 - Null reference [template 'substitution', line 50, column 31] : $INFILE cannot be resolved.
-2014-11-19 13:15:36,091 - Null reference [template 'substitution', line 50, column 39] : $OUTFILE cannot be resolved.
-2014-11-19 13:15:36,111 - Null reference [template 'substitution', line 139, column 13] : $FLIM cannot be resolved.
-2014-11-19 13:15:36,193 - Null reference [template 'substitution', line 12, column 15] : ${catalina.base} cannot be resolved.
-2014-11-19 13:15:36,193 - Null reference [template 'substitution', line 15, column 30] : ${catalina.base} cannot be resolved.
-2014-11-19 13:15:36,203 - Null reference [template 'substitution', line 5, column 12] : ${service_description} cannot be resolved.
-2014-11-19 13:15:36,203 - Null reference [template 'substitution', line 7, column 39] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:15:36,203 - Null reference [template 'substitution', line 7, column 61] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:15:36,203 - Null reference [template 'substitution', line 7, column 201] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:15:36,203 - Null reference [template 'substitution', line 7, column 223] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:15:36,203 - Null reference [template 'substitution', line 8, column 39] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:15:36,203 - Null reference [template 'substitution', line 8, column 61] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:15:36,203 - Null reference [template 'substitution', line 8, column 197] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:15:36,203 - Null reference [template 'substitution', line 8, column 219] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:15:36,453 - Null reference [template 'substitution', line 122, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:15:36,453 - Null reference [template 'substitution', line 122, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:15:36,454 - Null reference [template 'substitution', line 125, column 46] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:15:36,454 - Null reference [template 'substitution', line 125, column 68] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:15:36,455 - Null reference [template 'substitution', line 128, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-19 13:15:36,456 - Null reference [template 'substitution', line 128, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-19 13:15:36,615 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 4, column 50] : $cli_cmd_ cannot be resolved.
-2014-11-19 13:15:36,701 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 11, column 38] : ${tomcat_public_procunitid} cannot be resolved.
-2014-11-19 13:15:36,701 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 12, column 43] : ${tomcat_public_http_access_dir} cannot be resolved.
-2014-11-19 13:15:36,701 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 13, column 43] : ${tomcat_public_http_access_url} cannot be resolved.
-2014-11-19 13:15:36,737 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 60] : ${input} cannot be resolved.
-2014-11-19 13:15:36,737 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 69] : ${output} cannot be resolved.
-2014-11-20 10:42:34,535 - Log4JLogChute initialized using file 'velocity.log'
-2014-11-20 10:42:34,535 - Initializing Velocity, Calling init()...
-2014-11-20 10:42:34,535 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2014-11-20 10:42:34,535 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2014-11-20 10:42:34,535 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2014-11-20 10:42:34,535 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2014-11-20 10:42:34,535 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-20 10:42:34,535 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-20 10:42:34,551 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2014-11-20 10:42:34,551 - Do unicode file recognition:  false
-2014-11-20 10:42:34,551 - FileResourceLoader : adding path '.'
-2014-11-20 10:42:34,597 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2014-11-20 10:42:34,613 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2014-11-20 10:42:34,613 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2014-11-20 10:42:34,613 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2014-11-20 10:42:34,613 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2014-11-20 10:42:34,613 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2014-11-20 10:42:34,613 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2014-11-20 10:42:34,613 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2014-11-20 10:42:34,629 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2014-11-20 10:42:34,629 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2014-11-20 10:42:34,707 - Created '20' parsers.
-2014-11-20 10:42:34,722 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2014-11-20 10:42:34,722 - Velocimacro : Default library not found.
-2014-11-20 10:42:34,722 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2014-11-20 10:42:34,722 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2014-11-20 10:42:34,722 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2014-11-20 10:42:34,722 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2014-11-20 12:46:09,887 - Log4JLogChute initialized using file 'velocity.log'
-2014-11-20 12:46:09,889 - Initializing Velocity, Calling init()...
-2014-11-20 12:46:09,889 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2014-11-20 12:46:09,890 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2014-11-20 12:46:09,890 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2014-11-20 12:46:09,890 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2014-11-20 12:46:09,890 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-20 12:46:09,890 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-20 12:46:09,904 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2014-11-20 12:46:09,907 - Do unicode file recognition:  false
-2014-11-20 12:46:09,907 - FileResourceLoader : adding path '.'
-2014-11-20 12:46:09,951 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2014-11-20 12:46:09,955 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2014-11-20 12:46:09,959 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2014-11-20 12:46:09,961 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2014-11-20 12:46:09,964 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2014-11-20 12:46:09,967 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2014-11-20 12:46:09,971 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2014-11-20 12:46:09,976 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2014-11-20 12:46:09,982 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2014-11-20 12:46:09,985 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2014-11-20 12:46:10,084 - Created '20' parsers.
-2014-11-20 12:46:10,094 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2014-11-20 12:46:10,094 - Velocimacro : Default library not found.
-2014-11-20 12:46:10,094 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2014-11-20 12:46:10,094 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2014-11-20 12:46:10,094 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2014-11-20 12:46:10,094 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2014-11-20 13:08:49,032 - Log4JLogChute initialized using file 'velocity.log'
-2014-11-20 13:08:49,032 - Initializing Velocity, Calling init()...
-2014-11-20 13:08:49,032 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2014-11-20 13:08:49,032 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2014-11-20 13:08:49,032 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2014-11-20 13:08:49,032 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2014-11-20 13:08:49,032 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-20 13:08:49,032 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-20 13:08:49,042 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2014-11-20 13:08:49,042 - Do unicode file recognition:  false
-2014-11-20 13:08:49,042 - FileResourceLoader : adding path '.'
-2014-11-20 13:08:49,082 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2014-11-20 13:08:49,082 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2014-11-20 13:08:49,092 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2014-11-20 13:08:49,092 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2014-11-20 13:08:49,092 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2014-11-20 13:08:49,092 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2014-11-20 13:08:49,092 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2014-11-20 13:08:49,102 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2014-11-20 13:08:49,102 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2014-11-20 13:08:49,102 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2014-11-20 13:08:49,182 - Created '20' parsers.
-2014-11-20 13:08:49,192 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2014-11-20 13:08:49,192 - Velocimacro : Default library not found.
-2014-11-20 13:08:49,192 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2014-11-20 13:08:49,192 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2014-11-20 13:08:49,192 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2014-11-20 13:08:49,192 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 28, column 49] : ${jdk.version} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 29, column 49] : ${jdk.version} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 36, column 42] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 46, column 60] : ${project.build.outputDirectory} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 80, column 73] : ${project.build.directory} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 92, column 46] : ${tomcat.manager.url} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 93, column 51] : ${tomcat.user} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 94, column 51] : ${tomcat.password} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 95, column 50] : ${project.build.directory} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 95, column 77] : ${project.build.finalName} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 95, column 104] : ${war.suffix} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 106, column 58] : ${project.build.directory} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 106, column 85] : ${project.build.finalName} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 135, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 141, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:08:49,232 - Null reference [template 'substitution', line 147, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:08:49,262 - Null reference [template 'substitution', line 50, column 31] : $INFILE cannot be resolved.
-2014-11-20 13:08:49,262 - Null reference [template 'substitution', line 50, column 39] : $OUTFILE cannot be resolved.
-2014-11-20 13:08:49,272 - Null reference [template 'substitution', line 139, column 13] : $FLIM cannot be resolved.
-2014-11-20 13:08:49,328 - Null reference [template 'substitution', line 12, column 15] : ${catalina.base} cannot be resolved.
-2014-11-20 13:08:49,328 - Null reference [template 'substitution', line 15, column 30] : ${catalina.base} cannot be resolved.
-2014-11-20 13:08:49,340 - Null reference [template 'substitution', line 5, column 12] : ${service_description} cannot be resolved.
-2014-11-20 13:08:49,340 - Null reference [template 'substitution', line 7, column 39] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:08:49,340 - Null reference [template 'substitution', line 7, column 61] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:08:49,340 - Null reference [template 'substitution', line 7, column 201] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:08:49,340 - Null reference [template 'substitution', line 7, column 223] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:08:49,340 - Null reference [template 'substitution', line 8, column 39] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:08:49,340 - Null reference [template 'substitution', line 8, column 61] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:08:49,340 - Null reference [template 'substitution', line 8, column 197] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:08:49,341 - Null reference [template 'substitution', line 8, column 219] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:08:49,574 - Null reference [template 'substitution', line 122, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:08:49,574 - Null reference [template 'substitution', line 122, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:08:49,574 - Null reference [template 'substitution', line 125, column 46] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:08:49,574 - Null reference [template 'substitution', line 125, column 68] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:08:49,574 - Null reference [template 'substitution', line 128, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:08:49,574 - Null reference [template 'substitution', line 128, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:08:49,645 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 4, column 50] : $cli_cmd_ cannot be resolved.
-2014-11-20 13:08:49,674 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 11, column 38] : ${tomcat_public_procunitid} cannot be resolved.
-2014-11-20 13:08:49,674 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 12, column 43] : ${tomcat_public_http_access_dir} cannot be resolved.
-2014-11-20 13:08:49,674 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 13, column 43] : ${tomcat_public_http_access_url} cannot be resolved.
-2014-11-20 13:08:49,697 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 60] : ${input} cannot be resolved.
-2014-11-20 13:08:49,697 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 69] : ${output} cannot be resolved.
-2014-11-20 13:09:53,891 - Log4JLogChute initialized using file 'velocity.log'
-2014-11-20 13:09:53,893 - Initializing Velocity, Calling init()...
-2014-11-20 13:09:53,893 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2014-11-20 13:09:53,893 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2014-11-20 13:09:53,893 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2014-11-20 13:09:53,893 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2014-11-20 13:09:53,893 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-20 13:09:53,893 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-20 13:09:53,911 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2014-11-20 13:09:53,915 - Do unicode file recognition:  false
-2014-11-20 13:09:53,915 - FileResourceLoader : adding path '.'
-2014-11-20 13:09:53,963 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2014-11-20 13:09:53,970 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2014-11-20 13:09:53,973 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2014-11-20 13:09:53,976 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2014-11-20 13:09:53,978 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2014-11-20 13:09:53,980 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2014-11-20 13:09:53,987 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2014-11-20 13:09:53,990 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2014-11-20 13:09:53,995 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2014-11-20 13:09:53,999 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2014-11-20 13:09:54,057 - Created '20' parsers.
-2014-11-20 13:09:54,077 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2014-11-20 13:09:54,077 - Velocimacro : Default library not found.
-2014-11-20 13:09:54,077 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2014-11-20 13:09:54,077 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2014-11-20 13:09:54,077 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2014-11-20 13:09:54,077 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 28, column 49] : ${jdk.version} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 29, column 49] : ${jdk.version} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 36, column 42] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 46, column 60] : ${project.build.outputDirectory} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 80, column 73] : ${project.build.directory} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 92, column 46] : ${tomcat.manager.url} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 93, column 51] : ${tomcat.user} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 94, column 51] : ${tomcat.password} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 95, column 50] : ${project.build.directory} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 95, column 77] : ${project.build.finalName} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 95, column 104] : ${war.suffix} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 106, column 58] : ${project.build.directory} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 106, column 85] : ${project.build.finalName} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 135, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 141, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:09:54,117 - Null reference [template 'substitution', line 147, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:09:54,147 - Null reference [template 'substitution', line 50, column 31] : $INFILE cannot be resolved.
-2014-11-20 13:09:54,147 - Null reference [template 'substitution', line 50, column 39] : $OUTFILE cannot be resolved.
-2014-11-20 13:09:54,157 - Null reference [template 'substitution', line 139, column 13] : $FLIM cannot be resolved.
-2014-11-20 13:09:54,231 - Null reference [template 'substitution', line 12, column 15] : ${catalina.base} cannot be resolved.
-2014-11-20 13:09:54,231 - Null reference [template 'substitution', line 15, column 30] : ${catalina.base} cannot be resolved.
-2014-11-20 13:09:54,242 - Null reference [template 'substitution', line 5, column 12] : ${service_description} cannot be resolved.
-2014-11-20 13:09:54,242 - Null reference [template 'substitution', line 7, column 39] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:09:54,242 - Null reference [template 'substitution', line 7, column 61] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:09:54,243 - Null reference [template 'substitution', line 7, column 201] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:09:54,243 - Null reference [template 'substitution', line 7, column 223] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:09:54,243 - Null reference [template 'substitution', line 8, column 39] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:09:54,243 - Null reference [template 'substitution', line 8, column 61] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:09:54,243 - Null reference [template 'substitution', line 8, column 197] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:09:54,243 - Null reference [template 'substitution', line 8, column 219] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:09:54,446 - Null reference [template 'substitution', line 122, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:09:54,447 - Null reference [template 'substitution', line 122, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:09:54,447 - Null reference [template 'substitution', line 125, column 46] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:09:54,448 - Null reference [template 'substitution', line 125, column 68] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:09:54,448 - Null reference [template 'substitution', line 128, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:09:54,449 - Null reference [template 'substitution', line 128, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:09:54,588 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 4, column 50] : $cli_cmd_ cannot be resolved.
-2014-11-20 13:09:54,619 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 11, column 38] : ${tomcat_public_procunitid} cannot be resolved.
-2014-11-20 13:09:54,619 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 12, column 43] : ${tomcat_public_http_access_dir} cannot be resolved.
-2014-11-20 13:09:54,619 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 13, column 43] : ${tomcat_public_http_access_url} cannot be resolved.
-2014-11-20 13:09:54,663 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 60] : ${input} cannot be resolved.
-2014-11-20 13:09:54,663 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 69] : ${output} cannot be resolved.
-2014-11-20 13:24:12,250 - Log4JLogChute initialized using file 'velocity.log'
-2014-11-20 13:24:12,258 - Initializing Velocity, Calling init()...
-2014-11-20 13:24:12,258 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2014-11-20 13:24:12,258 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2014-11-20 13:24:12,258 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2014-11-20 13:24:12,258 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2014-11-20 13:24:12,258 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-20 13:24:12,258 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-20 13:24:12,279 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2014-11-20 13:24:12,288 - Do unicode file recognition:  false
-2014-11-20 13:24:12,288 - FileResourceLoader : adding path '.'
-2014-11-20 13:24:12,334 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2014-11-20 13:24:12,363 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2014-11-20 13:24:12,363 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2014-11-20 13:24:12,363 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2014-11-20 13:24:12,373 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2014-11-20 13:24:12,373 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2014-11-20 13:24:12,373 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2014-11-20 13:24:12,373 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2014-11-20 13:24:12,383 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2014-11-20 13:24:12,383 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2014-11-20 13:24:12,453 - Created '20' parsers.
-2014-11-20 13:24:12,473 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2014-11-20 13:24:12,473 - Velocimacro : Default library not found.
-2014-11-20 13:24:12,473 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2014-11-20 13:24:12,473 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2014-11-20 13:24:12,473 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2014-11-20 13:24:12,473 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2014-11-20 13:24:12,503 - Null reference [template 'substitution', line 28, column 49] : ${jdk.version} cannot be resolved.
-2014-11-20 13:24:12,503 - Null reference [template 'substitution', line 29, column 49] : ${jdk.version} cannot be resolved.
-2014-11-20 13:24:12,503 - Null reference [template 'substitution', line 36, column 42] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:24:12,503 - Null reference [template 'substitution', line 46, column 60] : ${project.build.outputDirectory} cannot be resolved.
-2014-11-20 13:24:12,503 - Null reference [template 'substitution', line 80, column 73] : ${project.build.directory} cannot be resolved.
-2014-11-20 13:24:12,513 - Null reference [template 'substitution', line 92, column 46] : ${tomcat.manager.url} cannot be resolved.
-2014-11-20 13:24:12,513 - Null reference [template 'substitution', line 93, column 51] : ${tomcat.user} cannot be resolved.
-2014-11-20 13:24:12,513 - Null reference [template 'substitution', line 94, column 51] : ${tomcat.password} cannot be resolved.
-2014-11-20 13:24:12,513 - Null reference [template 'substitution', line 95, column 50] : ${project.build.directory} cannot be resolved.
-2014-11-20 13:24:12,513 - Null reference [template 'substitution', line 95, column 77] : ${project.build.finalName} cannot be resolved.
-2014-11-20 13:24:12,513 - Null reference [template 'substitution', line 95, column 104] : ${war.suffix} cannot be resolved.
-2014-11-20 13:24:12,513 - Null reference [template 'substitution', line 106, column 58] : ${project.build.directory} cannot be resolved.
-2014-11-20 13:24:12,513 - Null reference [template 'substitution', line 106, column 85] : ${project.build.finalName} cannot be resolved.
-2014-11-20 13:24:12,513 - Null reference [template 'substitution', line 135, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:24:12,513 - Null reference [template 'substitution', line 141, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:24:12,513 - Null reference [template 'substitution', line 147, column 34] : ${org.apache.axis2.version} cannot be resolved.
-2014-11-20 13:24:12,533 - Null reference [template 'substitution', line 50, column 31] : $INFILE cannot be resolved.
-2014-11-20 13:24:12,533 - Null reference [template 'substitution', line 50, column 39] : $OUTFILE cannot be resolved.
-2014-11-20 13:24:12,553 - Null reference [template 'substitution', line 139, column 13] : $FLIM cannot be resolved.
-2014-11-20 13:24:12,613 - Null reference [template 'substitution', line 12, column 15] : ${catalina.base} cannot be resolved.
-2014-11-20 13:24:12,613 - Null reference [template 'substitution', line 15, column 30] : ${catalina.base} cannot be resolved.
-2014-11-20 13:24:12,623 - Null reference [template 'substitution', line 5, column 12] : ${service_description} cannot be resolved.
-2014-11-20 13:24:12,623 - Null reference [template 'substitution', line 7, column 39] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:24:12,623 - Null reference [template 'substitution', line 7, column 61] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:24:12,623 - Null reference [template 'substitution', line 7, column 201] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:24:12,623 - Null reference [template 'substitution', line 7, column 223] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:24:12,623 - Null reference [template 'substitution', line 8, column 39] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:24:12,623 - Null reference [template 'substitution', line 8, column 61] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:24:12,623 - Null reference [template 'substitution', line 8, column 197] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:24:12,623 - Null reference [template 'substitution', line 8, column 219] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:24:12,805 - Null reference [template 'substitution', line 122, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:24:12,805 - Null reference [template 'substitution', line 122, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:24:12,805 - Null reference [template 'substitution', line 125, column 46] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:24:12,805 - Null reference [template 'substitution', line 125, column 68] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:24:12,805 - Null reference [template 'substitution', line 128, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-20 13:24:12,805 - Null reference [template 'substitution', line 128, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-20 13:24:12,953 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 4, column 50] : $cli_cmd_ cannot be resolved.
-2014-11-20 13:24:12,989 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 11, column 38] : ${tomcat_public_procunitid} cannot be resolved.
-2014-11-20 13:24:12,989 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 12, column 43] : ${tomcat_public_http_access_dir} cannot be resolved.
-2014-11-20 13:24:12,989 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 13, column 43] : ${tomcat_public_http_access_url} cannot be resolved.
-2014-11-20 13:24:13,031 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 60] : ${input} cannot be resolved.
-2014-11-20 13:24:13,031 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 69] : ${output} cannot be resolved.
-2014-11-21 11:54:09,645 - Log4JLogChute initialized using file 'velocity.log'
-2014-11-21 11:54:09,676 - Initializing Velocity, Calling init()...
-2014-11-21 11:54:09,676 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2014-11-21 11:54:09,676 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2014-11-21 11:54:09,676 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2014-11-21 11:54:09,676 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2014-11-21 11:54:09,676 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-21 11:54:09,676 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-21 11:54:09,692 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2014-11-21 11:54:09,692 - Do unicode file recognition:  false
-2014-11-21 11:54:09,692 - FileResourceLoader : adding path '.'
-2014-11-21 11:54:09,723 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2014-11-21 11:54:09,723 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2014-11-21 11:54:09,739 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2014-11-21 11:54:09,739 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2014-11-21 11:54:09,739 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2014-11-21 11:54:09,739 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2014-11-21 11:54:09,739 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2014-11-21 11:54:09,739 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2014-11-21 11:54:09,739 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2014-11-21 11:54:09,754 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2014-11-21 11:54:09,817 - Created '20' parsers.
-2014-11-21 11:54:09,832 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2014-11-21 11:54:09,832 - Velocimacro : Default library not found.
-2014-11-21 11:54:09,832 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2014-11-21 11:54:09,832 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2014-11-21 11:54:09,832 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2014-11-21 11:54:09,832 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 10, column 30] : ${project_namespace} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 11, column 36] : ${project_namespace} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 13, column 102] : ${project_namespace} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 31, column 25] : ${project_midfix} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 33, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 33, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 33, column 92] : ${contextpath_prefix} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 33, column 114] : ${global_project_prefix_lc} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 33, column 142] : ${project_midfix_lc} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 33, column 180] : ${project_midfix} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 36, column 46] : ${tomcat_public_host} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 36, column 68] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 36, column 94] : ${contextpath_prefix} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 36, column 116] : ${global_project_prefix_lc} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 36, column 144] : ${project_midfix_lc} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 36, column 182] : ${project_midfix} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 39, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 39, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 39, column 92] : ${contextpath_prefix} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 39, column 114] : ${global_project_prefix_lc} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 39, column 142] : ${project_midfix_lc} cannot be resolved.
-2014-11-21 11:54:09,848 - Null reference [template 'substitution', line 39, column 180] : ${project_midfix} cannot be resolved.
-2014-11-21 11:57:54,313 - Log4JLogChute initialized using file 'velocity.log'
-2014-11-21 11:57:54,313 - Initializing Velocity, Calling init()...
-2014-11-21 11:57:54,313 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2014-11-21 11:57:54,313 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2014-11-21 11:57:54,313 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2014-11-21 11:57:54,313 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2014-11-21 11:57:54,313 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-21 11:57:54,313 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-21 11:57:54,329 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2014-11-21 11:57:54,329 - Do unicode file recognition:  false
-2014-11-21 11:57:54,329 - FileResourceLoader : adding path '.'
-2014-11-21 11:57:54,360 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2014-11-21 11:57:54,376 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2014-11-21 11:57:54,376 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2014-11-21 11:57:54,376 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2014-11-21 11:57:54,376 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2014-11-21 11:57:54,376 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2014-11-21 11:57:54,391 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2014-11-21 11:57:54,391 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2014-11-21 11:57:54,391 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2014-11-21 11:57:54,391 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2014-11-21 11:57:54,469 - Created '20' parsers.
-2014-11-21 11:57:54,485 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2014-11-21 11:57:54,485 - Velocimacro : Default library not found.
-2014-11-21 11:57:54,485 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2014-11-21 11:57:54,485 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2014-11-21 11:57:54,485 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2014-11-21 11:57:54,485 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 10, column 30] : ${project_namespace} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 11, column 36] : ${project_namespace} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 13, column 102] : ${project_namespace} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 31, column 25] : ${project_midfix} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 33, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 33, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 33, column 92] : ${contextpath_prefix} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 33, column 114] : ${global_project_prefix_lc} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 33, column 142] : ${project_midfix_lc} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 33, column 180] : ${project_midfix} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 36, column 46] : ${tomcat_public_host} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 36, column 68] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 36, column 94] : ${contextpath_prefix} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 36, column 116] : ${global_project_prefix_lc} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 36, column 144] : ${project_midfix_lc} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 36, column 182] : ${project_midfix} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 39, column 44] : ${tomcat_public_host} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 39, column 66] : ${tomcat_public_http_port} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 39, column 92] : ${contextpath_prefix} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 39, column 114] : ${global_project_prefix_lc} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 39, column 142] : ${project_midfix_lc} cannot be resolved.
-2014-11-21 11:57:54,516 - Null reference [template 'substitution', line 39, column 180] : ${project_midfix} cannot be resolved.
-2014-11-21 12:13:50,638 - Log4JLogChute initialized using file 'velocity.log'
-2014-11-21 12:13:50,638 - Initializing Velocity, Calling init()...
-2014-11-21 12:13:50,638 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2014-11-21 12:13:50,638 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2014-11-21 12:13:50,638 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2014-11-21 12:13:50,638 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2014-11-21 12:13:50,638 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-21 12:13:50,638 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2014-11-21 12:13:50,653 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2014-11-21 12:13:50,653 - Do unicode file recognition:  false
-2014-11-21 12:13:50,653 - FileResourceLoader : adding path '.'
-2014-11-21 12:13:50,684 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2014-11-21 12:13:50,684 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2014-11-21 12:13:50,684 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2014-11-21 12:13:50,684 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2014-11-21 12:13:50,684 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2014-11-21 12:13:50,684 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2014-11-21 12:13:50,700 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2014-11-21 12:13:50,700 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2014-11-21 12:13:50,700 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2014-11-21 12:13:50,700 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2014-11-21 12:13:50,762 - Created '20' parsers.
-2014-11-21 12:13:50,778 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2014-11-21 12:13:50,778 - Velocimacro : Default library not found.
-2014-11-21 12:13:50,778 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2014-11-21 12:13:50,778 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2014-11-21 12:13:50,778 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2014-11-21 12:13:50,778 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-12-01 14:02:55,485 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-12-01 14:02:55,564 - Created '20' parsers.
+2014-12-01 14:02:55,583 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-12-01 14:02:55,584 - Velocimacro : Default library not found.
+2014-12-01 14:02:55,584 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-12-01 14:02:55,584 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-12-01 14:02:55,584 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-12-01 14:02:55,584 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-12-01 14:02:55,624 - Null reference [template 'substitution', line 28, column 49] : ${jdk.version} cannot be resolved.
+2014-12-01 14:02:55,624 - Null reference [template 'substitution', line 29, column 49] : ${jdk.version} cannot be resolved.
+2014-12-01 14:02:55,624 - Null reference [template 'substitution', line 36, column 42] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-01 14:02:55,624 - Null reference [template 'substitution', line 46, column 60] : ${project.build.outputDirectory} cannot be resolved.
+2014-12-01 14:02:55,624 - Null reference [template 'substitution', line 80, column 73] : ${project.build.directory} cannot be resolved.
+2014-12-01 14:02:55,624 - Null reference [template 'substitution', line 92, column 46] : ${tomcat.manager.url} cannot be resolved.
+2014-12-01 14:02:55,624 - Null reference [template 'substitution', line 93, column 51] : ${tomcat.user} cannot be resolved.
+2014-12-01 14:02:55,624 - Null reference [template 'substitution', line 94, column 51] : ${tomcat.password} cannot be resolved.
+2014-12-01 14:02:55,624 - Null reference [template 'substitution', line 95, column 50] : ${project.build.directory} cannot be resolved.
+2014-12-01 14:02:55,625 - Null reference [template 'substitution', line 95, column 77] : ${project.build.finalName} cannot be resolved.
+2014-12-01 14:02:55,625 - Null reference [template 'substitution', line 95, column 104] : ${war.suffix} cannot be resolved.
+2014-12-01 14:02:55,625 - Null reference [template 'substitution', line 106, column 58] : ${project.build.directory} cannot be resolved.
+2014-12-01 14:02:55,625 - Null reference [template 'substitution', line 106, column 85] : ${project.build.finalName} cannot be resolved.
+2014-12-01 14:02:55,625 - Null reference [template 'substitution', line 135, column 34] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-01 14:02:55,625 - Null reference [template 'substitution', line 141, column 34] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-01 14:02:55,625 - Null reference [template 'substitution', line 147, column 34] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-01 14:02:55,659 - Null reference [template 'substitution', line 50, column 31] : $INFILE cannot be resolved.
+2014-12-01 14:02:55,659 - Null reference [template 'substitution', line 50, column 39] : $OUTFILE cannot be resolved.
+2014-12-01 14:02:55,744 - Null reference [template 'substitution', line 139, column 13] : $FLIM cannot be resolved.
+2014-12-01 14:02:55,796 - Null reference [template 'substitution', line 12, column 15] : ${catalina.base} cannot be resolved.
+2014-12-01 14:02:55,796 - Null reference [template 'substitution', line 15, column 30] : ${catalina.base} cannot be resolved.
+2014-12-01 14:02:55,805 - Null reference [template 'substitution', line 5, column 12] : ${service_description} cannot be resolved.
+2014-12-01 14:02:55,805 - Null reference [template 'substitution', line 7, column 39] : ${tomcat_public_host} cannot be resolved.
+2014-12-01 14:02:55,805 - Null reference [template 'substitution', line 7, column 61] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-01 14:02:55,805 - Null reference [template 'substitution', line 7, column 201] : ${tomcat_public_host} cannot be resolved.
+2014-12-01 14:02:55,805 - Null reference [template 'substitution', line 7, column 223] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-01 14:02:55,806 - Null reference [template 'substitution', line 8, column 39] : ${tomcat_public_host} cannot be resolved.
+2014-12-01 14:02:55,806 - Null reference [template 'substitution', line 8, column 61] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-01 14:02:55,806 - Null reference [template 'substitution', line 8, column 197] : ${tomcat_public_host} cannot be resolved.
+2014-12-01 14:02:55,806 - Null reference [template 'substitution', line 8, column 219] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-01 14:02:56,158 - Null reference [template 'substitution', line 122, column 44] : ${tomcat_public_host} cannot be resolved.
+2014-12-01 14:02:56,158 - Null reference [template 'substitution', line 122, column 66] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-01 14:02:56,158 - Null reference [template 'substitution', line 125, column 46] : ${tomcat_public_host} cannot be resolved.
+2014-12-01 14:02:56,158 - Null reference [template 'substitution', line 125, column 68] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-01 14:02:56,158 - Null reference [template 'substitution', line 128, column 44] : ${tomcat_public_host} cannot be resolved.
+2014-12-01 14:02:56,158 - Null reference [template 'substitution', line 128, column 66] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-01 14:02:56,233 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 4, column 50] : $cli_cmd_ cannot be resolved.
+2014-12-01 14:02:56,269 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 11, column 38] : ${tomcat_public_procunitid} cannot be resolved.
+2014-12-01 14:02:56,269 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 12, column 43] : ${tomcat_public_http_access_dir} cannot be resolved.
+2014-12-01 14:02:56,269 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 13, column 43] : ${tomcat_public_http_access_url} cannot be resolved.
+2014-12-01 14:02:56,292 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 62] : ${input} cannot be resolved.
+2014-12-01 14:02:56,292 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 10, column 71] : ${output} cannot be resolved.
+2014-12-02 11:01:50,064 - Log4JLogChute initialized using file 'velocity.log'
+2014-12-02 11:01:50,064 - Initializing Velocity, Calling init()...
+2014-12-02 11:01:50,064 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-12-02 11:01:50,064 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-12-02 11:01:50,064 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-12-02 11:01:50,064 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-12-02 11:01:50,064 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-12-02 11:01:50,064 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-12-02 11:01:50,080 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-12-02 11:01:50,095 - Do unicode file recognition:  false
+2014-12-02 11:01:50,095 - FileResourceLoader : adding path '.'
+2014-12-02 11:01:50,142 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-12-02 11:01:50,142 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-12-02 11:01:50,142 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-12-02 11:01:50,142 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-12-02 11:01:50,142 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-12-02 11:01:50,142 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-12-02 11:01:50,158 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-12-02 11:01:50,158 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-12-02 11:01:50,158 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-12-02 11:01:50,158 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-12-02 11:01:50,236 - Created '20' parsers.
+2014-12-02 11:01:50,251 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-12-02 11:01:50,251 - Velocimacro : Default library not found.
+2014-12-02 11:01:50,251 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-12-02 11:01:50,251 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-12-02 11:01:50,251 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-12-02 11:01:50,251 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 28, column 49] : ${jdk.version} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 29, column 49] : ${jdk.version} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 36, column 42] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 46, column 60] : ${project.build.outputDirectory} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 80, column 73] : ${project.build.directory} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 92, column 46] : ${tomcat.manager.url} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 93, column 51] : ${tomcat.user} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 94, column 51] : ${tomcat.password} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 95, column 50] : ${project.build.directory} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 95, column 77] : ${project.build.finalName} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 95, column 104] : ${war.suffix} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 106, column 58] : ${project.build.directory} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 106, column 85] : ${project.build.finalName} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 135, column 34] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 141, column 34] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-02 11:01:50,282 - Null reference [template 'substitution', line 147, column 34] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-02 11:01:50,329 - Null reference [template 'substitution', line 50, column 31] : $INFILE cannot be resolved.
+2014-12-02 11:01:50,329 - Null reference [template 'substitution', line 50, column 39] : $OUTFILE cannot be resolved.
+2014-12-02 11:01:50,376 - Null reference [template 'substitution', line 139, column 13] : $FLIM cannot be resolved.
+2014-12-02 11:01:50,470 - Null reference [template 'substitution', line 12, column 15] : ${catalina.base} cannot be resolved.
+2014-12-02 11:01:50,470 - Null reference [template 'substitution', line 15, column 30] : ${catalina.base} cannot be resolved.
+2014-12-02 11:01:50,485 - Null reference [template 'substitution', line 5, column 12] : ${service_description} cannot be resolved.
+2014-12-02 11:01:50,485 - Null reference [template 'substitution', line 7, column 39] : ${tomcat_public_host} cannot be resolved.
+2014-12-02 11:01:50,485 - Null reference [template 'substitution', line 7, column 61] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-02 11:01:50,485 - Null reference [template 'substitution', line 7, column 201] : ${tomcat_public_host} cannot be resolved.
+2014-12-02 11:01:50,485 - Null reference [template 'substitution', line 7, column 223] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-02 11:01:50,485 - Null reference [template 'substitution', line 8, column 39] : ${tomcat_public_host} cannot be resolved.
+2014-12-02 11:01:50,485 - Null reference [template 'substitution', line 8, column 61] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-02 11:01:50,485 - Null reference [template 'substitution', line 8, column 197] : ${tomcat_public_host} cannot be resolved.
+2014-12-02 11:01:50,485 - Null reference [template 'substitution', line 8, column 219] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-02 11:01:50,828 - Null reference [template 'substitution', line 137, column 44] : ${tomcat_public_host} cannot be resolved.
+2014-12-02 11:01:50,828 - Null reference [template 'substitution', line 137, column 66] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-02 11:01:50,828 - Null reference [template 'substitution', line 140, column 46] : ${tomcat_public_host} cannot be resolved.
+2014-12-02 11:01:50,828 - Null reference [template 'substitution', line 140, column 68] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-02 11:01:50,828 - Null reference [template 'substitution', line 143, column 44] : ${tomcat_public_host} cannot be resolved.
+2014-12-02 11:01:50,828 - Null reference [template 'substitution', line 143, column 66] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-02 11:01:50,922 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 5, column 125] : ${extension} cannot be resolved.
+2014-12-02 11:01:50,938 - Null reference [template 'eu.impact_project.iif.tw.tmpl.Code', line 4, column 50] : $cli_cmd_ cannot be resolved.
+2014-12-03 12:51:45,894 - Log4JLogChute initialized using file 'velocity.log'
+2014-12-03 12:51:45,896 - Initializing Velocity, Calling init()...
+2014-12-03 12:51:45,896 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-12-03 12:51:45,896 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-12-03 12:51:45,896 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-12-03 12:51:45,896 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-12-03 12:51:45,896 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-12-03 12:51:45,896 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-12-03 12:51:45,907 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-12-03 12:51:45,910 - Do unicode file recognition:  false
+2014-12-03 12:51:45,910 - FileResourceLoader : adding path '.'
+2014-12-03 12:51:45,937 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-12-03 12:51:45,940 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-12-03 12:51:45,944 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-12-03 12:51:45,946 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-12-03 12:51:45,948 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-12-03 12:51:45,950 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-12-03 12:51:45,953 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-12-03 12:51:45,957 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-12-03 12:51:45,961 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-12-03 12:51:45,964 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-12-03 12:51:46,036 - Created '20' parsers.
+2014-12-03 12:51:46,052 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-12-03 12:51:46,052 - Velocimacro : Default library not found.
+2014-12-03 12:51:46,052 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-12-03 12:51:46,052 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-12-03 12:51:46,052 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-12-03 12:51:46,052 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-12-03 12:51:46,084 - Null reference [template 'substitution', line 28, column 49] : ${jdk.version} cannot be resolved.
+2014-12-03 12:51:46,084 - Null reference [template 'substitution', line 29, column 49] : ${jdk.version} cannot be resolved.
+2014-12-03 12:51:46,084 - Null reference [template 'substitution', line 36, column 42] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-03 12:51:46,084 - Null reference [template 'substitution', line 46, column 60] : ${project.build.outputDirectory} cannot be resolved.
+2014-12-03 12:51:46,084 - Null reference [template 'substitution', line 80, column 73] : ${project.build.directory} cannot be resolved.
+2014-12-03 12:51:46,084 - Null reference [template 'substitution', line 92, column 46] : ${tomcat.manager.url} cannot be resolved.
+2014-12-03 12:51:46,084 - Null reference [template 'substitution', line 93, column 51] : ${tomcat.user} cannot be resolved.
+2014-12-03 12:51:46,084 - Null reference [template 'substitution', line 94, column 51] : ${tomcat.password} cannot be resolved.
+2014-12-03 12:51:46,085 - Null reference [template 'substitution', line 95, column 50] : ${project.build.directory} cannot be resolved.
+2014-12-03 12:51:46,085 - Null reference [template 'substitution', line 95, column 77] : ${project.build.finalName} cannot be resolved.
+2014-12-03 12:51:46,085 - Null reference [template 'substitution', line 95, column 104] : ${war.suffix} cannot be resolved.
+2014-12-03 12:51:46,085 - Null reference [template 'substitution', line 106, column 58] : ${project.build.directory} cannot be resolved.
+2014-12-03 12:51:46,085 - Null reference [template 'substitution', line 106, column 85] : ${project.build.finalName} cannot be resolved.
+2014-12-03 12:51:46,085 - Null reference [template 'substitution', line 135, column 34] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-03 12:51:46,085 - Null reference [template 'substitution', line 141, column 34] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-03 12:51:46,085 - Null reference [template 'substitution', line 147, column 34] : ${org.apache.axis2.version} cannot be resolved.
+2014-12-03 12:51:46,113 - Null reference [template 'substitution', line 50, column 31] : $INFILE cannot be resolved.
+2014-12-03 12:51:46,113 - Null reference [template 'substitution', line 50, column 39] : $OUTFILE cannot be resolved.
+2014-12-03 12:51:46,138 - Null reference [template 'substitution', line 139, column 13] : $FLIM cannot be resolved.
+2014-12-03 12:51:46,203 - Null reference [template 'substitution', line 12, column 15] : ${catalina.base} cannot be resolved.
+2014-12-03 12:51:46,203 - Null reference [template 'substitution', line 15, column 30] : ${catalina.base} cannot be resolved.
+2014-12-03 12:51:46,211 - Null reference [template 'substitution', line 5, column 12] : ${service_description} cannot be resolved.
+2014-12-03 12:51:46,211 - Null reference [template 'substitution', line 7, column 39] : ${tomcat_public_host} cannot be resolved.
+2014-12-03 12:51:46,211 - Null reference [template 'substitution', line 7, column 61] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-03 12:51:46,211 - Null reference [template 'substitution', line 7, column 201] : ${tomcat_public_host} cannot be resolved.
+2014-12-03 12:51:46,211 - Null reference [template 'substitution', line 7, column 223] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-03 12:51:46,211 - Null reference [template 'substitution', line 8, column 39] : ${tomcat_public_host} cannot be resolved.
+2014-12-03 12:51:46,211 - Null reference [template 'substitution', line 8, column 61] : ${tomcat_public_http_port} cannot be resolved.
+2014-12-03 12:51:46,212 - Null reference [template 'substitution', line 8, column 197] : ${tomcat_public_host} cannot be resolved.
+2014-12-03 12:51:46,212 - Null reference [template 'substitution', line 8, column 219] : ${tomcat_public_http_port} cannot be resolved.

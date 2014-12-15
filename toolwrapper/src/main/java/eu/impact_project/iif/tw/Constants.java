@@ -15,6 +15,5 @@ public final class Constants {
     /** Default project properties file name */
     public static final String DEFAULT_PROJECT_PROPERTIES = "toolwrapper.properties";
     /** Default toolspec xml file */
-    public static final String DEFAULT_TOOLSPEC = "default-toolspec.xml";
-    private Constants() {/** Private constructor = static instance */}
+    public static final String DEFAULT_TOOLSPEC = "default-toolspec.xml";    
 }

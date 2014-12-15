@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolspec model="0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../src/main/resources/toolspec.xsd">
+    <id>layoutevaluation</id>
+    <name>USAL Layout Evaluation</name>
+    <homepage>http://www.digitisation.eu/tools/browse/evaluation/evaluation-tool-for-segmentation/</homepage>
+    <version>1-2-33</version>
+    <installation>
+        <os type="linux">
+            Not currently supported.
+        </os>
+        <os type="windows">
+            Requires installation of the USAL Layout Evaluation Tool. THE FULL PATH TO THE EXECUTABLE MUST NOT CONTAIN WHITESPACES!
+        </os>
+    </installation>
+    <services>
+        <service sid="1" name="LayoutEvaluation" type="migrate" servicepackage="eu.impact_project.iif.service" contextpathprefix="/impactservices">
+            <description>Service for evaluating document layout detection against ground truth in PAGE format
+            </description>
+            <operations>
+                <operation oid="1" name="evalLayout">
+                    <description>Evaluation of layout detection using profiles</description>                    
+                    <command>layoutevalcmd-1-2-33.exe ${groundTruthXmlFileUrl} ${segXmlFileUrl} ${bwImageFileUrl} ${profileEvxFileUrl} ${outfile} ${opts}
+                    </command>
+                    <inputs>
+                        <input name="depth">
+                            <Datatype>xsd:int</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>depth</CliMapping>
+                            <Documentation>Color depth of output image</Documentation>
+                            <Default>8</Default>
+                            <Restriction>
+                                <Value>1</Value>
+                                <Value>8</Value>
+                                <Value>16</Value>
+                                <Value>24</Value>
+                            </Restriction>
+                        </input> 
+                        <input name="pagesplit">
+                            <Datatype>xsd:boolean</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>pagesplit</CliMapping>
+                            <Documentation>Indicates if a page should be split or not (if an image represents two book pages)</Documentation>
+                            <Default>true</Default>
+                            <Restriction>
+                                <Value>true</Value>
+                                <Value>false</Value>
+                            </Restriction>
+                        </input>   
+                        <input name="language">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>language</CliMapping>
+                            <Documentation>Language used in recognition process</Documentation>
+                            <Default>Bulgarian</Default>
+                            <Restriction>
+				<Value>Bulgarian</Value>
+                                <Value>Catalan</Value>                                
+                            </Restriction>
+                        </input>   
+                        <input name="language2">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>language</CliMapping>
+                            <Documentation>Language used in recognition process</Documentation>
+                            <Default>Bulgarian</Default>
+                            <Restriction multiple="true">
+				<Value>Bulgarian</Value>
+                                <Value>Catalan</Value>                                
+                            </Restriction>
+                        </input>                                   
+                        <input name="evaluationId">
+                            <Datatype>xsd:string</Datatype>
+                            <Required>false</Required>
+                            <CliMapping></CliMapping>
+                            <Documentation>Evaluation ID</Documentation>
+                            <Default>Default_Evaluation_ID</Default>
+                        </input>
+                        <input name="inputdir">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>true</Required>
+                            <CliMapping>input</CliMapping>
+                            <Documentation>URL reference to input directory</Documentation>
+			    <Default>http://github.com/impactcentre/iif-testfiles/raw/master/testfiles/image.png</Default>
+                        </input>
+                        <input name="grayimage">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>grayimage</CliMapping>
+                            <Documentation>URL reference to grayscale image file</Documentation>
+                            <Default clireplacement="-1">http://null</Default>
+                        </input>
+                    </inputs>
+                    <outputs>
+                        <output name="outfile">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outfile</CliMapping>
+                            <Documentation>URL reference to output file</Documentation>
+                            <Extension>evx</Extension>
+                        </output>
+                        <output name="outputdir">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>outputdir</CliMapping>
+                            <Documentation>URL reference to output directory</Documentation>
+                        </output>
+                        <output name="outputstream">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to output text file</Documentation>
+                            <Extension>txt</Extension>
+                        </output>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to statistics output file</Documentation>
+                            <Extension>xml</Extension>
+                            <PrefixFromInput>input</PrefixFromInput>
+                            <OutFileName>output.xml</OutFileName>
+                            <AutoExtension>true</AutoExtension>
+                            <OutfileId>true</OutfileId>
+                        </output>
+                        <output name="output">
+                            <Datatype>xsd:anyURI</Datatype>
+                            <Required>false</Required>
+                            <CliMapping>output</CliMapping>
+                            <Documentation>URL reference to statistics output file</Documentation>
+                            <Extension>xml</Extension>                            
+                            <OutFileName>output2.xml</OutFileName>                            
+                            <OutfileId>true</OutfileId>
+                        </output>
+                    </outputs>
+                </operation>
+            </operations>
+            <deployto>
+                <deployref default="true" ref="local"/>
+                <deployref default="true" ref="otra"/>
+            </deployto>
+        </service>
+    </services>
+    <deployments>
+        <deployment id="local">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir>C:\\SEGEVAL\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+        <deployment id="otra">
+            <identifier>http://localhost:8080/impact/instances/tomcat1</identifier>
+            <host>localhost</host>
+            <ports>
+                <port type="http">8080</port>
+                <port type="https">8043</port>
+            </ports>
+            <manager>
+                <user>tomcat</user>
+                <password>tomcat</password>
+                <path>manager</path>
+            </manager>
+            <!--
+            Full path to the directory where the tool has been installed.
+            THE PATH MUST NOT CONTAIN WHITESPACES!
+            If you want to use backslashes (\) then you must repeat them twice,
+            e.g. c:\\foo\\bar
+            or you can use just slashes,
+            e.g. c:/foo/bar
+            -->
+            <toolsbasedir>C:\\SEGEVAL\\</toolsbasedir>
+            <dataexchange>
+                <accessdir>../webapps/ROOT/impact/tmp/</accessdir>
+                <accessurl>http://localhost:8080/impact/tmp/</accessurl>
+            </dataexchange>
+        </deployment>
+    </deployments>
+</toolspec>

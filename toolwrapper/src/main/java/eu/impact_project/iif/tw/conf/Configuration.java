@@ -40,16 +40,18 @@ public class Configuration {
         
     }
 
+    /*
     /**
      * @return string with the path to the project configuration file
      * @throws GeneratorException
-     */
+     *
     public String getProjectConfigurationFile() throws GeneratorException {
         if(this.projConf == null) {
             throw new GeneratorException("Project configuration file is not defined");
         }
         return this.projConf;
     }
+    */
 
     /**
      * @return the projConf

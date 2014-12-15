@@ -22,7 +22,7 @@ package eu.impact_project.iif.tw.util;
  * @author shsdev https://github.com/shsdev
  * @version 0.7
  */
-public abstract class StringConverterUtil 
+public final class StringConverterUtil 
 {
 
    /**

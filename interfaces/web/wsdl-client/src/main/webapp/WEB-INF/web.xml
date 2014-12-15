@@ -13,11 +13,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <listener>
+    <listener-class>eu.impact_project.wsclient.FileLocationContextListener</listener-class>
+  </listener>
   <servlet>
     <description></description>
     <display-name>WSDLinfo</display-name>
     <servlet-name>WSDLinfo</servlet-name>
     <servlet-class>eu.impact_project.wsclient.WSDLinfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadFiles</servlet-name>
+    <url-pattern>/UploadFiles</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UploadFiles</display-name>
+    <servlet-name>UploadFiles</servlet-name>
+    <servlet-class>eu.impact_project.wsclient.UploadFiles</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>WSDLinfo</servlet-name>
@@ -45,5 +58,9 @@
   </servlet-mapping>
   <session-config>
     <session-timeout>30</session-timeout>
-  </session-config>  
+  </session-config>
+  <context-param>
+    <param-name>tempfile.dir</param-name>
+    <param-value>tmpfiles</param-value>
+  </context-param>
 </web-app>

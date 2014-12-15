@@ -64,7 +64,7 @@ public class XmlServiceProvider implements ServiceProvider {
 
 	private List<Service> services = new ArrayList<Service>();
 	private URL xmlUrl;
-	private static final String NO_NAMESPACE = null;
+	private static final String NO_NAMESPACE = "";
 
 	public XmlServiceProvider(URL url) throws ConfigurationException {
 		xmlUrl = url;

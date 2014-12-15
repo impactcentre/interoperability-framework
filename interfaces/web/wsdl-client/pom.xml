@@ -18,11 +18,6 @@
     </properties>
 	<dependencies>
 		<dependency>
-			<groupId>eu.impact_project.iif.ws</groupId>
-			<artifactId>generic-soap-client</artifactId>
-			<version>0.7.0</version>
-		</dependency>
-		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
@@ -251,6 +246,17 @@
             <artifactId>spring-web</artifactId>
             <version>3.0.7.RELEASE</version>
         </dependency>
+	 <dependency>
+	  <groupId>${project.groupId}</groupId>
+	  <artifactId>generic-soap-client</artifactId>
+	  <version>${project.version}</version>
+	 </dependency>
+	 <dependency>
+	  <groupId>org.mockito</groupId>
+	  <artifactId>mockito-all</artifactId>
+	  <version>1.10.8</version>
+	  <scope>test</scope>
+	 </dependency>
 	</dependencies>
 	<repositories>
 	    <repository>

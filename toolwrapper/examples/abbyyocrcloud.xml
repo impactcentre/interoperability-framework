@@ -45,7 +45,7 @@
                             <Documentation>Language used in recognition process</Documentation>
                             <Default>German</Default>
                             <Restriction>
-				                <Value>Bulgarian</Value>
+				<Value>Bulgarian</Value>
                                 <Value>Catalan</Value>
                                 <Value>Croatian</Value>
                                 <Value>Czech</Value>

@@ -51,14 +51,17 @@ public class WSDLNamespaceContext implements NamespaceContext {
 		}
 	}
 
+        
 	// This method isn't necessary for XPath processing.
 	public String getPrefix(String uri) {
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
+            return null;
 	}
 
 	// This method isn't necessary for XPath processing either.
 	public Iterator getPrefixes(String uri) {
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
+            return null;
 	}
-
+        
 }

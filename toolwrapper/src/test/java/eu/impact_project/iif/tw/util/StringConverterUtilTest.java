@@ -16,6 +16,13 @@ public class StringConverterUtilTest
 {
         
 
+    @Test
+    public void testConstructor()
+    {
+        StringConverterUtil instance = new StringConverterUtil();
+        assertNotEquals(instance, null);
+    }
+    
     /**
      * Test of varToProp method, of class StringConverterUtil.
      */

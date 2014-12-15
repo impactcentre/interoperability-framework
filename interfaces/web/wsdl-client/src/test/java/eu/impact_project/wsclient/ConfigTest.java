@@ -20,6 +20,7 @@
 
 package eu.impact_project.wsclient;
 
+import eu.impact_project.wsclient.FileServiceProvider.FileService;
 import java.net.MalformedURLException;
 import java.util.List;
 
@@ -27,6 +28,7 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.junit.Test;
 
 import eu.impact_project.wsclient.ServiceProvider.Service;
+import java.net.URL;
 
 public class ConfigTest {
 
@@ -38,6 +40,13 @@ public class ConfigTest {
 			for (Service s: services) {
 				System.out.println(s.getDescription());
 			}
+                        FileServiceProvider pro = new FileServiceProvider();
+                        FileService service = pro.new FileService(1, "prueba", "prueba", new URL("http://prueba"));
+                        service.getDescription();
+                        service.getIdentifier();
+                        service.getTitle();
+                        service.getURL();
+                          
 		} catch (ConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

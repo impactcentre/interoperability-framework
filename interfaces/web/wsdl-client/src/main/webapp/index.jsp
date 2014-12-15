@@ -72,6 +72,7 @@ String style = props.getProperty("styleSheet");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=style%>" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
 <title>IMPACT Web Service Client</title>
 </head>
 <body onload="document.forms['defaultForm'].submit()">
@@ -158,10 +159,10 @@ if (loadDefault.equals("true")) {
 
 <h4>Other</h4>
 
-<input type="text" size="70" name="wsdlURL" value="<%if (session.getAttribute("wsdlURL") != null)
+<input class="search-field form-control" type="text" size="70" name="wsdlURL" value="<%if (session.getAttribute("wsdlURL") != null)
 				out.print(session.getAttribute("wsdlURL"));%>">
 <br>
-<input type="submit" value="-> Try out">
+<input class="btn btn-default" type="submit" value="-> Try out">
 
 </form>
 

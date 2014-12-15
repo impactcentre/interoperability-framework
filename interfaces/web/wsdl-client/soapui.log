@@ -1,0 +1,121 @@
+2014-12-15 11:40:24,621 WARN  [SoapUI] Missing folder [C:\interoperability\interoperability-framework-master\interfaces\web\wsdl-client\.\ext] for external libraries
+2014-12-15 11:40:24,621 INFO  [DefaultSoapUICore] Creating new settings at [C:\Users\Impact\soapui-settings.xml]
+2014-12-15 11:40:27,101 INFO  [SchemaUtils] Added default schema from file:/C:/Users/Impact/.m2/repository/eviware/soapui/4.0.1/soapui-4.0.1.jar!/com/eviware/soapui/resources/xsds/xop.xsd with targetNamespace http://www.w3.org/2004/08/xop/include
+2014-12-15 11:40:27,335 INFO  [SchemaUtils] Added default schema from file:/C:/Users/Impact/.m2/repository/eviware/soapui/4.0.1/soapui-4.0.1.jar!/com/eviware/soapui/resources/xsds/XMLSchema.xsd with targetNamespace http://www.w3.org/2001/XMLSchema
+2014-12-15 11:40:27,351 INFO  [SchemaUtils] Added default schema from file:/C:/Users/Impact/.m2/repository/eviware/soapui/4.0.1/soapui-4.0.1.jar!/com/eviware/soapui/resources/xsds/xml.xsd with targetNamespace http://www.w3.org/XML/1998/namespace
+2014-12-15 11:40:27,351 INFO  [SchemaUtils] Added default schema from file:/C:/Users/Impact/.m2/repository/eviware/soapui/4.0.1/soapui-4.0.1.jar!/com/eviware/soapui/resources/xsds/swaref.xsd with targetNamespace http://ws-i.org/profiles/basic/1.1/xsd
+2014-12-15 11:40:27,351 INFO  [SchemaUtils] Added default schema from file:/C:/Users/Impact/.m2/repository/eviware/soapui/4.0.1/soapui-4.0.1.jar!/com/eviware/soapui/resources/xsds/xmime200505.xsd with targetNamespace http://www.w3.org/2005/05/xmlmime
+2014-12-15 11:40:27,366 INFO  [SchemaUtils] Added default schema from file:/C:/Users/Impact/.m2/repository/eviware/soapui/4.0.1/soapui-4.0.1.jar!/com/eviware/soapui/resources/xsds/xmime200411.xsd with targetNamespace http://www.w3.org/2004/11/xmlmime
+2014-12-15 11:40:27,366 INFO  [SchemaUtils] Added default schema from file:/C:/Users/Impact/.m2/repository/eviware/soapui/4.0.1/soapui-4.0.1.jar!/com/eviware/soapui/resources/xsds/soapEnvelope.xsd with targetNamespace http://schemas.xmlsoap.org/soap/envelope/
+2014-12-15 11:40:27,366 INFO  [SchemaUtils] Added default schema from file:/C:/Users/Impact/.m2/repository/eviware/soapui/4.0.1/soapui-4.0.1.jar!/com/eviware/soapui/resources/xsds/soapEncoding.xsd with targetNamespace http://schemas.xmlsoap.org/soap/encoding/
+2014-12-15 11:40:27,366 INFO  [SchemaUtils] Added default schema from file:/C:/Users/Impact/.m2/repository/eviware/soapui/4.0.1/soapui-4.0.1.jar!/com/eviware/soapui/resources/xsds/soapEnvelope12.xsd with targetNamespace http://www.w3.org/2003/05/soap-envelope
+2014-12-15 11:40:27,382 INFO  [SchemaUtils] Added default schema from file:/C:/Users/Impact/.m2/repository/eviware/soapui/4.0.1/soapui-4.0.1.jar!/com/eviware/soapui/resources/xsds/soapEncoding12.xsd with targetNamespace http://www.w3.org/2003/05/soap-encoding
+2014-12-15 11:40:28,021 INFO  [SchemaUtils] Loading schema types from [http://impact.dlsi.ua.es/services/Tesseract302?wsdl]
+2014-12-15 11:40:28,021 INFO  [SchemaUtils] Getting schema http://impact.dlsi.ua.es/services/Tesseract302?wsdl
+2014-12-15 11:40:29,113 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:29,129 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:29,207 INFO  [Soap11HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap11Endpoint
+2014-12-15 11:40:29,223 INFO  [Soap11HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:29,519 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:29,519 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:29,535 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:29,535 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:29,535 INFO  [Soap12HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap12Endpoint
+2014-12-15 11:40:29,535 INFO  [Soap12HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:29,535 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:29,535 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:29,659 INFO  [SoapInput] No documentation found for input input
+2014-12-15 11:40:29,862 INFO  [SoapInput] No documentation found for input langmod
+2014-12-15 11:40:29,862 INFO  [SOAPinputs] Initializing Servlet SOAPinputs
+2014-12-15 11:40:30,081 INFO  [SchemaUtils] Loading schema types from [http://impact.dlsi.ua.es/services/Tesseract302?wsdl]
+2014-12-15 11:40:30,081 INFO  [SchemaUtils] Getting schema http://impact.dlsi.ua.es/services/Tesseract302?wsdl
+2014-12-15 11:40:31,219 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:31,219 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:31,219 INFO  [Soap11HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap11Endpoint
+2014-12-15 11:40:31,219 INFO  [Soap11HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:31,219 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:31,219 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:31,219 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:31,235 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:31,235 INFO  [Soap12HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap12Endpoint
+2014-12-15 11:40:31,235 INFO  [Soap12HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:31,235 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:31,235 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:31,251 INFO  [SoapInput] No documentation found for input input
+2014-12-15 11:40:31,266 INFO  [SoapInput] No documentation found for input langmod
+2014-12-15 11:40:31,297 INFO  [SOAPinputs] Initializing Servlet SOAPinputs
+2014-12-15 11:40:31,375 INFO  [WSDLinfo] Initializing Servlet WSDLinfo
+2014-12-15 11:40:31,375 INFO  [WSDLinfo] URL WSDL: http://impact.dlsi.ua.es/services/Tesseract302?wsdl
+2014-12-15 11:40:31,609 INFO  [SchemaUtils] Loading schema types from [http://impact.dlsi.ua.es/services/Tesseract302?wsdl]
+2014-12-15 11:40:31,609 INFO  [SchemaUtils] Getting schema http://impact.dlsi.ua.es/services/Tesseract302?wsdl
+2014-12-15 11:40:33,169 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:33,169 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:33,169 INFO  [Soap11HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap11Endpoint
+2014-12-15 11:40:33,169 INFO  [Soap11HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:33,169 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:33,169 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:33,169 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:33,169 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:33,185 INFO  [Soap12HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap12Endpoint
+2014-12-15 11:40:33,201 INFO  [Soap12HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:33,201 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:33,201 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:33,216 INFO  [SoapInput] No documentation found for input input
+2014-12-15 11:40:33,232 INFO  [SoapInput] No documentation found for input langmod
+2014-12-15 11:40:33,232 INFO  [WSDLinfo] WSDL STRING: eu.impact_project.iif.ws.generic.SoapService@c65a5ef
+2014-12-15 11:40:33,232 INFO  [WSDLinfo] Initializing Servlet WSDLinfo
+2014-12-15 11:40:33,247 INFO  [WSDLinfo] Initializing Servlet WSDLinfo
+2014-12-15 11:40:33,263 INFO  [WSDLinfo] URL WSDL: http://impact.dlsi.ua.es/services/Tesseract302?wsdl
+2014-12-15 11:40:33,450 INFO  [SchemaUtils] Loading schema types from [http://impact.dlsi.ua.es/services/Tesseract302?wsdl]
+2014-12-15 11:40:33,450 INFO  [SchemaUtils] Getting schema http://impact.dlsi.ua.es/services/Tesseract302?wsdl
+2014-12-15 11:40:34,698 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:34,698 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:34,698 INFO  [Soap11HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap11Endpoint
+2014-12-15 11:40:34,714 INFO  [Soap11HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:34,714 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:34,714 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:34,714 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:34,714 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:34,714 INFO  [Soap12HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap12Endpoint
+2014-12-15 11:40:34,714 INFO  [Soap12HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:34,714 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:34,714 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:34,729 INFO  [SoapInput] No documentation found for input input
+2014-12-15 11:40:34,745 INFO  [SoapInput] No documentation found for input langmod
+2014-12-15 11:40:34,761 INFO  [WSDLinfo] Initializing Servlet WSDLinfo
+2014-12-15 11:40:34,761 INFO  [WSDLinfo] URL WSDL: http://impact.dlsi.ua.es/services/Tesseract302?wsdl
+2014-12-15 11:40:34,932 INFO  [SchemaUtils] Loading schema types from [http://impact.dlsi.ua.es/services/Tesseract302?wsdl]
+2014-12-15 11:40:34,932 INFO  [SchemaUtils] Getting schema http://impact.dlsi.ua.es/services/Tesseract302?wsdl
+2014-12-15 11:40:35,603 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:35,603 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:35,603 INFO  [Soap11HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap11Endpoint
+2014-12-15 11:40:35,603 INFO  [Soap11HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:35,603 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:35,603 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:35,603 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:35,603 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:35,603 INFO  [Soap12HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap12Endpoint
+2014-12-15 11:40:35,603 INFO  [Soap12HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:35,603 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:35,603 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:35,619 INFO  [SoapInput] No documentation found for input input
+2014-12-15 11:40:35,619 INFO  [SoapInput] No documentation found for input langmod
+2014-12-15 11:40:35,634 INFO  [WSDLinfo] Initializing Servlet WSDLinfo
+2014-12-15 11:40:35,634 INFO  [WSDLinfo] URL WSDL: http://impact.dlsi.ua.es/services/Tesseract302?wsdl
+2014-12-15 11:40:35,775 INFO  [SchemaUtils] Loading schema types from [http://impact.dlsi.ua.es/services/Tesseract302?wsdl]
+2014-12-15 11:40:35,775 INFO  [SchemaUtils] Getting schema http://impact.dlsi.ua.es/services/Tesseract302?wsdl
+2014-12-15 11:40:37,023 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:37,023 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap11Binding
+2014-12-15 11:40:37,023 INFO  [Soap11HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap11Endpoint
+2014-12-15 11:40:37,023 INFO  [Soap11HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:37,023 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:37,038 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:37,038 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:37,038 INFO  [WsdlImporter] Importing binding {http://impact-project.eu/iif/service}Tesseract302Soap12Binding
+2014-12-15 11:40:37,038 INFO  [Soap12HttpBindingImporter] importing endpoint http://impact.dlsi.ua.es/services/Tesseract302.Tesseract302HttpSoap12Endpoint
+2014-12-15 11:40:37,038 INFO  [Soap12HttpBindingImporter] importing operation tesseract
+2014-12-15 11:40:37,038 INFO  [WsdlImporter] Finding importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:37,038 INFO  [WsdlImporter] Missing importer for {http://impact-project.eu/iif/service}Tesseract302HttpBinding
+2014-12-15 11:40:37,054 INFO  [SoapInput] No documentation found for input input
+2014-12-15 11:40:37,054 INFO  [SoapInput] No documentation found for input langmod
+2014-12-15 11:40:37,054 INFO  [WSDLinfo] WSDL STRING: eu.impact_project.iif.ws.generic.SoapService@5fe8b721

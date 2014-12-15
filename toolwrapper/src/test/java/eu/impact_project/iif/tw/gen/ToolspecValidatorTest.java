@@ -31,7 +31,12 @@ import org.apache.log4j.BasicConfigurator;
 
 import eu.impact_project.iif.tw.Constants;
 import eu.impact_project.iif.tw.conf.Configuration;
+import eu.impact_project.iif.tw.gen.types.ErrType;
+import eu.impact_project.iif.tw.toolspec.Services;
 import eu.impact_project.iif.tw.toolspec.Toolspec;
+import java.net.URL;
+import java.util.logging.Level;
+import static org.junit.Assert.fail;
 
 /**
  *
@@ -84,7 +89,7 @@ public class ToolspecValidatorTest {
 			tv = new ToolspecValidator(toolspec, ioc);
 			return tv;
 		} catch (JAXBException ex) {
-			logger.error("JAXBException", ex);
+			//logger.error("JAXBException", ex);
 			throw new GeneratorException("JAXBException occurred.");
 		}
 	}
@@ -100,8 +105,114 @@ public class ToolspecValidatorTest {
 			ToolspecValidator tv = getToolspecValidator(toolspec);
 			tv.validateWithXMLSchema();
 			tv.validate();
+                        tv.isValid();
 		}
-	}
+                
+	}   
+        
+        @Test
+        public void testValidateError()
+        {            
+            try
+            {   
+                Configuration ioc = new Configuration();
+                URL url = this.getClass().getResource("/Errortoolspec.xml");        
+                File testXml = new File(url.getFile());
+                ioc.setXmlConf(testXml);                
+                ioc.setProjConf(new File(Constants.DEFAULT_PROJECT_PROPERTIES));
+                Toolspec toolspec = new Toolspec();
+                ToolspecValidator tv = new ToolspecValidator(toolspec, ioc);
+
+                tv.validateWithXMLSchema();
+                fail("Should raise exception");
+            }
+            catch (GeneratorException ex)
+            {
+                //System.out.println(ex.toString());
+            }
+        }
+        
+        @Test
+        public void testValidateError2()
+        {            
+            try
+            {   
+                Configuration ioc = new Configuration();
+                URL url = this.getClass().getResource("/Errortoolspec.xml");        
+                File testXml = new File(url.getFile());
+                ioc.setXmlConf(testXml);                
+                ioc.setProjConf(new File(Constants.DEFAULT_PROJECT_PROPERTIES));
+                Toolspec toolspec = null;
+                ToolspecValidator tv = new ToolspecValidator(toolspec, ioc);
+
+                Toolspec pru = new Toolspec();
+                pru.setServices(new Services());
+                
+                
+                tv.validate();
+                fail("Should raise exception");
+            }
+            catch (GeneratorException ex)
+            {
+                
+            }
+        }
+        
+        @Test
+        public void testCheck()
+        {
+            try
+            {   
+                Configuration ioc = new Configuration();
+                URL url = this.getClass().getResource("/layoutevaluation.xml");        
+                File testXml = new File(url.getFile());
+                ioc.setXmlConf(testXml);                
+                ioc.setProjConf(new File(Constants.DEFAULT_PROJECT_PROPERTIES));                
+                JAXBContext context;
+			context = JAXBContext
+					.newInstance("eu.impact_project.iif.tw.toolspec");
+			Unmarshaller unmarshaller = context.createUnmarshaller();
+			Toolspec toolspec = (Toolspec) unmarshaller.unmarshal(new File(ioc
+					.getXmlConf()));                        
+			ToolspecValidator tv = new ToolspecValidator(toolspec, ioc);                
+                
+                tv.validate();                 
+                fail("Should raise exception");
+            }
+            catch (GeneratorException ex)
+            {
+                
+            } catch (JAXBException ex)
+            {
+                
+            }
+        }
+        
+        @Test
+        public void testWarning()
+        {
+            ToolspecValidator tv = new ToolspecValidator(null, null);
+            tv.addError(new Error(ErrType.WARNING, "Error de prueba"));
+            try
+            {
+                tv.checkpoint();
+                
+            } catch (GeneratorException ex)
+            {
+                fail("Should not raise exception");
+            }
+        }
+        
+        @Test
+        public void testErrorType()
+        {
+            ErrType err = ErrType.WARNING;
+            err.toString();
+            ErrType err2 = ErrType.ERROR;
+            err2.toString();
+        }
+        
+        
 
     private void addToolspecFilesFromResourceDir(String dirName) throws URISyntaxException {
     	// OK get the resource directory as a file from the URL

@@ -141,8 +141,8 @@ public class GeneratePages extends HttpServlet {
 				wsdlURL = request.getParameter("wsId");
 			} else {
 				// get WSDL file
-				wsdlURL = request.getParameter("wsdlURL");
-				logger.trace("Importing WSDL from URL " + wsdlURL);
+				//wsdlURL = request.getParameter("wsdlURL");
+				//logger.trace("Importing WSDL from URL " + wsdlURL);
 			}
 			
 			// get back to JSP

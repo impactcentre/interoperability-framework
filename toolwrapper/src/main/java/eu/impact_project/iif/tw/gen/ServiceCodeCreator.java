@@ -62,11 +62,7 @@ public class ServiceCodeCreator {
         this.sc = sc;
         this.sxml = sxml;
     }
-
-    /** Prevent default construction */
-    @SuppressWarnings("unused")
-    private ServiceCodeCreator() {
-    }
+    
 
     /**
      * Create operations

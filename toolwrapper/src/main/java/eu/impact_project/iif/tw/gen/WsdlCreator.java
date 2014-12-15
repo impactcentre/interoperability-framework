@@ -71,12 +71,14 @@ public class WsdlCreator {
      * Insert data types
      * @throws GeneratorException 
      */
-    public void insertDataTypes() throws GeneratorException {
-        File wsdlTemplate = new File(this.wsdlSourcePath);
-        if (!wsdlTemplate.canRead()) {
-            throw new GeneratorException("Unable to read WSDL Template file: " + this.wsdlSourcePath);
-        }
+    public void insertDataTypes() throws GeneratorException 
+    {
         try {
+            File wsdlTemplate = new File(this.wsdlSourcePath);
+            if (!wsdlTemplate.canRead()) {
+                throw new GeneratorException("Unable to read WSDL Template file: " + this.wsdlSourcePath);
+            }
+        
 
             DocumentBuilderFactory docBuildFact = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuildFact.newDocumentBuilder();
@@ -109,7 +111,8 @@ public class WsdlCreator {
                 throw new GeneratorException("WSDL file has not been created successfully.");
             }
         } catch (Exception ex) {
-            logger.error("An exception occurred: " + ex.getMessage());
+            throw new GeneratorException("An exception occurred: " + ex.getMessage());
+            
         }
     }
 

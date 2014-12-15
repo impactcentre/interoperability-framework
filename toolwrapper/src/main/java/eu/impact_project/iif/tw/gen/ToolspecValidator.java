@@ -112,18 +112,16 @@ public class ToolspecValidator {
         if (toolspec == null) {
             throw new GeneratorException("Tool specification is not available");
         }
-        try {
-            List<Service> services = toolspec.getServices().getService();
-            // for each service a different maven project will be generated
-            for (Service service : services) {
-                validateService(service, toolspec.getVersion());
-            }
-        } catch (IOException ex) {
-            throw new GeneratorException("IOException occurred.");
+        
+        List<Service> services = toolspec.getServices().getService();
+        // for each service a different maven project will be generated
+        for (Service service : services) {
+            validateService(service, toolspec.getVersion());
         }
+        
     }
 
-    private void validateService(Service service, String toolVersion) throws GeneratorException, IOException {
+    private void validateService(Service service, String toolVersion) throws GeneratorException {
         List<Deployref> dks = service.getDeployto().getDeployref();
         int defaults = 0;
         for (Deployref dk : dks) {
@@ -132,7 +130,7 @@ public class ToolspecValidator {
                 defaults++;
             }
             Deployment d = (Deployment) dk.getRef();
-        }
+        }        
         logger.info("Defaults:"+defaults);
         check(defaults == 0, ErrType.ERROR, "No referenced deployment is marked as default deployment for service \"" + service.getName() + "\".");
         check(defaults > 1, ErrType.ERROR, "Multiple deployment references are marked as default deployment for service \"" + service.getName() + "\".");
@@ -166,7 +164,7 @@ public class ToolspecValidator {
         if (this.errors != null && this.errors.size() > 0) {
             for (Error err : errors) {
                 if (err.errType.equals(ErrType.ERROR)) {
-                    logger.error(err.errMsg);
+                    logger.error(err.toString());
                 } else if (err.errType.equals(ErrType.WARNING)) {
                     logger.warn(err.errMsg);
                 }
@@ -179,22 +177,12 @@ public class ToolspecValidator {
         }
     }
 
+    public void addError(Error err)
+    {
+        this.errors.add(err);
+    }
+    
     private void validateOperation(Operation operation) {
     }
-
-    class Error {
-
-        private ErrType errType;
-        private String errMsg;
-
-        public Error(ErrType errType, String errMsg) {
-            this.errType = errType;
-            this.errMsg = errMsg;
-        }
-
-        @Override
-        public String toString() {
-            return errType.toString() + ": " + errMsg;
-        }
-    }
+    
 }
