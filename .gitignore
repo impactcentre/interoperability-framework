@@ -1,2 +1,6 @@
 /interfaces/web/wsdl-client/target/
 /toolwrapper/target/
+*.iml
+*target*
+*~
+*generated*
