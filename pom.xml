@@ -3,7 +3,7 @@
 	<groupId>eu.impact_project</groupId>
 	<artifactId>iif</artifactId>
 	<name>IMPACT Interoperability Framework</name>
-	<version>0.9.0</version>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<description>Web Service Framework for Command Line Applications</description>
 	<url>http://www.digitisation.eu/tools/browse/interoperability-framework/</url>
@@ -68,6 +68,6 @@
             <url>https://github.com/impactcentre/interoperability-framework</url>
             <connection>scm:git:https://github.com/impactcentre/interoperability-framework.git</connection>
             <developerConnection>scm:git:git@github.com:impactcentre/interoperability-framework.git</developerConnection>            
-            <tag>iif-0.9.0</tag>
+            <tag>HEAD</tag>
         </scm>
 </project>

@@ -7,7 +7,7 @@
 	<description>Servlets and other Java classes that are used by the other modules.</description>
 	<scm>
 		<url>https://github.com/impactcentre/interoperability-framework/tree/master/interfaces/taverna/T2-Client/workflow-lib</url>
-	  <tag>iif-0.9.0</tag>
+	  <tag>HEAD</tag>
   </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
