@@ -258,6 +258,13 @@
 	  <scope>test</scope>
 	 </dependency>
 	</dependencies>
+    <distributionManagement>
+      <repository>
+        <id>bintray</id>
+	<url>https://api.bintray.com/maven/impactocr/maven/iif-wsdl-client</url>
+      </repository>
+    </distributionManagement>
+
 	<repositories>
 	    <repository>
 		    <id>eviwarePluginRepository</id>
