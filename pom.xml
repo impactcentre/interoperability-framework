@@ -4,7 +4,7 @@
 	<groupId>eu.impact_project</groupId>
 	<artifactId>iif</artifactId>
 	<name>IMPACT Interoperability Framework</name>
-	<version>0.7.0</version>
+	<version>0.9.0</version>
 	<packaging>pom</packaging>
 	<description>Web Service Framework for Command Line Applications</description>
 	<url>http://www.digitisation.eu/tools/browse/interoperability-framework/</url>
@@ -71,11 +71,4 @@
             <developerConnection>scm:git:git@github.com:impactcentre/interoperability-framework.git</developerConnection>            
             <tag>HEAD</tag>
         </scm>
-    
-        <distributionManagement>
-            <repository>
-                <id>bintray</id>
-                <url>https://api.bintray.com/maven/aeraln/maven/prueba</url>
-            </repository>
-        </distributionManagement>
 </project>

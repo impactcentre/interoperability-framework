@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.impact_project.iif.ws</groupId>
 	<artifactId>time-utils</artifactId>
-	<version>0.7.0</version>
+	<version>0.9.0</version>
     <name>time-utils</name>
 	<packaging>war</packaging>
     <properties>
@@ -18,6 +18,12 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+    <distributionManagement>
+      <repository>
+	<id>bintray</id>
+	<url>https://api.bintray.com/maven/impactocr/maven/iif-timeutils</url>
+      </repository>
+    </distributionManagement>
 	<build>
 		<plugins>
 			<plugin>
