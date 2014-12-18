@@ -36,6 +36,12 @@
             <version>2.9.1</version>
         </dependency>
     </dependencies>
+    <distributionManagement>
+      <repository>
+        <id>bintray</id>
+        <url>https://api.bintray.com/maven/impactocr/maven/iif-taverna2-client</url>
+      </repository>
+    </distributionManagement>
     <repositories>
         <repository>
             <id>impact</id>
