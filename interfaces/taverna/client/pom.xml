@@ -26,13 +26,6 @@
 		<module>workflow-client</module>
 		<module>workflow-lib</module>
 	</modules>
-	<distributionManagement>
-		<site>
-			<id>local-site</id>
-			<name>Local deployed site</name>
-			<url>file://${user.dir}/target/site-deploy</url>
-		</site>
-	</distributionManagement>
 	<dependencies>
      	<dependency>
                <groupId>net.sf.taverna.t2</groupId>
@@ -145,6 +138,18 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+    <distributionManagement>
+      <repository>
+        <id>bintray</id>
+        <url>https://api.bintray.com/maven/impactocr/maven/iif-taverna2-client</url>
+      </repository>
+      <site>
+        <id>local-site</id>
+        <name>Local deployed site</name>
+        <url>file://${user.dir}/target/site-deploy</url>
+      </site>
+
+    </distributionManagement>
 	<repositories>
 		<repository>
 			<id>eviwarePluginRepository</id>
