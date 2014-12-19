@@ -70,19 +70,34 @@ public class InfoGenerator extends HttpServlet {
 		String user = (String) session.getAttribute("user");
 		String password = (String) session.getAttribute("password");
 
-		// prepare httpclient for basic authentication
-		HttpClient client = new HttpClient();
-		client.getParams().setAuthenticationPreemptive(true);
-		client.getState().setCredentials(
-				new AuthScope("www.myexperiment.org", 80),
-				new UsernamePasswordCredentials(user, password));
+                HttpClient client = new HttpClient();
+                GetMethod get;
+                
+                if(user!=null)
+                {
+                    // prepare httpclient for basic authentication                    
+                    client.getParams().setAuthenticationPreemptive(true);
+                    client.getState().setCredentials(
+                                    new AuthScope("www.myexperiment.org", 80),
+                                    new UsernamePasswordCredentials(user, password));
 
-		GetMethod get = new GetMethod(urlString);
-		get.setDoAuthentication(true);
+                    get = new GetMethod(urlString);
+                    get.setDoAuthentication(true);
 
-		client.executeMethod(get);
-		InputStream responseBody = get.getResponseBodyAsStream();
+                    client.executeMethod(get);
+                    
+                }
+                else
+                {                    
+                    client.getParams().setAuthenticationPreemptive(false);                    
+                    get = new GetMethod(urlString);
+                    get.setDoAuthentication(false);
 
+                    client.executeMethod(get);                    
+                }                                        
+
+                    InputStream responseBody = get.getResponseBodyAsStream();
+                
 		try {
 
 			SAXBuilder builder = new SAXBuilder();

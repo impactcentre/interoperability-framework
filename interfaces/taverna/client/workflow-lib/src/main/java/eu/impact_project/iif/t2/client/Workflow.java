@@ -139,7 +139,7 @@ public class Workflow {
         List<String> failedUrls = new ArrayList<String>();
         
         for (String currentUrl : list) {
-            if (testUrl(currentUrl))
+            if (!testUrl(currentUrl))
                 failedUrls.add(currentUrl);
         }
         

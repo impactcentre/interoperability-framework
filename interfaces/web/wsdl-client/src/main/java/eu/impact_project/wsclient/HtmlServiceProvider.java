@@ -60,7 +60,7 @@ public class HtmlServiceProvider implements ServiceProvider {
 	private List<Service> services = new ArrayList<Service>();
 	private URL configUrl;
 	private URL serverUrl;
-	private static final String NO_NAMESPACE = null;
+	private static final String NO_NAMESPACE = "";
 
 	public HtmlServiceProvider(URL url) throws ConfigurationException {
 		configUrl = url;

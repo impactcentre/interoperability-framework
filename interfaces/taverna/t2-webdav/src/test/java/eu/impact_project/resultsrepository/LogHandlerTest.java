@@ -136,6 +136,9 @@ public class LogHandlerTest {
 		UrlParts partsEvalWithUnderscores = LogHandler
 				.splitUrl("http://domain.org/dir/MyService/myEvalId_With_Underscores/outputFile/MyService_myport_myEvalId_With_Underscores_tmp.txt");
 		assertEquals("", partsEvalWithUnderscores.evalId);
+                
+                UrlParts partsEval2 = LogHandler
+				.splitUrl("http://domain.org/MyService/Id/myEvalId/outputFile/tmp.txt");
 	}
 
 	@Test(expected = MalformedURLException.class)
