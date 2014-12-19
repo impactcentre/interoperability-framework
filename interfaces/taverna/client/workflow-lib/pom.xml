@@ -1,14 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
     <artifactId>workflow-lib</artifactId>
 	<packaging>jar</packaging>
 	<name>workflow-lib</name>
-	<version>0.7.0</version>
+	<version>0.9.0</version>
 	<description>Servlets and other Java classes that are used by the other modules.</description>
 	<scm>
 		<url>https://github.com/impactcentre/interoperability-framework/tree/master/interfaces/taverna/T2-Client/workflow-lib</url>
-	</scm>
+	  <tag>HEAD</tag>
+  </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.7</jdk.version>
@@ -16,7 +16,7 @@
 	<parent>
 		<groupId>eu.impact_project.iif.t2</groupId>
 		<artifactId>client</artifactId>
-		<version>0.7.0</version>
+		<version>0.9.0</version>
         <relativePath>../pom.xml</relativePath>
 	</parent>
 	<dependencies>
@@ -42,6 +42,12 @@
 	  <scope>test</scope>
 	 </dependency>
     </dependencies>
+    <distributionManagement>
+      <repository>
+        <id>bintray</id>
+        <url>https://api.bintray.com/maven/impactocr/maven/iif-taverna2-client</url>
+      </repository>
+    </distributionManagement>
     <repositories>
         <repository>
             <id>impact</id>
