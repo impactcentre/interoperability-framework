@@ -39,8 +39,6 @@
 
 
 <% 
-
-
 String folder = application.getRealPath("/");
 if(!folder.endsWith("/")) {	
 	folder = folder + "/";
@@ -95,7 +93,6 @@ if (loadDefault.equals("true")) {
 
 <a href="http://www.digitisation.eu/tools/interoperability-framework/demonstrator-platform/" target="_top">Demonstrator Platform</a>
 <hr/>
-<br/>
 <h1>Web Service Client</h1>
 
 <%
@@ -152,7 +149,7 @@ if (loadDefault.equals("true")) {
 
 <br><br>
 
-<form action="WSDLinfo" method="post">
+<form action="WSDLinfo" method="post" class="searchform form-group">
 <input type="hidden" name="wsName" value="user_defined">
 <input type="hidden" name="user" value="<%=userCrypt!=null?userCrypt:""%>">
 <input type="hidden" name="pass" value="<%=passCrypt!=null?passCrypt:""%>">
@@ -161,7 +158,6 @@ if (loadDefault.equals("true")) {
 
 <input class="search-field form-control" type="text" size="70" name="wsdlURL" value="<%if (session.getAttribute("wsdlURL") != null)
 				out.print(session.getAttribute("wsdlURL"));%>">
-<br>
 <input class="btn btn-default" type="submit" value="-> Try out">
 
 </form>

@@ -1,9 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.impact_project.iif.t2.resultsrepository</groupId>
 	<artifactId>resultsrepository</artifactId>
-	<version>0.7.0</version>
+	<version>0.9.0</version>
 	<packaging>war</packaging>
 	<name>resultsrepository</name>
        <properties>
@@ -90,9 +89,13 @@
 			<artifactId>spring-web</artifactId>
 			<version>3.0.7.RELEASE</version>
 		</dependency>
-
-
 	</dependencies>
+    <distributionManagement>
+      <repository>
+	<id>bintray</id>
+	<url>https://api.bintray.com/maven/impactocr/maven/iif-resultsrepository</url>
+      </repository>
+    </distributionManagement>
 
 	<pluginRepositories>
 		<pluginRepository>

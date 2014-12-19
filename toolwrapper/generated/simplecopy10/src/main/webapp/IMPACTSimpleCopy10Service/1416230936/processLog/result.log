@@ -1,9 +1,0 @@
-INFO - URL of input file: http://localhost:8080/impactservices/impact-simplecopy10-service/test.txt
-INFO - Input file created: C:\Users\Impact\AppData\Local\Temp\simplecopy10-tmp-store\fromurl1183481881809205679.txt
-INFO - Process finished successfully with code 0
-INFO - Output file of size 21 has been created successfully
-INFO - Created directory: src/main/webapp/IMPACTSimpleCopy10Service\\1416230936\output\
-INFO - Public output file: src\main\webapp\IMPACTSimpleCopy10Service\1416230936\output\test.txt_IMPACTSimpleCopy10Service_outputFile_3587085234742199626
-INFO - Output URL: http://localhost:8080/impactservices/impact-simplecopy10-service/IMPACTSimpleCopy10Service//1416230936/output/test.txt_IMPACTSimpleCopy10Service_outputFile_3587085234742199626
-INFO - Process finished successfully after 159 milliseconds.
-INFO - Service request has been processed successfully

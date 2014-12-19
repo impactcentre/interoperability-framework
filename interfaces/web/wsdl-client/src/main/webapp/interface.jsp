@@ -75,7 +75,6 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="<%=style%>" media="screen" />
-		<link rel="stylesheet" type="text/css" href="css/dragdrop.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
 		<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
 		<script src="js/index.js" type="text/javascript"></script>
@@ -112,7 +111,7 @@
 		%>
 	>
 
-	<form role="form" name="defaultForm" action="SOAPinputs" method="post">
+	<form role="form" name="defaultForm" action="SOAPinputs" method="post" class="searchform form-group">
 		<input type="hidden" name="currentOperation" value="<%=defaultOperation%>">
 	</form>
 	<%
@@ -139,7 +138,7 @@
 				currentOperation = (SoapOperation) session.getAttribute("currentOperation");
 			}
 			%>
-			<form role="form" action="SOAPinputs" method="post" class="formSoapInputs">
+			<form role="form" action="SOAPinputs" method="post" class="formSoapInputs searchform form-group">
 				<div class="form-group soapinputs">
 					<label for="currentOperation">Available Operations:</label>
 					<select	name="currentOperation" class="search-field form-control">
@@ -161,12 +160,11 @@
 					}
 					%>
 					</select>
-				</div>
-				<%
-				Boolean displayDefaults = (Boolean) session.getAttribute("displayDefaults");
-				%>
-				<div class="form-group displayDefaults">
-					<input class="search-field form-control" type="checkbox" name="displayDefaults" id="displayDefaults"
+					<%
+					Boolean displayDefaults = (Boolean) session.getAttribute("displayDefaults");
+					%>
+					<label class="checkbox-inline">
+					<input type="checkbox" name="displayDefaults" id="displayDefaults"
 						<%
 						if (displayDefaults == null || displayDefaults)
 						{
@@ -176,7 +174,8 @@
 						}
 						%>
 					/>
-					<label for="displayDefaults">Display available default values</label>
+					Display available default values
+					</label>
 					<input class="btn btn-default" type="submit" value="Show Operation Inputs" class="link">
 				</div>
 			</form>
@@ -202,21 +201,24 @@
 		if (!loadDefault)
 		{
 			out.print("<p>Operation: " + opName + "</p>");
-			out.print(opDocumentation);
+			out.print("<span>" + opDocumentation + "</span>");
 		} else {
 			out.print("<p>" + defaultDescription + "</p>");
 		}
 		try
 		{
 		%>
-		<form role="form" action="SOAPresults" method="post" <% if(supportFileUpload) { %> enctype="multipart/form-data"<%} %> class="formSoapResults">
+		<form role="form" action="SOAPresults" method="post" <% if(supportFileUpload) { %> enctype="multipart/form-data"<%} %> class="formSoapResults searchform form-group">
 			<input type="hidden" name="operationName" value="<%=opName%>">
 			<%
 			if (security)
 			{%>
-				<label for="user">User:</label>
-				<input class="search-field form-control" type="text" name="user" value="<%=user%>">
-						Password: <input class="search-field form-control" type="password" name="pass" value="<%=pass%>">
+				<div class="form-group login">
+					<label for="user">User:</label>
+					<input class="search-field form-control" type="text" name="user" value="<%=user%>">
+					<label for="pass">Password:</label>
+					<input class="search-field form-control" type="password" name="pass" value="<%=pass%>">
+				</div>
 			<%
 			} else { %>
 				<input type="<% if (!security) {out.print("hidden"); } else {out.print("text");} %>" name="user" value="<%=user%>">
@@ -225,23 +227,34 @@
 			}
 			for (SoapInput field : currentOperation.getInputs())
 			{
-				if (field.getDocumentation() != null && !field.getDocumentation().equals(""))
-					out.print(field.getDocumentation());
 				Boolean displayDefaults = (Boolean) session.getAttribute("displayDefaults");
 				List<String> values = field.getPossibleValues();
 
+
+				if (field.getDocumentation() != null && !field.getDocumentation().equals(""))
+				{
+					%>
+						<label for="<%= field.getName() %>">
+					<%
+						out.print(field.getDocumentation());
+					%>
+						</label>
+					<%
+				}
 				if (values != null && values.size() > 0 && !field.isMultiValued())
 				{
 					if (editableInputs == false)
-					{%>
+					{
+						%>
 						<select name="<%= field.getName() %>" class="search-field form-control">
 								<option value="<%=field.getDefaultValue()%>">
 								<%=field.getDefaultValue()%>
 								</option>
 						</select>
-					<%
+						<%
 					}else
-					{%>
+					{
+						%>
 						<select name="<%= field.getName() %>" class="search-field form-control">
 							<%
 							for (String value : values)
@@ -257,9 +270,10 @@
 							<%
 							}%>
 						</select>
-					<%
+						<%
 					}
-				} else if(field.isMultiValued())
+				}
+				else if(field.isMultiValued())
 				{
 				%>
 					<select name="<%= field.getName() %>" size="<%= values.size() %>" multiple="multiple" class="search-field form-control">
@@ -302,42 +316,47 @@
 							%>
 							<a href="<%=field.getDefaultValue()%>"><%=field.getDefaultValue()%></a>
 							<%
-						} else
+						}
+						else
 						{
 							out.print(field.getDefaultValue());
 						}
-					} else
+					}
+					else // Editable inputs
 					{
 						%>
-						<input class="search-field form-control" type="text" name="<%= field.getName() %>" id="<%= field.getName() %>"
-							<% if (displayDefaults != null && displayDefaults)
-							   {
-									%>value="<%=field.getDefaultValue()%>"<%
-							   }%>
-						/>
-						<%
-					}
-					if(field.getName().toLowerCase().contains("url") || field.getDocumentation().toLowerCase().contains("url"))
-					{
-						String id = field.getName();
-						if (editableInputs == true)
+                    	<input
+                    	<%
+						if (field.getDefaultValue().toLowerCase().contains("http"))
+								out.print("class=\"search-field form-control inputurl\"");
+						else	out.print("class=\"search-field form-control\"");
+
+						if (displayDefaults != null && displayDefaults)
 						{
 							%>
-							<span style="color: #7979b2;" onmouseover="setStyle(this)" onmouseout="removeStyle(this)" onclick="getUrl('<%=id%>')">view</span>
+							value="<%=field.getDefaultValue()%>"
 							<%
 						}
-					}
-					if (editableInputs == true)
-					{
 						%>
-						<p class="dragandrophandler" id="<%=field.getName()%>_dragandrop">Drag and drop a file here...</p>
+						type="text" name="<%= field.getName() %>" id="<%= field.getName() %>"/>
 						<%
+						if (field.getDefaultValue().toLowerCase().contains("http"))
+						{
+							String id = field.getName();
+							if (editableInputs == true)
+							{
+								%>
+								<span style="color: #7979b2;" onmouseover="setStyle(this)" onmouseout="removeStyle(this)" onclick="getUrl('<%=id%>')">view</span>
+								<p class="dragandrophandler upload-drop-zone" id="<%=field.getName()%>_dragandrop">Drag and drop a file here...</p>
+								<%
+							}
+						}
 					}
 				}
 			}
 			%>
 			<script>loadDragAndDrop();</script>
-			<input type="submit" value="<% if(loadDefault) out.print(defaultButton); else out.print("Show Results");%>" class="link" class="btn btn-default"/>
+			<input class="btn btn-default" type="submit" value="<% if(loadDefault) out.print(defaultButton); else out.print("Show Results");%>" class="link"/>
 		</form>
 		<%
 		} catch (Exception e)
@@ -352,39 +371,49 @@
 
 		if(showResultFilesOnly == false)
 		{
+			String time = "";
+			String message = "";
+			String log = "";
+			String outputMessage = "";
+
 			for (SoapOutput output : currentOperation.getOutputs())
 			{
 				String name = output.getName();
 				String value = output.getValue();
+
 				if ((name == "processingUnit") || (name == "returncode") || (name == "Created") ||
-					 (name == "toolProcessingTime") || (name == "success"))
+					 (name == "toolProcessingTime") || (name == "success") || (name == "processingLog"))
 				{}
-				else if (((name == "processingLog")) || (name == "log"))
+				else if (name == "log")
 				{
-					out.println("<h3 id=\"mostrarLog\">" + name + "</h3>");
-					out.println("<div id=\"msgid1Log\">");
-					out.println("<h3 id=\"ocultarLog\">" + name + "</h3>");
-					out.println(value);
-					out.println("</div>");
+					log = "<h3 id=\"mostrarLog\">Log</h3>";
+					log += "<div id=\"msgid1Log\">";
+					log += "<h3 id=\"ocultarLog\">" + name + "</h3>";
+					log += value;
+					log += "</div>";
 				}
 				else if (value.startsWith("http")) {
-					out.println("<h3>" + output.getName() + "</h3>");
-					out.println("<div>");
-					out.println("<a target=\"_blank\" href='" + value + "'>");
-					out.println(value);
-					out.println("</a>");
-					out.println("</div>");
+					outputMessage = "<h3>Output</h3>";
+					outputMessage += "<div>";
+					outputMessage += "<a target=\"_blank\" href='" + value + "'>";
+					outputMessage += value;
+					outputMessage += "</a>";
+					outputMessage += "</div>";
 				}
-				else if ((name == "time"))
+				else if (name == "message")
 				{
-					out.println("<h3>" + output.getName() + "</h3>");
-					out.println(value + " ms");
+					message = "<h3>Message</h3>";
+					message += value;
 				}
-				else {
-					out.println("<h3>" + output.getName() + "</h3>");
-					out.println(value);
-				}
+				else if (name == "time")
+					time = value + " ms";
 			}
+
+			out.println(outputMessage);
+
+			out.println( message + ".  " + time + "." );
+
+			out.println( log );
 		}
 		if (request.getAttribute("fileNames") != null)
 		{
@@ -406,20 +435,6 @@
 					<a href="<%=file%>"><%=file%></a>
 					<%
 				}
-		}
-		if(loadDefault == false)
-		{
-			%>
-			<h3 id="mostrar">Received SOAP message</h3>
-			<div id="msgid1">
-				<h3 id="ocultar">Received SOAP message</h3>
-				<textarea cols="100" rows="40" name="textarea">
-				<%
-				out.print(currentOperation.getResponse());
-				%>
-				</textarea>
-			</div>
-			<%
 		}
 	} // if(request .. round3
 	%>

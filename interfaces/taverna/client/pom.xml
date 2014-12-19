@@ -5,7 +5,7 @@
 	<artifactId>client</artifactId>
 	<packaging>pom</packaging>
 	<name>T2-Client</name>
-	<version>0.7.0</version>
+	<version>0.9.0</version>
 	<description>Generic client that can be used to execute a Taverna 2 workflow.</description>
 	<organization>
 		<name>IMPACT Centre of Competence</name>
@@ -34,6 +34,22 @@
 		</site>
 	</distributionManagement>
 	<dependencies>
+     	<dependency>
+               <groupId>net.sf.taverna.t2</groupId>
+               <artifactId>taverna-server-rest-api</artifactId>
+               <version>0.2.0</version>
+               <exclusions>
+                       <exclusion>
+                               <groupId>net.sf.taverna.t2</groupId>
+                               <artifactId>taverna-server</artifactId>
+                       </exclusion>
+               </exclusions>
+        </dependency>
+        <dependency>
+                <groupId>uk.org.taverna</groupId>
+                <artifactId>taverna-server-client</artifactId>
+                <version>0.9.0</version>
+        </dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
