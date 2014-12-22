@@ -41,7 +41,7 @@ function sendFileToServer(formData, status, id) {
 		data : formData,
 		success : function(data) {
 			var idName =  id.substr(0,id.indexOf('_'));
-			var urlFile =  getAbsolutePath() + 'UploadFiles?filename=' + data;
+			var urlFile =  getAbsolutePath() + 'UploadFiles%3Ffilename%3D' + data;
 			
 			status.setProgress(100);
 			if (data.length > 20)
