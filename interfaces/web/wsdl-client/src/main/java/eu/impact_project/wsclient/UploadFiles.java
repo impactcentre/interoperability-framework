@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -80,15 +82,31 @@ public class UploadFiles extends HttpServlet {
 
 			response.setContentType("text/html");
 	                PrintWriter out = response.getWriter();
-	                out.write("<html><head></head><body>");
+                        response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+                        response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+	                //out.write("<html><head></head><body>");
 	        
 			try {
 				List<FileItem> fileItemsList = uploader.parseRequest(request);
 				Iterator<FileItem> fileItemsIterator = fileItemsList.iterator();
 				while(fileItemsIterator.hasNext()){
 					FileItem fileItem = fileItemsIterator.next();
-					String filename = fileItem.getName();
-					filename = filename.replaceAll("[^\\dA-Za-z0-9.]", "").replaceAll("\\s+", "");
+					String filename = fileItem.getName();                                        
+					filename = filename.replaceAll("[^\\dA-Za-z0-9.]", "").replaceAll("\\s+", "");                                                             
+                                        Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());                                        
+                                        String name, extension;
+                                        if(filename.lastIndexOf(".")!=-1)
+                                        {
+                                            name = filename.substring(0, filename.lastIndexOf("."));
+                                            extension = filename.substring(filename.lastIndexOf("."));
+                                        }
+                                        else
+                                        {
+                                            name = filename;
+                                            extension = "";
+                                        }
+                                        filename = name + currentTimestamp.getTime() + extension;
+                                        
 					System.out.println("filename: " + filename);
 					System.out.println("FieldName="+fileItem.getFieldName());
 					System.out.println("FileName="+fileItem.getName());
@@ -99,18 +117,19 @@ public class UploadFiles extends HttpServlet {
 					File file = new File(request.getSession().getServletContext().getAttribute("FILES_DIR") + File.separator + filename);
 					System.out.println("Absolute Path at server="+file.getAbsolutePath());
 					fileItem.write(file);
-					out.write("File "+fileItem.getName()+ " uploaded successfully.");
-		            out.write("<br>");
+					//out.write("File "+fileItem.getName()+ " uploaded successfully.");
+                                        //out.write("<br>");
 					//response.setHeader("Content-Disposition", "attachment; filename=\"UploadDownloadFileServlet?filename=" + filename );
+                                        out.write(filename);
 				}
 			} catch (FileUploadException e) {
 				System.out.println("Exception in uploading file.");
 			} catch (Exception e) {
 				System.out.println("Exception in uploading file.");
 			}
-			out.write("</body></html>");
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-    				"/interface.jsp");
-    		        rd.forward(request, response);
+			//out.write("</body></html>");
+			//RequestDispatcher rd = getServletContext().getRequestDispatcher(
+    			//	"/interface.jsp");
+    		        //rd.forward(request, response);
 		}
 }

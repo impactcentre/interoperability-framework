@@ -13,7 +13,7 @@ function getAbsolutePath() {
     return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
 }
 
-function sendFileToServer(formData, status, id, filename) {
+function sendFileToServer(formData, status, id) {
 	var uploadURL = "UploadFiles";
 	//alert(filename);
 	//var extraData = {}; //Extra Data.
@@ -41,13 +41,13 @@ function sendFileToServer(formData, status, id, filename) {
 		data : formData,
 		success : function(data) {
 			var idName =  id.substr(0,id.indexOf('_'));
-			var urlFile =  getAbsolutePath() + 'UploadFiles?filename=' + filename;
+			var urlFile =  getAbsolutePath() + 'UploadFiles?filename=' + data;
 			
 			status.setProgress(100);
-			if (filename.length > 20)
-				$("#" + id).html(filename.substring(0,20) + '...');
+			if (data.length > 20)
+				$("#" + id).html(data.substring(0,20) + '...');
 			else 
-				$("#" + id).html(filename);
+				$("#" + id).html(data);
 			$('#' + idName + '[name="' +  idName + '"]').val( urlFile );
 		}
 	});
@@ -106,18 +106,22 @@ function createStatusbar(obj, id) {
 }
 function handleFileUpload(files, obj, id) {
 	//for ( var i = 0; i < files.length; i++) {
+        //alert("aqui 3");
 	if (files[0] != undefined)
 	{
-		var filename=files[0].name.replace(/[^a-z\.0-9\s]/gi, '').replace(/[_\s]/g, '');
+		var filename=files[0].name.replace(/[^a-z\.0-9\s]/gi, '').replace(/[_\s]/g, '');                                              
 		var file=files[0];
 		var fd = new FormData();
 		var status = new createStatusbar(obj, id); //Using this we can set progress.
-
+                
+                var name;
+                var extension;                                                                                
+                
 		file.name=filename;
 		
-		fd.append('file', file);
+		fd.append('file', file);                
 		status.setFileNameSize(file.name, file.size);
-		sendFileToServer(fd, status, id, filename);
+		sendFileToServer(fd, status, id);
 	}
 }
 
