@@ -41,7 +41,7 @@ function sendFileToServer(formData, status, id) {
 		data : formData,
 		success : function(data) {
 			var idName =  id.substr(0,id.indexOf('_'));
-			var urlFile =  getAbsolutePath() + 'UploadFiles%3Ffilename%3D' + data;
+			var urlFile =  getAbsolutePath() + 'UploadFiles?filename=' + data;
 			
 			status.setProgress(100);
 			if (data.length > 20)
@@ -113,10 +113,7 @@ function handleFileUpload(files, obj, id) {
 		var file=files[0];
 		var fd = new FormData();
 		var status = new createStatusbar(obj, id); //Using this we can set progress.
-                
-                var name;
-                var extension;                                                                                
-                
+
 		file.name=filename;
 		
 		fd.append('file', file);                

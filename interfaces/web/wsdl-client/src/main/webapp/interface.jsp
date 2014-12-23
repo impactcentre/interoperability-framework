@@ -32,6 +32,7 @@
 <%@ page import="java.util.Properties" %>
 <%@ page import="java.io.InputStream" %>
 <%@ page import="java.net.URL" %>
+<%@ page import="java.net.URLEncoder" %>
 <%
 	String folder = application.getRealPath("/");
 
@@ -375,16 +376,14 @@
 			String message = "";
 			String log = "";
 			String outputMessage = "";
+			String otherMessages = "";
 
 			for (SoapOutput output : currentOperation.getOutputs())
 			{
 				String name = output.getName();
 				String value = output.getValue();
 
-				if ((name == "processingUnit") || (name == "returncode") || (name == "Created") ||
-					 (name == "toolProcessingTime") || (name == "success") || (name == "processingLog"))
-				{}
-				else if (name == "log")
+				if (name == "log")
 				{
 					log = "<h3 id=\"mostrarLog\">Log</h3>";
 					log += "<div id=\"msgid1Log\">";
@@ -393,9 +392,19 @@
 					log += "</div>";
 				}
 				else if (value.startsWith("http")) {
+					String url = "";
+					if (value.indexOf("?") > -1) 
+					{
+						url = value.substring(0, value.indexOf("?"));
+						url += URLEncoder.encode(value.substring(value.indexOf("?")));
+					}
+					else
+						url = value;
+								
+					
 					outputMessage = "<h3>Output</h3>";
 					outputMessage += "<div>";
-					outputMessage += "<a target=\"_blank\" href='" + value + "'>";
+					outputMessage += "<a target=\"_blank\" href='" + url + "'>";
 					outputMessage += value;
 					outputMessage += "</a>";
 					outputMessage += "</div>";
@@ -407,13 +416,24 @@
 				}
 				else if (name == "time")
 					time = value + " ms";
+				else
+				{
+					otherMessages += "<div>";
+					otherMessages += "<h3>" + name + "</h3>";
+					otherMessages += value;
+					otherMessages += "</div>";
+				}
 			}
-
-			out.println(outputMessage);
-
-			out.println( message + ".  " + time + "." );
-
-			out.println( log );
+			if (outputMessage.length() > 0)
+			{
+				out.println( outputMessage );
+				out.println( message + ".  " + time + "." );
+				out.println( log );
+			}
+			else
+			{
+				out.println(otherMessages);
+			}
 		}
 		if (request.getAttribute("fileNames") != null)
 		{
@@ -436,7 +456,7 @@
 					<%
 				}
 		}
-	} // if(request .. round3
+	} // if(request round3
 	%>
 	</body>
 </html>
