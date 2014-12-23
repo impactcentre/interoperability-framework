@@ -1,11 +1,12 @@
 package eu.impact_project.wsclient;
 
 import java.io.UnsupportedEncodingException;
-import javax.crypto.*;
-import javax.swing.*;
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
 import org.apache.commons.codec.binary.Base64;
 
 public class EncryptDecrypt {
