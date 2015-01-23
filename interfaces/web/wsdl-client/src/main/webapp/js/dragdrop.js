@@ -113,10 +113,7 @@ function handleFileUpload(files, obj, id) {
 		var file=files[0];
 		var fd = new FormData();
 		var status = new createStatusbar(obj, id); //Using this we can set progress.
-                
-                var name;
-                var extension;                                                                                
-                
+
 		file.name=filename;
 		
 		fd.append('file', file);                

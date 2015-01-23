@@ -21,7 +21,6 @@
 package eu.impact_project.wsclient;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Bean representing a web service operation.

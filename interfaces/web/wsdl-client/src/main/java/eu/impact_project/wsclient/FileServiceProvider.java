@@ -21,7 +21,6 @@
 package eu.impact_project.wsclient;
 
 import java.io.File;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -30,13 +29,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import javax.servlet.Servlet;
-import javax.servlet.ServletContext;
 
 /**
  * Finds and reads the configuration file containing the URLs of known web

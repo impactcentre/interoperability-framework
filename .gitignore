@@ -6,4 +6,4 @@
 .*
 *.log
 toolwrapper/generated/
-
+*.releaseBackup

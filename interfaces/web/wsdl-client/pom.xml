@@ -291,6 +291,14 @@
             <id>impact</id>
             <url>http://dl.bintray.com/impactocr/maven/</url>
         </repository>
+        <repository>
+            <id>generic-soap-client_mvn-repo</id>
+            <url>https://github.com/impactcentre/iif-generic-soap-client/raw/master/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
 	</repositories>
 	<build>
 		<finalName>WS-Client</finalName>
