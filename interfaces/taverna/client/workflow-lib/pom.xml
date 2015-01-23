@@ -40,8 +40,8 @@
 	  <artifactId>mockito-all</artifactId>
 	  <version>1.10.8</version>
 	  <scope>test</scope>
-	 </dependency>
-    </dependencies>
+	</dependency>
+	</dependencies>
     <distributionManagement>
       <repository>
         <id>bintray</id>

@@ -201,6 +201,7 @@ public class WorkflowParser extends HttpServlet {
 
             Document doc = builder.build(stream);
 
+            
             // get all input ports from the top dataflow
             XPath xpath = XPath
                     .newInstance("//wf:dataflow[@role='top']/wf:inputPorts/wf:port");

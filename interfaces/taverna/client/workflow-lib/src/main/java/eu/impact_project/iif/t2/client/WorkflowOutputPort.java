@@ -46,9 +46,12 @@ public class WorkflowOutputPort {
 
     public WorkflowOutputPort(String name) {
         this.name = name;
+        this.outputs = new ArrayList<WorkflowOutput>(); 
     }
 
-    public WorkflowOutputPort() {
+    public WorkflowOutputPort() 
+    {
+        this.outputs = new ArrayList<WorkflowOutput>();
     }
 
     public String getName() {

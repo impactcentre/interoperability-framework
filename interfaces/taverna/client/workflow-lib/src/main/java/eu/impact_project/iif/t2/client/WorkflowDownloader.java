@@ -74,7 +74,7 @@ public class WorkflowDownloader extends HttpServlet {
             e.printStackTrace();
         }  
 
-        in = new URL(dl).openStream();
+        in = new URL(dl).openStream();        
         myExpData = IOUtils.toString(in);
 
         HttpSession session = request.getSession(true);

@@ -5,9 +5,7 @@
  */
 package eu.impact_project.iif.t2.client;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -25,35 +23,34 @@ import static org.mockito.Mockito.when;
  *
  * @author Impact
  */
-public class FilePrinterTest
-{        
-
+public class WorkflowDownloaderTest
+{   
     /**
-     * Test of doGet method, of class FilePrinter.
+     * Test of doGet method, of class WorkflowDownloader.
      */
     @Test
     public void testDoGet() throws Exception
     {
         HttpServletRequest request = mock(HttpServletRequest.class);
-        HttpServletResponse response = mock(HttpServletResponse.class);        
+        HttpServletResponse response = mock(HttpServletResponse.class); 
+        HttpSession sesion = mock(HttpSession.class);
         ServletConfig config = mock(ServletConfig.class);
         ServletContext context = mock(ServletContext.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
         ServletOutputStream stream = mock(ServletOutputStream.class);
 
-        when(config.getServletContext()).thenReturn(context);        
-        when(context.getRequestDispatcher("/interface.jsp")).thenReturn(dispatcher);
-        when(request.getParameter("file")).thenReturn("prueba.txt");
-        URL url = this.getClass().getResource("/prueba.txt");        
-        File testFile = new File(url.getFile());
-        when(context.getAttribute("javax.servlet.context.tempdir")).thenReturn(new File(testFile.getParent()));        
-        when(response.getOutputStream()).thenReturn(stream);
+        when(request.getSession(true)).thenReturn(sesion);
+        when(request.getParameterValues("id")).thenReturn(new String[]{"914"});
+        when(response.getWriter()).thenReturn(null);                
         
-        FilePrinter file = new FilePrinter();
+        when(config.getServletContext()).thenReturn(context);        
+        when(context.getRequestDispatcher("/")).thenReturn(dispatcher);                
+        
+        WorkflowDownloader downloader = new WorkflowDownloader();
         try
         {
-            file.init(config);
-            file.doGet(request, response);
+            downloader.init(config);
+            downloader.doGet(request, response);
 
             //verify(request, atLeast(1)).getParameter("username"); // only if you want to verify username was called...                
         } catch (ServletException ex)
@@ -63,27 +60,10 @@ public class FilePrinterTest
         {
             fail("Should not raise exception " + ex.toString());
         }
-    }
-    
-    @Test
-    public void testDoGetFail() throws Exception
-    {        
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        FilePrinter instance = new FilePrinter();
-        instance.doGet(request, response);        
-    }
-
-    /**
-     * Test of doPost method, of class FilePrinter.
-     */
-    @Test
-    public void testDoPost() throws Exception
-    {        
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        FilePrinter instance = new FilePrinter();
-        instance.doPost(request, response);        
+        catch (Exception ex)
+        {
+            
+        }
     }
     
 }

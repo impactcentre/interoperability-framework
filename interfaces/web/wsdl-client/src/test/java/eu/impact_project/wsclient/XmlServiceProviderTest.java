@@ -6,16 +6,13 @@
 package eu.impact_project.wsclient;
 
 import eu.impact_project.wsclient.XmlServiceProvider.XmlService;
-import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.configuration.ConfigurationException;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -24,16 +21,29 @@ import static org.junit.Assert.*;
 public class XmlServiceProviderTest
 {        
 
+    
+        @BeforeClass
+	public static void setUp() throws Exception {
+		ServerStarter.startWebServer(9001);
+	}
+
+	@AfterClass
+	public static void tearDown() throws Exception {
+		ServerStarter.stopAll();
+	}
+    
     /**
      * Test of getServiceList method, of class XmlServiceProvider.
      */
     @Test
     public void testGetServiceList()
     {
+        
         try        
         {
+            
             // Load the directory as a resource
-            URL file_url = new URL("http://localhost:8080/testResources/services.xml");            
+            URL file_url = new URL("http://localhost:9001/services.xml");            
             // Turn the resource into a File object            
             XmlServiceProvider sp = new XmlServiceProvider(file_url);
             sp.getServiceList();
@@ -44,6 +54,7 @@ public class XmlServiceProviderTest
             service.getTitle();
             service.getURL();
             service.compareTo(service);
+           
             
         } catch (MalformedURLException ex)
         {
@@ -52,6 +63,8 @@ public class XmlServiceProviderTest
         {
             fail("Should not raise exception "+ex.toString());
         }
+        
+        
     }   
     
 }

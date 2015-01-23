@@ -24,7 +24,7 @@ public class WsdlTest
         Wsdl instance = new Wsdl("http://www", "user", "pass");
         instance.setUrl("http://www");
         instance.setUser("user");
-        instance.setPass("user");
+        instance.setPass("pass");
         
         assertEquals("http://www", instance.getUrl());
         assertEquals("user", instance.getUser());

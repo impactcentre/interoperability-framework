@@ -67,6 +67,41 @@ public class InfoGeneratorTest
         }
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testDoGetFail() throws Exception
+    {
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class); 
+        HttpSession sesion = mock(HttpSession.class);
+        ServletConfig config = mock(ServletConfig.class);
+        ServletContext context = mock(ServletContext.class);
+        RequestDispatcher dispatcher = mock(RequestDispatcher.class);
+        ServletOutputStream stream = mock(ServletOutputStream.class);
+
+        when(request.getSession(true)).thenReturn(sesion);
+        when(request.getParameter("id")).thenReturn("16");        
+        when(sesion.getAttribute("user")).thenReturn("user");
+        when(sesion.getAttribute("password")).thenReturn("pass");
+        
+        when(config.getServletContext()).thenReturn(context);        
+        when(context.getRequestDispatcher("/info.jsp")).thenReturn(dispatcher);                
+        
+        InfoGenerator info = new InfoGenerator();
+        try
+        {
+            info.init(config);
+            info.doGet(request, response);
+
+            //verify(request, atLeast(1)).getParameter("username"); // only if you want to verify username was called...                
+        } catch (ServletException ex)
+        {
+            fail("Should not raise exception " + ex.toString());
+        } catch (IOException ex)
+        {
+            fail("Should not raise exception " + ex.toString());
+        }
+    }
+    
     /**
      * Test of doPost method, of class InfoGenerator.
      */

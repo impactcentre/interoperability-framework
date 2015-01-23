@@ -62,8 +62,9 @@ public class FilePrinter extends HttpServlet {
 
 		try {
 			fileName = request.getParameter("file");
-		} catch (Exception e) {
-            e.printStackTrace();
+		} catch (Exception e) 
+                {
+                    e.printStackTrace();
 		}
 
 		if (fileName != null && !fileName.equals("")) {

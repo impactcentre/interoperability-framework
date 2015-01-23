@@ -39,7 +39,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.servlet.GenericServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,22 +48,15 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.commons.validator.routines.UrlValidator;
 import org.apache.xmlbeans.impl.util.Base64;
 import org.xml.sax.SAXException;
 
-import uk.org.taverna.server.client.*;
 import uk.org.taverna.server.client.connection.HttpBasicCredentials;
-import uk.org.taverna.server.client.connection.HttpBasicCredentials;
-import uk.org.taverna.server.client.connection.params.ConnectionParams;
-import uk.org.taverna.server.client.connection.UserCredentials;
 import uk.org.taverna.server.client.connection.UserCredentials;
 import uk.org.taverna.server.client.InputPort;
 import uk.org.taverna.server.client.OutputPort;
 import uk.org.taverna.server.client.PortDataValue;
-import uk.org.taverna.server.client.PortListValue;
 import uk.org.taverna.server.client.Run;
-import uk.org.taverna.server.client.RunStatus;
 import uk.org.taverna.server.client.Server;
 
 /**
@@ -173,7 +165,8 @@ public class WorkflowRunner extends HttpServlet {
                 }
                 
                 String inputsText = "";
-                for (String currentInput : htmlFormItems.keySet()) inputsText += htmlFormItems.get(currentInput) + " ";
+                for (String currentInput : htmlFormItems.keySet()) 
+                    inputsText += htmlFormItems.get(currentInput) + " ";
 
                 System.out.print("Input form: " + inputsText );
                 

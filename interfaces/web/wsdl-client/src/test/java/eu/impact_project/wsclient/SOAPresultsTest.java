@@ -27,25 +27,7 @@ import static org.mockito.Mockito.when;
  * @author Impact
  */
 public class SOAPresultsTest
-{
-    
-    public SOAPresultsTest()
-    {
-    }
-
-    /**
-     * Test of init method, of class SOAPresults.
-     */
-    @Test
-    public void testInit() throws Exception
-    {
-        System.out.println("init");
-        ServletConfig config = null;
-        SOAPresults instance = new SOAPresults();
-        instance.init(config);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+{        
 
     /**
      * Test of doGet method, of class SOAPresults.
