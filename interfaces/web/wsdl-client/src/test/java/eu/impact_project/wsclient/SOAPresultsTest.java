@@ -17,8 +17,10 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -27,7 +29,17 @@ import static org.mockito.Mockito.when;
  * @author Impact
  */
 public class SOAPresultsTest
-{        
+{       
+    
+    @BeforeClass
+    public static void setUp() throws Exception {
+            ServerStarter.startWebServer(9001);
+    }
+
+    @AfterClass
+    public static void tearDown() throws Exception {
+            ServerStarter.stopAll();
+    }
 
     /**
      * Test of doGet method, of class SOAPresults.
@@ -64,7 +76,7 @@ public class SOAPresultsTest
         File testFile = new File(url.getFile());
         when(context.getRealPath("/")).thenReturn(testFile.getParent());                 
         
-        SoapService service = new SoapService("http://impact.dlsi.ua.es/services/Tesseract302?wsdl");
+        SoapService service = new SoapService("http://localhost:9001/Tesseract302.xml");
         when(sesion.getAttribute("serviceObject")).thenReturn(service);
         when(request.getParameter("operationName")).thenReturn("tesseract");
         when(request.getParameterValues("input")).thenReturn(new String[]{"input"});

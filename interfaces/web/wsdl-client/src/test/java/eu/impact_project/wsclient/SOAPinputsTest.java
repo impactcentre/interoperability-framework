@@ -14,8 +14,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -25,6 +27,17 @@ import static org.mockito.Mockito.when;
  */
 public class SOAPinputsTest
 {
+    
+    @BeforeClass
+	public static void setUp() throws Exception {
+		ServerStarter.startWebServer(9001);
+	}
+
+	@AfterClass
+	public static void tearDown() throws Exception {
+		ServerStarter.stopAll();
+	}
+    
     
     @Test
     public void testDoGet()
@@ -52,7 +65,7 @@ public class SOAPinputsTest
         ServletConfig config = mock(ServletConfig.class);
         ServletContext context = mock(ServletContext.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);        
-        SoapService service = new SoapService("http://impact.dlsi.ua.es/services/Tesseract302?wsdl");
+        SoapService service = new SoapService("http://localhost:9001/Tesseract302.xml");
         
         
         when(config.getServletContext()).thenReturn(context);
@@ -87,7 +100,7 @@ public class SOAPinputsTest
         ServletConfig config = mock(ServletConfig.class);
         ServletContext context = mock(ServletContext.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);        
-        SoapService service = new SoapService("http://impact.dlsi.ua.es/services/Tesseract302?wsdl");
+        SoapService service = new SoapService("http://localhost:9001/Tesseract302.xml");
         
         
         when(config.getServletContext()).thenReturn(context);

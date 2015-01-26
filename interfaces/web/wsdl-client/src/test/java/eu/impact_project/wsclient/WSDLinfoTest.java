@@ -19,8 +19,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 import org.mockito.Mockito;
 
 /**
@@ -29,7 +31,17 @@ import org.mockito.Mockito;
  */
 public class WSDLinfoTest extends Mockito
 {
-        
+    
+    @BeforeClass
+    public static void setUp() throws Exception {
+            ServerStarter.startWebServer(9001);
+    }
+
+    @AfterClass
+    public static void tearDown() throws Exception {
+            ServerStarter.stopAll();
+    }
+    
     /**
      * Test of init method, of class WSDLinfo.
      */
@@ -68,7 +80,7 @@ public class WSDLinfoTest extends Mockito
         when(config.getServletContext()).thenReturn(context);
         when(context.getRequestDispatcher("/interface.jsp")).thenReturn(dispatcher);
         when(request.getParameter("wsId")).thenReturn(null);
-        when(request.getParameter("wsdlURL")).thenReturn("http://impact.dlsi.ua.es/services/Tesseract302?wsdl");
+        when(request.getParameter("wsdlURL")).thenReturn("http://localhost:9001/Tesseract302.xml");
         when(request.getParameter("wsName")).thenReturn("nombre");
         when(request.getParameter("user")).thenReturn(Security.encrypt("usuario",key));
         when(request.getParameter("pass")).thenReturn(Security.encrypt("password",key));
@@ -109,7 +121,7 @@ public class WSDLinfoTest extends Mockito
         when(config.getServletContext()).thenReturn(context);
         when(context.getRequestDispatcher("/interface.jsp")).thenReturn(dispatcher);
         when(request.getParameter("wsId")).thenReturn(null);
-        when(request.getParameter("wsdlURL")).thenReturn("http://impact.dlsi.ua.es/services/Tesseract302?wsdl");
+        when(request.getParameter("wsdlURL")).thenReturn("http://localhost:9001/Tesseract302.xml");
         when(request.getParameter("wsName")).thenReturn("nombre");
         when(request.getParameter("user")).thenReturn(Security.encrypt("usuario",key));
         when(request.getParameter("pass")).thenReturn(Security.encrypt("password",key));
@@ -146,8 +158,8 @@ public class WSDLinfoTest extends Mockito
         
         when(config.getServletContext()).thenReturn(context);
         when(context.getRequestDispatcher("/interface.jsp")).thenReturn(dispatcher);
-        when(request.getParameter("wsId")).thenReturn("http://impact.dlsi.ua.es/services/Tesseract302?wsdl");
-        when(request.getParameter("wsdlURL")).thenReturn("http://impact.dlsi.ua.es/services/Tesseract302?wsdl");
+        when(request.getParameter("wsId")).thenReturn("http://localhost:9001/Tesseract302.xml");
+        when(request.getParameter("wsdlURL")).thenReturn("http://localhost:9001/Tesseract302.xml");
         when(request.getParameter("wsName")).thenReturn("nombre");
         when(request.getParameter("user")).thenReturn(Security.encrypt("usuario",key));
         when(request.getParameter("pass")).thenReturn(Security.encrypt("password",key));
@@ -187,8 +199,8 @@ public class WSDLinfoTest extends Mockito
         
         when(config.getServletContext()).thenReturn(context);
         when(context.getRequestDispatcher("/interface.jsp")).thenReturn(dispatcher);
-        when(request.getParameter("wsId")).thenReturn("http://impact.dlsi.ua.es/services/Tesseract302?wsdl");
-        when(request.getParameter("wsdlURL")).thenReturn("http://impact.dlsi.ua.es/services/Tesseract302?wsdl");
+        when(request.getParameter("wsId")).thenReturn("http://localhost:9001/Tesseract302.xml");
+        when(request.getParameter("wsdlURL")).thenReturn("http://localhost:9001/Tesseract302.xml");
         when(request.getParameter("wsName")).thenReturn("nombre");
         when(request.getParameter("user")).thenReturn(Security.encrypt("usuario",key));
         when(request.getParameter("pass")).thenReturn(Security.encrypt("password",key));
