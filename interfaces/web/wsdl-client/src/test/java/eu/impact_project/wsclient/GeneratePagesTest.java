@@ -61,7 +61,7 @@ public class GeneratePagesTest
         //when(context.getAttribute("FILES_DIR")).thenReturn("");        
         URL url = this.getClass().getResource("/prueba.txt");        
         File testFile = new File(url.getFile());
-        when(context.getRealPath("/")).thenReturn(testFile.getParent()+"\\");
+        when(context.getRealPath("/")).thenReturn(testFile.getParent()+"/");
         when(request.getParameter("wsId")).thenReturn("/prueba?");        
         when(request.getSession()).thenReturn(sesion);
         when(request.getSession(true)).thenReturn(sesion);

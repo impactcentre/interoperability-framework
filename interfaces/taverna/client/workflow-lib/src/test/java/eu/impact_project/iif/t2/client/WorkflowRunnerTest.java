@@ -93,7 +93,7 @@ public class WorkflowRunnerTest
         when(config.getServletContext()).thenReturn(context);                
         URL url = this.getClass().getResource("/config.properties");        
         File testFile = new File(url.getFile());
-        when(context.getRealPath("/")).thenReturn(testFile.getParent()+"\\");
+        when(context.getRealPath("/")).thenReturn(testFile.getParent()+"/");
         
         
         Part[] parts = new Part[] 
@@ -184,7 +184,7 @@ public class WorkflowRunnerTest
         when(config.getServletContext()).thenReturn(context);                
         URL url = this.getClass().getResource("/config.properties");        
         File testFile = new File(url.getFile());
-        when(context.getRealPath("/")).thenReturn(testFile.getParent()+"\\");
+        when(context.getRealPath("/")).thenReturn(testFile.getParent()+"/");
         
         
         Part[] parts = new Part[] 
