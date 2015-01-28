@@ -375,7 +375,7 @@
 			String time = "";
 			String message = "";
 			String log = "";
-			String outputMessage = "";
+			String outputMessage = "<h3>Output</h3><div>";
 			String otherMessages = "";
 
 			for (SoapOutput output : currentOperation.getOutputs())
@@ -399,15 +399,14 @@
 						url += URLEncoder.encode(value.substring(value.indexOf("?")));
 					}
 					else
+					{
 						url = value;
-								
+					}
 					
-					outputMessage = "<h3>Output</h3>";
-					outputMessage += "<div>";
 					outputMessage += "<a target=\"_blank\" href='" + url + "'>";
 					outputMessage += value;
-					outputMessage += "</a>";
-					outputMessage += "</div>";
+					outputMessage += "</a><br/>";
+
 				}
 				else if (name == "message")
 				{
@@ -426,6 +425,7 @@
 			}
 			if (outputMessage.length() > 0)
 			{
+				outputMessage += "</div>";
 				out.println( outputMessage );
 				out.println( message + ".  " + time + "." );
 				out.println( log );
