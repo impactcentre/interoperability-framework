@@ -46,13 +46,15 @@ public final class FileUtils {
     public static String getFileNameFromUrl(URL inputUrl) {
         String urlStr = inputUrl.toString();
         String fileName = urlStr.substring(urlStr.lastIndexOf("/")+1);
-        return fileName;
+        String filter = fileName.replaceAll("[^\\w\\.]", "_");
+        return filter;
     }
 
     public static String getFileNameFromUrl(String inputUrl) {
         String urlStr = inputUrl.toString();
         String fileName = urlStr.substring(urlStr.lastIndexOf("/")+1);
-        return fileName;
+        String filter = fileName.replaceAll("[^\\w\\.]", "_");
+        return filter;
     }
 
     /**
