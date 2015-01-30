@@ -17,6 +17,13 @@
         try {
             if (publicOutputDirFile.mkdirs()) {
                 infolog("Created directory: " + ${output_variable}publicOutputFileDir);
+
+                //copy index.jsp to ouput dir  ${output_variable}publicOutputFileDir
+                URL url = this.getClass().getResource("/index.jsp");        
+                File listFile = new File(url.getFile());
+                File outListFile = new File(${output_variable}publicOutputFileDir + File.separator + "index.jsp");
+                org.apache.commons.io.FileUtils.copyFile(listFile, outListFile);
+
             } else {
                 errorlog("Could not create the public (file)output directory " + ${output_variable}publicOutputFileDir);
                 return ${operationname}Result(fac, omNs);
