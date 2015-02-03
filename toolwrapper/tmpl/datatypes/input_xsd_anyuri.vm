@@ -26,16 +26,24 @@
         input_is_url = false;
     }
 
-	if (input_is_url) {
+	if (input_is_url) 
+        {
+            //use utils 
+
+            /*
 	    // Determine the file name by taking the last part of the URL (and strip the extension)
 	    bits = ${input_variable}Url.toString().split("/");
 	    fileName = bits[bits.length - 1];
+            */
+
+            fileName = FileUtils.getFileNameFromUrl(${input_variable}Url.toString());
 
 	    if(fileName.contains(".")) {
 	       bits = fileName.split("\\.");
 	       fileName = bits[0];
 	    };
-
+                       
+            
 	    if (is_inputdir) {
 		    ${input_variable}Ext = "tmp";
 	    } else {

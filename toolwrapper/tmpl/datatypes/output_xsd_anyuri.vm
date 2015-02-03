@@ -120,7 +120,7 @@
         }
 
         try {
-            infolog("Removing " + ${output_variable}File.tostring());
+            infolog("Removing " + ${output_variable}File.toString());
             org.apache.commons.io.FileUtils.deleteDirectory(${output_variable}File);
         } catch (IOException _) {
             infolog("Unable to remove tmp dir " + ${output_variable}File.toString());
