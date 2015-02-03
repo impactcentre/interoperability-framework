@@ -106,7 +106,7 @@
         }
 
         try {
-            ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "outputdir");
+            ${output_variable}FileUrl = new URL(publicHttpAccessUrl + "outputdir/");
         } catch (MalformedURLException ex) {
             return ${operationname}Result(fac, omNs);
         }
